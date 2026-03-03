@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurant Lucie — Chef Arnaud Farewell Campaign Strategy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --gold: #FAB581;
+    --gold-light: #FCCCA6;
+    --gold-dark: #D4895A;
+    --black: #013349;
+    --charcoal: #01435E;
+    --slate: #4A6575;
+    --warm-white: #FAF8F5;
+    --cream: #F5F0E8;
+    --red-accent: #9B2335;
+    --green-accent: #2D6A4F;
+    --blue-accent: #013349;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--warm-white);
+    color: var(--black);
+    line-height: 1.6;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #011E2E 0%, var(--black) 50%, #01435E 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 30% 20%, rgba(250,181,129,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 80%, rgba(250,181,129,0.08) 0%, transparent 50%);
+  }
+  .cover-badge {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(250,181,129,0.3);
+    padding: 8px 24px;
+    border-radius: 2px;
+    margin-bottom: 48px;
+    position: relative;
+  }
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.15;
+    max-width: 800px;
+    position: relative;
+    margin-bottom: 24px;
+  }
+  .cover h1 span { color: var(--gold); }
+  .cover .subtitle {
+    font-size: 18px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+    max-width: 600px;
+    position: relative;
+    margin-bottom: 48px;
+  }
+  .cover-meta {
+    position: relative;
+    display: flex;
+    gap: 40px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* ── NAV ── */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--black);
+    border-bottom: 1px solid rgba(250,181,129,0.2);
+    padding: 0 40px;
+    display: flex;
+    overflow-x: auto;
+  }
+  .sticky-nav a {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 16px 20px;
+    white-space: nowrap;
+    transition: all 0.2s;
+    border-bottom: 2px solid transparent;
+  }
+  .sticky-nav a:hover {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 40px;
+  }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .section-intro {
+    font-size: 17px;
+    color: var(--slate);
+    max-width: 700px;
+    margin-bottom: 48px;
+    line-height: 1.7;
+  }
+
+  /* ── DIVIDERS ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-light), transparent);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── BIG IDEA BLOCK ── */
+  .big-idea {
+    background: linear-gradient(135deg, #011E2E 0%, var(--charcoal) 100%);
+    padding: 80px 40px;
+    text-align: center;
+  }
+  .big-idea-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .big-idea h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    color: white;
+    margin-bottom: 32px;
+    line-height: 1.2;
+  }
+  .big-idea h2 em { color: var(--gold); font-style: italic; }
+  .big-idea p {
+    color: rgba(255,255,255,0.65);
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .big-idea .highlight-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: var(--gold);
+    font-style: italic;
+    border-left: 3px solid var(--gold);
+    padding-left: 24px;
+    text-align: left;
+    margin: 40px auto;
+    max-width: 600px;
+  }
+
+  /* ── CARDS ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+  .card {
+    background: white;
+    border: 1px solid #E8E4DE;
+    border-radius: 4px;
+    padding: 32px;
+    transition: all 0.2s;
+  }
+  .card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 4px 20px rgba(250,181,129,0.1);
+  }
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  .card-icon.gold { background: rgba(250,181,129,0.1); }
+  .card-icon.red { background: rgba(155,35,53,0.08); }
+  .card-icon.green { background: rgba(45,106,79,0.08); }
+  .card-icon.blue { background: rgba(27,73,101,0.08); }
+  .card h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--black);
+  }
+  .card p {
+    font-size: 14px;
+    color: var(--slate);
+    line-height: 1.6;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    position: relative;
+    padding-left: 40px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--gold), var(--gold-light), transparent);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+    padding-left: 24px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -29px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 3px solid var(--warm-white);
+  }
+  .timeline-date {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 4px;
+  }
+  .timeline-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+  .timeline-desc {
+    font-size: 14px;
+    color: var(--slate);
+    line-height: 1.6;
+  }
+
+  /* ── FUNNEL DIAGRAM ── */
+  .funnel-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin: 48px 0;
+  }
+  .funnel-stage {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+  }
+  .funnel-bar {
+    height: 56px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s;
+  }
+  .funnel-bar:hover { transform: translateX(4px); }
+  .funnel-meta {
+    font-size: 13px;
+    color: var(--slate);
+    min-width: 200px;
+  }
+
+  /* ── AD MOCKUPS ── */
+  .ad-mockup {
+    background: white;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 400px;
+  }
+  .ad-header {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #F0F0F0;
+  }
+  .ad-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .ad-name { font-weight: 600; font-size: 13px; }
+  .ad-sponsored { font-size: 11px; color: #999; }
+  .ad-body { padding: 16px; font-size: 14px; line-height: 1.5; }
+  .ad-image {
+    width: 100%;
+    height: 240px;
+    background: linear-gradient(135deg, #011E2E 0%, var(--charcoal) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    padding: 24px;
+  }
+  .ad-image h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .ad-image p { font-size: 13px; color: rgba(255,255,255,0.7); }
+  .ad-cta {
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #F0F0F0;
+  }
+  .ad-cta-btn {
+    background: var(--gold);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  /* ── TABLES ── */
+  .strategy-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+  .strategy-table th {
+    background: var(--black);
+    color: white;
+    padding: 14px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .strategy-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #E8E4DE;
+    color: var(--slate);
+    line-height: 1.5;
+  }
+  .strategy-table tr:hover td { background: rgba(250,181,129,0.04); }
+
+  /* ── STAT BLOCKS ── */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    margin: 40px 0;
+  }
+  .stat-block {
+    text-align: center;
+    padding: 32px 16px;
+    background: white;
+    border: 1px solid #E8E4DE;
+    border-radius: 4px;
+  }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--gold-dark);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-label {
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--slate);
+    font-weight: 500;
+  }
+
+  /* ── WIREFRAME ── */
+  .wireframe {
+    background: #F8F6F2;
+    border: 2px dashed #D4CFC5;
+    border-radius: 8px;
+    padding: 40px;
+    margin: 32px 0;
+  }
+  .wireframe-section {
+    background: white;
+    border: 1px solid #E0DCD4;
+    border-radius: 4px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .wireframe-section h5 {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .wireframe-section p {
+    font-size: 14px;
+    color: var(--slate);
+    line-height: 1.6;
+  }
+  .wireframe-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: white;
+    padding: 12px 32px;
+    border-radius: 2px;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 12px;
+  }
+
+  /* ── PHASE BLOCKS ── */
+  .phase-block {
+    background: white;
+    border-left: 4px solid var(--gold);
+    padding: 32px;
+    margin-bottom: 24px;
+    border-radius: 0 4px 4px 0;
+  }
+  .phase-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .phase-block h4 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .phase-block ul {
+    list-style: none;
+    padding: 0;
+  }
+  .phase-block li {
+    padding: 6px 0;
+    padding-left: 20px;
+    position: relative;
+    font-size: 14px;
+    color: var(--slate);
+    line-height: 1.6;
+  }
+  .phase-block li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  /* ── TAG / PILL ── */
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+  .tag-gold { background: rgba(250,181,129,0.12); color: var(--gold-dark); }
+  .tag-red { background: rgba(155,35,53,0.08); color: var(--red-accent); }
+  .tag-green { background: rgba(45,106,79,0.08); color: var(--green-accent); }
+  .tag-blue { background: rgba(27,73,101,0.08); color: var(--blue-accent); }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: linear-gradient(135deg, rgba(250,181,129,0.06) 0%, rgba(250,181,129,0.02) 100%);
+    border: 1px solid rgba(250,181,129,0.2);
+    border-radius: 4px;
+    padding: 24px 32px;
+    margin: 32px 0;
+  }
+  .callout-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--gold-dark);
+    margin-bottom: 8px;
+  }
+  .callout p {
+    font-size: 14px;
+    color: var(--slate);
+    line-height: 1.6;
+  }
+
+  /* ── TWO COL ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  @media (max-width: 768px) {
+    .two-col { grid-template-columns: 1fr; }
+    .cover h1 { font-size: 36px; }
+    .big-idea h2 { font-size: 28px; }
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    .sticky-nav { display: none; }
+    .cover { min-height: auto; padding: 60px 40px; page-break-after: always; }
+    .section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ COVER ═══════════════ -->
+<div class="cover">
+  <!-- Lucie Logo -->
+  <div style="margin-bottom: 40px; position: relative;">
+    <svg width="160" height="120" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Ornamental frame -->
+      <rect x="12" y="8" width="136" height="104" rx="4" stroke="#FAB581" stroke-width="1.5" fill="none"/>
+      <!-- Corner ornaments top-left -->
+      <circle cx="12" cy="8" r="3" fill="#FAB581"/>
+      <circle cx="148" cy="8" r="3" fill="#FAB581"/>
+      <circle cx="12" cy="112" r="3" fill="#FAB581"/>
+      <circle cx="148" cy="112" r="3" fill="#FAB581"/>
+      <!-- Top ornament -->
+      <path d="M68 4 Q72 -2 76 4 Q80 10 84 4 Q88 -2 92 4" stroke="#FAB581" stroke-width="1" fill="none"/>
+      <!-- Bottom ornament -->
+      <path d="M68 116 Q72 122 76 116 Q80 110 84 116 Q88 122 92 116" stroke="#FAB581" stroke-width="1" fill="none"/>
+      <!-- Lucie text -->
+      <text x="80" y="70" text-anchor="middle" font-family="Playfair Display, serif" font-size="38" fill="#FAB581" font-weight="400" font-style="normal">Lucie</text>
+    </svg>
+  </div>
+  <div class="cover-badge">Campaign Strategy — Confidential</div>
+  <h1>The <span>Last Table</span> Campaign</h1>
+  <p class="subtitle">A comprehensive strategy to turn Chef Arnaud's departure into the highest-grossing 7 weeks in Lucie's history — and set the stage for what comes next.</p>
+  <div class="cover-meta">
+    <span>Prepared for Yannick & Adam</span>
+    <span>March 2026</span>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav class="sticky-nav">
+  <a href="#big-idea">Big Idea</a>
+  <a href="#positioning">Positioning</a>
+  <a href="#campaign">Campaign</a>
+  <a href="#landing-page">Landing Page</a>
+  <a href="#ads">Ad Strategy</a>
+  <a href="#video">Video</a>
+  <a href="#retargeting">Retargeting</a>
+  <a href="#email">Email/SMS</a>
+  <a href="#timeline">Timeline</a>
+  <a href="#kpis">KPIs</a>
+</nav>
+
+<!-- ═══════════════ EXECUTIVE SUMMARY ═══════════════ -->
+<div class="section" id="summary">
+  <div class="section-label">Executive Summary</div>
+  <h2>The Opportunity</h2>
+  <p class="section-intro">Chef Arnaud's departure isn't a crisis. It's the most powerful marketing lever Lucie has ever had — a real, organic, time-limited reason for people to act <em>now</em>. Here's how we turn it into a waitlisted 7 weeks and a seamless brand transition.</p>
+
+  <div class="stat-row">
+    <div class="stat-block">
+      <div class="stat-number">58</div>
+      <div class="stat-label">Days of Campaign<br>(Mar 5 – May 2)</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number">2</div>
+      <div class="stat-label">Experiences to Sell<br>(Souvenirs + Pithivier)</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number">1</div>
+      <div class="stat-label">Landing Page<br>Launched This Week</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number">∞</div>
+      <div class="stat-label">Retargeting Loops<br>Running Until May 2</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-title">The Core Insight</div>
+    <p>Every restaurant in the city runs "special events." Almost none of them have a genuine, emotionally resonant, time-boxed reason for urgency. Lucie does. The strategy is simple: make people feel the weight of what's ending so they can't afford to miss it — then immediately reassure them that Lucie's story continues.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ BIG IDEA ═══════════════ -->
+<div class="big-idea" id="big-idea">
+  <div class="big-idea-inner">
+    <div class="section-label" style="color: var(--gold);">The Big Marketing Idea</div>
+    <h2>The Last Table with <em>Chef Arnaud</em></h2>
+    <p>After 3 years shaping one of the city's most respected kitchens, Chef Arnaud Bloquel is returning to France. His final service is May 2. This is a once-in-a-lifetime dining moment — the kind of thing people tell stories about.</p>
+
+    <div class="highlight-quote">
+      "You don't get a second chance to experience something that's ending. This is the table you'll wish you'd booked."
+    </div>
+
+    <p style="margin-top: 40px; font-size: 14px; color: rgba(255,255,255,0.45);">
+      <strong style="color: var(--gold);">Big Promise:</strong> Experience the food that defined Lucie — before it's gone forever.<br>
+      <strong style="color: var(--gold);">Unique Mechanism:</strong> Two curated farewell experiences (Souvenirs Tasting + Pithivier Experience) — not just dinner.<br>
+      <strong style="color: var(--gold);">Unique Sales Argument:</strong> This isn't a marketing event. This is a real chef, leaving a real kitchen, for the last time. Natural urgency. Natural scarcity.
+    </p>
+  </div>
+</div>
+
+<!-- ═══════════════ POSITIONING ═══════════════ -->
+<div class="section" id="positioning">
+  <div class="section-label">Strategic Positioning</div>
+  <h2>The Messaging Tightrope</h2>
+  <p class="section-intro">Yannick was clear: we honor Arnaud without over-promoting someone leaving, and we make it crystal clear that Lucie isn't closing. Here's the framework that threads that needle.</p>
+
+  <div class="two-col">
+    <div>
+      <h3 style="font-size: 20px; margin-bottom: 20px; font-family: 'Playfair Display', serif;">The Two-Story Architecture</h3>
+      <p style="font-size: 15px; color: var(--slate); line-height: 1.7; margin-bottom: 16px;">Every piece of content tells two stories simultaneously. The foreground story is about the farewell experience. The background story is about Lucie's exciting evolution. Neither exists without the other.</p>
+      <p style="font-size: 15px; color: var(--slate); line-height: 1.7;">The ratio shifts over time: March/April is 80% farewell, 20% future. Post-May 2, it flips to 20% gratitude, 80% rebirth.</p>
+    </div>
+    <div>
+      <div class="card" style="border-left: 4px solid var(--green-accent);">
+        <h4 style="color: var(--green-accent);">Always Say</h4>
+        <ul style="list-style: none; padding: 0; font-size: 14px; color: var(--slate);">
+          <li style="padding: 4px 0;">✓ "Lucie's final tasting menu with Chef Arnaud"</li>
+          <li style="padding: 4px 0;">✓ "A chapter is closing — a new one begins"</li>
+          <li style="padding: 4px 0;">✓ "Lucie evolves" / "Lucie continues"</li>
+          <li style="padding: 4px 0;">✓ "Experience the food that built Lucie"</li>
+          <li style="padding: 4px 0;">✓ "Your last chance to..." (specific experience)</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left: 4px solid var(--red-accent); margin-top: 16px;">
+        <h4 style="color: var(--red-accent);">Never Say</h4>
+        <ul style="list-style: none; padding: 0; font-size: 14px; color: var(--slate);">
+          <li style="padding: 4px 0;">✗ "Lucie is closing"</li>
+          <li style="padding: 4px 0;">✗ "Going out of business"</li>
+          <li style="padding: 4px 0;">✗ "Last chance to eat at Lucie"</li>
+          <li style="padding: 4px 0;">✗ Over-personalizing around Arnaud (it's about the brand)</li>
+          <li style="padding: 4px 0;">✗ Dramatic / desperate urgency language</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top: 40px;">
+    <div class="callout-title">Tone Reference: "Elegant FOMO"</div>
+    <p>The tone should feel like a letter from a trusted friend — not a countdown timer on a sales page. Think: the quiet confidence of someone who knows the value of what they're offering. The urgency is inherent in the situation. We don't manufacture it. We simply remind people it's real.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ CAMPAIGN ARCHITECTURE ═══════════════ -->
+<div class="section" id="campaign">
+  <div class="section-label">Campaign Architecture</div>
+  <h2>The Three-Phase Engine</h2>
+  <p class="section-intro">We're running a compressed campaign with natural urgency built in. No need to manufacture scarcity — we just need to make sure people know it exists.</p>
+
+  <div class="phase-block">
+    <div class="phase-number">Phase 01 — March 5–14</div>
+    <h4>The Announcement Wave</h4>
+    <p style="font-size: 14px; color: var(--slate); margin-bottom: 16px;">Launch day is March 5. Seed the news. Build the waitlist. Drive to the landing page immediately.</p>
+    <ul>
+      <li><strong>March 5: Landing page goes live + Announcement email fires</strong> — single-purpose conversion page + "Dear Friends of Lucie" letter adapted for email, sent same day</li>
+      <li><strong>March 5: Social announcement</strong> — Organic post on Lucie's Instagram + Facebook with the photo of Arnaud & Yannick</li>
+      <li><strong>March 6-7: Paid amplification</strong> — Boost the announcement post to lookalike audiences + past engagement audiences</li>
+      <li><strong>March 6-7: PR outreach</strong> — Pitch to Toronto food media: "Chef Arnaud Bloquel departs Restaurant Lucie after 3 years"</li>
+      <li><strong>March 7-10: Video capture</strong> — Film the iPhone-style Arnaud interview (see Video section)</li>
+    </ul>
+  </div>
+
+  <div class="phase-block" style="border-left-color: var(--red-accent);">
+    <div class="phase-number">Phase 02 — March 15 – April 20</div>
+    <h4>The Urgency Engine</h4>
+    <p style="font-size: 14px; color: var(--slate); margin-bottom: 16px;">Drive continuous bookings through content, ads, and retargeting. The menu is live. The clock is ticking.</p>
+    <ul>
+      <li><strong>Weekly video drops</strong> — Behind-the-scenes kitchen content, Arnaud preparing signature dishes</li>
+      <li><strong>Meta ad campaigns</strong> — Cold traffic (video views) + warm retargeting (booking conversion)</li>
+      <li><strong>Guest testimonial collection</strong> — Capture reactions from diners experiencing the farewell menu</li>
+      <li><strong>"Dish Spotlight" content series</strong> — Each week, spotlight a signature dish from the Souvenirs menu with its story</li>
+      <li><strong>Email drip sequence</strong> — 2x/week to Lucie's database with availability updates and content</li>
+      <li><strong>Partnership activations</strong> — Cross-promote with wine partners, local food influencers</li>
+    </ul>
+  </div>
+
+  <div class="phase-block" style="border-left-color: var(--blue-accent);">
+    <div class="phase-number">Phase 03 — April 21 – May 2</div>
+    <h4>The Final Count</h4>
+    <p style="font-size: 14px; color: var(--slate); margin-bottom: 16px;">Last 12 days. Maximum intensity. Every remaining seat is precious.</p>
+    <ul>
+      <li><strong>"Final Tables" campaign</strong> — Direct conversion ads with remaining availability dates</li>
+      <li><strong>Social countdown</strong> — "X services remaining" organic content</li>
+      <li><strong>Email urgency sequence</strong> — "Final weekend" and "Last night" emails</li>
+      <li><strong>Capture the final service</strong> — Video/photo documentation of May 2 for transition content</li>
+      <li><strong>Transition teaser</strong> — Begin hinting at Lucie's next chapter to maintain momentum</li>
+    </ul>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ LANDING PAGE ═══════════════ -->
+<div class="section" id="landing-page">
+  <div class="section-label">Landing Page Strategy</div>
+  <h2>One Page. One Purpose. Book.</h2>
+  <p class="section-intro">This page launches Wednesday, March 5. It's the campaign's conversion hub — every ad, email, and social post drives here. Clean. Emotional. Functional. No romance novel.</p>
+
+  <div class="wireframe">
+    <p style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; font-weight: 600;">Landing Page Wireframe — "The Last Table"</p>
+
+    <div class="wireframe-section" style="text-align: center;">
+      <h5>Hero Section</h5>
+      <p style="font-family: 'Playfair Display', serif; font-size: 28px; color: var(--black); margin-bottom: 8px;">The Last Table with Chef Arnaud</p>
+      <p style="font-size: 15px;">March 16 – May 2, 2026 at Restaurant Lucie</p>
+      <p style="font-size: 14px; color: #999; margin-top: 8px;">Full-width hero image: Arnaud in Lucie's kitchen, cooking, in motion</p>
+      <div class="wireframe-btn">Reserve Your Table</div>
+    </div>
+
+    <div class="wireframe-section">
+      <h5>The Story (3-4 sentences max)</h5>
+      <p>After nearly three years leading Lucie's kitchen, Chef Arnaud Bloquel is returning to France. His final service is Saturday, May 2. To honor this chapter, Lucie is offering two curated farewell experiences — your last chance to taste the food that defined this restaurant.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+      <div class="wireframe-section">
+        <h5>Experience 1 — Souvenirs Tasting Menu</h5>
+        <p>A celebratory multi-course tasting highlighting Arnaud's greatest hits from three years at Lucie. Curated and executed by Chef Arnaud himself.</p>
+        <p style="margin-top: 8px; font-weight: 600; color: var(--gold-dark);">$[PRICE] per person &nbsp;|&nbsp; [X] courses</p>
+        <div class="wireframe-btn">Reserve Souvenirs</div>
+      </div>
+      <div class="wireframe-section">
+        <h5>Experience 2 — The Pithivier Experience</h5>
+        <p>Lucie's signature dish — a classic French pithivier, reimagined with Arnaud's refined touch. An intimate, focused experience around a single iconic creation.</p>
+        <p style="margin-top: 8px; font-weight: 600; color: var(--gold-dark);">$[PRICE] per person</p>
+        <div class="wireframe-btn">Reserve Pithivier</div>
+      </div>
+    </div>
+
+    <div class="wireframe-section" style="text-align: center;">
+      <h5>Social Proof / Press</h5>
+      <p>"One of the city's most refined dining experiences" — [Publication]<br>Guest testimonial quotes. Star ratings. Instagram embed.</p>
+    </div>
+
+    <div class="wireframe-section">
+      <h5>Lucie Continues</h5>
+      <p>After May 2, Lucie begins its next chapter — same name, same commitment to outstanding French cuisine, with a refreshed concept and a more approachable format including à la carte dining and lunch service. More details coming soon.</p>
+    </div>
+
+    <div class="wireframe-section" style="text-align: center; background: var(--black); color: white; border-color: var(--charcoal);">
+      <h5 style="color: var(--gold);">Final CTA</h5>
+      <p style="font-family: 'Playfair Display', serif; font-size: 20px; color: white;">Don't let this table go to someone else.</p>
+      <div class="wireframe-btn" style="margin-top: 16px;">Reserve Now</div>
+      <p style="font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 12px;">Restaurant Lucie &nbsp;|&nbsp; Address &nbsp;|&nbsp; Parking Info &nbsp;|&nbsp; Private Events</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-title">Landing Page Technical Notes</div>
+    <p><strong>Build on:</strong> HighLevel (per Yannick's direction) — enables backend tracking, data capture, future funnel use for Note/Berks.<br>
+    <strong>Reservation integration:</strong> Link directly to OpenTable/Resy/in-house system — zero friction between "I want this" and "I booked this."<br>
+    <strong>Tracking:</strong> Meta Pixel, Google Tag Manager, conversion events on both CTA buttons.<br>
+    <strong>Speed:</strong> Under 3 seconds load time. No heavy animations. Mobile-first.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ AD STRATEGY ═══════════════ -->
+<div class="section" id="ads">
+  <div class="section-label">Paid Media Strategy</div>
+  <h2>Meta Ads — The Booking Machine</h2>
+  <p class="section-intro">Three campaign layers running simultaneously. Cold traffic builds awareness. Warm retargeting drives bookings. Hot retargeting closes the deal.</p>
+
+  <!-- Funnel Diagram -->
+  <div class="funnel-container">
+    <div class="funnel-stage">
+      <div class="funnel-bar" style="background: var(--blue-accent); width: 100%;">
+        COLD — Video Views / Awareness
+      </div>
+      <div class="funnel-meta"><strong>Objective:</strong> Video Views<br>Audience: Broad + Lookalikes</div>
+    </div>
+    <div class="funnel-stage">
+      <div class="funnel-bar" style="background: var(--gold-dark); width: 78%; margin-left: 11%;">
+        WARM — Engagement Retargeting
+      </div>
+      <div class="funnel-meta"><strong>Objective:</strong> Traffic / Conversion<br>Audience: 25%+ Video Viewers</div>
+    </div>
+    <div class="funnel-stage">
+      <div class="funnel-bar" style="background: var(--red-accent); width: 56%; margin-left: 22%;">
+        HOT — Website Retargeting
+      </div>
+      <div class="funnel-meta"><strong>Objective:</strong> Conversion<br>Audience: Landing Page Visitors</div>
+    </div>
+    <div class="funnel-stage">
+      <div class="funnel-bar" style="background: var(--green-accent); width: 34%; margin-left: 33%;">
+        🎯 BOOKED — Exclusion + Upsell
+      </div>
+      <div class="funnel-meta"><strong>Action:</strong> Exclude from ads<br>Upsell: Gift cards, private events</div>
+    </div>
+  </div>
+
+  <table class="strategy-table">
+    <thead>
+      <tr>
+        <th>Campaign Layer</th>
+        <th>Objective</th>
+        <th>Audience</th>
+        <th>Creative</th>
+        <th>Budget Split</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="tag tag-blue">Cold</span> Awareness</td>
+        <td>Video Views / ThruPlay</td>
+        <td>Foodies in city, fine dining interest, lookalike of past guests, 25-65</td>
+        <td>Arnaud interview video (60-90sec), kitchen footage reel</td>
+        <td>40%</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-gold">Warm</span> Retargeting</td>
+        <td>Landing Page Traffic → Conversion</td>
+        <td>25%+ video viewers, IG/FB engagers (90 days), email list</td>
+        <td>Carousel of dishes, "Last X weeks" static ads, guest testimonial video</td>
+        <td>35%</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-red">Hot</span> Conversion</td>
+        <td>Conversion (Reserve button click)</td>
+        <td>Landing page visitors who didn't book, add-to-cart abandoners</td>
+        <td>"Tables are filling up" urgency creative, specific date availability</td>
+        <td>25%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size: 20px; margin-top: 48px; margin-bottom: 8px; font-family: 'Playfair Display', serif;">Ad Creative Direction — Sample Concepts</h3>
+  <p style="font-size: 14px; color: var(--slate); margin-bottom: 24px; line-height: 1.6; font-style: italic; border-left: 3px solid var(--gold); padding-left: 16px;">The following are two representative mockups showing the style, tone, and messaging direction for the campaign. The full ad library will include multiple variations across all three funnel layers — cold, warm, and hot — with ongoing creative refreshes throughout the campaign window.</p>
+
+  <div class="two-col">
+    <div>
+      <div class="ad-mockup">
+        <div class="ad-header">
+          <div class="ad-avatar">L</div>
+          <div>
+            <div class="ad-name">Restaurant Lucie</div>
+            <div class="ad-sponsored">Sponsored</div>
+          </div>
+        </div>
+        <div class="ad-body">
+          After 3 years defining Lucie's kitchen, Chef Arnaud is heading home to France. His final service is May 2.<br><br>
+          Two farewell experiences. Limited tables. One story you'll want to be part of.
+        </div>
+        <div class="ad-image">
+          <h3>The Last Table</h3>
+          <p>Chef Arnaud's Farewell &nbsp;|&nbsp; March 16 – May 2</p>
+          <p style="margin-top: 12px; font-size: 11px; opacity: 0.5;">[ Arnaud plating signature dish — warm lighting ]</p>
+        </div>
+        <div class="ad-cta">
+          <span style="font-size: 12px; color: #999;">restaurantlucie.com</span>
+          <button class="ad-cta-btn">Reserve Now</button>
+        </div>
+      </div>
+      <p style="font-size: 12px; color: var(--gold-dark); margin-top: 12px; font-weight: 600;">Sample 1: Announcement — Cold Traffic</p>
+    </div>
+
+    <div>
+      <div class="ad-mockup">
+        <div class="ad-header">
+          <div class="ad-avatar">L</div>
+          <div>
+            <div class="ad-name">Restaurant Lucie</div>
+            <div class="ad-sponsored">Sponsored</div>
+          </div>
+        </div>
+        <div class="ad-body">
+          4 weeks left.<br><br>
+          The Souvenirs tasting menu is Chef Arnaud's greatest hits — every signature dish from 3 years at Lucie, served one last time.<br><br>
+          Tables for April are going fast.
+        </div>
+        <div class="ad-image" style="background: linear-gradient(135deg, #011E2E 0%, var(--black) 100%);">
+          <p style="font-size: 11px; opacity: 0.5; margin-bottom: 12px;">[ Close-up of plated Souvenirs dish ]</p>
+          <h3 style="font-size: 18px;">Souvenirs Tasting Menu</h3>
+          <p>Chef Arnaud's Greatest Hits</p>
+          <p style="margin-top: 8px; color: var(--gold); font-size: 14px; font-weight: 600;">Limited Availability</p>
+        </div>
+        <div class="ad-cta">
+          <span style="font-size: 12px; color: #999;">restaurantlucie.com</span>
+          <button class="ad-cta-btn">Book Your Table</button>
+        </div>
+      </div>
+      <p style="font-size: 12px; color: var(--gold-dark); margin-top: 12px; font-weight: 600;">Sample 2: Urgency — Warm Retargeting</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ VIDEO ═══════════════ -->
+<div class="section" id="video">
+  <div class="section-label">Video Content Strategy</div>
+  <h2>The Arnaud Interview — Campaign Fuel</h2>
+  <p class="section-intro">This single video becomes the foundation of the entire paid media campaign. Simple iPhone capture. Human. Real. No production crew needed.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon gold">🎬</div>
+      <h4>The Hero Video (60-90 sec)</h4>
+      <p>Sit-down with Arnaud in the kitchen. Natural light. iPhone on a tripod. Ask him 3-4 questions. This becomes the cold traffic ad that builds the entire retargeting funnel.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon red">🔪</div>
+      <h4>Kitchen B-Roll (15-30 sec clips)</h4>
+      <p>Arnaud plating dishes, kitchen in motion, the pass during service. These become Reels, Story content, and ad creative variations. Capture 20-30 minutes of raw footage.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon green">💬</div>
+      <h4>Guest Reactions (15 sec each)</h4>
+      <p>As the farewell menu launches, capture genuine guest reactions after their meal. "How was it?" — short, authentic, unscripted. These become retargeting testimonial ads.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon blue">📸</div>
+      <h4>The Dish Series (10-15 sec each)</h4>
+      <p>One video per signature dish on the Souvenirs menu. Close-up plating. Arnaud narrates the story behind each dish in a sentence or two. Weekly drops on social.</p>
+    </div>
+  </div>
+
+  <h3 style="font-size: 18px; margin-top: 40px; margin-bottom: 16px;">Arnaud Interview — Suggested Questions</h3>
+  <table class="strategy-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Question</th>
+        <th>Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>"When you first walked into Lucie's kitchen, what did you feel?"</td>
+        <td>Origin story — emotional anchor</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>"Which dish on the Souvenirs menu means the most to you, and why?"</td>
+        <td>Product spotlight — drives interest in the specific experience</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>"What do you want people to remember about this chapter of Lucie?"</td>
+        <td>Legacy framing — reinforces the "closing a chapter" narrative</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>"What would you say to someone who's been meaning to come but hasn't yet?"</td>
+        <td>Direct CTA from Arnaud himself — this becomes the ad hook</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="callout-title">Why This Works on Meta</div>
+    <p>Person-centered video content consistently outperforms polished brand creative on Meta by 2-3x. The algorithm rewards human faces, real emotion, and authentic moments. This interview builds a 25%+ viewer retargeting audience that becomes the warm layer of the ad funnel — the people who've already connected with Arnaud's story and just need the booking nudge.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ RETARGETING ═══════════════ -->
+<div class="section" id="retargeting">
+  <div class="section-label">Retargeting Architecture</div>
+  <h2>The Booking Loop</h2>
+  <p class="section-intro">Nobody books a $200+ dinner on the first touch. The retargeting system turns "that looks amazing" into "I just reserved a table" — through sequenced content that builds desire and collapses hesitation.</p>
+
+  <table class="strategy-table">
+    <thead>
+      <tr>
+        <th>Audience Segment</th>
+        <th>Trigger</th>
+        <th>Creative</th>
+        <th>Window</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="tag tag-blue">Tier 1</span> Video Viewers</td>
+        <td>Watched 25%+ of Arnaud video</td>
+        <td>Carousel: "5 Dishes You Can Only Try Until May 2" → Landing page</td>
+        <td>7 days</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-gold">Tier 2</span> Engaged Non-Visitors</td>
+        <td>Liked/commented/saved but didn't visit site</td>
+        <td>Guest testimonial video + "What you'll experience" copy</td>
+        <td>14 days</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-red">Tier 3</span> Landing Page Visitors</td>
+        <td>Visited landing page but didn't click Reserve</td>
+        <td>"Tables for [specific week] are filling" — urgency with specificity</td>
+        <td>7 days</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-red">Tier 4</span> Reserve Button Clickers</td>
+        <td>Clicked Reserve but didn't complete booking</td>
+        <td>"Your table is waiting" — strongest urgency, simplest message</td>
+        <td>3 days</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="callout-title">Exclusion Audiences (Critical)</div>
+    <p><strong>Always exclude:</strong> People who have already booked (sync with reservation system), people who are in the process of booking (24-hour window), and staff/team members. This prevents wasted spend and annoying your best customers.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ EMAIL / SMS ═══════════════ -->
+<div class="section" id="email">
+  <div class="section-label">Email & SMS Strategy</div>
+  <h2>The Owned Channel Playbook</h2>
+  <p class="section-intro">Lucie's existing database is pure gold. These are people who've already eaten there and loved it. They just need to know this is happening.</p>
+
+  <table class="strategy-table">
+    <thead>
+      <tr>
+        <th>Send Date</th>
+        <th>Subject Line Concept</th>
+        <th>Content</th>
+        <th>CTA</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Mar 5</strong><br><span class="tag tag-red">LAUNCH</span></td>
+        <td>"A letter from Lucie" / "Some news from our table to yours"</td>
+        <td>The announcement. Adapted from the existing "Dear Friends of Lucie" letter. Warm, honest, brand-forward. Fires same day as landing page + social.</td>
+        <td>Reserve Your Table</td>
+      </tr>
+      <tr>
+        <td><strong>Mar 15</strong></td>
+        <td>"The farewell menu is live"</td>
+        <td>Menu launch. Describe both experiences. Include pricing. Beautiful food photography if available.</td>
+        <td>View Experiences & Reserve</td>
+      </tr>
+      <tr>
+        <td><strong>Mar 22</strong></td>
+        <td>"The dish Arnaud almost didn't put on the menu"</td>
+        <td>Story-driven. Spotlight a specific dish from the Souvenirs menu. Build desire through narrative.</td>
+        <td>Reserve Souvenirs</td>
+      </tr>
+      <tr>
+        <td><strong>Apr 1</strong></td>
+        <td>"One month left"</td>
+        <td>Milestone email. Update on which weeks are filling up. Include a guest testimonial or two.</td>
+        <td>Check Availability</td>
+      </tr>
+      <tr>
+        <td><strong>Apr 15</strong></td>
+        <td>"Final two weeks — here's what's available"</td>
+        <td>Specific dates still open. This is conversion-focused, not storytelling.</td>
+        <td>Book Now</td>
+      </tr>
+      <tr>
+        <td><strong>Apr 28</strong></td>
+        <td>"Last weekend with Chef Arnaud"</td>
+        <td>Final push. Emotional. "If you've been meaning to come, this is it."</td>
+        <td>Reserve Your Last Table</td>
+      </tr>
+      <tr>
+        <td><strong>May 3</strong></td>
+        <td>"Thank you. And what comes next."</td>
+        <td>Gratitude email. Recap the chapter. Tease the rebirth. Keep them on the list for the relaunch.</td>
+        <td>Stay in the loop</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="callout-title">SMS Layer (If List Exists)</div>
+    <p>SMS gets a 98% open rate. Use it sparingly for maximum impact: <strong>3 texts total.</strong> (1) Announcement day — "Chef Arnaud's farewell menu is live. Tables from Mar 16 – May 2. Reserve: [link]" (2) When a specific week sells out — "[April 12 week] is sold out. Remaining dates: [link]" (3) Final weekend — "Last 3 services with Chef Arnaud. May 1-2. [link]"</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ TIMELINE ═══════════════ -->
+<div class="section" id="timeline">
+  <div class="section-label">Execution Timeline</div>
+  <h2>Week-by-Week Playbook</h2>
+  <p class="section-intro">Everything reverse-engineered from May 2. Here's what happens when.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">Today — Mar 3</div>
+      <div class="timeline-title">Strategy Approval & Prep</div>
+      <div class="timeline-desc">
+        <span class="tag tag-red">TODAY</span>
+        Approve strategy on this call. Collect assets from Yannick/Adam (pricing, reservation system, database export, photography). Begin landing page build on HighLevel. Install Meta Pixel + conversion tracking.
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Mar 4</div>
+      <div class="timeline-title">Build Day</div>
+      <div class="timeline-desc">
+        Finalize landing page. Load email sequence. Set up ad accounts. Draft announcement email and social post. QA all tracking and conversion events.
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Mar 5 — LAUNCH DAY</div>
+      <div class="timeline-title">The Announcement Drops</div>
+      <div class="timeline-desc">
+        <span class="tag tag-red">GO LIVE</span>
+        Landing page live. Announcement email fires to full database. Organic social post goes up (Arnaud & Yannick photo). Paid boost on announcement post begins. This is day one — the news is out.
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Mar 6-10</div>
+      <div class="timeline-title">Amplification + Video Capture</div>
+      <div class="timeline-desc">
+        PR outreach to food media. Film Arnaud interview video (iPhone, kitchen, this week). Launch cold traffic video view campaign once video is edited. Launch warm retargeting to email list + IG/FB engagers. Organic social: dish spotlight series begins.
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Mar 15 — Menu Goes Live</div>
+      <div class="timeline-title">Full Throttle</div>
+      <div class="timeline-desc">
+        <span class="tag tag-gold">KEY DATE</span>
+        Farewell menu launches. All paid campaigns at full budget. Landing page updated with final pricing/details. Email: "The farewell menu is live." Begin capturing guest reactions for testimonial content.
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Mar 22 – Apr 14</div>
+      <div class="timeline-title">Sustained Pressure</div>
+      <div class="timeline-desc">
+        Weekly content drops (dish spotlights, kitchen footage, guest reactions). Retargeting engine running. Bi-weekly emails. Refresh ad creative every 10-14 days to prevent fatigue. Monitor booking pace and adjust spend.
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Apr 15 – May 2</div>
+      <div class="timeline-title">The Final Count</div>
+      <div class="timeline-desc">
+        <span class="tag tag-red">MAX URGENCY</span>
+        Switch to "final tables" messaging. Specific availability dates in ads. Final email sequence fires. SMS for sold-out dates. Capture final service for transition content. May 3: send "Thank you + what's next" email.
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">May 3 – May 6</div>
+      <div class="timeline-title">The Pivot</div>
+      <div class="timeline-desc">
+        <span class="tag tag-green">NEW CHAPTER</span>
+        Pause all farewell ads. Begin space photography for new website. Post gratitude content. Tease the new Lucie: à la carte, lunch service, refreshed concept. New website target: live by May 1 for immediate redirect.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ KPIs ═══════════════ -->
+<div class="section" id="kpis">
+  <div class="section-label">Success Metrics</div>
+  <h2>How We Know It's Working</h2>
+  <p class="section-intro">The north star is simple: every service from March 16 to May 2 is fully booked. Here's how we track progress toward that.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon gold">📊</div>
+      <h4>Primary KPI</h4>
+      <p><strong>Reservation conversion rate</strong> — Landing page visitors → completed bookings. Target: 8-12% (high-intent traffic from retargeting should push this above industry benchmarks).</p>
+    </div>
+    <div class="card">
+      <div class="card-icon blue">👁️</div>
+      <h4>Awareness KPIs</h4>
+      <p><strong>Video ThruPlay rate</strong> (target: 25%+), <strong>25% video viewer audience size</strong> (target: 10,000+ in first 2 weeks), <strong>organic reach</strong> on announcement post.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon red">🔥</div>
+      <h4>Engagement KPIs</h4>
+      <p><strong>Landing page sessions</strong>, <strong>time on page</strong> (target: 45+ sec), <strong>CTA click rate</strong> (target: 15%+), <strong>email open rate</strong> (target: 35%+ — this audience cares).</p>
+    </div>
+    <div class="card">
+      <div class="card-icon green">💰</div>
+      <h4>Revenue KPI</h4>
+      <p><strong>Booking pace</strong> — Track weekly against total available covers. Goal: 70% booked by April 15. 95%+ booked by April 28. Waitlisted for final weekend.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-title">Weekly Check-In Cadence</div>
+    <p>Every Monday: review booking pace, ad spend vs. ROAS, creative fatigue indicators, email engagement. Adjust budget allocation between cold/warm/hot campaigns based on where the bottleneck is. If bookings are strong, shift budget to cold traffic to build the database for the Lucie relaunch.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ NEXT STEPS ═══════════════ -->
+<div class="section">
+  <div class="section-label">Immediate Next Steps</div>
+  <h2>48 Hours to Launch — What We Need Right Now</h2>
+  <p class="section-intro">Today is March 3. We launch March 5. That's 48 hours. Here's who does what.</p>
+
+  <div class="card-grid" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="card" style="border-top: 4px solid var(--red-accent);">
+      <h4>From Yannick & Adam — TODAY</h4>
+      <ul style="list-style: none; padding: 0; font-size: 14px; color: var(--slate);">
+        <li style="padding: 6px 0;">🔴 Final pricing for both experiences</li>
+        <li style="padding: 6px 0;">🔴 Reservation system details (what platform?)</li>
+        <li style="padding: 6px 0;">🔴 Lucie's email/guest database export</li>
+        <li style="padding: 6px 0;">🔴 Existing photography assets (hero image, dishes, Arnaud)</li>
+        <li style="padding: 6px 0;">🔴 Approval to film Arnaud this week</li>
+        <li style="padding: 6px 0;">→ Website examples they admire (for May rebuild)</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top: 4px solid var(--gold);">
+      <h4>Your Marketing Team — 48hr Sprint</h4>
+      <ul style="list-style: none; padding: 0; font-size: 14px; color: var(--slate);">
+        <li style="padding: 6px 0;">→ Mar 3-4: Landing page built on HighLevel</li>
+        <li style="padding: 6px 0;">→ Mar 4: Meta Pixel + conversion tracking installed</li>
+        <li style="padding: 6px 0;">→ Mar 4: Announcement email loaded + tested</li>
+        <li style="padding: 6px 0;">→ Mar 4: Social post + ad creative drafted</li>
+        <li style="padding: 6px 0;">→ <strong>Mar 5: EVERYTHING LIVE</strong></li>
+      </ul>
+    </div>
+    <div class="card" style="border-top: 4px solid var(--green-accent);">
+      <h4>By End of Day Mar 5</h4>
+      <ul style="list-style: none; padding: 0; font-size: 14px; color: var(--slate);">
+        <li style="padding: 6px 0;">✓ Landing page live + tracking verified</li>
+        <li style="padding: 6px 0;">✓ Announcement email sent to full database</li>
+        <li style="padding: 6px 0;">✓ Organic social announcement posted</li>
+        <li style="padding: 6px 0;">✓ Paid boost on announcement live</li>
+        <li style="padding: 6px 0;">✓ Arnaud interview scheduled for Mar 6-7</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<div style="background: var(--black); padding: 60px 40px; text-align: center;">
+  <p style="font-family: 'Playfair Display', serif; font-size: 24px; color: white; margin-bottom: 8px;">Let's make them waitlisted.</p>
+  <p style="font-size: 13px; color: rgba(255,255,255,0.3); letter-spacing: 2px; text-transform: uppercase;">Restaurant Lucie — The Last Table Campaign — March 2026</p>
+</div>
+
+</body>
+</html>
