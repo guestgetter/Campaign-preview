@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surge To Results — Guest Getter</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #FDFAF6; color: #1A1A1A; }
+  .sf { font-family: system-ui, -apple-system, sans-serif; }
+
+  /* HERO */
+  .hero { padding: 56px 24px 48px; text-align: center; }
+  .hero-inner { max-width: 620px; margin: 0 auto; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 3px; color: #E85D2A; text-transform: uppercase; font-family: system-ui, sans-serif; margin-bottom: 20px; padding: 6px 14px; border: 1.5px solid rgba(232,93,42,0.3); border-radius: 20px; background: rgba(232,93,42,0.12); }
+  .hero h1 { font-size: 42px; font-weight: 400; margin-bottom: 12px; line-height: 1.15; letter-spacing: -0.5px; }
+  .hero .subtitle { font-size: 17px; color: #7A7A7A; margin-bottom: 32px; font-family: system-ui, sans-serif; }
+  .hero-box { max-width: 500px; margin: 0 auto; padding: 24px 28px; background: #fff; border: 1px solid #E8E2D9; border-radius: 12px; }
+  .hero-box .question { font-size: 19px; line-height: 1.6; font-style: italic; }
+  .hero-box .answer { font-size: 15px; color: #4A4A4A; margin-top: 12px; font-family: system-ui, sans-serif; line-height: 1.6; }
+
+  /* SECTIONS */
+  .section { max-width: 620px; margin: 0 auto; padding: 0 24px 48px; }
+  .section-band { background: #fff; border-top: 1px solid #E8E2D9; border-bottom: 1px solid #E8E2D9; padding: 48px 24px; }
+  .section-band .inner { max-width: 620px; margin: 0 auto; }
+  h2 { font-size: 28px; font-weight: 400; margin-bottom: 16px; }
+  .label { font-size: 11px; font-weight: 700; letter-spacing: 3px; color: #E85D2A; text-transform: uppercase; font-family: system-ui, sans-serif; margin-bottom: 12px; }
+  .prose { font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.8; color: #4A4A4A; }
+  .prose p { margin-bottom: 16px; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { color: #1A1A1A; }
+  .accent { color: #E85D2A; font-weight: 600; }
+
+  /* LEVER */
+  .lever-card { background: #fff; border-radius: 16px; padding: 32px 28px; border: 1px solid #E8E2D9; position: relative; overflow: hidden; }
+  .lever-card .bar { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #E85D2A, #2D8F5E); }
+  .lever-header { text-align: center; margin-bottom: 24px; font-family: system-ui, sans-serif; }
+  .lever-header .title { font-size: 13px; font-weight: 600; color: #7A7A7A; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+  .lever-header .desc { font-size: 15px; color: #4A4A4A; line-height: 1.6; }
+  .lever-number { text-align: center; margin-bottom: 20px; }
+  .lever-number .big { font-size: 56px; font-weight: 800; color: #E85D2A; line-height: 1; font-family: system-ui, sans-serif; }
+  .lever-number .sub { font-size: 13px; color: #7A7A7A; margin-top: 4px; font-family: system-ui, sans-serif; }
+  .lever-card input[type=range] { width: 100%; margin-bottom: 28px; accent-color: #E85D2A; cursor: pointer; }
+  .lever-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .lever-stat { border-radius: 10px; padding: 14px 16px; border: 1px solid #E8E2D9; background: #F8F6F2; }
+  .lever-stat.highlight { background: rgba(45,143,94,0.1); border-color: rgba(45,143,94,0.2); }
+  .lever-stat .stat-label { font-size: 11px; color: #7A7A7A; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; font-family: system-ui, sans-serif; }
+  .lever-stat .stat-value { font-size: 22px; font-weight: 800; color: #1A1A1A; font-family: system-ui, sans-serif; }
+  .lever-stat.highlight .stat-value { color: #2D8F5E; }
+  .lever-stat .stat-sub { font-size: 11px; color: #7A7A7A; margin-top: 2px; font-family: system-ui, sans-serif; }
+  .lever-cta { margin-top: 16px; padding: 12px 16px; background: rgba(232,93,42,0.12); border-radius: 8px; border: 1px solid rgba(232,93,42,0.3); text-align: center; font-size: 13px; color: #E85D2A; font-weight: 600; font-family: system-ui, sans-serif; }
+
+  /* PROOF */
+  .proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .proof-card { padding: 16px 18px; background: #F8F6F2; border-radius: 10px; border: 1px solid #E8E2D9; }
+  .proof-card .proof-name { font-size: 11px; color: #7A7A7A; font-family: system-ui, sans-serif; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
+  .proof-card .proof-stat { font-size: 20px; font-weight: 800; font-family: system-ui, sans-serif; }
+  .proof-card .proof-detail { font-size: 12px; color: #4A4A4A; margin-top: 2px; font-family: system-ui, sans-serif; }
+  .proof-card:nth-child(1) .proof-stat { color: #E85D2A; }
+  .proof-card:nth-child(2) .proof-stat { color: #3B7DD8; }
+  .proof-card:nth-child(3) .proof-stat { color: #2D8F5E; }
+  .proof-card:nth-child(4) .proof-stat { color: #8B5CF6; }
+  .proof-totals { text-align: center; margin-top: 16px; display: flex; justify-content: center; gap: 32px; font-family: system-ui, sans-serif; }
+  .proof-totals .total-num { font-size: 28px; font-weight: 800; }
+  .proof-totals .total-label { font-size: 11px; color: #7A7A7A; margin-top: 2px; }
+
+  /* TIMELINE */
+  .week-tabs { display: flex; gap: 6px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 4px; }
+  .week-tab { padding: 10px 14px; background: transparent; border: 1.5px solid #E85D2A; border-radius: 8px; cursor: pointer; white-space: nowrap; transition: all 0.2s; font-family: system-ui, sans-serif; text-align: center; }
+  .week-tab .emoji { font-size: 16px; margin-bottom: 2px; }
+  .week-tab .wlabel { font-size: 11px; font-weight: 700; }
+  .week-tab.active { color: #fff; }
+  .week-content { padding: 24px; background: #F8F6F2; border-radius: 12px; border: 1px solid #E8E2D9; min-height: 100px; }
+  .week-content .wc-label { font-size: 13px; font-weight: 700; margin-bottom: 6px; font-family: system-ui, sans-serif; }
+  .week-content .wc-text { font-size: 15px; color: #4A4A4A; line-height: 1.7; font-family: system-ui, sans-serif; }
+  .after-45 { margin-top: 24px; padding: 16px 20px; background: #fff; border-radius: 10px; border: 1px solid #E8E2D9; }
+  .after-45 .a45-label { font-size: 13px; font-weight: 700; color: #2D8F5E; margin-bottom: 8px; font-family: system-ui, sans-serif; }
+  .after-45 .a45-text { font-family: system-ui, sans-serif; font-size: 14px; color: #4A4A4A; line-height: 1.8; }
+
+  /* OUTCOMES */
+  .outcome-list { display: grid; gap: 12px; }
+  .outcome-item { display: flex; gap: 12px; align-items: center; background: #F8F6F2; border-radius: 10px; padding: 16px 20px; border: 1px solid #E8E2D9; }
+  .outcome-item .check { color: #2D8F5E; font-weight: 800; font-size: 16px; flex-shrink: 0; }
+  .outcome-item span { font-size: 15px; font-family: system-ui, sans-serif; }
+  .outcome-note { margin-top: 16px; padding: 14px 20px; background: rgba(45,143,94,0.1); border-radius: 10px; border: 1px solid rgba(45,143,94,0.2); text-align: center; font-size: 14px; color: #2D8F5E; font-weight: 600; font-family: system-ui, sans-serif; }
+
+  /* ABOUT */
+  .about { max-width: 620px; margin: 0 auto; padding: 48px 24px; }
+
+  /* INVESTMENT */
+  .invest-price { font-size: 46px; font-weight: 800; color: #E85D2A; font-family: system-ui, sans-serif; }
+  .invest-per { font-size: 15px; color: #7A7A7A; margin-top: 4px; font-family: system-ui, sans-serif; }
+  .invest-icons { display: flex; justify-content: center; gap: 28px; margin-top: 24px; font-family: system-ui, sans-serif; text-align: center; }
+  .invest-icons .ii-emoji { font-size: 22px; margin-bottom: 4px; }
+  .invest-icons .ii-text { font-size: 12px; color: #4A4A4A; font-weight: 500; }
+  .invest-box { max-width: 460px; margin: 28px auto 0; padding: 20px; background: #F8F6F2; border-radius: 12px; border: 1px solid #E8E2D9; }
+  .invest-box p { font-size: 14px; color: #4A4A4A; line-height: 1.7; font-family: system-ui, sans-serif; margin-bottom: 10px; }
+  .invest-box p:last-child { margin-bottom: 0; }
+  .invest-box p.bold { color: #1A1A1A; font-weight: 600; }
+  .invest-note { font-size: 12px; color: #7A7A7A; margin-top: 12px; font-family: system-ui, sans-serif; }
+
+  /* FAQ */
+  .faq-item { margin-bottom: 8px; }
+  .faq-q { width: 100%; background: #fff; border: 1px solid #E8E2D9; border-radius: 10px; padding: 16px 20px; cursor: pointer; text-align: left; display: flex; justify-content: space-between; align-items: center; font-family: system-ui, sans-serif; font-size: 15px; font-weight: 600; color: #1A1A1A; font-style: italic; }
+  .faq-q.open { border-radius: 10px 10px 0 0; }
+  .faq-q .toggle { font-size: 18px; color: #7A7A7A; flex-shrink: 0; margin-left: 12px; font-style: normal; }
+  .faq-a { background: #fff; border-radius: 0 0 10px 10px; padding: 16px 20px; border: 1px solid #E8E2D9; border-top: none; display: none; }
+  .faq-a.open { display: block; }
+  .faq-a p { font-size: 14px; color: #4A4A4A; line-height: 1.7; font-family: system-ui, sans-serif; }
+
+  /* CLOSER */
+  .closer { max-width: 620px; margin: 0 auto; padding: 0 24px 64px; text-align: center; }
+  .closer-box { padding: 40px 32px; background: #fff; border-radius: 16px; border: 1px solid #E8E2D9; position: relative; overflow: hidden; }
+  .closer-box .bar { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #E85D2A, #2D8F5E); }
+  .closer-box h2 { font-size: 26px; font-weight: 400; margin-bottom: 16px; }
+  .closer-box .c-sub { font-size: 15px; color: #4A4A4A; font-family: system-ui, sans-serif; line-height: 1.7; margin-bottom: 4px; }
+  .closer-box .c-accent { font-size: 17px; font-weight: 700; color: #E85D2A; font-family: system-ui, sans-serif; margin-top: 16px; }
+  .closer-box .c-footer { margin-top: 24px; padding: 10px 16px; display: inline-block; background: #F8F6F2; border-radius: 8px; border: 1px solid #E8E2D9; font-size: 12px; color: #7A7A7A; font-family: system-ui, sans-serif; }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 30px; }
+    h2 { font-size: 24px; }
+    .lever-number .big { font-size: 42px; }
+    .invest-price { font-size: 36px; }
+    .proof-grid { grid-template-columns: 1fr; }
+    .lever-grid { grid-template-columns: 1fr; }
+    .proof-totals { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge">Guest Getter</div>
+    <h1>Surge To Results</h1>
+    <p class="subtitle sf">The Restaurant Growth System</p>
+    <div class="hero-box">
+      <p class="question">What if you knew — to the dollar — what it costs to put a new guest in a seat?</p>
+      <p class="answer sf">And what if you could turn that number up when you need more covers, and down when you're full?</p>
+    </div>
+  </div>
+</div>
+
+<!-- THE PROBLEM -->
+<div class="section">
+  <h2>Sound familiar?</h2>
+  <div class="prose">
+    <p>Tuesday night's dead again. You spent $800 on that influencer last month and you're pretty sure... maybe three people came in? You've got a stack of half-finished marketing ideas, a social media page you post to when you remember, and a website that hasn't been touched since 2021.</p>
+    <p>Meanwhile, your food costs just went up. Rent isn't going down. And every month, money goes out the door on marketing that might be working. Or might not. <strong>You genuinely can't tell</strong>.</p>
+    <p>That's the real problem. Not that your marketing doesn't work — some of it probably does. The problem is you <strong>can't see which part</strong>. So you can't do more of what's working or stop what isn't. You're stuck on a hamster wheel.</p>
+  </div>
+</div>
+
+<!-- THE REFRAME -->
+<div class="section-band">
+  <div class="inner">
+    <div class="label">The shift</div>
+    <h2>One number changes everything</h2>
+    <div class="prose">
+      <p>Your <span class="accent">cost to acquire a guest</span>. That's it. Once you know it — really know it, backed by actual tracking — marketing stops being a mystery and starts being a dial you control.</p>
+      <p>Need 30 more covers on a slow night? You know what that costs. Slammed all weekend and don't need more traffic? Dial it back. Opening a second location? Dial it way up.</p>
+      <p>We call it <strong class="accent">The Guest Lever</strong>. Not a marketing plan you hope works. A system you can see, measure, and control — like any other part of your restaurant.</p>
+    </div>
+  </div>
+</div>
+
+<!-- INTERACTIVE LEVER -->
+<div class="section" style="padding-top:48px;">
+  <div class="lever-card">
+    <div class="bar"></div>
+    <div class="lever-header">
+      <div class="title">Try the lever</div>
+      <div class="desc">Drag to see what happens when you know your numbers</div>
+    </div>
+    <div class="lever-number">
+      <div class="big" id="guestCount">50</div>
+      <div class="sub">new guests this month</div>
+    </div>
+    <input type="range" min="10" max="200" value="50" id="leverSlider">
+    <div class="lever-grid">
+      <div class="lever-stat">
+        <div class="stat-label">Ad spend</div>
+        <div class="stat-value" id="adSpend">$600</div>
+        <div class="stat-sub" id="adSpendSub">at $12/guest</div>
+      </div>
+      <div class="lever-stat">
+        <div class="stat-label">This month's revenue</div>
+        <div class="stat-value" id="monthRev">$2,250</div>
+        <div class="stat-sub" id="monthRevSub">50 × $45 avg check</div>
+      </div>
+      <div class="lever-stat highlight">
+        <div class="stat-label">12-month value</div>
+        <div class="stat-value" id="yearVal">$7,200</div>
+        <div class="stat-sub" id="yearValSub">3.2 return visits avg</div>
+      </div>
+      <div class="lever-stat highlight">
+        <div class="stat-label">First-month ROI</div>
+        <div class="stat-value" id="roi">275%</div>
+        <div class="stat-sub">before they ever come back</div>
+      </div>
+    </div>
+    <div class="lever-cta">Need more covers? Turn it up. Restaurant full? Turn it down. That's the lever.</div>
+  </div>
+</div>
+
+<!-- SOCIAL PROOF -->
+<div class="section-band">
+  <div class="inner">
+    <div class="label" style="text-align:center;">Real restaurants. Real numbers.</div>
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="proof-name">HEAL Wellness</div>
+        <div class="proof-stat">$0.30/guest</div>
+        <div class="proof-detail">1,700+ guests across 4 locations</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-name">Piping Kettle Soup Co</div>
+        <div class="proof-stat">1,300+ guests</div>
+        <div class="proof-detail">Seasonal campaigns in 4 months</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-name">Via Cibo</div>
+        <div class="proof-stat">990 new guests</div>
+        <div class="proof-detail">From Meta ads alone</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-name">In Good Spirits</div>
+        <div class="proof-stat">Worst → best month</div>
+        <div class="proof-detail">April 2024 to April 2025</div>
+      </div>
+    </div>
+    <div class="proof-totals">
+      <div>
+        <div class="total-num">97%</div>
+        <div class="total-label">owner retention rate</div>
+      </div>
+      <div>
+        <div class="total-num">100+</div>
+        <div class="total-label">restaurant owners served</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section" style="padding-top:48px;">
+  <div class="label">How it works</div>
+  <h2>We build it. We run it. You watch it work.</h2>
+  <p class="prose" style="margin-bottom:32px;">The first 45 days, we build your whole system from scratch. After that, we manage and improve it every month. Here's what you'll actually see:</p>
+
+  <div class="week-tabs" id="weekTabs"></div>
+  <div class="week-content" id="weekContent"></div>
+
+  <div class="after-45">
+    <div class="a45-label">After 45 days, the system runs monthly:</div>
+    <div class="a45-text">Campaigns managed and optimized. Monthly reporting with real numbers. Local search visibility climbing. Retention sequences bringing guests back automatically. Strategy adjustments for slow nights, seasonal shifts, and whatever you need.</div>
+  </div>
+</div>
+
+<!-- WHAT CHANGES -->
+<div class="section-band">
+  <div class="inner">
+    <h2>What changes for you</h2>
+    <p class="prose" style="margin-bottom:24px;">These aren't marketing deliverables. These are things that actually change how your restaurant operates:</p>
+    <div class="outcome-list" id="outcomeList"></div>
+    <div class="outcome-note">Everything we build is yours. The website, the data, the system — all of it, no matter what.</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="about">
+  <h2>A note about us</h2>
+  <div class="prose">
+    <p>We're not going to tell you we have some secret sauce or proprietary algorithm. We don't have a formula that "guarantees" results. Anyone who tells you that is selling you something.</p>
+    <p>What we do have is a system that tracks everything. We set up the infrastructure, run the campaigns, measure what happens, and show you the numbers. If something works, we do more of it. If it doesn't, we stop.</p>
+    <p>That's it. No smoke. No jargon. Just a dashboard you can read and a number you can trust.</p>
+  </div>
+</div>
+
+<!-- INVESTMENT -->
+<div class="section-band" style="text-align:center;">
+  <div class="inner">
+    <div class="label">Investment</div>
+    <h2>Everything. $1,000 a month.</h2>
+    <div class="invest-price">$1,000</div>
+    <div class="invest-per">per month</div>
+    <div class="invest-icons">
+      <div><div class="ii-emoji">🌐</div><div class="ii-text">Website built for you</div></div>
+      <div><div class="ii-emoji">📊</div><div class="ii-text">Campaigns managed</div></div>
+      <div><div class="ii-emoji">🎯</div><div class="ii-text">Everything tracked</div></div>
+    </div>
+    <div class="invest-box">
+      <p>Most restaurant owners already spend more than this on marketing they can't measure. A dedicated in-house hire starts at $60K/year.</p>
+      <p class="bold">This gets you the whole system — website, ads, SEO, retention, reporting — fully managed. And you can actually see what it's doing.</p>
+    </div>
+    <p class="invest-note">+ recommended ad budget of $500–$1,500/month (paid directly to the platforms, not to us)</p>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section" style="padding-top:48px;">
+  <h2>Reasonable concerns</h2>
+  <p class="prose" style="margin-bottom:24px;">You'd be crazy not to have questions.</p>
+  <div id="faqList"></div>
+</div>
+
+<!-- CLOSER -->
+<div class="closer">
+  <div class="closer-box">
+    <div class="bar"></div>
+    <h2>Stop guessing. Start knowing.</h2>
+    <p class="c-sub sf">We build the system. We run the campaigns. We show you the numbers.<br>You decide what to do with them.</p>
+    <p class="c-accent">You'll know what it costs to fill a seat.<br>And you'll have the lever to do it whenever you want.</p>
+    <div class="c-footer">Everything we build is yours. The system works because the numbers speak for themselves.</div>
+  </div>
+</div>
+
+<script>
+// DATA
+const timeline = [
+  { week:"Week 1–2", emoji:"🔧", label:"Your foundation goes live", detail:"A brand new website that actually turns visitors into reservations. No more missed calls turning into missed covers — they get answered and booked automatically. Reviews start getting requested after every visit without you lifting a finger.", color:"#E85D2A" },
+  { week:"Week 3", emoji:"📣", label:"People start finding you", detail:"Ads go live targeting people in your area who are actively looking for somewhere to eat. Every reservation and call gets tracked back to where it came from — so you'll know exactly which dollars brought in which guests.", color:"#E85D2A" },
+  { week:"Week 4", emoji:"📊", label:"Your first real numbers", detail:"How many new guests came in. What each one cost to bring in. Which channels actually worked. Meanwhile, guests who came in once start getting brought back automatically through email and text — no effort from you.", color:"#3B7DD8" },
+  { week:"Week 5", emoji:"🔄", label:"The system gets smarter", detail:"We cut what's not working and put more behind what is. Your review count is climbing. Guests are starting to come back for second and third visits. The whole thing is tightening up.", color:"#3B7DD8" },
+  { week:"Week 6", emoji:"🎯", label:"Your lever is built", detail:"You get your Guest Lever Scorecard: the exact cost to put a new guest in a seat, what each guest is worth over time, and what happens when you spend more. From here, we keep optimizing monthly. The lever is yours.", color:"#2D8F5E" }
+];
+
+const outcomes = [
+  "No more missed calls becoming missed reservations",
+  "Guests finding you on Google and in their social feeds",
+  "Every marketing dollar tracked to actual covers",
+  "New reviews showing up consistently without you asking",
+  "Past guests coming back automatically via email and text",
+  "A clear number: what it costs to put someone in a seat"
+];
+
+const faqs = [
+  { q:"I've been burned by marketing people before.", a:"Yeah. Most restaurant owners have. Someone promised results, took the money, sent some reports full of numbers that didn't connect to actual guests, and eventually the whole thing fizzled. We get it — that experience makes you not want to trust anyone with this again. That's exactly why we built this around one number you can verify yourself: did new guests show up, and what did each one cost? If the answer isn't clear within 45 days, something's wrong and you'll be able to see it." },
+  { q:"I don't have time for another marketing project.", a:"You won't need time. We build everything — the website, the campaigns, the email sequences, all of it. Your involvement is one kickoff conversation and quick weekly check-ins. Think of it less like a project and more like hiring a kitchen team member who just shows up and does the work." },
+  { q:"What if it doesn't work for my restaurant?", a:"Then you'll know that, too — with data, not a hunch. And you'll still walk away with a brand new website, automated review system, retention sequences, and total clarity on your numbers. That infrastructure changes how you operate regardless." },
+  { q:"I'm already doing some marketing. Why change?", a:"You might not need to change what you're doing — you might just need to measure it. A lot of restaurant marketing actually works. The problem is you can't tell which parts. Once you can see what's driving guests and what isn't, you might keep doing exactly what you're doing, just with the waste cut out." },
+  { q:"Can't I just hire someone to do social media?", a:"Social media is one piece. But posts don't automatically turn into reservations. This connects the whole chain — someone sees you online, visits your site, books a table, gets a follow-up that brings them back. A social media person handles one step. This is the whole system." }
+];
+
+// LEVER
+const slider = document.getElementById('leverSlider');
+function updateLever() {
+  const g = parseInt(slider.value);
+  const cpa = 12, avg = 45, visits = 3.2;
+  const spend = g * cpa, rev = g * avg, year = g * avg * visits;
+  const r = ((rev - spend) / spend * 100).toFixed(0);
+  document.getElementById('guestCount').textContent = g;
+  document.getElementById('adSpend').textContent = '$' + spend.toLocaleString();
+  document.getElementById('adSpendSub').textContent = 'at $' + cpa + '/guest';
+  document.getElementById('monthRev').textContent = '$' + rev.toLocaleString();
+  document.getElementById('monthRevSub').textContent = g + ' × $' + avg + ' avg check';
+  document.getElementById('yearVal').textContent = '$' + year.toLocaleString();
+  document.getElementById('yearValSub').textContent = visits + ' return visits avg';
+  document.getElementById('roi').textContent = r + '%';
+}
+slider.addEventListener('input', updateLever);
+
+// TIMELINE
+let activeWeek = 0;
+const tabsEl = document.getElementById('weekTabs');
+const contentEl = document.getElementById('weekContent');
+
+function renderWeeks() {
+  tabsEl.innerHTML = '';
+  timeline.forEach((t, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'week-tab' + (i === activeWeek ? ' active' : '');
+    btn.style.borderColor = t.color;
+    if (i === activeWeek) btn.style.background = t.color;
+    btn.innerHTML = '<div class="emoji">' + t.emoji + '</div><div class="wlabel" style="color:' + (i === activeWeek ? '#fff' : t.color) + '">' + t.week + '</div>';
+    btn.onclick = () => { activeWeek = i; renderWeeks(); };
+    tabsEl.appendChild(btn);
+  });
+  const t = timeline[activeWeek];
+  contentEl.innerHTML = '<div class="wc-label" style="color:' + t.color + '">' + t.label + '</div><p class="wc-text">' + t.detail + '</p>';
+}
+renderWeeks();
+
+// OUTCOMES
+const outcomeEl = document.getElementById('outcomeList');
+outcomes.forEach(o => {
+  outcomeEl.innerHTML += '<div class="outcome-item"><span class="check">✓</span><span>' + o + '</span></div>';
+});
+
+// FAQ
+const faqEl = document.getElementById('faqList');
+faqs.forEach((f, i) => {
+  faqEl.innerHTML += '<div class="faq-item"><button class="faq-q" onclick="toggleFaq(' + i + ')" id="fq' + i + '">"' + f.q + '"<span class="toggle" id="ft' + i + '">+</span></button><div class="faq-a" id="fa' + i + '"><p>' + f.a + '</p></div></div>';
+});
+
+let openFaq = -1;
+function toggleFaq(i) {
+  if (openFaq >= 0 && openFaq !== i) {
+    document.getElementById('fa' + openFaq).classList.remove('open');
+    document.getElementById('fq' + openFaq).classList.remove('open');
+    document.getElementById('ft' + openFaq).textContent = '+';
+  }
+  if (openFaq === i) {
+    document.getElementById('fa' + i).classList.remove('open');
+    document.getElementById('fq' + i).classList.remove('open');
+    document.getElementById('ft' + i).textContent = '+';
+    openFaq = -1;
+  } else {
+    document.getElementById('fa' + i).classList.add('open');
+    document.getElementById('fq' + i).classList.add('open');
+    document.getElementById('ft' + i).textContent = '−';
+    openFaq = i;
+  }
+}
+</script>
+</body>
+</html>
