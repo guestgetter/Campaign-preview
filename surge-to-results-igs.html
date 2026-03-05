@@ -13,6 +13,7 @@
     --amber: #D4895A;
     --amber-glow: rgba(212,137,90,0.12);
     --blue: #3B7DD8;
+    --blue-glow: rgba(59,125,216,0.12);
     --green: #2D8F5E;
     --green-glow: rgba(45,143,94,0.12);
     --card: #151515;
@@ -77,7 +78,7 @@
     font-size: 22px;
     font-style: italic;
     color: var(--body);
-    max-width: 500px;
+    max-width: 520px;
     line-height: 1.6;
   }
 
@@ -113,13 +114,20 @@
   /* ── BIG STATS ── */
   .stats-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 24px;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
     margin-top: 56px;
   }
-  .stat-block { text-align: center; padding: 40px 16px; border-radius: 16px; border: 1px solid var(--border); background: #111; }
+  .stats-row.triple { grid-template-columns: 1fr 1fr 1fr; }
+  .stat-block {
+    text-align: center;
+    padding: 40px 16px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: #111;
+  }
   .stat-block .num {
-    font-size: 56px;
+    font-size: 52px;
     font-weight: 800;
     line-height: 1;
     margin-bottom: 8px;
@@ -127,7 +135,49 @@
   .stat-block .desc {
     font-size: 14px;
     color: var(--muted);
-    line-height: 1.4;
+    line-height: 1.5;
+  }
+  .stat-block .desc strong { color: var(--body); }
+
+  /* ── NOW vs COULD ── */
+  .contrast-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    align-items: center;
+    margin-top: 56px;
+  }
+  .contrast-card {
+    text-align: center;
+    padding: 40px 24px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: #111;
+  }
+  .contrast-card.now { }
+  .contrast-card.could { border-color: rgba(45,143,94,0.3); background: var(--green-glow); }
+  .contrast-card .cc-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .contrast-card .cc-num {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .contrast-card .cc-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .contrast-arrow {
+    font-size: 32px;
+    color: var(--muted);
+    padding: 0 20px;
   }
 
   /* ── PILLARS ── */
@@ -164,13 +214,13 @@
     color: var(--body);
     line-height: 1.65;
     margin-bottom: 24px;
-    max-width: 560px;
+    max-width: 580px;
   }
-  .tactic-list { list-style: none; display: grid; gap: 8px; }
+  .tactic-list { list-style: none; display: grid; gap: 10px; }
   .tactic-list li {
-    font-size: 15px;
+    font-size: 16px;
     color: var(--body);
-    padding-left: 20px;
+    padding-left: 22px;
     position: relative;
     line-height: 1.55;
   }
@@ -182,7 +232,9 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
+    background: var(--dot);
   }
+  .tactic-list li strong { color: var(--white); }
 
   /* ── LEVER ── */
   .lever-wrap {
@@ -223,7 +275,7 @@
     background: #0E0E0E;
   }
   .lever-stat.hl { background: var(--green-glow); border-color: rgba(45,143,94,0.25); }
-  .lever-stat .ls-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
+  .lever-stat .ls-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
   .lever-stat .ls-val { font-size: 26px; font-weight: 800; color: var(--white); }
   .lever-stat.hl .ls-val { color: var(--green); }
   .lever-stat .ls-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
@@ -237,8 +289,6 @@
     padding: 28px 0;
     border-bottom: 1px solid var(--border);
     cursor: pointer;
-    transition: background 0.15s;
-    border-radius: 0;
   }
   .tl-item:last-child { border-bottom: none; }
   .tl-week {
@@ -256,7 +306,7 @@
     margin-bottom: 4px;
   }
   .tl-detail {
-    font-size: 15px;
+    font-size: 16px;
     color: var(--muted);
     line-height: 1.7;
     max-height: 0;
@@ -264,7 +314,7 @@
     transition: max-height 0.3s ease, margin 0.3s ease;
   }
   .tl-item.open .tl-detail {
-    max-height: 200px;
+    max-height: 250px;
     margin-top: 10px;
   }
   .tl-item.open .tl-title { color: var(--amber); }
@@ -330,14 +380,14 @@
     background: linear-gradient(to bottom, var(--amber), transparent);
   }
   .closer h2 {
-    font-size: 48px;
+    font-size: 44px;
     max-width: 600px;
     margin: 0 auto 24px;
   }
   .closer .c-line {
     font-size: 19px;
     color: var(--body);
-    max-width: 480px;
+    max-width: 500px;
     margin: 0 auto;
     line-height: 1.7;
   }
@@ -352,8 +402,10 @@
   @media (max-width: 680px) {
     .hero h1 { font-size: 38px; }
     h2 { font-size: 30px; }
-    .stats-row { grid-template-columns: 1fr; gap: 12px; }
-    .stat-block .num { font-size: 40px; }
+    .stats-row, .stats-row.triple { grid-template-columns: 1fr; gap: 12px; }
+    .contrast-row { grid-template-columns: 1fr; gap: 12px; }
+    .contrast-arrow { transform: rotate(90deg); text-align: center; padding: 0; }
+    .stat-block .num, .contrast-card .cc-num { font-size: 40px; }
     .stat-block { padding: 28px 16px; }
     .pillar { padding: 28px 24px; }
     .pillar h3 { font-size: 22px; }
@@ -373,28 +425,27 @@
   <div class="badge">Guest Getter</div>
   <h1 class="serif">Surge To Results</h1>
   <div class="client">In Good Spirits</div>
-  <p class="hook">Year one built the base.<br>Year two is about dominance.</p>
+  <p class="hook">You did $10K in alcohol sales between 4 and 7 on a Thursday. The bar can crush it. Let's make that the norm, not the exception.</p>
 </div>
 
-<!-- ═══ THE OPPORTUNITY ═══ -->
+<!-- ═══ THE GAP ═══ -->
 <div class="full band">
   <div class="inner">
     <div class="eyebrow">The Opportunity</div>
-    <h2>You're connected to the arena.<br>Let's act like it.</h2>
-    <p class="body-lg">Scotiabank Arena puts <strong>20,000 people in your building</strong> multiple times a week — Leafs, Raptors, concerts, events. They walk right past your door through the CIBC Square connection. Most don't know you're there. <strong>That changes now.</strong></p>
+    <h2>850 seats. 200+ arena events. And you're getting 30&ndash;50 people pre-game.</h2>
+    <p class="body-lg">You said it yourself: <strong>the food hall should have 500 people here before every game. It should be a madhouse.</strong> Right now it's not. Scotiabank Arena puts 20,000 people in your building multiple times a week through the CIBC Square connection. Most of them walk right past. That's the gap &mdash; and it's the single biggest unlock sitting in front of you.</p>
 
-    <div class="stats-row">
-      <div class="stat-block">
-        <div class="num" style="color:var(--amber)">200+</div>
-        <div class="desc">arena events per year</div>
+    <div class="contrast-row">
+      <div class="contrast-card now">
+        <div class="cc-label" style="color:var(--muted)">Now</div>
+        <div class="cc-num" style="color:var(--amber)">30&ndash;50</div>
+        <div class="cc-desc">pre-game guests on arena nights</div>
       </div>
-      <div class="stat-block">
-        <div class="num" style="color:var(--blue)">19,800</div>
-        <div class="desc">seats per event</div>
-      </div>
-      <div class="stat-block">
-        <div class="num" style="color:var(--green)">0 min</div>
-        <div class="desc">walk &mdash; you're connected indoors</div>
+      <div class="contrast-arrow">&rarr;</div>
+      <div class="contrast-card could">
+        <div class="cc-label" style="color:var(--green)">The Goal</div>
+        <div class="cc-num" style="color:var(--green)">200+</div>
+        <div class="cc-desc">pre-game guests on arena nights</div>
       </div>
     </div>
   </div>
@@ -412,12 +463,12 @@
         <div class="accent-bar" style="background:var(--amber)"></div>
         <div class="pillar-num" style="color:var(--amber)">Pillar 1</div>
         <h3>Arena Night Capture</h3>
-        <p class="pillar-desc">Turn every Leafs game, concert, and event into a pre-game and post-game revenue night for IGS.</p>
+        <p class="pillar-desc">You're connected to Scotiabank Arena by an indoor walkway. Every Leafs game, Raptors game, and concert should be pre-game revenue for IGS. We build a system that makes that automatic.</p>
         <ul class="tactic-list">
-          <li style="--dot:var(--amber)">Event-synced ads that go live 48 hours before each arena event</li>
-          <li style="--dot:var(--amber)">Geo-targeted mobile ads within 2km on event days</li>
-          <li style="--dot:var(--amber)">Google Ads for "bars near Scotiabank Arena" and "pre-game drinks Toronto"</li>
-          <li style="--dot:var(--amber)">Retarget arena visitors to bring them back on quieter nights</li>
+          <li style="--dot:var(--amber)"><strong>Event-synced ads</strong> that go live 48 hours before each arena event &mdash; "Leafs tonight? Start here."</li>
+          <li style="--dot:var(--amber)"><strong>Geo-targeted mobile ads</strong> within 1km on event days &mdash; tight radius, your actual catchment</li>
+          <li style="--dot:var(--amber)"><strong>Google Ads</strong> for "bars near Scotiabank Arena", "pre-game drinks Toronto", "restaurants CIBC Square"</li>
+          <li style="--dot:var(--amber)"><strong>Retarget arena visitors</strong> after the event to bring them back on quieter nights</li>
         </ul>
       </div>
 
@@ -425,13 +476,13 @@
       <div class="pillar">
         <div class="accent-bar" style="background:var(--blue)"></div>
         <div class="pillar-num" style="color:var(--blue)">Pillar 2</div>
-        <h3>Private Events &amp; Corporate</h3>
-        <p class="pillar-desc">Make IGS the go-to venue for corporate events, team outings, and celebrations in the Financial District.</p>
+        <h3>Events At In Good Spirits</h3>
+        <p class="pillar-desc">You've done 100+ events. Your December was your best month ever, driven by small parties you booked directly. The playbook is there &mdash; we need a system that fills the pipeline consistently and re-engages your past bookers.</p>
         <ul class="tactic-list">
-          <li style="--dot:var(--blue)">Dedicated events landing page with inquiry form</li>
-          <li style="--dot:var(--blue)">Google Ads for "private event venue Toronto" and "corporate cocktail party downtown"</li>
-          <li style="--dot:var(--blue)">LinkedIn campaign targeting office managers and event planners</li>
-          <li style="--dot:var(--blue)">Retargeting for anyone who visits the events page but doesn't inquire</li>
+          <li style="--dot:var(--blue)"><strong>Past booker CRM</strong> &mdash; mine 3 years of calendar data, build the list, re-engage with seasonal nudges and appreciation touchpoints</li>
+          <li style="--dot:var(--blue)"><strong>Lead ad &rarr; instant form &rarr; pipeline</strong> targeting CIBC Square colleagues for team events and celebrations at IGS</li>
+          <li style="--dot:var(--blue)"><strong>SEO push for event venue terms</strong> &mdash; "private event venue Toronto", "corporate event Financial District", not just "cocktail bar"</li>
+          <li style="--dot:var(--blue)"><strong>Trackable sales pipeline</strong> built in High Level &mdash; see which inquiries convert to bookings and what each event is actually worth</li>
         </ul>
       </div>
 
@@ -439,13 +490,13 @@
       <div class="pillar">
         <div class="accent-bar" style="background:var(--green)"></div>
         <div class="pillar-num" style="color:var(--green)">Pillar 3</div>
-        <h3>Patio Season &amp; Repeat Guests</h3>
-        <p class="pillar-desc">Your rooftop patio is a secret weapon. Most people don't know it exists. We fix that — and build a machine that brings guests back.</p>
+        <h3>The Experience Engine</h3>
+        <p class="pillar-desc">The truffle tasting showed the model: curate an experience, run a lead ad, book people through a calendar. We got 521 leads at $1 each for another venue, 115 booked, 60% showed. Let's build that playbook for IGS &mdash; cocktail classes, tasting menus, whatever you and Chef dream up.</p>
         <ul class="tactic-list">
-          <li style="--dot:var(--green)">"Hidden rooftop patio" discovery campaign across Instagram and Meta</li>
-          <li style="--dot:var(--green)">Happy hour push targeting office workers in CIBC Square and surrounding towers</li>
-          <li style="--dot:var(--green)">Automated retention sequences — email/SMS to bring first-timers back within 14 days</li>
-          <li style="--dot:var(--green)">Review acceleration to dominate Google Maps in the area</li>
+          <li style="--dot:var(--green)"><strong>Lead ad &rarr; express interest &rarr; book via calendar</strong> &mdash; the proven conversion mechanism</li>
+          <li style="--dot:var(--green)"><strong>Rotating experiences</strong> &mdash; cocktail masterclass, seasonal tasting menu, chef's table &mdash; each one becomes a campaign</li>
+          <li style="--dot:var(--green)"><strong>Every attendee grows the list</strong> &mdash; from 175 emails to a real database that drives repeat visits and event bookings</li>
+          <li style="--dot:var(--green)"><strong>No discounts, no freebies</strong> &mdash; these are premium, ticketed experiences that attract the right crowd and build the brand</li>
         </ul>
       </div>
     </div>
@@ -456,7 +507,8 @@
 <div class="full band">
   <div class="inner" style="text-align:center;">
     <div class="eyebrow">The Guest Lever</div>
-    <h2>Drag to see the math.</h2>
+    <h2>What the math looks like.</h2>
+    <p class="body-lg" style="margin-bottom:40px;">You said it: you want to know <strong>what it costs to bring someone in</strong> and whether the margin justifies the spend. Drag the lever.</p>
 
     <div class="lever-wrap">
       <div class="accent-bar"></div>
@@ -472,7 +524,7 @@
           <div class="ls-sub" id="adSpendSub">at $10/guest</div>
         </div>
         <div class="lever-stat">
-          <div class="ls-label">Monthly Revenue</div>
+          <div class="ls-label">Revenue</div>
           <div class="ls-val" id="monthRev">$4,800</div>
           <div class="ls-sub" id="monthRevSub">80 x $60 avg</div>
         </div>
@@ -496,7 +548,7 @@
   <div class="inner">
     <div class="eyebrow">The 45-Day Sprint</div>
     <h2>Week by week.</h2>
-    <p class="body-lg" style="margin-bottom:0;">Click any week to see what happens.</p>
+    <p class="body-lg" style="margin-bottom:0;">We're building on a year of data and infrastructure. This is focused and fast.</p>
 
     <div class="tl-grid" id="timeline"></div>
   </div>
@@ -513,9 +565,9 @@
 
 <!-- ═══ CLOSER ═══ -->
 <div class="closer">
-  <h2 class="serif">Year one was the proof.<br>This is the push.</h2>
-  <p class="c-line">20,000 people at the arena. Your patio above the city. A Financial District full of events waiting to happen.</p>
-  <p class="c-punch">Let's stop leaving money on the table.</p>
+  <h2 class="serif">850 seats. 200+ arena nights. A Financial District full of teams looking for a spot.</h2>
+  <p class="c-line">You went from worst month to best month. You did $10K in alcohol between 4 and 7. The bar can do it. Let's build the system that makes it happen consistently.</p>
+  <p class="c-punch">45 days. Three moves. Let's go.</p>
 </div>
 
 <script>
@@ -537,12 +589,12 @@ slider.addEventListener('input', updateLever);
 
 /* ── TIMELINE ── */
 const weeks = [
-  {w:'Week 1', t:'Arena campaign system goes live', d:'Event-synced ad campaigns for Leafs, Raptors, and concerts. Google Ads targeting "bars near Scotiabank Arena." Geo-targeting configured for event days. Every arena event becomes your event.', c:'var(--amber)'},
-  {w:'Week 2', t:'Private events engine launches', d:'Dedicated events landing page with inquiry form. Google Ads for corporate event searches. LinkedIn campaign targeting event planners and office managers. Retargeting pixel on the events page.', c:'var(--blue)'},
-  {w:'Week 3', t:'Patio & discovery campaign drops', d:'"Hidden rooftop patio" campaign goes live across Instagram and Meta. Happy hour push targeting surrounding office towers. Review acceleration kicks in. Guest retention sequences activated.', c:'var(--green)'},
-  {w:'Week 4', t:'First numbers land', d:'Full reporting on all three pillars. How many guests came from arena campaigns, how many event inquiries, patio traffic lift. We cut what\'s underperforming and double down on what\'s working.', c:'var(--blue)'},
-  {w:'Week 5', t:'Optimize & scale', d:'Arena campaigns running automatically synced to the event calendar. Event inquiries being nurtured. Patio campaigns refined with real data. System tightened and ready for summer.', c:'var(--amber)'},
-  {w:'Week 6', t:'The new baseline', d:'All three pillars running in parallel. Clear picture of cost-per-guest from each channel. This becomes the new operating rhythm — a permanent upgrade.', c:'var(--green)'}
+  {w:'Week 1', t:'Arena campaign system goes live', d:'Event-synced ad campaigns built for Leafs, Raptors, and concerts. Google Ads targeting "bars near Scotiabank Arena" with a tight 1km radius around CIBC Square. Geo-targeting configured for event days. Creative calls out the indoor connection. Every arena event becomes an IGS event.', c:'var(--amber)'},
+  {w:'Week 2', t:'Events pipeline & CRM built', d:'Past booker list compiled from 3 years of calendar data and loaded into High Level. Event inquiry pipeline built so we can track lead \u2192 inquiry \u2192 booking \u2192 revenue. Lead ad campaign for CIBC Square teams goes live with instant forms and Messenger. SEO audit for event venue terms kicks off.', c:'var(--blue)'},
+  {w:'Week 3', t:'Experience Engine launches', d:'First curated experience campaign goes live \u2014 lead ad \u2192 express interest \u2192 book via calendar. Past event bookers get their first re-engagement touchpoint. Review acceleration kicks in to boost Google Maps visibility for the area.', c:'var(--green)'},
+  {w:'Week 4', t:'First numbers drop', d:'Full reporting on all three pillars. How many pre-game guests came from arena ads. How many event inquiries hit the pipeline and what converted. How many experience leads came in at what cost. We cut what\u2019s underperforming and double down on what\u2019s working.', c:'var(--blue)'},
+  {w:'Week 5', t:'Optimize & scale', d:'Arena campaigns running automatically synced to the event calendar. Event pipeline showing real conversion data. Experience campaign refined with actual booking and show-up rates. The entire system tightened with real numbers behind every dollar.', c:'var(--amber)'},
+  {w:'Week 6', t:'The new baseline', d:'All three pillars running in parallel. Clear cost-per-guest from arena nights. Event pipeline with actual revenue attribution. Experience Engine ready to rotate new concepts. This becomes the new operating rhythm.', c:'var(--green)'}
 ];
 const tlEl = document.getElementById('timeline');
 weeks.forEach((w,i) => {
@@ -558,16 +610,16 @@ weeks.forEach((w,i) => {
 
 /* ── FAQ ── */
 const faqs = [
-  {q:'We\'re already working together. Why change?', a:'We\'re not throwing anything out. The foundation from the past year is still running. This adds a focused layer on top — three specific revenue opportunities we haven\'t gone after aggressively yet. Same partnership, sharper aim.'},
-  {q:'How do you actually capture arena traffic?', a:'Event-synced ads go live 48 hours before every Leafs game, concert, or event. Google Ads target people searching "restaurants near Scotiabank Arena." Geo-targeted mobile ads hit people within 2km on event days. After the event, we retarget those same people to bring them back.'},
-  {q:'Is digital really how people find event venues?', a:'"Private event venue Toronto" and "corporate cocktail party downtown" are real, high-intent Google searches. People planning events search, check the top results, and send inquiries. We make sure you show up — and retarget anyone who visits but doesn\'t pull the trigger.'},
-  {q:'What happens after the 45 days?', a:'The systems keep running. Arena campaigns sync to the event calendar automatically. Event inquiries flow through the landing page. Patio campaigns scale with the season. We keep optimizing monthly — now with three focused engines instead of one general approach.'}
+  {q:'How do you actually capture arena traffic?', a:'Three ways. First, event-synced ads go live 48 hours before every arena event showing people you\u2019re literally connected by an indoor walkway. Second, Google Ads targeting people searching \u201Crestaurants near Scotiabank Arena\u201D and \u201Cpre-game drinks Toronto.\u201D Third, geo-targeted mobile ads within 1km on event days \u2014 your actual catchment area south of Front. After the event, we retarget those same people to bring them back on quieter nights.'},
+  {q:'The event ads haven\u2019t converted yet. What changes?', a:'Three things. We\u2019re narrowing the radius to 1km \u2014 your real catchment. We\u2019re shifting the creative to target events AT In Good Spirits, not off-site catering. And we\u2019re building a real pipeline so we can see exactly where inquiries drop off \u2014 and follow up accordingly. Plus the past booker CRM gives us a warm audience that\u2019s already converted before.'},
+  {q:'How is the Experience Engine different from the offers that attracted the wrong crowd?', a:'No freebies. No discounts. These are premium, ticketed experiences \u2014 cocktail masterclasses, tasting menus, chef\u2019s table events. The people who sign up at $60\u201380 a head are the people you want. And every attendee goes into your database, growing it way past 175 people. The truffle tasting was the proof of concept \u2014 this scales it.'},
+  {q:'What happens after 45 days?', a:'The systems keep running. Arena campaigns sync to the event calendar automatically. The event pipeline tracks inquiries through to revenue. Experience campaigns rotate with new concepts. We keep optimizing monthly \u2014 but now with three focused engines and real data behind every dollar spent.'}
 ];
 const faqEl = document.getElementById('faqList');
-faqs.forEach((f,i) => {
+faqs.forEach(f => {
   const div = document.createElement('div');
   div.className = 'faq-item';
-  div.innerHTML = '<button class="faq-q">"'+f.q+'"<span class="tog">+</span></button><div class="faq-a"><p>'+f.a+'</p></div>';
+  div.innerHTML = '<button class="faq-q">\u201C'+f.q+'\u201D<span class="tog">+</span></button><div class="faq-a"><p>'+f.a+'</p></div>';
   const btn = div.querySelector('.faq-q');
   const ans = div.querySelector('.faq-a');
   btn.onclick = () => {
@@ -578,15 +630,6 @@ faqs.forEach((f,i) => {
   };
   faqEl.appendChild(div);
 });
-
-/* ── TACTIC DOTS ── */
-document.querySelectorAll('.tactic-list li').forEach(li => {
-  li.style.setProperty('--dot-color', li.style.getPropertyValue('--dot'));
-});
-// Apply dot colors via CSS
-const style = document.createElement('style');
-style.textContent = '.tactic-list li::before { background: var(--dot); }';
-document.head.appendChild(style);
 </script>
 </body>
 </html>
