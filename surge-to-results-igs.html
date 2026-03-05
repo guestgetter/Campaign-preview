@@ -6,473 +6,587 @@
 <title>Surge To Results — In Good Spirits | Guest Getter</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: Georgia, 'Times New Roman', serif; background: #0E0E0E; color: #F2EFEA; }
-  .sf { font-family: system-ui, -apple-system, sans-serif; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: #0B0B0B; color: #E8E4DE; -webkit-font-smoothing: antialiased; }
+  .serif { font-family: Georgia, 'Times New Roman', serif; }
 
-  /* PALETTE - moody cocktail bar vibes */
   :root {
     --amber: #D4895A;
-    --amber-light: #E8A76E;
-    --amber-glow: rgba(212,137,90,0.15);
+    --amber-glow: rgba(212,137,90,0.12);
+    --blue: #3B7DD8;
     --green: #2D8F5E;
-    --green-glow: rgba(45,143,94,0.15);
-    --card: #1A1A1A;
-    --card-border: #2A2A2A;
-    --muted: #8A8A8A;
-    --body: #C4C0BA;
-    --white: #F2EFEA;
+    --green-glow: rgba(45,143,94,0.12);
+    --card: #151515;
+    --border: #222;
+    --muted: #666;
+    --body: #999;
+    --white: #E8E4DE;
   }
 
-  /* HERO */
-  .hero { padding: 56px 24px 48px; text-align: center; }
-  .hero-inner { max-width: 640px; margin: 0 auto; }
-  .badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 3px; color: var(--amber); text-transform: uppercase; font-family: system-ui, sans-serif; margin-bottom: 20px; padding: 6px 14px; border: 1.5px solid rgba(212,137,90,0.3); border-radius: 20px; background: var(--amber-glow); }
-  .hero h1 { font-size: 42px; font-weight: 400; margin-bottom: 8px; line-height: 1.15; letter-spacing: -0.5px; color: var(--white); }
-  .hero .client-name { font-size: 17px; color: var(--amber); font-family: system-ui, sans-serif; font-weight: 600; margin-bottom: 8px; letter-spacing: 1px; }
-  .hero .subtitle { font-size: 17px; color: var(--muted); margin-bottom: 32px; font-family: system-ui, sans-serif; }
-  .hero-box { max-width: 520px; margin: 0 auto; padding: 24px 28px; background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; }
-  .hero-box .question { font-size: 19px; line-height: 1.6; font-style: italic; color: var(--white); }
-  .hero-box .answer { font-size: 15px; color: var(--body); margin-top: 12px; font-family: system-ui, sans-serif; line-height: 1.6; }
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 24px;
+    position: relative;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--amber));
+  }
+  .badge {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    padding: 8px 18px;
+    border: 1px solid rgba(212,137,90,0.25);
+    border-radius: 24px;
+    background: var(--amber-glow);
+  }
+  .hero h1 {
+    font-family: Georgia, serif;
+    font-size: 64px;
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin-bottom: 16px;
+    max-width: 700px;
+  }
+  .hero .client {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 40px;
+  }
+  .hero .hook {
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--body);
+    max-width: 500px;
+    line-height: 1.6;
+  }
 
-  /* SECTIONS */
-  .section { max-width: 640px; margin: 0 auto; padding: 0 24px 48px; }
-  .section-band { background: var(--card); border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border); padding: 48px 24px; }
-  .section-band .inner { max-width: 640px; margin: 0 auto; }
-  h2 { font-size: 28px; font-weight: 400; margin-bottom: 16px; color: var(--white); }
-  .label { font-size: 11px; font-weight: 700; letter-spacing: 3px; color: var(--amber); text-transform: uppercase; font-family: system-ui, sans-serif; margin-bottom: 12px; }
-  .prose { font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.8; color: var(--body); }
-  .prose p { margin-bottom: 16px; }
-  .prose p:last-child { margin-bottom: 0; }
-  .prose strong { color: var(--white); }
-  .accent { color: var(--amber); font-weight: 600; }
+  /* ── FULL-BLEED SECTIONS ── */
+  .full { padding: 120px 24px; }
+  .full .inner { max-width: 720px; margin: 0 auto; }
+  .band { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
-  /* ARENA CONNECTION */
-  .arena-card { background: var(--card); border-radius: 16px; padding: 28px 24px; border: 1px solid var(--card-border); margin-top: 24px; position: relative; overflow: hidden; }
-  .arena-card .bar { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--amber), #3B7DD8); }
-  .arena-stat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 20px; }
-  .arena-stat { text-align: center; }
-  .arena-stat .as-num { font-size: 28px; font-weight: 800; font-family: system-ui, sans-serif; color: var(--amber); }
-  .arena-stat .as-label { font-size: 12px; color: var(--muted); font-family: system-ui, sans-serif; margin-top: 2px; }
-  .arena-stat:nth-child(2) .as-num { color: #3B7DD8; }
-  .arena-stat:nth-child(3) .as-num { color: var(--green); }
+  /* ── TYPOGRAPHY ── */
+  .eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  h2 {
+    font-family: Georgia, serif;
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 24px;
+  }
+  .body-lg {
+    font-size: 18px;
+    line-height: 1.75;
+    color: var(--body);
+  }
+  .body-lg strong { color: var(--white); }
 
-  /* LEVER */
-  .lever-card { background: var(--card); border-radius: 16px; padding: 32px 28px; border: 1px solid var(--card-border); position: relative; overflow: hidden; }
-  .lever-card .bar { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--amber), var(--green)); }
-  .lever-header { text-align: center; margin-bottom: 24px; font-family: system-ui, sans-serif; }
-  .lever-header .title { font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
-  .lever-header .desc { font-size: 15px; color: var(--body); line-height: 1.6; }
-  .lever-number { text-align: center; margin-bottom: 20px; }
-  .lever-number .big { font-size: 56px; font-weight: 800; color: var(--amber); line-height: 1; font-family: system-ui, sans-serif; }
-  .lever-number .sub { font-size: 13px; color: var(--muted); margin-top: 4px; font-family: system-ui, sans-serif; }
-  .lever-card input[type=range] { width: 100%; margin-bottom: 28px; accent-color: var(--amber); cursor: pointer; }
-  .lever-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .lever-stat { border-radius: 10px; padding: 14px 16px; border: 1px solid var(--card-border); background: #111; }
-  .lever-stat.highlight { background: var(--green-glow); border-color: rgba(45,143,94,0.3); }
-  .lever-stat .stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; font-family: system-ui, sans-serif; }
-  .lever-stat .stat-value { font-size: 22px; font-weight: 800; color: var(--white); font-family: system-ui, sans-serif; }
-  .lever-stat.highlight .stat-value { color: var(--green); }
-  .lever-stat .stat-sub { font-size: 11px; color: var(--muted); margin-top: 2px; font-family: system-ui, sans-serif; }
-  .lever-cta { margin-top: 16px; padding: 12px 16px; background: var(--amber-glow); border-radius: 8px; border: 1px solid rgba(212,137,90,0.3); text-align: center; font-size: 13px; color: var(--amber); font-weight: 600; font-family: system-ui, sans-serif; }
+  /* ── BIG STATS ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-top: 56px;
+  }
+  .stat-block { text-align: center; padding: 40px 16px; border-radius: 16px; border: 1px solid var(--border); background: #111; }
+  .stat-block .num {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-block .desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
 
-  /* STRATEGY CARDS */
-  .strat-grid { display: grid; gap: 16px; }
-  .strat-card { background: var(--card); border-radius: 12px; padding: 24px; border: 1px solid var(--card-border); position: relative; overflow: hidden; }
-  .strat-card .strat-bar { position: absolute; top: 0; left: 0; width: 4px; height: 100%; }
-  .strat-card .strat-num { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-family: system-ui, sans-serif; margin-bottom: 8px; }
-  .strat-card h3 { font-size: 20px; font-weight: 400; margin-bottom: 8px; color: var(--white); }
-  .strat-card .strat-desc { font-size: 14px; color: var(--body); line-height: 1.7; font-family: system-ui, sans-serif; }
-  .strat-card .strat-tactics { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--card-border); }
-  .strat-card .tactic { display: flex; gap: 8px; align-items: baseline; margin-bottom: 6px; font-size: 13px; font-family: system-ui, sans-serif; color: var(--body); }
-  .strat-card .tactic .dot { flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; margin-top: 6px; }
+  /* ── PILLARS ── */
+  .pillars { display: grid; gap: 16px; margin-top: 48px; }
+  .pillar {
+    padding: 40px 36px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    position: relative;
+    overflow: hidden;
+  }
+  .pillar .accent-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .pillar .pillar-num {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .pillar h3 {
+    font-family: Georgia, serif;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+  .pillar .pillar-desc {
+    font-size: 17px;
+    color: var(--body);
+    line-height: 1.65;
+    margin-bottom: 24px;
+    max-width: 560px;
+  }
+  .tactic-list { list-style: none; display: grid; gap: 8px; }
+  .tactic-list li {
+    font-size: 15px;
+    color: var(--body);
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.55;
+  }
+  .tactic-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
 
-  /* TIMELINE */
-  .week-tabs { display: flex; gap: 6px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 4px; }
-  .week-tab { padding: 10px 14px; background: transparent; border: 1.5px solid var(--amber); border-radius: 8px; cursor: pointer; white-space: nowrap; transition: all 0.2s; font-family: system-ui, sans-serif; text-align: center; color: var(--white); }
-  .week-tab .emoji { font-size: 16px; margin-bottom: 2px; }
-  .week-tab .wlabel { font-size: 11px; font-weight: 700; }
-  .week-tab.active { color: #fff; }
-  .week-content { padding: 24px; background: var(--card); border-radius: 12px; border: 1px solid var(--card-border); min-height: 100px; }
-  .week-content .wc-label { font-size: 13px; font-weight: 700; margin-bottom: 6px; font-family: system-ui, sans-serif; }
-  .week-content .wc-text { font-size: 15px; color: var(--body); line-height: 1.7; font-family: system-ui, sans-serif; }
-  .after-45 { margin-top: 24px; padding: 16px 20px; background: var(--card); border-radius: 10px; border: 1px solid var(--card-border); }
-  .after-45 .a45-label { font-size: 13px; font-weight: 700; color: var(--green); margin-bottom: 8px; font-family: system-ui, sans-serif; }
-  .after-45 .a45-text { font-family: system-ui, sans-serif; font-size: 14px; color: var(--body); line-height: 1.8; }
+  /* ── LEVER ── */
+  .lever-wrap {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 48px 36px;
+    background: var(--card);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .lever-wrap .accent-bar { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--amber), var(--green)); }
+  .lever-top { text-align: center; margin-bottom: 32px; }
+  .lever-big {
+    font-size: 72px;
+    font-weight: 800;
+    color: var(--amber);
+    line-height: 1;
+  }
+  .lever-sub { font-size: 15px; color: var(--muted); margin-top: 6px; }
+  .lever-wrap input[type=range] {
+    width: 100%;
+    margin-bottom: 36px;
+    accent-color: var(--amber);
+    cursor: pointer;
+    height: 6px;
+  }
+  .lever-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .lever-stat {
+    padding: 18px 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: #0E0E0E;
+  }
+  .lever-stat.hl { background: var(--green-glow); border-color: rgba(45,143,94,0.25); }
+  .lever-stat .ls-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
+  .lever-stat .ls-val { font-size: 26px; font-weight: 800; color: var(--white); }
+  .lever-stat.hl .ls-val { color: var(--green); }
+  .lever-stat .ls-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
 
-  /* OUTCOMES */
-  .outcome-list { display: grid; gap: 12px; }
-  .outcome-item { display: flex; gap: 12px; align-items: center; background: var(--card); border-radius: 10px; padding: 16px 20px; border: 1px solid var(--card-border); }
-  .outcome-item .check { color: var(--green); font-weight: 800; font-size: 16px; flex-shrink: 0; }
-  .outcome-item span { font-size: 15px; font-family: system-ui, sans-serif; color: var(--body); }
-  .outcome-note { margin-top: 16px; padding: 14px 20px; background: var(--green-glow); border-radius: 10px; border: 1px solid rgba(45,143,94,0.3); text-align: center; font-size: 14px; color: var(--green); font-weight: 600; font-family: system-ui, sans-serif; }
+  /* ── TIMELINE ── */
+  .tl-grid { display: grid; gap: 2px; margin-top: 48px; }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.15s;
+    border-radius: 0;
+  }
+  .tl-item:last-child { border-bottom: none; }
+  .tl-week {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding-top: 2px;
+  }
+  .tl-title {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .tl-detail {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, margin 0.3s ease;
+  }
+  .tl-item.open .tl-detail {
+    max-height: 200px;
+    margin-top: 10px;
+  }
+  .tl-item.open .tl-title { color: var(--amber); }
 
-  /* ABOUT */
-  .about { max-width: 640px; margin: 0 auto; padding: 48px 24px; }
+  /* ── FAQ ── */
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 24px 0;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Georgia, serif;
+    font-size: 19px;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.4;
+  }
+  .faq-q .tog {
+    font-size: 22px;
+    color: var(--muted);
+    flex-shrink: 0;
+    margin-left: 16px;
+    font-style: normal;
+    font-family: system-ui, sans-serif;
+    transition: transform 0.2s;
+  }
+  .faq-q.open .tog { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+  }
+  .faq-a.open {
+    max-height: 300px;
+    padding-bottom: 24px;
+  }
+  .faq-a p {
+    font-size: 16px;
+    color: var(--body);
+    line-height: 1.75;
+  }
 
-  /* INVESTMENT */
-  .invest-price { font-size: 46px; font-weight: 800; color: var(--amber); font-family: system-ui, sans-serif; }
-  .invest-per { font-size: 15px; color: var(--muted); margin-top: 4px; font-family: system-ui, sans-serif; }
-  .invest-icons { display: flex; justify-content: center; gap: 28px; margin-top: 24px; font-family: system-ui, sans-serif; text-align: center; }
-  .invest-icons .ii-emoji { font-size: 22px; margin-bottom: 4px; }
-  .invest-icons .ii-text { font-size: 12px; color: var(--body); font-weight: 500; }
-  .invest-box { max-width: 460px; margin: 28px auto 0; padding: 20px; background: #111; border-radius: 12px; border: 1px solid var(--card-border); }
-  .invest-box p { font-size: 14px; color: var(--body); line-height: 1.7; font-family: system-ui, sans-serif; margin-bottom: 10px; }
-  .invest-box p:last-child { margin-bottom: 0; }
-  .invest-box p.bold { color: var(--white); font-weight: 600; }
-  .invest-note { font-size: 12px; color: var(--muted); margin-top: 12px; font-family: system-ui, sans-serif; }
+  /* ── CLOSER ── */
+  .closer {
+    text-align: center;
+    padding: 120px 24px 80px;
+    position: relative;
+  }
+  .closer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--amber), transparent);
+  }
+  .closer h2 {
+    font-size: 48px;
+    max-width: 600px;
+    margin: 0 auto 24px;
+  }
+  .closer .c-line {
+    font-size: 19px;
+    color: var(--body);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  .closer .c-punch {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--amber);
+    margin-top: 32px;
+  }
 
-  /* FAQ */
-  .faq-item { margin-bottom: 8px; }
-  .faq-q { width: 100%; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; padding: 16px 20px; cursor: pointer; text-align: left; display: flex; justify-content: space-between; align-items: center; font-family: system-ui, sans-serif; font-size: 15px; font-weight: 600; color: var(--white); font-style: italic; }
-  .faq-q.open { border-radius: 10px 10px 0 0; }
-  .faq-q .toggle { font-size: 18px; color: var(--muted); flex-shrink: 0; margin-left: 12px; font-style: normal; }
-  .faq-a { background: var(--card); border-radius: 0 0 10px 10px; padding: 16px 20px; border: 1px solid var(--card-border); border-top: none; display: none; }
-  .faq-a.open { display: block; }
-  .faq-a p { font-size: 14px; color: var(--body); line-height: 1.7; font-family: system-ui, sans-serif; }
-
-  /* CLOSER */
-  .closer { max-width: 640px; margin: 0 auto; padding: 0 24px 64px; text-align: center; }
-  .closer-box { padding: 40px 32px; background: var(--card); border-radius: 16px; border: 1px solid var(--card-border); position: relative; overflow: hidden; }
-  .closer-box .bar { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--amber), var(--green)); }
-  .closer-box h2 { font-size: 26px; font-weight: 400; margin-bottom: 16px; }
-  .closer-box .c-sub { font-size: 15px; color: var(--body); font-family: system-ui, sans-serif; line-height: 1.7; margin-bottom: 4px; }
-  .closer-box .c-accent { font-size: 17px; font-weight: 700; color: var(--amber); font-family: system-ui, sans-serif; margin-top: 16px; }
-  .closer-box .c-footer { margin-top: 24px; padding: 10px 16px; display: inline-block; background: #111; border-radius: 8px; border: 1px solid var(--card-border); font-size: 12px; color: var(--muted); font-family: system-ui, sans-serif; }
-
-  /* DIVIDER */
-  .section-divider { max-width: 640px; margin: 0 auto; padding: 0 24px; }
-  .section-divider hr { border: none; border-top: 1px solid var(--card-border); }
-
-  @media (max-width: 640px) {
-    .hero h1 { font-size: 30px; }
-    h2 { font-size: 24px; }
-    .lever-number .big { font-size: 42px; }
-    .invest-price { font-size: 36px; }
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    .hero h1 { font-size: 38px; }
+    h2 { font-size: 30px; }
+    .stats-row { grid-template-columns: 1fr; gap: 12px; }
+    .stat-block .num { font-size: 40px; }
+    .stat-block { padding: 28px 16px; }
+    .pillar { padding: 28px 24px; }
+    .pillar h3 { font-size: 22px; }
+    .lever-big { font-size: 52px; }
     .lever-grid { grid-template-columns: 1fr; }
-    .arena-stat-grid { grid-template-columns: 1fr; gap: 12px; }
+    .lever-wrap { padding: 36px 24px; }
+    .tl-item { grid-template-columns: 60px 1fr; gap: 16px; }
+    .closer h2 { font-size: 30px; }
+    .full { padding: 80px 24px; }
   }
 </style>
 </head>
 <body>
 
-<!-- HERO -->
+<!-- ═══ HERO ═══ -->
 <div class="hero">
-  <div class="hero-inner">
-    <div class="badge">Guest Getter</div>
-    <h1>Surge To Results</h1>
-    <div class="client-name sf">IN GOOD SPIRITS</div>
-    <p class="subtitle sf">A 45-Day Sprint to Reignite Growth</p>
-    <div class="hero-box">
-      <p class="question">You've been with us over a year. The foundation is solid. But you feel it too — it's time to go bigger.</p>
-      <p class="answer sf">You're sitting on a cocktail bar that's literally connected to the biggest arena in the city. Let's turn that into something people talk about.</p>
-    </div>
-  </div>
+  <div class="badge">Guest Getter</div>
+  <h1 class="serif">Surge To Results</h1>
+  <div class="client">In Good Spirits</div>
+  <p class="hook">Year one built the base.<br>Year two is about dominance.</p>
 </div>
 
-<!-- THE SITUATION -->
-<div class="section">
-  <div class="label">Where we are</div>
-  <h2>Year one built the base. Year two is about dominance.</h2>
-  <div class="prose">
-    <p>We went from your worst month to your best. The website's working. Reviews are climbing. The basics are dialed in. But "dialed in" can quietly become "coasting" — and that's not where either of us wants to be.</p>
-    <p>Here's what I see: you're a <strong>craft cocktail bar with a rooftop patio on the 4th floor of CIBC Square</strong>, and you're connected to Scotiabank Arena by an indoor walkway. There are tens of thousands of people walking past your door every month for Leafs games, Raptors games, concerts, and events — and most of them don't know you exist.</p>
-    <p>Meanwhile, you want more private events. More corporate bookings. More "this is the spot" energy. <strong>That's not a marketing problem. That's a targeting problem.</strong> And we can fix it in 45 days.</p>
-  </div>
-</div>
-
-<!-- THE SCOTIABANK ARENA ANGLE -->
-<div class="section-band">
+<!-- ═══ THE OPPORTUNITY ═══ -->
+<div class="full band">
   <div class="inner">
-    <div class="label">The unfair advantage</div>
-    <h2>You're connected to the arena. Let's act like it.</h2>
-    <div class="prose">
-      <p>Scotiabank Arena hosts <strong>200+ events per year</strong>. Leafs, Raptors, concerts from Billie Eilish to Bad Omens, comedy shows, WWE — every single one of those events puts thousands of people in your building who need somewhere to eat and drink before and after.</p>
-      <p>Right now, most of them walk right past you. They end up at chain restaurants or don't stop at all. That's money left on the table every single week.</p>
-      <p>We're going to <strong>intercept that traffic</strong> — digitally and physically — so that "pre-game drinks at In Good Spirits" becomes as automatic as the game itself.</p>
-    </div>
-    <div class="arena-card">
-      <div class="bar"></div>
-      <div style="text-align:center; margin-bottom:8px; font-family:system-ui,sans-serif; font-size:13px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:2px;">The Opportunity</div>
-      <div class="arena-stat-grid">
-        <div class="arena-stat">
-          <div class="as-num">200+</div>
-          <div class="as-label">arena events / year</div>
-        </div>
-        <div class="arena-stat">
-          <div class="as-num">19,800</div>
-          <div class="as-label">seats per event</div>
-        </div>
-        <div class="arena-stat">
-          <div class="as-num">0 min</div>
-          <div class="as-label">walk — you're connected</div>
-        </div>
+    <div class="eyebrow">The Opportunity</div>
+    <h2>You're connected to the arena.<br>Let's act like it.</h2>
+    <p class="body-lg">Scotiabank Arena puts <strong>20,000 people in your building</strong> multiple times a week — Leafs, Raptors, concerts, events. They walk right past your door through the CIBC Square connection. Most don't know you're there. <strong>That changes now.</strong></p>
+
+    <div class="stats-row">
+      <div class="stat-block">
+        <div class="num" style="color:var(--amber)">200+</div>
+        <div class="desc">arena events per year</div>
+      </div>
+      <div class="stat-block">
+        <div class="num" style="color:var(--blue)">19,800</div>
+        <div class="desc">seats per event</div>
+      </div>
+      <div class="stat-block">
+        <div class="num" style="color:var(--green)">0 min</div>
+        <div class="desc">walk &mdash; you're connected indoors</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- THE THREE PILLARS -->
-<div class="section" style="padding-top:48px;">
-  <div class="label">The plan</div>
-  <h2>Three moves. 45 days.</h2>
-  <p class="prose" style="margin-bottom:28px;">Each one targets a different revenue stream. Together, they compound.</p>
-
-  <div class="strat-grid">
-    <div class="strat-card">
-      <div class="strat-bar" style="background:var(--amber);"></div>
-      <div class="strat-num" style="color:var(--amber); padding-left:16px;">Pillar 1</div>
-      <h3 style="padding-left:16px;">Arena Night Capture</h3>
-      <div class="strat-desc" style="padding-left:16px;">Turn every Leafs game, Raptors game, and concert into a pre-game and post-game revenue event for In Good Spirits.</div>
-      <div class="strat-tactics" style="padding-left:16px;">
-        <div class="tactic"><div class="dot" style="background:var(--amber);"></div> Event-synced Meta & Google ads — "Leafs tonight? Start here." campaigns that go live 48 hours before each event</div>
-        <div class="tactic"><div class="dot" style="background:var(--amber);"></div> Geo-targeted ads hitting people within 2km of the arena on event days</div>
-        <div class="tactic"><div class="dot" style="background:var(--amber);"></div> "Connected to the arena" landing page — show the indoor walkway, push pre-game cocktail specials</div>
-        <div class="tactic"><div class="dot" style="background:var(--amber);"></div> Google Ads targeting "restaurants near Scotiabank Arena", "bars near Leafs game", "pre-game drinks Toronto"</div>
-        <div class="tactic"><div class="dot" style="background:var(--amber);"></div> Retarget arena visitors after the event — bring them back on a quieter night</div>
-      </div>
-    </div>
-
-    <div class="strat-card">
-      <div class="strat-bar" style="background:#3B7DD8;"></div>
-      <div class="strat-num" style="color:#3B7DD8; padding-left:16px;">Pillar 2</div>
-      <h3 style="padding-left:16px;">Private Events & Corporate Push</h3>
-      <div class="strat-desc" style="padding-left:16px;">Position In Good Spirits as the go-to venue for corporate events, team outings, and celebrations in the Financial District.</div>
-      <div class="strat-tactics" style="padding-left:16px;">
-        <div class="tactic"><div class="dot" style="background:#3B7DD8;"></div> Dedicated events landing page with photos, capacity, packages, and an inquiry form</div>
-        <div class="tactic"><div class="dot" style="background:#3B7DD8;"></div> Google Ads targeting "private event venue Toronto", "corporate cocktail party downtown", "team outing Toronto Financial District"</div>
-        <div class="tactic"><div class="dot" style="background:#3B7DD8;"></div> LinkedIn campaign targeting office managers, executive assistants, and event planners within 5km</div>
-        <div class="tactic"><div class="dot" style="background:#3B7DD8;"></div> Retargeting pixel on the events page — follow up with people who looked but didn't inquire</div>
-        <div class="tactic"><div class="dot" style="background:#3B7DD8;"></div> Email sequence for past event inquiries — seasonal nudges (holiday parties, summer patio events, Q1 kick-offs)</div>
-      </div>
-    </div>
-
-    <div class="strat-card">
-      <div class="strat-bar" style="background:var(--green);"></div>
-      <div class="strat-num" style="color:var(--green); padding-left:16px;">Pillar 3</div>
-      <h3 style="padding-left:16px;">Patio Season & Repeat Guest Engine</h3>
-      <div class="strat-desc" style="padding-left:16px;">Your rooftop patio is a secret weapon. Most people in the Financial District don't even know it exists. We fix that — and build a system that brings first-time visitors back again and again.</div>
-      <div class="strat-tactics" style="padding-left:16px;">
-        <div class="tactic"><div class="dot" style="background:var(--green);"></div> "Hidden rooftop patio" campaign — lean into the Toronto Life angle, make it feel like a discovery</div>
-        <div class="tactic"><div class="dot" style="background:var(--green);"></div> Instagram & Meta ads showcasing patio cocktails, sunset vibes, and the view — targeted at 25-45 within 5km</div>
-        <div class="tactic"><div class="dot" style="background:var(--green);"></div> Happy hour push targeting CIBC Square and surrounding office workers (Mon-Fri 4-6pm)</div>
-        <div class="tactic"><div class="dot" style="background:var(--green);"></div> Automated guest retention: email/SMS sequence for first-time visitors — bring them back within 14 days</div>
-        <div class="tactic"><div class="dot" style="background:var(--green);"></div> Review acceleration — systematic review requests to climb Google Maps rankings in the area</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- INTERACTIVE LEVER -->
-<div class="section">
-  <div class="lever-card">
-    <div class="bar"></div>
-    <div class="lever-header">
-      <div class="title">The guest lever</div>
-      <div class="desc">Drag to see what happens when you turn up the dial</div>
-    </div>
-    <div class="lever-number">
-      <div class="big" id="guestCount">80</div>
-      <div class="sub">new guests this month</div>
-    </div>
-    <input type="range" min="20" max="300" value="80" id="leverSlider">
-    <div class="lever-grid">
-      <div class="lever-stat">
-        <div class="stat-label">Ad spend</div>
-        <div class="stat-value" id="adSpend">$800</div>
-        <div class="stat-sub" id="adSpendSub">at $10/guest</div>
-      </div>
-      <div class="lever-stat">
-        <div class="stat-label">This month's revenue</div>
-        <div class="stat-value" id="monthRev">$4,800</div>
-        <div class="stat-sub" id="monthRevSub">80 x $60 avg spend</div>
-      </div>
-      <div class="lever-stat highlight">
-        <div class="stat-label">12-month value</div>
-        <div class="stat-value" id="yearVal">$19,200</div>
-        <div class="stat-sub" id="yearValSub">4.0 return visits avg</div>
-      </div>
-      <div class="lever-stat highlight">
-        <div class="stat-label">First-month ROI</div>
-        <div class="stat-value" id="roi">500%</div>
-        <div class="stat-sub">before they ever come back</div>
-      </div>
-    </div>
-    <div class="lever-cta">Arena nights alone could drive 50+ new guests per month. Add corporate events and patio traffic? That's the lever.</div>
-  </div>
-</div>
-
-<!-- TIMELINE -->
-<div class="section-band">
+<!-- ═══ THREE PILLARS ═══ -->
+<div class="full">
   <div class="inner">
-    <div class="label">The 45-day sprint</div>
-    <h2>Here's what happens, week by week.</h2>
-    <p class="prose" style="margin-bottom:32px;">This isn't a slow ramp. We're building on a year of data and infrastructure. This is focused, aggressive, and fast.</p>
+    <div class="eyebrow">The Plan</div>
+    <h2>Three moves. 45 days.</h2>
 
-    <div class="week-tabs" id="weekTabs"></div>
-    <div class="week-content" id="weekContent"></div>
+    <div class="pillars">
+      <!-- PILLAR 1 -->
+      <div class="pillar">
+        <div class="accent-bar" style="background:var(--amber)"></div>
+        <div class="pillar-num" style="color:var(--amber)">Pillar 1</div>
+        <h3>Arena Night Capture</h3>
+        <p class="pillar-desc">Turn every Leafs game, concert, and event into a pre-game and post-game revenue night for IGS.</p>
+        <ul class="tactic-list">
+          <li style="--dot:var(--amber)">Event-synced ads that go live 48 hours before each arena event</li>
+          <li style="--dot:var(--amber)">Geo-targeted mobile ads within 2km on event days</li>
+          <li style="--dot:var(--amber)">Google Ads for "bars near Scotiabank Arena" and "pre-game drinks Toronto"</li>
+          <li style="--dot:var(--amber)">Retarget arena visitors to bring them back on quieter nights</li>
+        </ul>
+      </div>
 
-    <div class="after-45">
-      <div class="a45-label">After 45 days — the new normal:</div>
-      <div class="a45-text">Arena-synced campaigns running automatically before every event. Private event inquiries flowing in from Google and LinkedIn. Patio campaigns scaling up for summer. Monthly reporting showing exactly which pillar is driving what. Retention sequences converting one-time visitors into regulars. We keep optimizing, you keep growing.</div>
+      <!-- PILLAR 2 -->
+      <div class="pillar">
+        <div class="accent-bar" style="background:var(--blue)"></div>
+        <div class="pillar-num" style="color:var(--blue)">Pillar 2</div>
+        <h3>Private Events &amp; Corporate</h3>
+        <p class="pillar-desc">Make IGS the go-to venue for corporate events, team outings, and celebrations in the Financial District.</p>
+        <ul class="tactic-list">
+          <li style="--dot:var(--blue)">Dedicated events landing page with inquiry form</li>
+          <li style="--dot:var(--blue)">Google Ads for "private event venue Toronto" and "corporate cocktail party downtown"</li>
+          <li style="--dot:var(--blue)">LinkedIn campaign targeting office managers and event planners</li>
+          <li style="--dot:var(--blue)">Retargeting for anyone who visits the events page but doesn't inquire</li>
+        </ul>
+      </div>
+
+      <!-- PILLAR 3 -->
+      <div class="pillar">
+        <div class="accent-bar" style="background:var(--green)"></div>
+        <div class="pillar-num" style="color:var(--green)">Pillar 3</div>
+        <h3>Patio Season &amp; Repeat Guests</h3>
+        <p class="pillar-desc">Your rooftop patio is a secret weapon. Most people don't know it exists. We fix that — and build a machine that brings guests back.</p>
+        <ul class="tactic-list">
+          <li style="--dot:var(--green)">"Hidden rooftop patio" discovery campaign across Instagram and Meta</li>
+          <li style="--dot:var(--green)">Happy hour push targeting office workers in CIBC Square and surrounding towers</li>
+          <li style="--dot:var(--green)">Automated retention sequences — email/SMS to bring first-timers back within 14 days</li>
+          <li style="--dot:var(--green)">Review acceleration to dominate Google Maps in the area</li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- WHAT CHANGES -->
-<div class="section" style="padding-top:48px;">
-  <h2>What changes for In Good Spirits</h2>
-  <p class="prose" style="margin-bottom:24px;">This isn't a refresh. This is a new gear.</p>
-  <div class="outcome-list" id="outcomeList"></div>
-  <div class="outcome-note">Year one was proof it works. This is what happens when we push the lever forward.</div>
+<!-- ═══ THE LEVER ═══ -->
+<div class="full band">
+  <div class="inner" style="text-align:center;">
+    <div class="eyebrow">The Guest Lever</div>
+    <h2>Drag to see the math.</h2>
+
+    <div class="lever-wrap">
+      <div class="accent-bar"></div>
+      <div class="lever-top">
+        <div class="lever-big" id="guestCount">80</div>
+        <div class="lever-sub">new guests this month</div>
+      </div>
+      <input type="range" min="20" max="300" value="80" id="leverSlider">
+      <div class="lever-grid">
+        <div class="lever-stat">
+          <div class="ls-label">Ad Spend</div>
+          <div class="ls-val" id="adSpend">$800</div>
+          <div class="ls-sub" id="adSpendSub">at $10/guest</div>
+        </div>
+        <div class="lever-stat">
+          <div class="ls-label">Monthly Revenue</div>
+          <div class="ls-val" id="monthRev">$4,800</div>
+          <div class="ls-sub" id="monthRevSub">80 x $60 avg</div>
+        </div>
+        <div class="lever-stat hl">
+          <div class="ls-label">12-Month Value</div>
+          <div class="ls-val" id="yearVal">$19,200</div>
+          <div class="ls-sub" id="yearValSub">4.0 return visits avg</div>
+        </div>
+        <div class="lever-stat hl">
+          <div class="ls-label">First-Month ROI</div>
+          <div class="ls-val" id="roi">500%</div>
+          <div class="ls-sub">before they ever come back</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- ABOUT -->
-<div class="section-band">
+<!-- ═══ THE SPRINT ═══ -->
+<div class="full">
   <div class="inner">
-    <h2>Why a Surge?</h2>
-    <div class="prose">
-      <p>You know us. You know we don't do hype. We've been in the trenches together for over a year, and the results speak for themselves — worst month to best month.</p>
-      <p>But here's the thing: <strong>the biggest risk with a good system is letting it idle</strong>. You've got a foundation most restaurants would kill for. The data is there. The infrastructure is built. What's missing is a focused push — a sprint that takes everything we've learned and points it at the three biggest opportunities in front of you right now.</p>
-      <p>That's what this is. Not a new direction. <strong>An acceleration.</strong></p>
-    </div>
+    <div class="eyebrow">The 45-Day Sprint</div>
+    <h2>Week by week.</h2>
+    <p class="body-lg" style="margin-bottom:0;">Click any week to see what happens.</p>
+
+    <div class="tl-grid" id="timeline"></div>
   </div>
 </div>
 
-<!-- INVESTMENT -->
-<div class="section" style="padding-top:48px; text-align:center;">
-  <div class="label">Investment</div>
-  <h2>Same $1,000/month. New intensity.</h2>
-  <div class="invest-price">$1,000</div>
-  <div class="invest-per">per month — what you're already paying</div>
-  <div class="invest-icons">
-    <div><div class="ii-emoji">🏟</div><div class="ii-text">Arena campaigns</div></div>
-    <div><div class="ii-emoji">🥂</div><div class="ii-text">Event bookings</div></div>
-    <div><div class="ii-emoji">🌇</div><div class="ii-text">Patio season push</div></div>
+<!-- ═══ FAQ ═══ -->
+<div class="full band">
+  <div class="inner">
+    <div class="eyebrow">Questions</div>
+    <h2>Fair ones.</h2>
+    <div id="faqList"></div>
   </div>
-  <div class="invest-box">
-    <p>This isn't a price increase. It's a strategy shift within the same engagement. We're reallocating effort toward three high-impact pillars instead of running general-purpose campaigns.</p>
-    <p class="bold">Same investment. Sharper focus. Bigger results.</p>
-  </div>
-  <p class="invest-note">Recommended ad budget increase to $1,000–$1,500/month to support arena + events + patio campaigns across Meta, Google, and LinkedIn</p>
 </div>
 
-<!-- FAQ -->
-<div class="section">
-  <h2>Questions you might have</h2>
-  <p class="prose" style="margin-bottom:24px;">Fair ones, all of them.</p>
-  <div id="faqList"></div>
-</div>
-
-<!-- CLOSER -->
+<!-- ═══ CLOSER ═══ -->
 <div class="closer">
-  <div class="closer-box">
-    <div class="bar"></div>
-    <h2>Year one was the proof. This is the push.</h2>
-    <p class="c-sub sf">20,000 people at the arena. Your patio above the city. A Financial District full of corporate events waiting to happen.</p>
-    <p class="c-accent">Let's stop leaving money on the table — literally.</p>
-    <div class="c-footer">Same partnership. Same price. A focused 45-day sprint to unlock what's been sitting right in front of us.</div>
-  </div>
+  <h2 class="serif">Year one was the proof.<br>This is the push.</h2>
+  <p class="c-line">20,000 people at the arena. Your patio above the city. A Financial District full of events waiting to happen.</p>
+  <p class="c-punch">Let's stop leaving money on the table.</p>
 </div>
 
 <script>
-// DATA
-const timeline = [
-  { week:"Week 1", emoji:"🎯", label:"Arena campaign architecture", detail:"We build the entire arena-night system: event-synced ad campaigns for Leafs, Raptors, and concerts. Landing page highlighting the indoor connection to Scotiabank Arena. Google Ads targeting 'bars near Scotiabank Arena' and 'pre-game drinks Toronto'. Geo-targeting configured for 2km radius on event days. This is the infrastructure that turns every arena event into your event.", color:"#D4895A" },
-  { week:"Week 2", emoji:"🥂", label:"Private events engine goes live", detail:"Dedicated events landing page with your space, packages, and an inquiry form. Google Ads targeting corporate event searches in Toronto's Financial District. LinkedIn campaign hitting office managers and event planners within 5km. Retargeting pixel installed so anyone who visits the events page but doesn't inquire gets followed up with automatically.", color:"#3B7DD8" },
-  { week:"Week 3", emoji:"🌇", label:"Patio & discovery campaign launch", detail:"The 'hidden rooftop patio' campaign goes live across Instagram and Meta — targeted at 25-45 year olds within 5km. Happy hour push targeting office workers in surrounding towers. Review acceleration system kicks in to boost your Google Maps visibility. First-time visitor retention sequence built and activated.", color:"#2D8F5E" },
-  { week:"Week 4", emoji:"📊", label:"First numbers drop", detail:"Full reporting on all three pillars: how many guests came from arena campaigns, how many event inquiries landed, how much patio traffic increased. We cut what's underperforming and double down on what's working. Your guest acquisition cost across each channel becomes crystal clear.", color:"#3B7DD8" },
-  { week:"Week 5", emoji:"🔥", label:"Optimize and scale", detail:"Arena campaigns are now running automatically — synced to the event calendar. Event inquiries are being nurtured via email sequences. Patio campaigns are refined with real performance data. The entire system is tightened, optimized, and ready to scale into summer. Your Guest Lever Scorecard shows exactly what each pillar is delivering.", color:"#D4895A" },
-  { week:"Week 6", emoji:"🚀", label:"The new baseline", detail:"All three pillars are running in parallel. You have a clear picture of cost-per-guest from arena nights, revenue from private events pipeline, and patio traffic growth. This becomes the new operating rhythm — not a one-time push, but a permanent upgrade to how In Good Spirits attracts and retains guests.", color:"#2D8F5E" }
-];
-
-const outcomes = [
-  "Every Scotiabank Arena event becomes a revenue opportunity for you — automatically",
-  "Private event inquiries flowing in from Google, LinkedIn, and retargeting",
-  "Your rooftop patio becomes a destination, not a secret",
-  "Office workers in CIBC Square and surrounding towers know you for happy hour",
-  "First-time visitors get pulled back automatically via email and SMS",
-  "Clear data on what each pillar costs and what it returns — no guessing",
-  "A system that gets stronger heading into patio season and playoff season"
-];
-
-const faqs = [
-  { q:"We're already working together. Why change what we're doing?", a:"We're not throwing anything out. Everything we've built over the past year — the website, the review system, the retention sequences — that's all still running. This is about adding a focused layer on top. You've got three massive opportunities (arena traffic, private events, patio season) that we haven't gone after aggressively yet. The Surge is a 45-day sprint to build the systems that capture them." },
-  { q:"Does this cost more?", a:"No. Same $1,000/month. What changes is how we allocate effort. Instead of general-purpose campaigns, we're pointing everything at three specific revenue pillars. The only additional cost is a recommended bump in ad spend to $1,000–$1,500/month to support campaigns across Meta, Google, and LinkedIn — but that goes directly to the platforms, not to us." },
-  { q:"The arena thing sounds great, but how do you actually capture that traffic?", a:"Three ways. First, event-synced ads — every time there's a Leafs game, concert, or event at Scotiabank Arena, targeted ads go live 48 hours before showing people you're literally connected to the arena by an indoor walkway. Second, Google Ads targeting people searching 'restaurants near Scotiabank Arena' and 'pre-game drinks Toronto'. Third, geo-targeted mobile ads hitting people within 2km of the arena on event days. After the event, we retarget those same people to bring them back on quieter nights." },
-  { q:"We want more private events, but is digital marketing really how people find event venues?", a:"Absolutely. 'Private event venue Toronto' and 'corporate cocktail party downtown' are high-intent Google searches with real volume. People planning events Google it, check the top results, and send inquiries. We're going to make sure you're showing up for those searches — and then retarget anyone who visits your events page but doesn't pull the trigger. Plus the LinkedIn campaign hits event planners and office managers directly." },
-  { q:"What happens after the 45 days?", a:"The systems keep running. Arena campaigns sync automatically to the event calendar. Event inquiries continue flowing through the dedicated landing page and retargeting. Patio campaigns scale up or down with the season. We keep optimizing monthly like we always have — but now with three focused revenue engines instead of one general approach." }
-];
-
-// LEVER
+/* ── LEVER ── */
 const slider = document.getElementById('leverSlider');
 function updateLever() {
-  const g = parseInt(slider.value);
-  const cpa = 10, avg = 60, visits = 4.0;
-  const spend = g * cpa, rev = g * avg, year = g * avg * visits;
-  const r = ((rev - spend) / spend * 100).toFixed(0);
+  const g = +slider.value, cpa = 10, avg = 60, vis = 4.0;
+  const sp = g*cpa, rev = g*avg, yr = g*avg*vis, r = ((rev-sp)/sp*100)|0;
   document.getElementById('guestCount').textContent = g;
-  document.getElementById('adSpend').textContent = '$' + spend.toLocaleString();
-  document.getElementById('adSpendSub').textContent = 'at $' + cpa + '/guest';
-  document.getElementById('monthRev').textContent = '$' + rev.toLocaleString();
-  document.getElementById('monthRevSub').textContent = g + ' x $' + avg + ' avg spend';
-  document.getElementById('yearVal').textContent = '$' + year.toLocaleString();
-  document.getElementById('yearValSub').textContent = visits.toFixed(1) + ' return visits avg';
-  document.getElementById('roi').textContent = r + '%';
+  document.getElementById('adSpend').textContent = '$'+sp.toLocaleString();
+  document.getElementById('adSpendSub').textContent = 'at $'+cpa+'/guest';
+  document.getElementById('monthRev').textContent = '$'+rev.toLocaleString();
+  document.getElementById('monthRevSub').textContent = g+' x $'+avg+' avg';
+  document.getElementById('yearVal').textContent = '$'+yr.toLocaleString();
+  document.getElementById('yearValSub').textContent = vis.toFixed(1)+' return visits avg';
+  document.getElementById('roi').textContent = r+'%';
 }
 slider.addEventListener('input', updateLever);
 
-// TIMELINE
-let activeWeek = 0;
-const tabsEl = document.getElementById('weekTabs');
-const contentEl = document.getElementById('weekContent');
-
-function renderWeeks() {
-  tabsEl.innerHTML = '';
-  timeline.forEach((t, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'week-tab' + (i === activeWeek ? ' active' : '');
-    btn.style.borderColor = t.color;
-    if (i === activeWeek) btn.style.background = t.color;
-    btn.innerHTML = '<div class="emoji">' + t.emoji + '</div><div class="wlabel" style="color:' + (i === activeWeek ? '#fff' : t.color) + '">' + t.week + '</div>';
-    btn.onclick = () => { activeWeek = i; renderWeeks(); };
-    tabsEl.appendChild(btn);
-  });
-  const t = timeline[activeWeek];
-  contentEl.innerHTML = '<div class="wc-label" style="color:' + t.color + '">' + t.label + '</div><p class="wc-text">' + t.detail + '</p>';
-}
-renderWeeks();
-
-// OUTCOMES
-const outcomeEl = document.getElementById('outcomeList');
-outcomes.forEach(o => {
-  outcomeEl.innerHTML += '<div class="outcome-item"><span class="check">&#10003;</span><span>' + o + '</span></div>';
+/* ── TIMELINE ── */
+const weeks = [
+  {w:'Week 1', t:'Arena campaign system goes live', d:'Event-synced ad campaigns for Leafs, Raptors, and concerts. Google Ads targeting "bars near Scotiabank Arena." Geo-targeting configured for event days. Every arena event becomes your event.', c:'var(--amber)'},
+  {w:'Week 2', t:'Private events engine launches', d:'Dedicated events landing page with inquiry form. Google Ads for corporate event searches. LinkedIn campaign targeting event planners and office managers. Retargeting pixel on the events page.', c:'var(--blue)'},
+  {w:'Week 3', t:'Patio & discovery campaign drops', d:'"Hidden rooftop patio" campaign goes live across Instagram and Meta. Happy hour push targeting surrounding office towers. Review acceleration kicks in. Guest retention sequences activated.', c:'var(--green)'},
+  {w:'Week 4', t:'First numbers land', d:'Full reporting on all three pillars. How many guests came from arena campaigns, how many event inquiries, patio traffic lift. We cut what\'s underperforming and double down on what\'s working.', c:'var(--blue)'},
+  {w:'Week 5', t:'Optimize & scale', d:'Arena campaigns running automatically synced to the event calendar. Event inquiries being nurtured. Patio campaigns refined with real data. System tightened and ready for summer.', c:'var(--amber)'},
+  {w:'Week 6', t:'The new baseline', d:'All three pillars running in parallel. Clear picture of cost-per-guest from each channel. This becomes the new operating rhythm — a permanent upgrade.', c:'var(--green)'}
+];
+const tlEl = document.getElementById('timeline');
+weeks.forEach((w,i) => {
+  const div = document.createElement('div');
+  div.className = 'tl-item' + (i===0?' open':'');
+  div.innerHTML = '<div class="tl-week" style="color:'+w.c+'">'+w.w+'</div><div><div class="tl-title">'+w.t+'</div><div class="tl-detail">'+w.d+'</div></div>';
+  div.onclick = () => {
+    document.querySelectorAll('.tl-item').forEach(el => el.classList.remove('open'));
+    div.classList.add('open');
+  };
+  tlEl.appendChild(div);
 });
 
-// FAQ
+/* ── FAQ ── */
+const faqs = [
+  {q:'We\'re already working together. Why change?', a:'We\'re not throwing anything out. The foundation from the past year is still running. This adds a focused layer on top — three specific revenue opportunities we haven\'t gone after aggressively yet. Same partnership, sharper aim.'},
+  {q:'How do you actually capture arena traffic?', a:'Event-synced ads go live 48 hours before every Leafs game, concert, or event. Google Ads target people searching "restaurants near Scotiabank Arena." Geo-targeted mobile ads hit people within 2km on event days. After the event, we retarget those same people to bring them back.'},
+  {q:'Is digital really how people find event venues?', a:'"Private event venue Toronto" and "corporate cocktail party downtown" are real, high-intent Google searches. People planning events search, check the top results, and send inquiries. We make sure you show up — and retarget anyone who visits but doesn\'t pull the trigger.'},
+  {q:'What happens after the 45 days?', a:'The systems keep running. Arena campaigns sync to the event calendar automatically. Event inquiries flow through the landing page. Patio campaigns scale with the season. We keep optimizing monthly — now with three focused engines instead of one general approach.'}
+];
 const faqEl = document.getElementById('faqList');
-faqs.forEach((f, i) => {
-  faqEl.innerHTML += '<div class="faq-item"><button class="faq-q" onclick="toggleFaq(' + i + ')" id="fq' + i + '">"' + f.q + '"<span class="toggle" id="ft' + i + '">+</span></button><div class="faq-a" id="fa' + i + '"><p>' + f.a + '</p></div></div>';
+faqs.forEach((f,i) => {
+  const div = document.createElement('div');
+  div.className = 'faq-item';
+  div.innerHTML = '<button class="faq-q">"'+f.q+'"<span class="tog">+</span></button><div class="faq-a"><p>'+f.a+'</p></div>';
+  const btn = div.querySelector('.faq-q');
+  const ans = div.querySelector('.faq-a');
+  btn.onclick = () => {
+    const wasOpen = ans.classList.contains('open');
+    document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
+    if (!wasOpen) { ans.classList.add('open'); btn.classList.add('open'); }
+  };
+  faqEl.appendChild(div);
 });
 
-let openFaq = -1;
-function toggleFaq(i) {
-  if (openFaq >= 0 && openFaq !== i) {
-    document.getElementById('fa' + openFaq).classList.remove('open');
-    document.getElementById('fq' + openFaq).classList.remove('open');
-    document.getElementById('ft' + openFaq).textContent = '+';
-  }
-  if (openFaq === i) {
-    document.getElementById('fa' + i).classList.remove('open');
-    document.getElementById('fq' + i).classList.remove('open');
-    document.getElementById('ft' + i).textContent = '+';
-    openFaq = -1;
-  } else {
-    document.getElementById('fa' + i).classList.add('open');
-    document.getElementById('fq' + i).classList.add('open');
-    document.getElementById('ft' + i).textContent = '\u2212';
-    openFaq = i;
-  }
-}
+/* ── TACTIC DOTS ── */
+document.querySelectorAll('.tactic-list li').forEach(li => {
+  li.style.setProperty('--dot-color', li.style.getPropertyValue('--dot'));
+});
+// Apply dot colors via CSS
+const style = document.createElement('style');
+style.textContent = '.tactic-list li::before { background: var(--dot); }';
+document.head.appendChild(style);
 </script>
 </body>
 </html>
