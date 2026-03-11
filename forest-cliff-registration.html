@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Forest Cliff Camps — Summer 2026 Registration</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#faf8f4;font-family:'Outfit','Segoe UI',sans-serif;color:#1b2e1b;min-height:100vh;display:flex;flex-direction:column}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes breathe{0%,100%{box-shadow:0 4px 20px rgba(204,88,31,0.25)}50%{box-shadow:0 8px 32px rgba(204,88,31,0.45)}}
+@keyframes confettiDrop{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(60px) rotate(360deg);opacity:0}}
+.anim-in{animation:fadeUp .5s ease-out both}
+.preview-in{animation:fadeIn .3s ease-out both}
+.shake{animation:shake .4s ease}
+.fi{width:100%;padding:14px 16px;border-radius:10px;border:2px solid #e0dbc8;font-size:16px;font-family:inherit;background:#fff;color:#1b2e1b;box-sizing:border-box;transition:border-color .15s,box-shadow .15s}
+.fi:focus{outline:none;border-color:#2d5a3f;box-shadow:0 0 0 4px rgba(45,90,63,0.1)}
+.fi::placeholder{color:#b5ae9e}
+.pill{padding:10px 0;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;text-align:center;transition:all .15s;border:2px solid #e0dbc8;background:#fff;color:#1b2e1b;font-family:inherit;flex:1}
+.pill:hover{border-color:#2d5a3f}
+.pill.on{background:#1b3c2a;color:#fff;border-color:#1b3c2a}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chip{font-size:11px;font-weight:600;color:#2d5a3f;background:#e8f2ec;padding:4px 10px;border-radius:20px}
+.trust{font-size:11px;color:#a09a8a;font-weight:500;display:flex;align-items:center;gap:4px}
+.trust .ck{color:#2d5a3f;font-size:13px}
+.cta{width:100%;padding:16px;border-radius:12px;border:none;color:#fff;font-size:17px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:16px;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.cta.active{background:#cc581f;animation:breathe 2.5s ease-in-out infinite}
+.cta.inactive{background:#c4bfb0;cursor:default}
+.spinner{width:22px;height:22px;border:3px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite}
+#header{background:#1b3c2a;padding:22px 24px 18px;position:relative;overflow:hidden}
+#header .circle1{position:absolute;top:-50px;right:-30px;width:140px;height:140px;border-radius:50%;background:rgba(45,90,63,0.35)}
+#header .circle2{position:absolute;bottom:-30px;left:20px;width:70px;height:70px;border-radius:50%;background:rgba(90,138,106,0.15)}
+.toggle-bar{background:#1b3c2a;padding:0 24px 16px;display:flex}
+.toggle-wrap{display:flex;background:rgba(255,255,255,0.1);border-radius:8px;padding:3px;gap:2px;width:100%;max-width:440px;margin:0 auto}
+.toggle-btn{flex:1;padding:8px 0;border-radius:6px;border:none;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
+.toggle-btn.on{background:#cc581f;color:#fff}
+.toggle-btn.off{background:transparent;color:rgba(255,255,255,0.5)}
+#body{flex:1;max-width:440px;width:100%;margin:0 auto;padding:28px 22px 40px}
+</style>
+</head>
+<body>
+
+<div id="header">
+  <div class="circle1"></div><div class="circle2"></div>
+  <div style="position:relative;z-index:1;display:flex;align-items:center;gap:10px">
+    <span style="font-size:24px">🏕️</span>
+    <div>
+      <div style="font-family:'Fraunces',serif;font-size:19px;font-weight:700;color:#faf8f4">Forest Cliff Camps</div>
+      <div style="font-size:12px;color:rgba(250,248,244,0.5);margin-top:1px">Summer 2026 · Sessions running July–August</div>
+    </div>
+  </div>
+</div>
+
+<div class="toggle-bar">
+  <div class="toggle-wrap">
+    <button class="toggle-btn on" id="tog-cold" onclick="setVariant('cold')"><div>Cold Traffic</div><div style="font-size:10px;font-weight:400;opacity:0.7;margin-top:1px">Fence-throw</div></button>
+    <button class="toggle-btn off" id="tog-warm" onclick="setVariant('warm')"><div>Warm Traffic</div><div style="font-size:10px;font-weight:400;opacity:0.7;margin-top:1px">Priority selection</div></button>
+  </div>
+</div>
+
+<div id="body"></div>
+
+<script>
+const DEPOSIT = 30;
+const SESSIONS = {
+  overnight:{
+    5:{c:2,l:"Kids Camp",w:"Jul 5–10 or Jul 12–17"},6:{c:2,l:"Kids Camp",w:"Jul 5–10 or Jul 12–17"},
+    7:{c:2,l:"Kids Camp",w:"Jul 5–10 or Jul 12–17"},8:{c:2,l:"Kids Camp",w:"Jul 5–10 or Jul 12–17"},
+    9:{c:3,l:"Junior Camp",w:"Jul 5–10, Jul 12–17, or Jul 19–24"},10:{c:3,l:"Junior Camp",w:"Jul 5–10, Jul 12–17, or Jul 19–24"},
+    11:{c:3,l:"Junior Camp",w:"Jul 5–10, Jul 12–17, or Jul 19–24"},12:{c:2,l:"Jr. High Camp",w:"Jul 26–31 or Aug 2–7"},
+    13:{c:2,l:"Jr. High Camp",w:"Jul 26–31 or Aug 2–7"},14:{c:1,l:"SALT",w:"Aug 9–14"},15:{c:1,l:"SALT",w:"Aug 9–14"},
+    16:{c:1,l:"Leadership Camp",w:"Aug 16–22"},17:{c:1,l:"Leadership Camp",w:"Aug 16–22"}
+  },
+  day:{
+    5:{c:5,l:"Day Camp",w:"5 weeks: Jul 7 – Aug 8"},6:{c:5,l:"Day Camp",w:"5 weeks: Jul 7 – Aug 8"},
+    7:{c:5,l:"Day Camp",w:"5 weeks: Jul 7 – Aug 8"},8:{c:5,l:"Day Camp",w:"5 weeks: Jul 7 – Aug 8"},
+    9:{c:7,l:"Day Camp + ACT",w:"7 weeks: Jul 7 – Aug 22"},10:{c:7,l:"Day Camp + ACT",w:"7 weeks: Jul 7 – Aug 22"},
+    11:{c:7,l:"Day Camp + ACT",w:"7 weeks: Jul 7 – Aug 22"},12:{c:2,l:"ACT",w:"Aug 11–15 or Aug 18–22"}
+  },
+  both:{
+    5:{c:7,l:"Overnight + Day Camp",w:"Multiple weeks across both"},6:{c:7,l:"Overnight + Day Camp",w:"Multiple weeks across both"},
+    7:{c:7,l:"Overnight + Day Camp",w:"Multiple weeks across both"},8:{c:7,l:"Overnight + Day Camp",w:"Multiple weeks across both"},
+    9:{c:10,l:"Overnight + Day Camp",w:"10 sessions across both"},10:{c:10,l:"Overnight + Day Camp",w:"10 sessions across both"},
+    11:{c:10,l:"Overnight + Day Camp",w:"10 sessions across both"},12:{c:4,l:"Jr. High + ACT",w:"4 sessions across both"},
+    13:{c:2,l:"Jr. High Camp",w:"Jul 26–31 or Aug 2–7"},14:{c:1,l:"SALT",w:"Aug 9–14"},15:{c:1,l:"SALT",w:"Aug 9–14"},
+    16:{c:1,l:"Leadership Camp",w:"Aug 16–22"},17:{c:1,l:"Leadership Camp",w:"Aug 16–22"}
+  }
+};
+
+let variant="cold", program=null, loading=false, done=false;
+const body=document.getElementById("body");
+
+function setVariant(v){
+  variant=v; program=null; done=false; loading=false;
+  document.getElementById("tog-cold").className="toggle-btn "+(v==="cold"?"on":"off");
+  document.getElementById("tog-warm").className="toggle-btn "+(v==="warm"?"on":"off");
+  render();
+}
+
+function gv(id){return document.getElementById(id)?.value||"";}
+function isValid(){return gv("f-parent")&&gv("f-email")&&gv("f-phone")&&gv("f-child")&&gv("f-age")&&program;}
+function getPreview(){if(!program||!gv("f-age"))return null;return SESSIONS[program]?.[gv("f-age")]||null;}
+
+function setProg(p){program=p;updateDynamic();}
+
+function updateDynamic(){
+  // Update pills
+  document.querySelectorAll(".prog-pill").forEach(el=>{el.className="pill prog-pill"+(el.dataset.key===program?" on":"");});
+  // Update CTA
+  const cta=document.getElementById("cta-btn");
+  if(cta){cta.className="cta "+(isValid()?"active":"inactive");}
+  // Update preview
+  const pw=document.getElementById("preview-wrap");
+  if(pw){
+    const p=getPreview();
+    const warm=variant==="warm";
+    if(warm&&p){
+      pw.innerHTML=`<div class="preview-in" style="background:#f0f7f2;border-radius:10px;padding:12px 16px;margin-top:10px;margin-bottom:4px;border:1px solid #c8e0d0;display:flex;align-items:center;gap:12px">
+        <div style="width:36px;height:36px;border-radius:8px;background:#2d5a3f;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:700;flex-shrink:0">${p.c}</div>
+        <div><div style="font-size:13px;font-weight:700;color:#1b3c2a">${p.c===1?'1 session':p.c+' sessions'} available — ${p.l}</div>
+        <div style="font-size:12px;color:#6b8f72;margin-top:1px">${p.w} — <strong>you choose after deposit</strong></div></div></div>`;
+    } else if(!warm&&program&&gv("f-age")){
+      const name=gv("f-child")?gv("f-child")+"'s":"your child's";
+      pw.innerHTML=`<div class="preview-in" style="margin-top:10px;margin-bottom:4px;padding:10px 14px;background:#f7f5f0;border-radius:10px;border:1px solid #e8e3d8">
+        <div style="font-size:13px;color:#7a7464;line-height:1.5"><strong style="color:#1b2e1b">How it works:</strong> $${DEPOSIT} reserves the spot → we email you session dates for ${name} age group within 24 hours → you pick the week that works → done.</div></div>`;
+    } else {pw.innerHTML="";}
+  }
+}
+
+function doSubmit(){
+  if(!isValid()){body.querySelector(".anim-in")?.classList.add("shake");setTimeout(()=>body.querySelector(".shake")?.classList.remove("shake"),500);return;}
+  loading=true;
+  const cta=document.getElementById("cta-btn");
+  cta.innerHTML='<div class="spinner"></div>';
+  const payload={parentName:gv("f-parent"),email:gv("f-email"),phone:gv("f-phone"),childName:gv("f-child"),childAge:gv("f-age"),program,deposit:DEPOSIT,variant,source:"meta_ad_widget",timestamp:new Date().toISOString()};
+  console.log("→ HighLevel webhook:",JSON.stringify(payload,null,2));
+  setTimeout(()=>{loading=false;done=true;renderConfirm();},1200);
+}
+
+function renderConfirm(){
+  const warm=variant==="warm";
+  const child=gv("f-child")||"Your child";
+  const email=gv("f-email")||"your email";
+  const progLabel=program==="both"?"sessions":"week";
+  const confetti=["🌲","⭐","🏕️","🎉","🌞","✨"].map((e,i)=>
+    `<span style="position:absolute;left:${15+i*13}%;top:0;font-size:${18+(i%3)*6}px;animation:confettiDrop ${(.8+i*.15).toFixed(2)}s ease-out ${(i*.1).toFixed(1)}s both">${e}</span>`
+  ).join("");
+
+  body.innerHTML=`<div class="anim-in" style="text-align:center;padding-top:30px">
+    <div style="position:relative;height:60px;margin-bottom:10px">${confetti}</div>
+    <h1 style="font-family:'Fraunces',serif;font-size:28px;font-weight:700;margin:0 0 8px;color:#1b3c2a">${child}'s spot is reserved!</h1>
+    <p style="font-size:15px;color:#7a7464;margin:0 0 8px;line-height:1.6">${warm?`You've got <strong style="color:#cc581f">priority session selection</strong>.`:`You're in. Now let's get the dates sorted.`}</p>
+    <p style="font-size:14px;color:#999;margin:0 0 28px">Check <strong style="color:#1b2e1b">${email}</strong> for your next step.</p>
+    <div style="background:#fff;border-radius:14px;padding:24px 22px;border:1px solid #e0dbc8;text-align:left;margin-bottom:20px">
+      <div style="font-size:13px;font-weight:700;color:#2d5a3f;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:16px">Here's what happens now</div>
+      ${[
+        {t:"Now",s:"Deposit receipt + confirmation email",h:1},
+        {t:"24 hrs",s:warm?`Pick your exact ${progLabel} — priority access before the waitlist`:`We send session options for ${child}'s age group — you pick the ${progLabel} that works`,h:1},
+        {t:"This week",s:"Quick form: medical info + emergency contact (5 min)",h:0},
+        {t:"2 wks before",s:"Packing list, parent handbook, cabin assignment",h:0},
+      ].map(({t,s,h},i)=>`<div style="display:flex;gap:14px;margin-bottom:${i<3?14:0}px;align-items:flex-start">
+        <div style="width:56px;flex-shrink:0;font-size:11px;font-weight:700;color:${h?'#cc581f':'#a09a8a'};text-align:right;padding-top:2px">${t}</div>
+        <div style="width:10px;display:flex;flex-direction:column;align-items:center;flex-shrink:0;padding-top:4px">
+          <div style="width:8px;height:8px;border-radius:50%;background:${i<2?'#cc581f':'#e0dbc8'};flex-shrink:0"></div>
+          ${i<3?'<div style="width:2px;height:24px;background:#e0dbc8;margin-top:2px"></div>':''}
+        </div>
+        <div style="font-size:14px;color:${h?'#1b2e1b':'#777'};font-weight:${h?600:400};line-height:1.4;padding-top:1px">${s}</div>
+      </div>`).join("")}
+    </div>
+    <div style="background:linear-gradient(135deg,#1b3c2a,#2d5a3f);border-radius:14px;padding:20px 22px;color:#faf8f4;margin-bottom:20px">
+      <div style="font-size:15px;font-weight:700;margin-bottom:6px">Know a family who'd love this?</div>
+      <p style="margin:0;font-size:13px;opacity:0.75;line-height:1.5">Camp's better when kids already know someone in the cabin. Share this with a friend — their kid will thank you.</p>
+    </div>
+    <button onclick="done=false;program=null;render()" style="background:none;border:1px solid #e0dbc8;border-radius:10px;padding:10px 20px;font-size:13px;color:#999;cursor:pointer;font-family:inherit">↻ Start over</button>
+  </div>`;
+}
+
+function render(){
+  if(done){renderConfirm();return;}
+  const warm=variant==="warm";
+  const ages=[5,6,7,8,9,10,11,12,13,14,15,16,17].map(a=>`<option value="${a}">${a} years old</option>`).join("");
+
+  body.innerHTML=`<div class="anim-in">
+    <h1 style="font-family:'Fraunces',serif;font-size:26px;font-weight:700;margin:0 0 6px;line-height:1.2">${warm?'Reserve your child\'s spot':'Save your child\'s spot for summer'}</h1>
+    <p style="margin:0 0 6px;font-size:15px;color:#7a7464;line-height:1.5">${warm
+      ?`$${DEPOSIT} deposit gives you <strong style="color:#1b2e1b">priority session selection</strong> — choose your exact dates before the general waitlist.`
+      :`$${DEPOSIT} holds the spot. <strong style="color:#1b2e1b">You choose your exact dates after</strong> — we'll send options within 24 hours.`
+    }</p>
+    <div style="display:flex;gap:6px;margin:0 0 24px;flex-wrap:wrap">${(warm
+      ?["Spot guaranteed","Pick dates first","Refundable til May 15"]
+      :["$30 · fully refundable","You pick dates after","Sessions filling fast"]
+    ).map(t=>`<span class="chip">${t}</span>`).join("")}</div>
+
+    <div style="margin-bottom:18px">
+      <label style="font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.08em;display:block;margin-bottom:8px">Program</label>
+      <div style="display:flex;gap:8px">
+        ${[{k:"overnight",l:"Overnight",s:"Lake Huron · Full week"},{k:"day",l:"Day Camp",s:"London · Home nightly"},{k:"both",l:"Both",s:"Best of both"}].map(({k,l,s})=>
+          `<button class="pill prog-pill${program===k?' on':''}" data-key="${k}" onclick="setProg('${k}')"><div>${l}</div><div style="font-size:10px;font-weight:400;opacity:0.65;margin-top:2px">${s}</div></button>`
+        ).join("")}
+      </div>
+    </div>
+
+    <div style="margin-bottom:14px"><input class="fi" id="f-parent" placeholder="Your name (parent / guardian)" oninput="updateDynamic()"></div>
+    <div class="grid2" style="margin-bottom:14px">
+      <input class="fi" id="f-email" type="email" placeholder="Email" oninput="updateDynamic()">
+      <input class="fi" id="f-phone" type="tel" placeholder="Phone" oninput="updateDynamic()">
+    </div>
+    <div class="grid2" style="margin-bottom:4px">
+      <input class="fi" id="f-child" placeholder="Child's first name" oninput="updateDynamic()">
+      <select class="fi" id="f-age" onchange="updateDynamic()" style="color:#b5ae9e;appearance:auto">
+        <option value="">Child's age</option>${ages}
+      </select>
+    </div>
+
+    <div id="preview-wrap"></div>
+
+    <button id="cta-btn" class="cta inactive" onclick="doSubmit()">${warm?`Reserve with $${DEPOSIT} Deposit →`:`I'm In — $${DEPOSIT} Deposit →`}</button>
+
+    <div style="display:flex;justify-content:center;gap:16px;margin-top:16px;flex-wrap:wrap">${(warm
+      ?["87 years","1:5 staff ratio","OCA accredited","24/7 health staff"]
+      :["87 years","OCA accredited","1:5 staff ratio","Fully refundable"]
+    ).map(t=>`<span class="trust"><span class="ck">✓</span> ${t}</span>`).join("")}</div>
+
+    <p style="font-size:11px;color:#b5ae9e;text-align:center;margin-top:14px;line-height:1.6">${warm
+      ?`$${DEPOSIT} secures priority selection. Within 24 hours we'll email you to choose your exact dates. Remaining balance due before camp. Questions? <span style="color:#2d5a3f;font-weight:600">519-913-2744</span>`
+      :`Your $${DEPOSIT} is fully refundable until May 15. No commitment to specific dates yet — you pick those next. Remaining balance due before camp. <span style="color:#2d5a3f;font-weight:600">519-913-2744</span>`
+    }</p>
+  </div>`;
+
+  // Restore age select color if value present
+  const sel=document.getElementById("f-age");
+  if(sel)sel.addEventListener("change",function(){this.style.color=this.value?"#1b2e1b":"#b5ae9e";});
+}
+
+render();
+</script>
+</body>
+</html>
