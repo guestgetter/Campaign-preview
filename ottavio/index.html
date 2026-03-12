@@ -38,7 +38,7 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
 }
 .cover__rule { width:80px; height:1px; background:rgba(255,255,255,0.3); margin:0 auto 2rem; opacity:0; }
 .cover__pre {
-  font-family:var(--ff-sans); font-size:0.68rem; font-weight:500;
+  font-family:var(--ff-sans); font-size:0.75rem; font-weight:500;
   letter-spacing:0.4em; text-transform:uppercase; color:rgba(255,255,255,0.45);
   margin-bottom:1.5rem; opacity:0;
 }
@@ -48,7 +48,7 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
   color:var(--cream); margin-bottom:0.5rem; opacity:0;
 }
 .cover__tagline {
-  font-family:var(--ff-sans); font-size:0.8rem; font-weight:400;
+  font-family:var(--ff-sans); font-size:0.88rem; font-weight:400;
   letter-spacing:0.3em; text-transform:uppercase;
   color:rgba(255,255,255,0.55); margin-bottom:2.5rem; opacity:0;
 }
@@ -96,7 +96,7 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
   color:var(--cream); margin-bottom:0.15rem;
 }
 .photorow__cap-s {
-  font-family:var(--ff-serif); font-size:0.78rem; font-style:italic;
+  font-family:var(--ff-serif); font-size:0.86rem; font-style:italic;
   color:rgba(255,255,255,0.65);
 }
 
@@ -180,7 +180,7 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
 .split__img img { position:absolute; inset:0; }
 
 .split__eyebrow {
-  font-family:var(--ff-sans); font-size:0.65rem; font-weight:500;
+  font-family:var(--ff-sans); font-size:0.73rem; font-weight:500;
   letter-spacing:0.3em; text-transform:uppercase; color:var(--terracotta);
   margin-bottom:1.25rem; opacity:0;
 }
@@ -191,7 +191,7 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
 .split__h em { font-style:italic; color:var(--terracotta); }
 .split__text--dark .split__h em { color:var(--ochre); }
 .split__p {
-  font-family:var(--ff-serif); font-size:0.92rem; font-style:italic;
+  font-family:var(--ff-serif); font-size:1rem; font-style:italic;
   line-height:1.9; color:var(--stone); max-width:36ch; opacity:0;
 }
 .split__text--dark .split__p { color:var(--biscotti); }
@@ -209,7 +209,7 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
   flex:1; display:flex; align-items:center; justify-content:center;
 }
 .palette-strip__label {
-  font-family:var(--ff-serif); font-size:0.6rem; font-style:italic;
+  font-family:var(--ff-serif); font-size:0.68rem; font-style:italic;
   letter-spacing:0.05em; opacity:0.65;
 }
 .palette-strip__label--l { color:rgba(255,255,255,0.8); }
@@ -231,11 +231,11 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
 .voice__col--n .voice__col-head { color:var(--wine); }
 .voice__ex { margin-bottom:1.5rem; }
 .voice__ex-q {
-  font-family:var(--ff-serif); font-size:0.92rem; font-style:italic;
+  font-family:var(--ff-serif); font-size:1rem; font-style:italic;
   line-height:1.75; color:var(--espresso);
 }
 .voice__ex-w {
-  font-family:var(--ff-sans); font-size:0.72rem; color:var(--warm);
+  font-family:var(--ff-sans); font-size:0.78rem; color:var(--warm);
   margin-top:0.35rem; font-weight:300;
 }
 
@@ -267,7 +267,7 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
   color:var(--espresso); margin-bottom:0.35rem;
 }
 .illo-card__prompt {
-  font-family:var(--ff-serif); font-size:0.82rem; font-style:italic;
+  font-family:var(--ff-serif); font-size:0.92rem; font-style:italic;
   color:var(--stone); line-height:1.65;
 }
 .illo-card__use {
@@ -371,12 +371,43 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
   color:var(--espresso); margin-bottom:0.3rem;
 }
 .cpillar__desc {
-  font-family:var(--ff-sans); font-size:0.82rem; line-height:1.6;
+  font-family:var(--ff-sans); font-size:0.9rem; line-height:1.6;
   color:var(--stone); font-weight:300;
 }
 .closing__end {
   font-family:var(--ff-hand); font-size:1.2rem; color:var(--warm);
   margin-top:4rem; opacity:0;
+}
+
+/* ========== SKETCH SHOWCASE ========== */
+.sketch-section {
+  background:var(--cream); padding:clamp(5rem,10vw,8rem) clamp(1.5rem,4vw,4rem);
+}
+.sketch-section__inner { max-width:960px; margin:0 auto; }
+.sketch-section__head { text-align:center; margin-bottom:4rem; }
+.sketch-section__eyebrow {
+  font-family:var(--ff-hand); font-size:1.4rem; color:var(--terracotta);
+  margin-bottom:0.5rem; opacity:0;
+}
+.sketch-section__sub {
+  font-family:var(--ff-serif); font-size:1rem; font-style:italic;
+  color:var(--stone); opacity:0;
+}
+.sketch-section__item {
+  margin-bottom:3.5rem; opacity:0; transform:translateY(20px);
+}
+.sketch-section__item:last-child { margin-bottom:0; }
+.sketch-section__frame {
+  background:var(--panna); border:1px solid var(--flour);
+  border-radius:4px; padding:2rem 2.5rem;
+}
+.sketch-section__frame img {
+  width:100%; height:auto; object-fit:contain; display:block;
+  mix-blend-mode:multiply;
+}
+.sketch-section__cap {
+  font-family:var(--ff-hand); font-size:1.05rem; color:var(--stone);
+  text-align:center; margin-top:1rem;
 }
 
 /* ========== RESPONSIVE ========== */
@@ -635,6 +666,28 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
   </div>
 </section>
 
+<!-- ===== SKETCH SHOWCASE ===== -->
+<section class="sketch-section">
+  <div class="sketch-section__inner">
+    <div class="sketch-section__head">
+      <div class="sketch-section__eyebrow">From the sketchbook</div>
+      <p class="sketch-section__sub">The visual language of Ottavio, in ink.</p>
+    </div>
+    <div class="sketch-section__item">
+      <div class="sketch-section__frame">
+        <img src="image_a4bb82f6-3f89-493b-b0c4-07d67f957c4a.svg" alt="Ottavio — Oak Bay, 1997">
+      </div>
+      <div class="sketch-section__cap">Oak Bay, 1997 — the world as it feels from the inside</div>
+    </div>
+    <div class="sketch-section__item">
+      <div class="sketch-section__frame">
+        <img src="image_c2d27bfa-2058-4d27-a3b2-24fbae33cb65.svg" alt="Ottavio — neighborhood illustration">
+      </div>
+      <div class="sketch-section__cap">The neighborhood, rendered in warmth</div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== ILLUSTRATION PROMPTS ===== -->
 <section class="illo-section">
   <div class="illo-inner">
@@ -824,6 +877,17 @@ gsap.utils.toArray('.illo-card').forEach((el,i)=>{
 ScrollTrigger.create({
   trigger:'.mock',start:'top 80%',once:true,
   onEnter:()=>gsap.to('.mock',{opacity:1,y:0,duration:0.8,ease:'power2.out'})
+});
+
+gsap.utils.toArray('.sketch-section__eyebrow,.sketch-section__sub').forEach(el=>{
+  gsap.to(el,{opacity:1,duration:0.8,ease:'power2.out',
+    scrollTrigger:{trigger:el,start:'top 85%',once:true}
+  });
+});
+gsap.utils.toArray('.sketch-section__item').forEach((el,i)=>{
+  gsap.to(el,{opacity:1,y:0,duration:0.9,delay:i*0.15,ease:'power2.out',
+    scrollTrigger:{trigger:el,start:'top 85%',once:true}
+  });
 });
 
 gsap.to('.closing__big',{opacity:1,duration:1,ease:'power2.out',scrollTrigger:{trigger:'.closing__big',start:'top 78%',once:true}});
