@@ -1,0 +1,1706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Private Events & Group Dining — Restaurant Lucie</title>
+<meta name="description" content="Host your next private event at Restaurant Lucie, Toronto's Michelin-recommended French restaurant. Intimate gatherings, corporate events, weddings, and full restaurant buyouts with fully customizable group menus.">
+<link rel="icon" type="image/png" href="restaurant-lucie-logo.png">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --navy: #013349;
+    --navy-deep: #01283A;
+    --navy-light: #01435E;
+    --gold: #D4A574;
+    --gold-light: #E8C9A8;
+    --gold-muted: #B8956A;
+    --warm-white: #FAF8F5;
+    --cream: #F5F0E8;
+    --cream-dark: #EDE5D8;
+    --slate: #5A6E7A;
+    --text: #1A2A35;
+    --text-muted: #6B7D89;
+    --border: #E2DDD4;
+    --teal-accent: #3D7A7A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--warm-white);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    background-image: url('images/events-hero.jpg');
+    background-size: cover;
+    background-position: center 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(1,51,73,0.82) 0%, rgba(1,51,73,0.75) 50%, rgba(1,40,58,0.92) 100%);
+    pointer-events: none;
+  }
+
+  .hero-logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 48px;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-badge {
+    position: relative;
+    z-index: 1;
+    font-size: 13px;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 32px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 5.5vw, 66px);
+    font-weight: 700;
+    color: white;
+    line-height: 1.1;
+    max-width: 800px;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: 19px;
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+    max-width: 580px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-cta {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 44px;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  .hero-cta:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  .hero-details {
+    margin-top: 64px;
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-detail {
+    text-align: center;
+  }
+
+  .hero-detail-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    color: white;
+    font-weight: 600;
+  }
+
+  .hero-detail-label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-top: 4px;
+  }
+
+  /* ── STICKY NAV ── */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--navy);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sticky-nav::-webkit-scrollbar { display: none; }
+
+  .sticky-nav a {
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 16px 24px;
+    white-space: nowrap;
+    transition: all 0.2s;
+    border-bottom: 2px solid transparent;
+  }
+
+  .sticky-nav a:hover,
+  .sticky-nav a.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+
+  .section-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-muted);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .section-intro {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 660px;
+    margin-bottom: 56px;
+    line-height: 1.75;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── INTRO SECTION ── */
+  .intro-block {
+    background: var(--cream);
+    padding: 100px 40px;
+  }
+
+  .intro-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .intro-inner .section-label {
+    margin-bottom: 16px;
+  }
+
+  .intro-inner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 3.5vw, 42px);
+    color: var(--text);
+    margin-bottom: 24px;
+    line-height: 1.3;
+  }
+
+  .intro-inner p {
+    font-size: 18px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  /* ── SPACES ── */
+  .spaces-grid {
+    display: grid;
+    gap: 32px;
+  }
+
+  .space-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    min-height: 420px;
+  }
+
+  .space-card:nth-child(even) .space-image { order: 2; }
+  .space-card:nth-child(even) .space-content { order: 1; }
+
+  .space-image {
+    position: relative;
+    overflow: hidden;
+    min-height: 420px;
+  }
+
+  .space-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    transition: transform 0.6s ease;
+  }
+
+  .space-card:hover .space-image img {
+    transform: scale(1.03);
+  }
+
+  .space-content {
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .space-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .space-type {
+    font-size: 13px;
+    color: var(--gold-muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  .space-description {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 28px;
+  }
+
+  .space-details {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .space-detail {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .space-detail-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  .space-detail-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ── MENU SECTION (dark) ── */
+  .menu-section {
+    background: var(--navy);
+    padding: 100px 40px;
+  }
+
+  .menu-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .menu-inner .section-label {
+    color: var(--gold);
+  }
+
+  .menu-inner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 44px);
+    color: white;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .menu-inner .section-intro {
+    color: rgba(255,255,255,0.5);
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .menu-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 40px;
+    transition: all 0.3s;
+  }
+
+  .menu-card:hover {
+    border-color: rgba(212,165,116,0.2);
+    background: rgba(255,255,255,0.06);
+  }
+
+  .menu-card-icon {
+    margin-bottom: 20px;
+    display: block;
+    width: 32px;
+    height: 32px;
+    color: var(--gold);
+  }
+
+  .menu-card-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .menu-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: white;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  .menu-card p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+  }
+
+  /* ── MENU FORMAT CARDS ── */
+  .menu-format {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 48px;
+    margin-bottom: 32px;
+  }
+
+  .menu-format-photo {
+    display: none;
+  }
+
+  .menu-format-header {
+    margin-bottom: 16px;
+  }
+
+  .menu-format-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .menu-format-sub {
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .menu-format-desc {
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.75;
+    margin-bottom: 36px;
+  }
+
+  .menu-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 32px;
+    align-items: start;
+  }
+
+  .menu-content-divider {
+    background: rgba(255,255,255,0.08);
+    align-self: stretch;
+  }
+
+  .sample-menu {
+    padding-right: 28px;
+  }
+
+  .sample-menu-label {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold-muted);
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+
+  .sample-menu-courses {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .sample-menu-courses .course-divider {
+    display: none;
+  }
+
+  .sample-course {
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .sample-course:first-child { padding-top: 0; }
+  .sample-course:last-child { border-bottom: none; }
+
+  .sample-course-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 12px;
+  }
+
+  .sample-course-option {
+    margin-bottom: 12px;
+  }
+
+  .sample-course-option:last-child {
+    margin-bottom: 0;
+  }
+
+  .sample-course-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    color: white;
+    font-weight: 500;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .sample-course-detail {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+  }
+
+  .addons-section {
+    padding-left: 36px;
+  }
+
+  .addons-section.standalone {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 40px;
+    padding-left: 0;
+  }
+
+  .addons-label {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold-muted);
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+
+  .addons-list {
+  }
+
+  .addon-item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .addon-item:last-child {
+    border-bottom: none;
+  }
+
+  .addon-name {
+    font-size: 16px;
+    color: rgba(255,255,255,0.85);
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+
+  .addon-leader {
+    flex: 1;
+    min-width: 12px;
+    height: 1px;
+    background: repeating-linear-gradient(to right, rgba(255,255,255,0.15) 0, rgba(255,255,255,0.15) 2px, transparent 2px, transparent 6px);
+    margin: 0 8px 6px;
+  }
+
+  .addon-price {
+    font-size: 14px;
+    color: var(--gold);
+    font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Dietary note visible for both panels */
+  .dietary-note {
+    text-align: center;
+    padding: 40px 0 0;
+  }
+
+  .dietary-note p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.7;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* ── FORMAT TABS ── */
+  .format-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+  .format-tab {
+    background: none;
+    border: none;
+    padding: 16px 28px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    letter-spacing: 0.5px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .format-tab:hover {
+    color: rgba(255,255,255,0.85);
+  }
+  .format-tab.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+  .menu-format-panel {
+    display: none;
+  }
+  .menu-format-panel.active {
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .menu-format { padding: 32px 24px; }
+    .menu-grid { grid-template-columns: 1fr; }
+    .menu-content-grid {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .menu-content-divider { display: none; }
+    .sample-menu {
+      padding-right: 0;
+      margin-bottom: 32px;
+      padding-bottom: 32px;
+      border-right: none;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .addons-section { padding-left: 0; padding-top: 32px; }
+  }
+
+  /* ── HIGHLIGHT BANNER ── */
+  .highlight-banner {
+    background: var(--navy);
+    background-image: url('images/bar-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 40px;
+    text-align: center;
+    position: relative;
+  }
+
+  .highlight-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(1,51,73,0.78);
+    pointer-events: none;
+  }
+
+  .highlight-banner-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .highlight-banner blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 3vw, 34px);
+    color: white;
+    font-style: italic;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .highlight-banner cite {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    font-style: normal;
+    letter-spacing: 1px;
+  }
+
+  /* ── EVENT DETAILS ── */
+  .details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+  }
+
+  .detail-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 32px;
+    text-align: center;
+    transition: all 0.2s;
+  }
+
+  .detail-card:hover {
+    border-color: var(--gold-muted);
+  }
+
+  .detail-card-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--cream);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    color: var(--gold-muted);
+  }
+
+  .detail-card-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .detail-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--text);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .detail-card p {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* ── FAQ ── */
+  .faq-section {
+    background: white;
+    border-top: 1px solid var(--border);
+  }
+
+  .faq-list {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 24px 40px 24px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    position: relative;
+    line-height: 1.5;
+    transition: color 0.2s;
+  }
+
+  .faq-question:hover {
+    color: var(--gold-muted);
+  }
+
+  .faq-question::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--gold-muted);
+    transition: transform 0.3s;
+  }
+
+  .faq-item.open .faq-question::after {
+    content: '−';
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+  }
+
+  .faq-answer-inner {
+    padding: 0 0 24px 0;
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+
+  .faq-item.open .faq-answer {
+    max-height: 600px;
+  }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    background: var(--navy);
+    background-image: url('images/group-table.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    padding: 120px 40px;
+    text-align: center;
+    position: relative;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(1,40,58,0.85);
+    pointer-events: none;
+  }
+
+  .cta-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-inner .section-label {
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .cta-inner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4.5vw, 48px);
+    color: white;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .cta-inner p {
+    font-size: 18px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  .cta-form-wrap {
+    margin-top: 24px;
+    min-height: 180px;
+  }
+
+  .cta-form-wrap [data-pv-venue-contact-form-id] {
+    width: 100%;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 48px;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  .cta-btn:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  .cta-contact {
+    margin-top: 40px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .cta-contact a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(212,165,116,0.3);
+    transition: border-color 0.2s;
+  }
+
+  .cta-contact a:hover {
+    border-bottom-color: var(--gold);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy-deep);
+    padding: 40px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-logo {
+    width: 80px;
+    margin-bottom: 20px;
+    opacity: 0.7;
+  }
+
+  .footer-address {
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover {
+    color: var(--gold);
+  }
+
+  .footer-copy {
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+  }
+
+  /* ── PHOTO STRIP ── */
+  .photo-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    max-height: 360px;
+    overflow: hidden;
+  }
+
+  .photo-strip-img {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .photo-strip-img img {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+
+  .photo-strip:hover .photo-strip-img img {
+    transform: scale(1.02);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero { padding: 60px 24px; min-height: 90vh; }
+    .hero-logo { width: 90px; margin-bottom: 36px; }
+    .hero-details { gap: 28px; }
+    .hero-sub { font-size: 15px; }
+
+    .section { padding: 72px 24px; }
+    .intro-block { padding: 72px 24px; }
+    .menu-section { padding: 72px 24px; }
+    .cta-section { padding: 80px 24px; }
+
+    .space-card {
+      grid-template-columns: 1fr;
+    }
+    .space-card:nth-child(even) .space-image { order: 0; }
+    .space-card:nth-child(even) .space-content { order: 0; }
+    .space-image { min-height: 280px; }
+    .space-content { padding: 32px 24px; }
+
+    .sticky-nav { justify-content: flex-start; padding: 0 16px; }
+    .sticky-nav a { padding: 14px 16px; font-size: 10px; }
+
+    .faq-question { font-size: 15px; padding: 20px 36px 20px 0; }
+
+    .highlight-banner { padding: 60px 24px; }
+
+    .photo-strip { grid-template-columns: 1fr; max-height: none; }
+    .photo-strip-img img { height: 240px; }
+
+    .footer-links { gap: 16px; }
+    .footer-links a { font-size: 11px; letter-spacing: 0.5px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 32px; }
+    .hero-details { flex-direction: column; gap: 20px; }
+    .space-name { font-size: 24px; }
+    .space-details { gap: 20px; }
+    .details-grid { grid-template-columns: 1fr; }
+
+    .footer-links { flex-direction: column; gap: 12px; }
+    .cta-section { padding: 64px 24px; }
+    .hero-cta { padding: 16px 32px; font-size: 12px; }
+    .cta-btn { padding: 16px 36px; font-size: 12px; width: 100%; justify-content: center; }
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── FLOOR PLAN ── */
+  .floor-plan-section {
+    background: var(--cream);
+    padding: 100px 40px;
+  }
+
+  .floor-plan-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .floor-plan-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 36px);
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.25;
+  }
+
+  .floor-plan-text p {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 20px;
+  }
+
+  .floor-plan-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 32px;
+  }
+
+  .floor-plan-stat {
+    text-align: center;
+  }
+
+  .floor-plan-stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: var(--text);
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .floor-plan-stat-label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+
+  .floor-plan-visual {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  @media (max-width: 768px) {
+    .floor-plan-inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .floor-plan-section { padding: 72px 24px; }
+    .floor-plan-stats { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     HERO
+     ════════════════════════════════════════════ -->
+<section class="hero" id="top">
+  <img src="restaurant-lucie-logo.png" alt="Restaurant Lucie" class="hero-logo">
+  <div class="hero-badge">Michelin Recommended · Toronto</div>
+  <h1>Private Events &<br><em>Group Dining</em></h1>
+  <p class="hero-sub">Elevated French dining for your most important occasions. Fully customizable group menus crafted by our culinary team in one of Toronto's most refined settings.</p>
+  <a href="https://restaurantlucie.com/lucie-private-event-inquiries/" class="hero-cta">Inquire About Your Event &rarr;</a>
+
+  <div class="hero-details">
+    <div class="hero-detail">
+      <div class="hero-detail-value">3</div>
+      <div class="hero-detail-label">Dining Spaces</div>
+    </div>
+    <div class="hero-detail">
+      <div class="hero-detail-value">120</div>
+      <div class="hero-detail-label">Max Standing</div>
+    </div>
+    <div class="hero-detail">
+      <div class="hero-detail-value">Custom</div>
+      <div class="hero-detail-label">Group Menus</div>
+    </div>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="sticky-nav">
+  <a href="#spaces">Spaces</a>
+  <a href="#menus">Menus</a>
+  <a href="#floorplan">Floor Plan</a>
+  <a href="#faq">FAQ &amp; Terms</a>
+  <a href="#inquire">Inquire</a>
+</nav>
+
+<!-- ════════════════════════════════════════════
+     INTRO
+     ════════════════════════════════════════════ -->
+<div class="intro-block">
+  <div class="intro-inner fade-in">
+    <div class="section-label">Your Event, Elevated</div>
+    <h2>Where Every Detail Is<br>Thoughtfully Considered</h2>
+    <p>From intimate celebrations to full restaurant buyouts, Lucie offers a setting that matches the significance of your occasion. Our team works closely with you to design every element — from the menu to the room configuration — ensuring your event feels distinctly yours.</p>
+  </div>
+</div>
+
+<!-- PHOTO STRIP -->
+<div class="photo-strip fade-in">
+  <div class="photo-strip-img">
+    <img src="images/exterior.jpg" alt="Restaurant Lucie storefront on Yonge Street, Toronto" loading="lazy">
+  </div>
+  <div class="photo-strip-img">
+    <img src="images/bar-side.jpg" alt="Marble bar with globe pendant lights at Restaurant Lucie" loading="lazy">
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SPACES
+     ════════════════════════════════════════════ -->
+<section class="section faq-section" id="spaces">
+  <div class="section-label fade-in">Our Spaces</div>
+  <h2 class="fade-in">3 Distinct Dining Spaces</h2>
+  <p class="section-intro fade-in">Each space within Lucie has its own character and atmosphere, allowing us to match your event to the perfect environment.</p>
+
+  <div class="spaces-grid">
+
+    <!-- Main Dining Room -->
+    <div class="space-card fade-in">
+      <div class="space-image">
+        <img src="images/main-dining.jpg" alt="Main Dining Room at Restaurant Lucie — elegant French fine dining with deep blue curtains and warm lighting" loading="lazy">
+      </div>
+      <div class="space-content">
+        <h3 class="space-name">Main Dining Room</h3>
+        <div class="space-type">Semi-Private</div>
+        <p class="space-description">Our principal dining space, defined by deep blue velvet curtains, warm brass accents, and an atmosphere of understated elegance. Ideal for gatherings that call for both presence and intimacy.</p>
+        <div class="space-details">
+          <div class="space-detail">
+            <span class="space-detail-label">Capacity</span>
+            <span class="space-detail-value">36 Seated</span>
+          </div>
+          <div class="space-detail">
+            <span class="space-detail-label">Ideal For</span>
+            <span class="space-detail-value">Social & Corporate</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Front Dining Room -->
+    <div class="space-card fade-in">
+      <div class="space-image">
+        <img src="images/private-party.jpg" alt="Front Dining Room at Restaurant Lucie — intimate setting with teal banquettes and ambient lighting" loading="lazy">
+      </div>
+      <div class="space-content">
+        <h3 class="space-name">Front Dining Room</h3>
+        <div class="space-type">Private</div>
+        <p class="space-description">A more intimate setting framed by rich teal banquettes and a curated wine display. Perfect for smaller celebrations, business luncheons, and private dinners where every guest feels like the guest of honour.</p>
+        <div class="space-details">
+          <div class="space-detail">
+            <span class="space-detail-label">Capacity</span>
+            <span class="space-detail-value">20 Seated</span>
+          </div>
+          <div class="space-detail">
+            <span class="space-detail-label">Ideal For</span>
+            <span class="space-detail-value">Intimate Gatherings</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Restaurant Buyout -->
+    <div class="space-card fade-in">
+      <div class="space-image">
+        <img src="images/buyout.jpg" alt="Full Restaurant Buyout at Lucie — long table setting for weddings and large celebrations" loading="lazy">
+      </div>
+      <div class="space-content">
+        <h3 class="space-name">Restaurant Buyout</h3>
+        <div class="space-type">Full Exclusive</div>
+        <p class="space-description">The entire restaurant is yours. All three spaces — dining rooms, bar, and service areas — unified under a single vision. For weddings, milestone celebrations, holiday parties, and corporate events that demand the extraordinary.</p>
+        <div class="space-details">
+          <div class="space-detail">
+            <span class="space-detail-label">Seated</span>
+            <span class="space-detail-value">62</span>
+          </div>
+          <div class="space-detail">
+            <span class="space-detail-label">With Bar</span>
+            <span class="space-detail-value">82</span>
+          </div>
+          <div class="space-detail">
+            <span class="space-detail-label">Standing</span>
+            <span class="space-detail-value">120</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════════════════════
+     HOW IT WORKS
+     ════════════════════════════════════════════ -->
+<section class="menu-section" id="menus">
+  <div class="menu-inner">
+    <div class="section-label fade-in">How It Works</div>
+    <h2 class="fade-in">Choose Your<br>Event Format</h2>
+    <p class="section-intro fade-in">Every group event at Lucie begins with one of two formats. Select the experience that suits your occasion, then customize with optional add-ons. Our events team will guide you through the details.</p>
+
+    <p style="font-size:12px; color:rgba(255,255,255,0.3); letter-spacing:1px; text-transform:uppercase; margin-bottom:32px;">Sample menus only &middot; Final selections confirmed with your event manager</p>
+
+    <div class="format-tabs fade-in" role="tablist" aria-label="Event format">
+      <button class="format-tab active" type="button" role="tab" aria-selected="true" data-format="dinner">Dinner Event</button>
+      <button class="format-tab" type="button" role="tab" aria-selected="false" data-format="cocktail">Cocktail Reception</button>
+    </div>
+
+    <!-- ── DINNER EVENT ── -->
+    <div class="menu-format menu-format-panel fade-in active" data-format-panel="dinner">
+      <div class="menu-format-photo">
+        <img src="images/dinner.jpg" alt="Elegant plated dish at Restaurant Lucie" loading="lazy">
+      </div>
+      <div class="menu-format-header">
+        <h3 class="menu-format-title">Dinner Event</h3>
+        <p class="menu-format-sub">Seated &middot; 3-Course Experience</p>
+      </div>
+      <p class="menu-format-desc">Guests choose from multiple options per course, building a personalized 3-course experience. You work with our culinary team to curate the selections — the menu below is a sample of the kinds of dishes available.</p>
+
+      <div class="menu-content-grid">
+        <div class="sample-menu">
+          <div class="sample-menu-label">Sample Menu &middot; Guests Choose One Per Course</div>
+          <div class="sample-menu-courses">
+            <div class="sample-course">
+              <div class="sample-course-label">First &middot; Choose One</div>
+              <div class="sample-course-option">
+                <div class="sample-course-name">Roasted Beet Salad</div>
+                <div class="sample-course-detail">Whipped ch&egrave;vre, candied walnuts, aged sherry vinaigrette</div>
+              </div>
+              <div class="sample-course-option">
+                <div class="sample-course-name">Butternut Squash Soup</div>
+                <div class="sample-course-detail">Cr&egrave;me fra&icirc;che, toasted pepitas, brown butter</div>
+              </div>
+              <div class="sample-course-option">
+                <div class="sample-course-name">Tuna Tartare</div>
+                <div class="sample-course-detail">Avocado, sesame, citrus ponzu, crispy wontons</div>
+              </div>
+            </div>
+            <div class="sample-course">
+              <div class="sample-course-label">Main &middot; Choose One</div>
+              <div class="sample-course-option">
+                <div class="sample-course-name">Pan-Seared Halibut</div>
+                <div class="sample-course-detail">Fennel pur&eacute;e, braised leeks, beurre blanc, seasonal vegetables</div>
+              </div>
+              <div class="sample-course-option">
+                <div class="sample-course-name">Filet Mignon</div>
+                <div class="sample-course-detail">Pommes pur&eacute;e, roasted root vegetables, red wine jus</div>
+              </div>
+              <div class="sample-course-option">
+                <div class="sample-course-name">Wild Mushroom Risotto</div>
+                <div class="sample-course-detail">Truffle oil, aged parmesan, fresh herbs</div>
+              </div>
+            </div>
+            <div class="sample-course">
+              <div class="sample-course-label">Dessert &middot; Choose One</div>
+              <div class="sample-course-option">
+                <div class="sample-course-name">Cr&egrave;me Br&ucirc;l&eacute;e</div>
+                <div class="sample-course-detail">Tahitian vanilla, caramelized sugar, fresh berries</div>
+              </div>
+              <div class="sample-course-option">
+                <div class="sample-course-name">Chocolate Fondant</div>
+                <div class="sample-course-detail">Molten centre, vanilla bean ice cream, cocoa tuile</div>
+              </div>
+              <div class="sample-course-option">
+                <div class="sample-course-name">Tarte Tatin</div>
+                <div class="sample-course-detail">Caramelized apple, puff pastry, Calvados cr&egrave;me</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="menu-content-divider" aria-hidden="true"></div>
+        <div class="addons-section">
+          <div class="addons-label">Optional Add-Ons</div>
+          <div class="addons-list">
+            <div class="addon-item">
+              <span class="addon-name">Canap&eacute;s</span>
+              <span class="addon-leader"></span>
+              <span class="addon-price">Market price</span>
+            </div>
+            <div class="addon-item">
+              <span class="addon-name">Raw Bar Selection</span>
+              <span class="addon-leader"></span>
+              <span class="addon-price">From $39 pp</span>
+            </div>
+            <div class="addon-item">
+              <span class="addon-name">Additional Mid Course</span>
+              <span class="addon-leader"></span>
+              <span class="addon-price">Market price</span>
+            </div>
+            <div class="addon-item">
+              <span class="addon-name">Cheese Course</span>
+              <span class="addon-leader"></span>
+              <span class="addon-price">Market price</span>
+            </div>
+            <div class="addon-item">
+              <span class="addon-name">Wine Pairing</span>
+              <span class="addon-leader"></span>
+              <span class="addon-price">Priced per selection</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── COCKTAIL RECEPTION ── -->
+    <!-- ── COCKTAIL RECEPTION ── -->
+    <!-- ── COCKTAIL RECEPTION ── -->
+    <div class="menu-format menu-format-panel fade-in" data-format-panel="cocktail">
+      <div class="menu-format-photo">
+        <img src="images/cocktail.jpg" alt="Signature cocktail at Restaurant Lucie" loading="lazy">
+      </div>
+      <div class="menu-format-header">
+        <h3 class="menu-format-title">Cocktail Reception</h3>
+        <p class="menu-format-sub">Standing &middot; From $65 pp</p>
+      </div>
+      <p class="menu-format-desc">A standing-format experience built around elegant passed canap&eacute;s and curated beverages. Designed for mingling, networking, and celebrations that move with the room. Includes a selection of canap&eacute;s.</p>
+
+      <div class="addons-section standalone">
+        <div class="addons-label">Optional Add-Ons</div>
+        <div class="addons-list">
+          <div class="addon-item">
+            <span class="addon-name">Caviar Station Keluga</span>
+            <span class="addon-leader"></span>
+            <span class="addon-price">From $45 pp</span>
+          </div>
+          <div class="addon-item">
+            <span class="addon-name">Raw Bar Selection</span>
+            <span class="addon-leader"></span>
+            <span class="addon-price">From $39 pp</span>
+          </div>
+          <div class="addon-item">
+            <span class="addon-name">Pithivier Carving Station</span>
+            <span class="addon-leader"></span>
+            <span class="addon-price">$45 pp</span>
+          </div>
+          <div class="addon-item">
+            <span class="addon-name">Mini Dessert Station</span>
+            <span class="addon-leader"></span>
+            <span class="addon-price">$26 pp</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dietary note -->
+    <div class="dietary-note fade-in">
+      <p>Every menu can be adapted for dietary restrictions and allergies. Submit guest requirements at least 72 hours before your event.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     QUOTE BANNER
+     ════════════════════════════════════════════ -->
+<div class="highlight-banner">
+  <div class="highlight-banner-inner fade-in">
+    <blockquote>&ldquo;One of the city's most refined dining experiences.&rdquo;</blockquote>
+    <cite>— Toronto Food Press</cite>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     FLOOR PLAN
+     ════════════════════════════════════════════ -->
+<section class="floor-plan-section" id="floorplan">
+  <div class="floor-plan-inner">
+    <div class="floor-plan-text fade-in">
+      <div class="section-label">Layout</div>
+      <h2>The Floor Plan</h2>
+      <p>Located at 100 Yonge Street in the heart of Toronto's financial district, Lucie is accessible from both Yonge Street and the PATH. Three distinct zones give you flexibility for any configuration.</p>
+      <p>Our events team will walk you through the layout and help you choose the ideal setup for your group size and event format.</p>
+      <div class="floor-plan-stats">
+        <div class="floor-plan-stat">
+          <div class="floor-plan-stat-value">3</div>
+          <div class="floor-plan-stat-label">Zones</div>
+        </div>
+        <div class="floor-plan-stat">
+          <div class="floor-plan-stat-value">2</div>
+          <div class="floor-plan-stat-label">Entrances</div>
+        </div>
+        <div class="floor-plan-stat">
+          <div class="floor-plan-stat-value">62</div>
+          <div class="floor-plan-stat-label">Total Seats</div>
+        </div>
+      </div>
+    </div>
+    <div class="floor-plan-visual fade-in">
+      <img src="images/floor-plan.png" alt="Restaurant Lucie floor plan showing Main Dining Room, Front Dining Room, and Bar layout" style="width:100%; height:auto; display:block; border-radius:4px;">
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════════════════════
+     CTA
+     ════════════════════════════════════════════ -->
+<section class="cta-section" id="inquire">
+  <div class="cta-inner fade-in">
+    <div class="section-label">Start Planning</div>
+    <h2>Let Lucie Host Your<br>Next Occasion</h2>
+    <p>Whether you have every detail planned or just a date in mind, our events team will help shape an unforgettable experience.</p>
+    <div class="cta-form-wrap">
+      <script async defer src="https://js.perfectvenue.com/v1/index.js"></script>
+      <div data-pv-venue-contact-form-id="d59de81c84"></div>
+    </div>
+    <div class="cta-contact">
+      Or reach our events team directly &middot; <a href="mailto:catering@restaurantlucie.com">catering@restaurantlucie.com</a> &middot; <a href="tel:4167889054">416-788-9054</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════════════════════
+     FAQ
+     ════════════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════
+     FAQ & TERMS
+     ════════════════════════════════════════════ -->
+<section class="section faq-section" id="faq" style="text-align:center">
+<div class="section-label fade-in">Event Terms</div>
+    <h2 class="fade-in">Policies &amp; Common Questions</h2>
+    <p class="section-intro fade-in" style="margin-left:auto;margin-right:auto">The following terms and policies apply to all private events at Lucie. Please review before inquiring.</p>
+
+  <div class="faq-list">
+
+    <div class="faq-item fade-in">
+      <button class="faq-question">What deposit is required to secure the event?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">A 50% deposit of the minimum spend is required to confirm and secure your booking. The remaining balance of the estimated charges is due on the day of the event.</div></div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <button class="faq-question">What is the food &amp; beverage minimum?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Each space has a food &amp; beverage minimum — the required spend before taxes and gratuity. If the total spend does not reach the minimum, the remaining balance will be applied as a room rental fee.</div></div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <button class="faq-question">Is gratuity included?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">A 20% service gratuity is applied to all food and beverage charges, in addition to applicable taxes.</div></div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <button class="faq-question">What is the deadline for confirming menu selections?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Final menu selections and adjustments must be confirmed at least 7 business days before the event. Changes after this point may result in additional charges.</div></div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <button class="faq-question">What happens if our guest count changes?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Final guest counts must be confirmed prior to the event deadline. This number will be considered the guaranteed attendance for billing purposes.</div></div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <button class="faq-question">Can dietary restrictions and allergies be accommodated?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes. Guest dietary restrictions should be submitted at least 72 hours before the event.</div></div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <button class="faq-question">Can we create a custom menu for our event?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes. Our culinary team is happy to curate a customized menu for your event depending on group size and event format.</div></div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <button class="faq-question">Can we bring our own food or beverages?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Restaurant Lucie is the exclusive provider of all food and beverages for events. Outside food, alcohol, or catering is not permitted unless expressly approved in writing by the venue.</div></div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <button class="faq-question">Is there a corkage option for bringing our own wine?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Outside alcohol is welcome — please note there is a $75 corkage fee for every 750ml bottle of wine. Outside liquor is not permitted.</div></div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <button class="faq-question">Can we bring our own cake or desserts?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes, outside celebration cakes may be permitted with advance approval from the venue. A $10 per person cake plating fee will apply to cover cutting, plating, and service.</div></div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <button class="faq-question">Can we bring in our own d&eacute;cor?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes, d&eacute;cor is welcome. However, it must be approved by the event manager in advance and must follow venue guidelines. Items such as confetti, glitter, or adhesive d&eacute;cor (tape, nails, tacks) are not permitted.</div></div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <button class="faq-question">Are candles or open flames allowed?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Open flames are not permitted unless enclosed and approved by the venue in advance.</div></div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <button class="faq-question">Can we attach signage or decorations to the walls?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Nothing may be attached to the walls or surfaces of the venue without prior approval from the event manager, as this may damage the space.</div></div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <button class="faq-question">Can we bring in our own rentals (linens, chairs, AV equipment)?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">All rentals such as tables, linens, chairs, dishware, and AV equipment are typically coordinated through Lucie and its preferred vendor partners. Third-party rentals require written approval in advance.</div></div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <button class="faq-question">Can we bring in entertainment or a speaker?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes. Entertainment or speakers are welcome; however, all AV needs should be communicated in advance so the appropriate equipment can be arranged. This would only be permitted for a full restaurant buyout.</div></div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <button class="faq-question">What time can vendors arrive for setup?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Vendor access and setup times will be specified in your event timeline. All vendors must coordinate with the event manager prior to arrival.</div></div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <button class="faq-question">Can we promote the event publicly or sell tickets?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Events hosted at Lucie may not be ticketed or promoted publicly without written approval from the venue. Use of Lucie's logo, images, or branding must also be approved in advance.</div></div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <button class="faq-question">Is photography allowed during the event?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes, photography is welcome. However, commercial filming, branding activations, or media distribution must be approved by the venue in advance.</div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════════ -->
+<footer>
+  <img src="restaurant-lucie-logo.png" alt="Restaurant Lucie" class="footer-logo">
+  <div class="footer-address">
+    100 Yonge Street, Toronto, ON<br>
+    Accessible via Yonge Street &amp; the PATH
+  </div>
+  <div class="footer-links">
+    <a href="https://restaurantlucie.com">Website</a>
+    <a href="https://restaurantlucie.com/reserve/">Reservations</a>
+    <a href="https://www.instagram.com/restaurantlucie/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://restaurantlucie.com/gift-cards/">Gift Cards</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 Restaurant Lucie. All rights reserved.</div>
+</footer>
+
+<script>
+(function() {
+  // Format tabs (Dinner / Cocktail)
+  document.querySelectorAll('.format-tab').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var format = this.getAttribute('data-format');
+      document.querySelectorAll('.format-tab').forEach(function(t) { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+      this.classList.add('active');
+      this.setAttribute('aria-selected', 'true');
+      document.querySelectorAll('.menu-format-panel').forEach(function(p) {
+        p.classList.toggle('active', p.getAttribute('data-format-panel') === format);
+      });
+    });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = this.parentElement;
+      var wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(el) {
+        el.classList.remove('open');
+      });
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // Scroll animations
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  // Active nav on scroll
+  var sections = document.querySelectorAll('section[id], .floor-plan-section');
+  var navLinks = document.querySelectorAll('.sticky-nav a');
+
+  window.addEventListener('scroll', function() {
+    var scrollPos = window.scrollY + 80;
+    sections.forEach(function(section) {
+      var top = section.offsetTop;
+      var height = section.offsetHeight;
+      var id = section.getAttribute('id');
+      if (id && scrollPos >= top && scrollPos < top + height) {
+        navLinks.forEach(function(link) {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
