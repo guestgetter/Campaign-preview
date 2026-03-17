@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soma × Guest Getter — Growth Partnership</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0e0c09;
+  --bg2: #161310;
+  --bg3: #1e1a15;
+  --gold: #c4a97d;
+  --gold-dim: #8a7a64;
+  --text: #e2d9cc;
+  --text-dim: #7a7062;
+  --text-muted: #5a5248;
+  --green: #8bb878;
+  --green-dim: rgba(139,184,120,0.08);
+  --green-border: rgba(139,184,120,0.15);
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Inter', -apple-system, sans-serif;
+  --max: 800px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+
+/* --- HERO --- */
+.hero{padding:100px 48px 80px;max-width:var(--max);margin:0 auto;}
+.hero-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:4px;color:var(--gold);margin-bottom:24px;}
+.hero h1{font-family:var(--serif);font-size:52px;font-weight:500;line-height:1.15;letter-spacing:-1px;margin-bottom:16px;}
+.hero h1 em{font-style:italic;color:var(--gold);}
+.hero-sub{font-size:17px;color:var(--text-dim);line-height:1.7;max-width:600px;}
+.hero-meta{margin-top:48px;display:flex;gap:48px;font-size:12px;color:var(--text-muted);letter-spacing:0.5px;}
+.hero-meta strong{color:var(--gold-dim);font-weight:600;}
+
+.divider{max-width:var(--max);margin:0 auto;padding:0 48px;}
+.divider hr{border:none;height:1px;background:linear-gradient(90deg,rgba(196,169,125,0.15),rgba(196,169,125,0.03));}
+
+/* --- SECTIONS --- */
+.section{max-width:var(--max);margin:0 auto;padding:80px 48px;}
+.section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.section-label .num{color:var(--text-muted);}
+.section h2{font-family:var(--serif);font-size:36px;font-weight:500;line-height:1.2;letter-spacing:-0.5px;margin-bottom:8px;}
+.section .sub{font-family:var(--serif);font-size:16px;color:var(--text-dim);font-style:italic;margin-bottom:8px;}
+.section .badge{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--green);background:var(--green-dim);border:1px solid var(--green-border);padding:4px 14px;border-radius:20px;margin-bottom:32px;}
+.section .intro{color:var(--gold-dim);font-family:var(--serif);font-size:16px;line-height:1.75;margin-bottom:12px;}
+.section .intro-body{color:var(--text-dim);font-size:14px;line-height:1.75;margin-bottom:36px;}
+.section .intro-body em{color:var(--text);font-style:italic;}
+
+/* --- CARDS --- */
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;}
+.card{background:var(--bg2);border:1px solid rgba(196,169,125,0.06);border-radius:10px;padding:24px;}
+.card h4{font-family:var(--serif);font-size:16px;font-weight:600;margin-bottom:8px;color:var(--text);}
+.card p{font-size:13px;color:var(--text-dim);line-height:1.65;margin-bottom:12px;}
+.card .get{background:var(--green-dim);border:1px solid var(--green-border);border-radius:6px;padding:10px 14px;}
+.card .get p{color:var(--green);font-size:12px;line-height:1.5;margin:0;}
+.card .get strong{font-weight:700;}
+
+/* --- 3 col --- */
+.card-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:32px;}
+.card-grid-3 .card{padding:22px;}
+
+/* --- CALLOUT --- */
+.callout{background:linear-gradient(135deg,rgba(196,169,125,0.08),rgba(196,169,125,0.02));border:1px solid rgba(196,169,125,0.15);border-radius:12px;padding:36px;margin-bottom:32px;}
+.callout .clabel{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--gold);margin-bottom:10px;}
+.callout h3{font-family:var(--serif);font-size:24px;font-weight:500;margin-bottom:14px;}
+.callout p{font-size:14px;color:var(--text-dim);line-height:1.75;margin-bottom:14px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--text);}
+.callout .tags{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0;}
+.callout .tag{font-size:11px;font-weight:600;color:var(--gold);background:rgba(196,169,125,0.06);border:1px solid rgba(196,169,125,0.12);padding:5px 14px;border-radius:20px;}
+.callout-green{background:linear-gradient(135deg,rgba(139,184,120,0.06),rgba(139,184,120,0.01));border:1px solid var(--green-border);border-radius:12px;padding:32px;margin-bottom:32px;}
+.callout-green h3{font-family:var(--serif);font-size:20px;font-weight:500;margin-bottom:12px;}
+.callout-green p{font-size:14px;color:var(--text-dim);line-height:1.75;margin-bottom:0;}
+.callout-green em{color:var(--text);}
+
+/* --- WEBSITE HERO CALLOUT --- */
+.website-hero{background:linear-gradient(135deg,rgba(196,169,125,0.1),rgba(196,169,125,0.03));border:2px solid rgba(196,169,125,0.18);border-radius:14px;padding:44px;margin-bottom:32px;}
+.website-hero .clabel{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--gold);margin-bottom:12px;}
+.website-hero h3{font-family:var(--serif);font-size:28px;font-weight:500;margin-bottom:16px;}
+.website-hero p{font-size:15px;color:var(--text-dim);line-height:1.8;margin-bottom:16px;}
+.website-hero strong{color:var(--text);}
+
+/* --- QUARTERLY --- */
+.quarterly{background:linear-gradient(135deg,rgba(196,169,125,0.06),rgba(196,169,125,0.02));border:1px solid rgba(196,169,125,0.12);border-radius:12px;padding:32px;margin-bottom:32px;}
+.quarterly .qlabel{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--gold);margin-bottom:20px;}
+.q-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;}
+.q-item{text-align:center;}
+.q-circle{width:44px;height:44px;border-radius:50%;background:rgba(196,169,125,0.1);border:1px solid rgba(196,169,125,0.18);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:13px;font-weight:700;color:var(--gold);}
+.q-item .ql{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.q-item .qd{font-size:11px;color:var(--text-muted);line-height:1.45;}
+
+/* --- RESULTS --- */
+.results{background:var(--bg2);border:1px solid rgba(196,169,125,0.06);border-radius:10px;padding:28px;margin-bottom:32px;}
+.results .rlabel{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--gold);margin-bottom:18px;}
+.r-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;}
+.r-item{text-align:center;}
+.r-item .metric{font-family:var(--serif);font-size:16px;font-weight:600;margin-bottom:6px;color:var(--text);}
+.r-item .rd{font-size:11px;color:var(--text-muted);line-height:1.5;}
+
+/* --- ROADMAP --- */
+.roadmap-item{display:flex;gap:24px;align-items:flex-start;padding:20px 24px;border-radius:10px;margin-bottom:10px;}
+.roadmap-item.hl{background:rgba(196,169,125,0.04);border:1px solid rgba(196,169,125,0.12);}
+.roadmap-item.normal{background:var(--bg2);border:1px solid rgba(196,169,125,0.04);}
+.roadmap-item .phase{min-width:110px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gold);padding-top:2px;}
+.roadmap-item .title{font-family:var(--serif);font-size:16px;font-weight:600;margin-bottom:4px;}
+.roadmap-item .desc{font-size:13px;color:var(--text-dim);line-height:1.55;}
+
+/* --- MILESTONES --- */
+.milestones{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;margin-top:20px;}
+.ms{background:var(--bg2);border-radius:10px;padding:20px;text-align:center;border:1px solid var(--green-border);}
+.ms .rev{font-family:var(--serif);font-size:24px;font-weight:700;color:var(--green);margin-bottom:4px;}
+.ms .ml{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:8px;}
+.ms .md{font-size:11px;color:var(--text-dim);line-height:1.5;}
+
+/* --- PRICING --- */
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:36px;}
+.tier{border-radius:14px;padding:36px;position:relative;}
+.tier-a{background:var(--bg2);border:1px solid rgba(196,169,125,0.08);}
+.tier-b{background:linear-gradient(135deg,rgba(196,169,125,0.08),rgba(196,169,125,0.02));border:2px solid rgba(196,169,125,0.2);}
+.tier .olabel{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:8px;}
+.tier h3{font-family:var(--serif);font-size:22px;font-weight:500;margin-bottom:4px;}
+.tier .tsub{font-family:var(--serif);font-size:14px;color:var(--text-dim);font-style:italic;margin-bottom:24px;}
+.tier .price{font-family:var(--serif);font-size:40px;font-weight:600;margin-bottom:4px;}
+.tier .price span{font-size:16px;color:var(--text-dim);font-weight:400;}
+.tier .adnote{font-size:11px;color:var(--text-muted);margin-bottom:28px;}
+.tier .ci{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;}
+.tier .ck{color:var(--green);font-size:13px;margin-top:1px;flex-shrink:0;}
+.tier .ck.gld{color:var(--gold);}
+.tier .ct{font-size:13px;color:var(--text-dim);line-height:1.5;}
+.tier .ct.bld{color:var(--gold);font-weight:600;}
+.rec{position:absolute;top:-1px;right:28px;background:var(--gold);color:var(--bg);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;padding:6px 18px;border-radius:0 0 8px 8px;}
+
+/* --- TERMS --- */
+.terms{background:var(--bg2);border:1px solid rgba(196,169,125,0.06);border-radius:12px;padding:32px;margin-bottom:32px;}
+.terms-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;}
+.terms .tl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:8px;}
+.terms .tv{font-family:var(--serif);font-size:19px;margin-bottom:4px;}
+.terms .tv .strike{text-decoration:line-through;color:var(--text-muted);}
+.terms .tv .waived{color:var(--green);}
+.terms .td{font-size:12px;color:var(--text-muted);line-height:1.55;}
+
+/* --- FOOTER --- */
+.footer{max-width:var(--max);margin:0 auto;padding:40px 48px 60px;display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);border-top:1px solid rgba(196,169,125,0.06);}
+
+/* --- ANIMATIONS --- */
+.section{opacity:0;transform:translateY(30px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.section.visible{opacity:1;transform:translateY(0);}
+.overview{opacity:0;transform:translateY(20px);transition:opacity 0.8s ease,transform 0.8s ease;}
+.overview.visible{opacity:1;transform:translateY(0);}
+
+/* --- RESPONSIVE --- */
+@media(max-width:768px){
+  .hero{padding:60px 24px 48px;}
+  .hero h1{font-size:34px;}
+  .hero-meta{flex-direction:column;gap:8px;}
+  .section{padding:48px 24px;}
+  .card-grid,.card-grid-3,.pricing-grid{grid-template-columns:1fr;}
+  .q-grid,.r-grid,.milestones{grid-template-columns:1fr 1fr;}
+  .terms-grid{grid-template-columns:1fr;}
+  .website-hero,.callout{padding:24px;}
+  .footer{flex-direction:column;gap:8px;padding:24px;}
+}
+
+/* --- DIAGRAM OVERVIEW --- */
+.overview{max-width:var(--max);margin:0 auto;padding:60px 48px 40px;}
+.overview-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--gold);margin-bottom:16px;text-align:center;}
+.overview-wrap{background:var(--bg2);border:1px solid rgba(196,169,125,0.08);border-radius:14px;padding:32px 24px 24px;margin-bottom:8px;}
+.overview-caption{text-align:center;font-size:13px;color:var(--text-muted);margin-top:16px;line-height:1.6;}
+
+/* SVG diagram colors for dark bg */
+.overview-wrap svg text.th{font-family:var(--sans);font-size:14px;font-weight:500;fill:var(--text);}
+.overview-wrap svg text.ts{font-family:var(--sans);font-size:12px;font-weight:400;fill:var(--text-dim);}
+.overview-wrap svg text.ts-m{font-family:var(--sans);font-size:11px;font-weight:400;fill:var(--text-muted);}
+
+/* Node fills */
+.overview-wrap .n-amber rect{fill:rgba(250,199,117,0.12);stroke:rgba(250,199,117,0.3);}
+.overview-wrap .n-amber text.th{fill:#FAC775;}
+.overview-wrap .n-amber text.ts{fill:rgba(250,199,117,0.6);}
+.overview-wrap .n-teal rect{fill:rgba(93,202,165,0.1);stroke:rgba(93,202,165,0.25);}
+.overview-wrap .n-teal text.th{fill:#5DCAA5;}
+.overview-wrap .n-teal text.ts{fill:rgba(93,202,165,0.55);}
+.overview-wrap .n-purple rect{fill:rgba(175,169,236,0.1);stroke:rgba(175,169,236,0.25);}
+.overview-wrap .n-purple text.th{fill:#AFA9EC;}
+.overview-wrap .n-purple text.ts{fill:rgba(175,169,236,0.55);}
+.overview-wrap .n-coral rect{fill:rgba(240,153,123,0.1);stroke:rgba(240,153,123,0.25);}
+.overview-wrap .n-coral text.th{fill:#F0997B;}
+.overview-wrap .n-coral text.ts{fill:rgba(240,153,123,0.55);}
+.overview-wrap .n-blue rect{fill:rgba(133,183,235,0.1);stroke:rgba(133,183,235,0.25);}
+.overview-wrap .n-blue text.th{fill:#85B7EB;}
+.overview-wrap .n-blue text.ts{fill:rgba(133,183,235,0.55);}
+.overview-wrap .n-pink rect{fill:rgba(237,147,177,0.1);stroke:rgba(237,147,177,0.25);}
+.overview-wrap .n-pink text.th{fill:#ED93B1;}
+.overview-wrap .n-pink text.ts{fill:rgba(237,147,177,0.55);}
+.overview-wrap .n-green rect{fill:rgba(151,196,89,0.12);stroke:rgba(151,196,89,0.25);}
+.overview-wrap .n-green text.th{fill:#97C459;}
+.overview-wrap .n-green text.ts{fill:rgba(151,196,89,0.55);}
+.overview-wrap .n-goal rect{fill:rgba(196,169,125,0.15);stroke:rgba(196,169,125,0.35);}
+.overview-wrap .n-goal text.th{fill:#c4a97d;}
+
+/* Arrows */
+.overview-wrap .arr{stroke:rgba(196,169,125,0.3);stroke-width:1.5;}
+.overview-wrap .arr-dim{stroke:rgba(196,169,125,0.15);stroke-width:0.5;}
+.overview-wrap .arr-dash{stroke:var(--text-muted);stroke-width:0.5;stroke-dasharray:4 3;}
+
+@media(max-width:768px){
+  .overview{padding:40px 24px 24px;}
+  .overview-wrap{padding:20px 12px 16px;}
+  .overview-wrap svg{min-height:400px;}
+}
+
+/* --- CTA BUTTONS --- */
+.cta{display:block;width:100%;padding:16px 24px;border:none;border-radius:10px;font-family:var(--sans);font-size:15px;font-weight:600;text-align:center;text-decoration:none;cursor:pointer;transition:all 0.25s ease;margin-top:28px;letter-spacing:0.3px;}
+.cta:hover{transform:translateY(-1px);}
+.cta-gold{background:var(--gold);color:var(--bg);}
+.cta-gold:hover{background:#d4b98d;box-shadow:0 8px 32px rgba(196,169,125,0.25);}
+.cta-outline{background:transparent;color:var(--gold);border:1.5px solid rgba(196,169,125,0.3);}
+.cta-outline:hover{border-color:var(--gold);background:rgba(196,169,125,0.05);}
+.cta-section{max-width:var(--max);margin:0 auto;padding:20px 48px 80px;text-align:center;}
+.cta-section .big-cta{display:inline-block;padding:22px 56px;border-radius:12px;font-family:var(--sans);font-size:18px;font-weight:600;text-decoration:none;background:var(--gold);color:var(--bg);transition:all 0.3s ease;letter-spacing:0.3px;}
+.cta-section .big-cta:hover{background:#d4b98d;transform:translateY(-2px);box-shadow:0 12px 40px rgba(196,169,125,0.3);}
+.cta-section .or-text{display:block;margin:16px 0;font-size:13px;color:var(--text-muted);}
+.cta-section .alt-cta{display:inline-block;padding:14px 40px;border-radius:10px;font-family:var(--sans);font-size:15px;font-weight:500;text-decoration:none;color:var(--gold);border:1.5px solid rgba(196,169,125,0.25);transition:all 0.3s ease;}
+.cta-section .alt-cta:hover{border-color:var(--gold);background:rgba(196,169,125,0.05);}
+.cta-section .fine-print{margin-top:24px;font-size:12px;color:var(--text-muted);line-height:1.6;}
+@media(max-width:768px){
+  .cta-section{padding:20px 24px 60px;}
+  .cta-section .big-cta{padding:18px 36px;font-size:16px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ========== HERO ========== -->
+<div class="hero">
+  <p class="hero-label">Growth Partnership Program</p>
+  <h1>Soma Bone Broth Co. <em>×</em> Guest Getter</h1>
+  <p class="hero-sub">From $150K side brand → the name people think of when they think of broth. Here's how we get there together.</p>
+  <div class="hero-meta">
+    <span><strong>Prepared</strong> March 2026</span>
+    <span><strong>For</strong> Michel & Jeremy, Soma Bone Broth Co.</span>
+    <span><strong>By</strong> Kyle & Gabe, Guest Getter</span>
+  </div>
+</div>
+
+<div class="divider"><hr></div>
+
+<!-- ========== PROCESS OVERVIEW DIAGRAM ========== -->
+<div class="overview">
+  <p class="overview-label">The Growth Journey — At a Glance</p>
+  <div class="overview-wrap">
+    <svg width="100%" viewBox="0 0 680 490" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arr-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="rgba(196,169,125,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+        <marker id="arr-head-dim" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="rgba(196,169,125,0.2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+
+      <!-- THE CORE ENGINE (top row) -->
+      <text class="th" x="340" y="28" text-anchor="middle" style="fill:var(--text);font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:600;opacity:0.5;">The core engine</text>
+
+      <!-- Phase 1: Growth Audit -->
+      <g class="n-amber">
+        <rect x="38" y="50" width="175" height="54" rx="8" stroke-width="0.5"/>
+        <text class="th" x="125" y="70" text-anchor="middle" dominant-baseline="central">Growth audit</text>
+        <text class="ts" x="125" y="88" text-anchor="middle" dominant-baseline="central">Find the bottleneck</text>
+      </g>
+      <text class="ts-m" x="125" y="122" text-anchor="middle">Days 1–14</text>
+
+      <!-- Arrow 1→2 -->
+      <line x1="213" y1="77" x2="248" y2="77" class="arr" marker-end="url(#arr-head)"/>
+
+      <!-- Phase 2: World Build -->
+      <g class="n-teal">
+        <rect x="253" y="50" width="175" height="54" rx="8" stroke-width="0.5"/>
+        <text class="th" x="340" y="70" text-anchor="middle" dominant-baseline="central">Build the world</text>
+        <text class="ts" x="340" y="88" text-anchor="middle" dominant-baseline="central">Brand + new website</text>
+      </g>
+      <text class="ts-m" x="340" y="122" text-anchor="middle">Days 7–45</text>
+
+      <!-- Arrow 2→3 -->
+      <line x1="428" y1="77" x2="463" y2="77" class="arr" marker-end="url(#arr-head)"/>
+
+      <!-- Phase 3: Testing Sprint -->
+      <g class="n-purple">
+        <rect x="468" y="50" width="175" height="54" rx="8" stroke-width="0.5"/>
+        <text class="th" x="555" y="70" text-anchor="middle" dominant-baseline="central">Testing sprint</text>
+        <text class="ts" x="555" y="88" text-anchor="middle" dominant-baseline="central">Find proven winners</text>
+      </g>
+      <text class="ts-m" x="555" y="122" text-anchor="middle">Days 15–60</text>
+
+      <!-- Quarterly loop arrow -->
+      <path d="M555 104 L555 148 Q555 158 545 158 L115 158 Q105 158 105 148 L105 104" fill="none" class="arr-dash" marker-end="url(#arr-head-dim)"/>
+      <text class="ts-m" x="340" y="175" text-anchor="middle">Every 90 days: re-audit → new sprint → compound</text>
+
+      <!-- Divider -->
+      <line x1="100" y1="200" x2="580" y2="200" stroke="rgba(196,169,125,0.08)" stroke-width="1"/>
+      <text class="th" x="340" y="230" text-anchor="middle" style="fill:var(--text);font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:600;opacity:0.5;">What these unlock</text>
+
+      <!-- Phase 4: Retention -->
+      <g class="n-coral">
+        <rect x="38" y="250" width="190" height="54" rx="8" stroke-width="0.5"/>
+        <text class="th" x="133" y="270" text-anchor="middle" dominant-baseline="central">Retention engine</text>
+        <text class="ts" x="133" y="288" text-anchor="middle" dominant-baseline="central">Email, QR, loyalty</text>
+      </g>
+
+      <!-- Phase 5: Wholesale -->
+      <g class="n-blue">
+        <rect x="245" y="250" width="190" height="54" rx="8" stroke-width="0.5"/>
+        <text class="th" x="340" y="270" text-anchor="middle" dominant-baseline="central">Wholesale pipeline</text>
+        <text class="ts" x="340" y="288" text-anchor="middle" dominant-baseline="central">Prospect, pitch, close</text>
+      </g>
+
+      <!-- Phase 6: Social -->
+      <g class="n-pink">
+        <rect x="452" y="250" width="190" height="54" rx="8" stroke-width="0.5"/>
+        <text class="th" x="547" y="270" text-anchor="middle" dominant-baseline="central">Content + social</text>
+        <text class="ts" x="547" y="288" text-anchor="middle" dominant-baseline="central">TikTok, IG, Facebook</text>
+      </g>
+
+      <!-- Down arrows -->
+      <line x1="133" y1="304" x2="133" y2="340" class="arr-dim" marker-end="url(#arr-head-dim)"/>
+      <line x1="340" y1="304" x2="340" y2="340" class="arr-dim" marker-end="url(#arr-head-dim)"/>
+      <line x1="547" y1="304" x2="547" y2="340" class="arr-dim" marker-end="url(#arr-head-dim)"/>
+
+      <!-- Outcomes -->
+      <g class="n-green">
+        <rect x="48" y="346" width="170" height="42" rx="8" stroke-width="0.5"/>
+        <text class="th" x="133" y="367" text-anchor="middle" dominant-baseline="central">10X customer value</text>
+      </g>
+      <g class="n-green">
+        <rect x="255" y="346" width="170" height="42" rx="8" stroke-width="0.5"/>
+        <text class="th" x="340" y="367" text-anchor="middle" dominant-baseline="central">10X–100X revenue</text>
+      </g>
+      <g class="n-green">
+        <rect x="462" y="346" width="170" height="42" rx="8" stroke-width="0.5"/>
+        <text class="th" x="547" y="367" text-anchor="middle" dominant-baseline="central">Compounding reach</text>
+      </g>
+
+      <!-- Converging arrows to goal -->
+      <line x1="133" y1="388" x2="290" y2="432" class="arr-dim" marker-end="url(#arr-head-dim)"/>
+      <line x1="340" y1="388" x2="340" y2="432" class="arr-dim" marker-end="url(#arr-head-dim)"/>
+      <line x1="547" y1="388" x2="390" y2="432" class="arr-dim" marker-end="url(#arr-head-dim)"/>
+
+      <!-- Final goal -->
+      <g class="n-goal">
+        <rect x="225" y="438" width="230" height="38" rx="19" stroke-width="0.5"/>
+        <text class="th" x="340" y="457" text-anchor="middle" dominant-baseline="central">$30K/mo → $200M vision</text>
+      </g>
+    </svg>
+  </div>
+  <p class="overview-caption">The top row is the engine — it runs on a quarterly cycle. Everything below is what it powers.</p>
+</div>
+
+<div class="divider"><hr></div>
+<div class="section" id="s1">
+  <p class="section-label"><span class="num">01</span> Phase 1</p>
+  <h2>The Growth Audit</h2>
+  <p class="sub">Find out what's working, what's not, and where the biggest opportunity is.</p>
+  <span class="badge">Runs Every 90 Days · Days 1–14</span>
+  <p class="intro">Before we build anything, we need to know exactly where things stand. This is a full check-up on how Soma gets customers, keeps customers, and makes money — so every decision after this is based on real numbers, not guesses.</p>
+  <p class="intro-body">This isn't a one-time thing. We run this audit every 90 days. That way, we always know what's working, what stopped working, and where to focus next. It's the heartbeat of the partnership.</p>
+
+  <div class="card-grid">
+    <div class="card"><h4>Where are customers coming from?</h4><p>Walk-ins, Google, social, word of mouth, wholesale partners. We figure out which sources bring buyers — not just browsers.</p><div class="get"><p><strong>What you get →</strong> You stop spending time on channels that aren't producing and double down on what is.</p></div></div>
+    <div class="card"><h4>What happens on the website?</h4><p>We track the full path: visits → browses → adds to cart → buys (or leaves). With 1,200 sessions and a 2.5% conversion rate, we find exactly where people drop off.</p><div class="get"><p><strong>What you get →</strong> Small fixes in the right spots can double online revenue without spending a dollar more on ads.</p></div></div>
+    <div class="card"><h4>Are customers coming back?</h4><p>How many first-time buyers reorder? How often? What brings them back — or loses them? With $30–60 average orders, repeat buyers are the real revenue engine.</p><div class="get"><p><strong>What you get →</strong> A customer who buys once is worth $50. One who comes back monthly is worth $600+. This shows us how to keep more of them.</p></div></div>
+    <div class="card"><h4>What does the market look like?</h4><p>Who else is in the broth space? What are they doing, what are they saying, and where are the gaps Soma can own?</p><div class="get"><p><strong>What you get →</strong> You find the lanes nobody else is in — instead of competing where bigger brands outspend you.</p></div></div>
+    <div class="card"><h4>What are the real economics?</h4><p>Cost to get a customer. Lifetime value. Average order. Margins by channel — because a local pickup at 25%+ margin is very different from shipping glass jars to Northern Ontario.</p><div class="get"><p><strong>What you get →</strong> You'll know exactly how much you can spend to get a customer — and what you make back.</p></div></div>
+    <div class="card"><h4>What's the #1 bottleneck?</h4><p>After looking at everything, we name the single biggest thing holding Soma back. Then we build the next 90 days around fixing that one thing.</p><div class="get"><p><strong>What you get →</strong> You focus all your energy on the one move that unlocks the most growth. One bottleneck at a time.</p></div></div>
+  </div>
+
+  <div class="quarterly">
+    <p class="qlabel">Every 90 Days, We Do This Again</p>
+    <div class="q-grid">
+      <div class="q-item"><div class="q-circle">Q1</div><p class="ql">Find the bottleneck</p><p class="qd">Full audit. Name the constraint. Set 90-day goals.</p></div>
+      <div class="q-item"><div class="q-circle">Q2</div><p class="ql">Check the results</p><p class="qd">Did we fix it? What's next? Adjust the plan.</p></div>
+      <div class="q-item"><div class="q-circle">Q3</div><p class="ql">Double down</p><p class="qd">More of what works. Cut what doesn't.</p></div>
+      <div class="q-item"><div class="q-circle">Q4</div><p class="ql">Plan next year</p><p class="qd">Full review. Budget. Next growth thesis.</p></div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h3>We also install the plumbing</h3>
+    <p>Tracking pixels, Google Analytics, Meta pixel, conversion tracking on Shopify — everything needed to measure results from day one. Right now, if you run an ad, you can't tell exactly what it did. After this, every dollar is trackable.</p>
+  </div>
+</div>
+
+<div class="divider"><hr></div>
+
+<!-- ========== PHASE 2 ========== -->
+<div class="section" id="s2">
+  <p class="section-label"><span class="num">02</span> Phase 2</p>
+  <h2>Build the Soma World</h2>
+  <p class="sub">Take Soma from "a bone broth company" to a brand people feel something about.</p>
+  <span class="badge">Ends in a New Website · Days 7–45</span>
+  <p class="intro">Soma makes incredible broth. But the brand doesn't yet tell a story that pulls people in. You mentioned wanting something that feels like Aesop or Patagonia — where you land on the site and you just <em>know</em> what they're about. That's what this phase builds.</p>
+  <p class="intro-body">We explore the Soma world together — like filmmakers or world-builders — and then everything we create gets poured into a brand-new web experience. The website becomes the first and most important expression of the brand.</p>
+
+  <div class="card-grid">
+    <div class="card"><h4>Your Origin Story</h4><p>Why Soma exists. What you believe that other broth companies don't. Written so people care — not just understand. This is the foundation of every ad, email, and pitch deck that follows.</p><div class="get"><p><strong>What you get →</strong> People buy from brands they connect with. A strong story turns browsers into buyers and buyers into fans.</p></div></div>
+    <div class="card"><h4>How Soma Looks</h4><p>Photography direction, colour system, typography, packaging feel. We lock in a visual identity that says "premium, handcrafted, real" — from jars to Instagram to wholesale pitch decks.</p><div class="get"><p><strong>What you get →</strong> You look like a $10M brand before you are one. Consistency builds trust. Trust builds sales.</p></div></div>
+    <div class="card"><h4>How Soma Sounds</h4><p>The words you use everywhere — site, emails, social, in-store signage, wholesale outreach. One clear voice. Warm, confident, never clinical. This becomes your World Bible.</p><div class="get"><p><strong>What you get →</strong> Every touchpoint sounds like Soma. Your messaging gets sharper because it's always on-brand.</p></div></div>
+    <div class="card"><h4>Content Shoot</h4><p>We come in and shoot product shots, hero shots, lifestyle/people shots, and recipe shots. This becomes the content library that feeds your website, social, and ads for months.</p><div class="get"><p><strong>What you get →</strong> One shoot gives you 6+ months of content. No more scrambling. And we capture ad creative in the same session.</p></div></div>
+    <div class="card"><h4>The Free Broth Friday Movement</h4><p>This isn't just a promo — it's a ritual. We name it, brand it, give it a look, make it shareable. Then we take it beyond Pape Ave — to grocery partners, pop-ups, events.</p><div class="get"><p><strong>What you get →</strong> A shareable experience that spreads the brand without ad spend. This is already working — we just make it travel.</p></div></div>
+    <div class="card"><h4>Founder-Led Strategy</h4><p>We give you a clear recommendation on whether Michel and Jeremy should be the face of the brand. At this stage: founders first. Authenticity is your biggest advantage.</p><div class="get"><p><strong>What you get →</strong> You save money by not hiring ambassadors too early. And the most credible voice is already in the building.</p></div></div>
+  </div>
+
+  <div class="website-hero">
+    <p class="clabel">Where It All Comes Together</p>
+    <h3>A Reimagined Soma Website</h3>
+    <p>Everything from this phase — story, look, voice, photos — comes together in one place: <strong>a completely reimagined Soma web experience</strong>. We build it on our own server first. You don't launch anything until you look at it and say, "This is a banger."</p>
+    <p>It stays on Shopify. It integrates with your existing systems. But it feels like a different brand walked in — one that's going somewhere. SEO fundamentals baked in so you show up on Google without paying for ads. Conversion tracking on every page.</p>
+    <div class="tags">
+      <span class="tag">Brand story pages</span><span class="tag">Rebuilt product pages</span><span class="tag">Conversion tracking</span><span class="tag">Email capture flows</span><span class="tag">QR landing pages</span><span class="tag">Wholesale inquiry page</span><span class="tag">Mobile-first</span><span class="tag">SEO-ready</span><span class="tag">Fast-loading</span><span class="tag">Shopify-native</span>
+    </div>
+    <div class="get"><p><strong>What you get →</strong> A website that converts visitors into buyers, captures every lead, ranks on Google, and serves as the home base for ads, social, email, and wholesale outreach. A compounding asset — it gets more valuable over time.</p></div>
+  </div>
+</div>
+
+<div class="divider"><hr></div>
+
+<!-- ========== PHASE 3 ========== -->
+<div class="section" id="s3">
+  <p class="section-label"><span class="num">03</span> Phase 3</p>
+  <h2>The 45-Day Testing Sprint</h2>
+  <p class="sub">Find out what works before you spend real money.</p>
+  <span class="badge">Recurring Every 45 Days · Days 15–60</span>
+  <p class="intro">This starts while the world build is still in progress — as soon as tracking is live and the first creative is ready, we start testing. We've done this with as little as $500 in ad spend.</p>
+  <p class="intro-body">This is how we answer the question you raised: <em>"What is the key benefit we will sell?"</em> We don't guess. We test. The market tells us. And this sprint recurs — every 45 days, new tests, new intelligence.</p>
+
+  <div class="card-grid-3">
+    <div class="card"><h4>Round 1 — What message hits?</h4><p>5–10 different ad angles on Meta. Protein. Collagen. Gut health. Clean cooking. Post-surgery recovery. The market picks the winner.</p><div class="get"><p><strong>What you get →</strong> You find out what makes people click. Every future ad, email, and post uses language that actually works.</p></div></div>
+    <div class="card"><h4>Round 2 — Who responds best?</h4><p>Winning messages shown to different groups. Women 35+. Post-medical. New moms. Athletes. Geo-targeted within 10–15km of Pape Ave.</p><div class="get"><p><strong>What you get →</strong> You stop guessing who your best customer is. The data tells you.</p></div></div>
+    <div class="card"><h4>Round 3 — What gets them to buy?</h4><p>Winning message + best audience → test offers. Free shipping thresholds. Starter bundles. First-order incentives. 4-pack entry points.</p><div class="get"><p><strong>What you get →</strong> You know what it costs to get a customer — and whether that cost pays for itself.</p></div></div>
+  </div>
+
+  <div class="results">
+    <p class="rlabel">After 45 Days, You Have</p>
+    <div class="r-grid">
+      <div class="r-item"><p class="metric">Your Real CPA</p><p class="rd">Actual cost to get a customer. No guessing.</p></div>
+      <div class="r-item"><p class="metric">Winning Messages</p><p class="rd">2–3 proven angles. The DNA for all future content.</p></div>
+      <div class="r-item"><p class="metric">Your Best Audience</p><p class="rd">Who buys at the lowest cost. Shapes everything.</p></div>
+      <div class="r-item"><p class="metric">Proven Offers</p><p class="rd">Which deal gets the best return.</p></div>
+    </div>
+  </div>
+
+  <div class="callout-green">
+    <h3>Why We Test Before We Scale</h3>
+    <p>You said it clearly: <em>"We're afraid of giving Google our money and getting nothing back."</em> That's exactly why we don't ask you to bet big on day one. The testing sprint is a small, controlled experiment. If the numbers work, we scale. If they don't, we learn what doesn't work for a fraction of what a blind campaign would cost. Every 45 days, we're smarter than before.</p>
+  </div>
+</div>
+
+<div class="divider"><hr></div>
+
+<!-- ========== PHASE 4 ========== -->
+<div class="section" id="s4">
+  <p class="section-label"><span class="num">04</span> Phase 4</p>
+  <h2>Keep Customers Coming Back</h2>
+  <p class="sub">Turn one-time buyers into regulars. Regulars into fans.</p>
+  <span class="badge">10X on Customer Value · Weeks 4–Ongoing</span>
+  <p class="intro">A $50 order is great. Twelve of them from the same person is $600. One who sends three friends? That's $2,400. Soma is already great in person — the trick is turning that warmth into a long-term digital relationship.</p>
+  <p class="intro-body">You said it: <em>"We could amplify those human interactions with a digital follow-up that's better than our capability."</em> That's exactly what this does.</p>
+
+  <div class="card-grid">
+    <div class="card"><h4>Email That Tells a Story</h4><p>Not spam. A welcome sequence that introduces the Soma world. Post-purchase emails that feel like a note from the founders. Win-back messages for lapsed buyers. Every email is a chapter.</p><div class="get"><p><strong>What you get →</strong> Email is the cheapest way to drive repeat sales. A good list becomes your most reliable revenue channel.</p></div></div>
+    <div class="card"><h4>Bridge In-Person → Online</h4><p>Every store visit, demo, and Free Broth Friday — someone scans a QR code. That captures their email for follow-up. Your boots-on-the-ground strength, amplified digitally.</p><div class="get"><p><strong>What you get →</strong> You stop losing people after a one-time interaction. Every conversation becomes a long-term relationship.</p></div></div>
+    <div class="card"><h4>Apple Wallet Loyalty</h4><p>We help finish the Apple Developer setup you've started. A digital card in everyone's wallet — no app, no login. Scan at the store, demos, pop-ups.</p><div class="get"><p><strong>What you get →</strong> Builds your database using what Soma already does well — talking to people face to face.</p></div></div>
+    <div class="card"><h4>Soma Plus 2.0</h4><p>Evolve the membership from manual to digital. 5% off in-store + online. Unified across Shopify when the POS transition happens.</p><div class="get"><p><strong>What you get →</strong> Your loyalty program works everywhere — without writing names on a clipboard.</p></div></div>
+    <div class="card"><h4>Free Broth Friday → Capture Engine</h4><p>Every cup gets a QR code. "Scan for $5 off your next online order." Goodwill becomes a trackable relationship.</p><div class="get"><p><strong>What you get →</strong> Your best promo becomes a customer-capture machine — without changing what you already do.</p></div></div>
+    <div class="card"><h4>Segmented Follow-Up</h4><p>Colonoscopy prep buyers get different emails than new moms or athletes. Automated paths for each group — every message feels personal.</p><div class="get"><p><strong>What you get →</strong> Personalized follow-up converts 2–3X better than generic blasts. Runs on autopilot.</p></div></div>
+  </div>
+</div>
+
+<div class="divider"><hr></div>
+
+<!-- ========== PHASE 5 ========== -->
+<div class="section" id="s5">
+  <p class="section-label"><span class="num">05</span> Phase 5</p>
+  <h2>Wholesale Growth</h2>
+  <p class="sub">Every shelf is a billboard. Every store is a trust signal.</p>
+  <span class="badge">10X–100X on Revenue · Months 3–12+</span>
+  <p class="intro">Ripe bought $700K off the facility last year. Nature's Emporium is at $250K. You already know what one wholesale relationship is worth. You're only in Ontario. There are plenty of stores you don't sell to yet.</p>
+  <p class="intro-body">You could be one client away from a 10X on that channel. We want to build the system that keeps them coming — not just one lucky deal, but a pipeline.</p>
+
+  <div class="card-grid">
+    <div class="card"><h4>Build a prospect list</h4><p>Grocery stores, health food shops, juice bars, yoga studios, CrossFit boxes, clinics — identified, qualified, organized into a pipeline.</p><div class="get"><p><strong>What you get →</strong> You stop cold-calling randomly and start reaching qualified prospects with a system.</p></div></div>
+    <div class="card"><h4>Professional pitch materials</h4><p>Sell sheets, pitch decks, sample case coordination — built from the brand world. These look like they came from a $50M company.</p><div class="get"><p><strong>What you get →</strong> Materials that close deals. The brand sells before you open your mouth.</p></div></div>
+    <div class="card"><h4>Free Broth Friday at their store</h4><p>Demo days with signage, sampling, QR capture, and post-demo follow-up for every person who tried a cup.</p><div class="get"><p><strong>What you get →</strong> Partners love you because you drive traffic. Every demo captures new customers.</p></div></div>
+    <div class="card"><h4>Channel strategy</h4><p>Coffee shops, breakfast chains, health clinics — it's not one cold call to Starbucks. It's finding the right category and building the outreach system.</p><div class="get"><p><strong>What you get →</strong> A whole category of partners — with a system that keeps the pipeline full.</p></div></div>
+  </div>
+</div>
+
+<div class="divider"><hr></div>
+
+<!-- ========== ROADMAP ========== -->
+<div class="section" id="s6">
+  <p class="section-label">Roadmap</p>
+  <h2>The Plan</h2>
+  <p class="sub" style="margin-bottom:32px;">How the phases fit together — and what happens when.</p>
+
+  <div class="callout" style="margin-bottom:28px;">
+    <h3>A Growth Partnership — Not a Vendor</h3>
+    <p>We don't hold anyone hostage. We earn the business every month by creating new value. The quarterly audit keeps us honest — every 90 days, we look at the real numbers together and build the next plan around what's actually happening.</p>
+    <p>Our goal is to build compounding assets that make Soma more valuable over time — not to create dependency. We want to arm the rebels, not hold them hostage.</p>
+  </div>
+
+  <div class="roadmap-item hl"><div class="phase">Days 1–14</div><div><p class="title">The Growth Audit</p><p class="desc">Full check-up. Install tracking. Name the bottleneck. Set 90-day goals. Weekly calls to get aligned fast.</p></div></div>
+  <div class="roadmap-item hl"><div class="phase">Days 7–45</div><div><p class="title">Build the Soma World → New Website</p><p class="desc">Brand story, visual identity, voice, content shoot. Everything poured into a reimagined Shopify experience.</p></div></div>
+  <div class="roadmap-item hl"><div class="phase">Days 15–60</div><div><p class="title">First 45-Day Testing Sprint</p><p class="desc">Message → audience → offer testing on Meta. Establish real cost per customer. Build proven winners.</p></div></div>
+  <div class="roadmap-item normal"><div class="phase">Months 2–4</div><div><p class="title">Retention Systems</p><p class="desc">Email automation, QR bridge, Apple Wallet, Soma Plus 2.0, Free Broth Friday capture engine.</p></div></div>
+  <div class="roadmap-item normal"><div class="phase">Months 3–6</div><div><p class="title">Wholesale Pipeline + Scale Ads</p><p class="desc">Prospect lists, pitch materials, demo coordination. Scale spend behind proven creative.</p></div></div>
+  <div class="roadmap-item normal"><div class="phase">Sept 2026</div><div><p class="title">Peak Season — Maximum Push</p><p class="desc">Full budget behind winners. Multi-channel across DTC, retail, wholesale, and social.</p></div></div>
+  <div class="roadmap-item normal"><div class="phase">Every 90 Days</div><div><p class="title">Re-Audit → New Sprint → Compound</p><p class="desc">The heartbeat. Re-diagnose, re-plan, keep building. The tap keeps turning higher.</p></div></div>
+
+  <div class="callout-green" style="margin-top:28px;">
+    <h3>Where This Goes</h3>
+    <div class="milestones">
+      <div class="ms"><p class="rev">$30K/mo</p><p class="ml">Target One</p><p class="md">~$1K/day in retail. Ads running. Retention loops closed.</p></div>
+      <div class="ms"><p class="rev">$60K/mo</p><p class="ml">Target Two</p><p class="md">~$2K/day in retail. Wholesale pipeline producing.</p></div>
+      <div class="ms"><p class="rev">$1M+</p><p class="ml">Wholesale</p><p class="md">Matching what Ripe does. 50/50 Soma vs. private label.</p></div>
+      <div class="ms"><p class="rev">$200M</p><p class="ml">The Vision</p><p class="md">"The Coca-Cola of Broth." National. Category leader.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"><hr></div>
+
+<!-- ========== PRICING ========== -->
+<div class="section" id="s7">
+  <p class="section-label">Investment</p>
+  <h2>Partnership Options</h2>
+  <p class="sub">Two paths. Same goal. Choose the speed that fits.</p>
+  <span class="badge" style="margin-bottom:16px;">Both include quarterly audits + 45-day sprints</span>
+  <p class="intro-body" style="margin-bottom:36px;">Both options include the quarterly growth audit, recurring testing sprints, and the accountability rhythm that keeps us honest. The difference is how much ground we cover and how fast we move.</p>
+
+  <div class="pricing-grid">
+    <div class="tier tier-a">
+      <p class="olabel">Option A</p>
+      <h3>Growth Foundation</h3>
+      <p class="tsub">Build the engine. Prove the numbers.</p>
+      <p class="price">$2,500<span>/month</span></p>
+      <p class="adnote">+ ad spend (you control the budget)</p>
+      <div class="ci"><span class="ck">✓</span><p class="ct">Quarterly growth audit + constraint diagnostic</p></div>
+      <div class="ci"><span class="ck">✓</span><p class="ct">Recurring 45-day testing sprints</p></div>
+      <div class="ci"><span class="ck">✓</span><p class="ct">Tracking & analytics setup</p></div>
+      <div class="ci"><span class="ck">✓</span><p class="ct">Content shoot (initial session)</p></div>
+      <div class="ci"><span class="ck">✓</span><p class="ct">Retention systems: email, QR bridge, segmented follow-up</p></div>
+      <div class="ci"><span class="ck">✓</span><p class="ct">Apple Wallet loyalty setup</p></div>
+      <div class="ci"><span class="ck">✓</span><p class="ct">Soma Plus 2.0 digital experience</p></div>
+      <div class="ci"><span class="ck">✓</span><p class="ct">Free Broth Friday capture system</p></div>
+      <div class="ci"><span class="ck">✓</span><p class="ct">Bi-weekly strategy calls → monthly</p></div>
+      <div class="ci"><span class="ck">✓</span><p class="ct">Monthly performance reporting</p></div>
+      <a href="https://REPLACE_WITH_STRIPE_LINK_TIER_A" class="cta cta-outline" target="_blank">Start Growth Foundation →</a>
+    </div>
+    <div class="tier tier-b">
+      <div class="rec">Recommended</div>
+      <p class="olabel">Option B</p>
+      <h3>Full Growth Partnership</h3>
+      <p class="tsub">Build the engine, the brand, and the pipeline.</p>
+      <p class="price">$4,000<span>/month</span></p>
+      <p class="adnote">+ ad spend (you control the budget)</p>
+      <div class="ci"><span class="ck gld">→</span><p class="ct bld">Everything in Growth Foundation, plus:</p></div>
+      <div class="ci"><span class="ck">✓</span><p class="ct">Full brand world build (story, voice, visual identity, World Bible)</p></div>
+      <div class="ci"><span class="ck">✓</span><p class="ct">Reimagined Soma website (Shopify, SEO, conversion-tracked)</p></div>
+      <div class="ci"><span class="ck">✓</span><p class="ct">Wholesale pipeline (prospect lists, sell sheets, pitch decks)</p></div>
+      <div class="ci"><span class="ck">✓</span><p class="ct">Wholesale outreach system + follow-up automation</p></div>
+      <div class="ci"><span class="ck">✓</span><p class="ct">Demo coordination + Free Broth Friday at partner stores</p></div>
+      <div class="ci"><span class="ck">✓</span><p class="ct">Social media strategy + management (TikTok, IG, FB)</p></div>
+      <div class="ci"><span class="ck">✓</span><p class="ct">3–5 posts/week across platforms</p></div>
+      <div class="ci"><span class="ck">✓</span><p class="ct">Monthly content planning sessions</p></div>
+      <div class="ci"><span class="ck">✓</span><p class="ct">Weekly calls Month 1 → bi-weekly → monthly</p></div>
+      <a href="https://REPLACE_WITH_STRIPE_LINK_TIER_B" class="cta cta-gold" target="_blank">Start Full Partnership →</a>
+    </div>
+  </div>
+
+  <div class="terms">
+    <div class="terms-grid">
+      <div><p class="tl">Onboarding Fee</p><p class="tv"><span class="strike">$2,500</span> <span class="waived">Waived</span></p><p class="td">With a 6-month commitment. Covers audit setup, tracking installation, and initial content session.</p></div>
+      <div><p class="tl">Flexibility</p><p class="tv">30 Days Notice</p><p class="td">We don't hold anyone hostage. Pause or cancel with one month's notice. We earn it every month.</p></div>
+      <div><p class="tl">Payment</p><p class="tv">Auto-Charged Monthly</p><p class="td">Credit card on file, same date each month. Simple and predictable for both sides.</p></div>
+    </div>
+  </div>
+
+  <div class="callout-green">
+    <h3>The Math That Matters</h3>
+    <p>The goal is $1,000/day in Soma retail — $30K/month. At $4,000/month for the full partnership, we need to contribute roughly $4,000 in extra revenue to break even. That's about 3–4 extra orders per day.</p>
+    <p style="margin-top:14px;">Right now you're averaging ~$200/day in-store and variable online. The gap to $1,000/day is $800. We're not saying we'll close it overnight — but every system we build compounds. The audit tells us where to push. The testing sprint tells us what a customer costs. The retention engine makes each one worth more. And the wholesale pipeline? One new account could pay for the partnership for the year.</p>
+  </div>
+</div>
+
+<!-- ========== BIG CTA ========== -->
+<div class="cta-section">
+  <p style="font-family:var(--serif);font-size:24px;color:var(--text);margin-bottom:8px;">Ready to turn the tap on?</p>
+  <p style="font-size:14px;color:var(--text-dim);margin-bottom:36px;">Pick your path. We'll start with the audit and hit the ground running.</p>
+  <a href="https://REPLACE_WITH_STRIPE_LINK_TIER_B" class="big-cta" target="_blank">Start the Full Growth Partnership — $4,000/mo</a>
+  <span class="or-text">or</span>
+  <a href="https://REPLACE_WITH_STRIPE_LINK_TIER_A" class="alt-cta" target="_blank">Start with Growth Foundation — $2,500/mo</a>
+  <p class="fine-print">Onboarding fee waived with 6-month commitment. 30 days notice to pause or cancel anytime.<br>Credit card auto-charged monthly. You're never locked in — we earn it every month.</p>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<div class="footer">
+  <p>Confidential — Prepared for Soma Bone Broth Co.</p>
+  <p>Guest Getter × Soma</p>
+</div>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.section, .overview').forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
