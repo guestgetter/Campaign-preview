@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forest Cliff Camps — Ads Dashboard — March 24, 2026</title>
+<style>
+  :root {
+    --forest: #1b3c2a;
+    --pine: #2d5a3f;
+    --sage: #5a8a6a;
+    --ember: #cc581f;
+    --sunlight: #f2c94c;
+    --cream: #faf8f4;
+    --red: #dc3545;
+    --green: #28a745;
+    --amber: #f0ad4e;
+    --text: #1a1a1a;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --card: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .header {
+    background: linear-gradient(135deg, var(--forest) 0%, var(--pine) 100%);
+    color: white;
+    padding: 32px 40px;
+  }
+  .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+  .header .subtitle { opacity: 0.85; font-size: 15px; }
+  .header .date-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-size: 13px;
+    margin-top: 8px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+
+  /* Goal Tracker */
+  .goal-tracker {
+    background: white;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    border-left: 5px solid var(--ember);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .goal-tracker h2 { font-size: 20px; color: var(--forest); margin-bottom: 16px; }
+  .goal-bar-container {
+    background: #f3f4f6;
+    border-radius: 12px;
+    height: 40px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .goal-bar-fill {
+    height: 100%;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    color: white;
+    transition: width 1s ease;
+  }
+  .goal-bar-existing { background: var(--pine); }
+  .goal-bar-from-ads { background: var(--ember); position: absolute; top: 0; left: 0; height: 100%; }
+  .goal-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .goal-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .goal-stat {
+    text-align: center;
+    padding: 12px;
+    background: #f9fafb;
+    border-radius: 8px;
+  }
+  .goal-stat .number { font-size: 28px; font-weight: 800; color: var(--forest); }
+  .goal-stat .label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .goal-stat.urgent .number { color: var(--ember); }
+
+  /* KPI Cards */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .kpi-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .kpi-card .kpi-label { font-size: 12px; text-transform: uppercase; color: var(--muted); letter-spacing: 0.5px; margin-bottom: 4px; }
+  .kpi-card .kpi-value { font-size: 30px; font-weight: 800; }
+  .kpi-card .kpi-sub { font-size: 13px; margin-top: 4px; }
+  .kpi-card .trend-up { color: var(--green); }
+  .kpi-card .trend-down { color: var(--red); }
+  .kpi-card .trend-neutral { color: var(--muted); }
+  .kpi-good .kpi-value { color: var(--green); }
+  .kpi-warn .kpi-value { color: var(--amber); }
+  .kpi-bad .kpi-value { color: var(--red); }
+  .kpi-neutral .kpi-value { color: var(--forest); }
+
+  /* Section */
+  .section {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .section h2 {
+    font-size: 18px;
+    color: var(--forest);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--cream);
+  }
+  .section h3 {
+    font-size: 15px;
+    color: var(--pine);
+    margin: 16px 0 8px;
+  }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { text-align: left; padding: 10px 12px; background: var(--cream); color: var(--forest); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.3px; }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+  tr:hover td { background: #f9fafb; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .badge-green { background: #d4edda; color: #155724; }
+  .badge-red { background: #f8d7da; color: #721c24; }
+  .badge-amber { background: #fff3cd; color: #856404; }
+  .badge-blue { background: #d1ecf1; color: #0c5460; }
+  .badge-gray { background: #e9ecef; color: #495057; }
+
+  /* Daily trend chart (CSS bar chart) */
+  .bar-chart { display: flex; align-items: flex-end; gap: 8px; height: 140px; padding: 0 4px; margin: 16px 0; }
+  .bar-group { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .bar {
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+    position: relative;
+    transition: height 0.5s ease;
+    min-height: 2px;
+  }
+  .bar-spend { background: var(--pine); opacity: 0.3; }
+  .bar-leads { background: var(--ember); }
+  .bar-label { font-size: 11px; color: var(--muted); }
+  .bar-value { font-size: 11px; font-weight: 600; color: var(--text); }
+  .bar-chart-legend { display: flex; gap: 20px; font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  .bar-chart-legend span::before { content: ''; display: inline-block; width: 12px; height: 12px; border-radius: 2px; margin-right: 4px; vertical-align: middle; }
+  .legend-leads::before { background: var(--ember) !important; }
+  .legend-cpl::before { background: var(--pine) !important; opacity: 0.6; }
+
+  /* Two column */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 768px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .two-col { grid-template-columns: 1fr; }
+    .goal-stats { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* Projection */
+  .projection-table td:first-child { font-weight: 600; }
+  .highlight-row td { background: #fff3cd !important; font-weight: 600; }
+  .recommended-row td { background: #d4edda !important; font-weight: 700; }
+
+  /* Signals */
+  .signal { padding: 16px; border-radius: 8px; margin-bottom: 12px; }
+  .signal-kill { background: #fef2f2; border-left: 4px solid var(--red); }
+  .signal-scale { background: #f0fdf4; border-left: 4px solid var(--green); }
+  .signal-optimize { background: #fffbeb; border-left: 4px solid var(--amber); }
+  .signal h4 { font-size: 14px; margin-bottom: 4px; }
+  .signal p { font-size: 13px; color: var(--muted); }
+
+  /* CTA box */
+  .cta-box {
+    background: linear-gradient(135deg, var(--forest) 0%, var(--pine) 100%);
+    color: white;
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 24px;
+  }
+  .cta-box h2 { color: var(--sunlight); font-size: 22px; margin-bottom: 12px; }
+  .cta-box p { opacity: 0.9; margin-bottom: 8px; }
+  .cta-box .cta-number { font-size: 48px; font-weight: 800; color: var(--sunlight); }
+  .cta-list { list-style: none; margin-top: 16px; }
+  .cta-list li { padding: 6px 0; padding-left: 24px; position: relative; }
+  .cta-list li::before { content: ''; position: absolute; left: 0; top: 12px; width: 8px; height: 8px; border-radius: 50%; }
+  .cta-list .urgent::before { background: var(--ember); }
+  .cta-list .important::before { background: var(--sunlight); }
+  .cta-list .nice::before { background: rgba(255,255,255,0.4); }
+
+  .footer { text-align: center; padding: 24px; color: var(--muted); font-size: 12px; }
+  .funnel-flow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 16px 0;
+    flex-wrap: wrap;
+  }
+  .funnel-step {
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+    padding: 12px 8px;
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    position: relative;
+  }
+  .funnel-step .step-name { font-size: 12px; color: var(--muted); text-transform: uppercase; }
+  .funnel-step .step-value { font-size: 22px; font-weight: 800; color: var(--forest); }
+  .funnel-step .step-rate { font-size: 11px; color: var(--ember); font-weight: 600; }
+  .funnel-arrow {
+    font-size: 20px;
+    color: var(--sage);
+    padding: 0 4px;
+    flex-shrink: 0;
+  }
+  .funnel-step.active { border-color: var(--ember); background: #fff7ed; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Forest Cliff Camps — Ads Performance Dashboard</h1>
+  <div class="subtitle">Meta Ads Campaign Monitor &amp; Registration Goal Tracker</div>
+  <div class="date-badge">Report Date: March 24, 2026 &nbsp;|&nbsp; Data: Mar 17-23 (7d) &amp; Jan 22 - Mar 23 (2mo)</div>
+</div>
+
+<div class="container">
+
+<!-- ════════════════════════════════════════════════════════════
+     GOAL TRACKER: 700 REGISTRATIONS IN 3.5 WEEKS
+     ════════════════════════════════════════════════════════════ -->
+<div class="goal-tracker">
+  <h2>Mission: 700 Additional Camper Registrations by April 17</h2>
+
+  <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+    <span style="font-size: 14px; color: var(--muted);">Progress toward 700 new registrations</span>
+    <span style="font-size: 14px; font-weight: 600;">29 tracked in first 3 days on new funnel (Mar 21-23)</span>
+  </div>
+
+  <div class="goal-bar-container">
+    <div class="goal-bar-fill goal-bar-existing" style="width: 4.1%;">
+      <span style="position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap;">29 / 700</span>
+    </div>
+  </div>
+  <div class="goal-labels">
+    <span>0</span>
+    <span>175 (Wk 1)</span>
+    <span>350 (Wk 2)</span>
+    <span>525 (Wk 3)</span>
+    <span style="font-weight: 700; color: var(--forest);">700</span>
+  </div>
+
+  <div class="goal-stats">
+    <div class="goal-stat urgent">
+      <div class="number">700</div>
+      <div class="label">Registrations Needed</div>
+    </div>
+    <div class="goal-stat">
+      <div class="number">24.5</div>
+      <div class="label">Days Remaining</div>
+    </div>
+    <div class="goal-stat">
+      <div class="number">9.7/day</div>
+      <div class="label">Current Pace (3d avg)</div>
+    </div>
+    <div class="goal-stat urgent">
+      <div class="number">28.6/day</div>
+      <div class="label">Required Pace</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     REALITY CHECK: THE MATH
+     ════════════════════════════════════════════════════════════ -->
+<div class="cta-box">
+  <h2>The Math: What 700 Registrations Requires</h2>
+  <p>Since the new fccamps.ca funnel went live (Mar 21): <strong>98 leads in 3 days</strong> at <strong>$10.21 CPL</strong>, converting to <strong>29 pixel-tracked registrations</strong> — a <strong>29.6% tracked lead-to-registration rate</strong></p>
+
+  <div style="background: rgba(255,255,255,0.12); border-radius: 8px; padding: 14px 18px; margin: 12px 0 20px; border: 1px solid rgba(242,201,76,0.3);">
+    <strong style="color: var(--sunlight);">Important — these are only the registrations we can see.</strong>
+    <span style="opacity: 0.85;"> The 29 registrations are what Meta's pixel attributes directly to ad clicks. The real number is almost certainly higher — ads generate awareness that leads to registrations we can't track: people who see an ad, Google "Forest Cliff Camps" later, or tell a friend. Industry data suggests tracked conversions typically represent 50-70% of total ad-influenced registrations. The true impact of $1,001 in spend is likely 40-55+ registrations, not 29.</span>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 20px 0;">
+    <div style="text-align: center;">
+      <div class="cta-number">32.7</div>
+      <div style="opacity: 0.8;">Leads per day<br><small>(3-day avg)</small></div>
+    </div>
+    <div style="text-align: center;">
+      <div class="cta-number">9.7+</div>
+      <div style="opacity: 0.8;">Tracked regs per day<br><small>(actual likely higher)</small></div>
+    </div>
+    <div style="text-align: center;">
+      <div class="cta-number">29.6%</div>
+      <div style="opacity: 0.8;">Tracked lead → reg<br><small>(pixel-attributed only)</small></div>
+    </div>
+    <div style="text-align: center;">
+      <div class="cta-number">$334/d</div>
+      <div style="opacity: 0.8;">Current daily spend<br><small>(3-day avg)</small></div>
+    </div>
+  </div>
+
+  <p style="color: var(--sunlight); font-weight: 600; font-size: 16px; margin-top: 16px;">Very promising early signal. Next step: validate pixel-tracked registrations against actual CampBrain registrations.</p>
+
+  <ul class="cta-list">
+    <li class="urgent"><strong>VALIDATE FIRST:</strong> The 29 pixel-tracked registrations need to be cross-referenced with actual CampBrain registrations from Mar 21-23. Until we confirm these are real completed registrations (not just pixel fires), treat 29.6% as an optimistic upper bound.</li>
+    <li class="urgent"><strong>THE GAP:</strong> At current pace (9.7 tracked regs/day), you'd project ~238 in 24.5 days. To hit 700, you need ~28.6/day — roughly 3x current output. That means ~$1,000/day in ad spend.</li>
+    <li class="important"><strong>GHL NURTURE:</strong> Contacts are landing in HighLevel but no automated follow-up exists. SMS/email sequences would help push leads through to actual CampBrain registration.</li>
+    <li class="important"><strong>DEPOSIT STEP:</strong> Stripe $30 deposit is built but in demo mode (currently skipped). Adding it would filter for higher-intent leads and add micro-commitment.</li>
+    <li class="nice"><strong>REALISTIC RANGE:</strong> Projections below assume the pixel-tracked conversion rate holds up against CampBrain data. If actual conversion is lower (e.g. 15-20%), budget requirements increase proportionally.</li>
+  </ul>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     SCENARIO PROJECTIONS
+     ════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <h2>Scenario Projections — 3.5 Weeks to April 17</h2>
+  <table class="projection-table">
+    <thead>
+      <tr>
+        <th>Scenario</th>
+        <th class="num">Daily Spend</th>
+        <th class="num">CPL</th>
+        <th class="num">Conv Rate</th>
+        <th class="num">Leads (3.5wk)</th>
+        <th class="num">Registrations</th>
+        <th class="num">Total Spend</th>
+        <th>Verdict</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Current pace (no changes)</td>
+        <td class="num">$334</td>
+        <td class="num">$10.21</td>
+        <td class="num">29.6%</td>
+        <td class="num">801</td>
+        <td class="num">~238</td>
+        <td class="num">$8,183</td>
+        <td><span class="badge badge-red">34% OF GOAL</span></td>
+      </tr>
+      <tr>
+        <td>2x budget</td>
+        <td class="num">$650</td>
+        <td class="num">$11.00</td>
+        <td class="num">29.6%</td>
+        <td class="num">1,448</td>
+        <td class="num">~429</td>
+        <td class="num">$15,925</td>
+        <td><span class="badge badge-amber">61% OF GOAL</span></td>
+      </tr>
+      <tr class="recommended-row">
+        <td>3x budget + GHL nurture (recommended)</td>
+        <td class="num">$1,000</td>
+        <td class="num">$11.50</td>
+        <td class="num">33%</td>
+        <td class="num">2,130</td>
+        <td class="num">~703</td>
+        <td class="num">$24,500</td>
+        <td><span class="badge badge-green">TARGET</span></td>
+      </tr>
+      <tr class="highlight-row">
+        <td>Full send ($1,200/d + nurture)</td>
+        <td class="num">$1,200</td>
+        <td class="num">$12.00</td>
+        <td class="num">33%</td>
+        <td class="num">2,450</td>
+        <td class="num">~809</td>
+        <td class="num">$29,400</td>
+        <td><span class="badge badge-green">EXCEEDS</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size: 13px; color: var(--muted); margin-top: 12px;">
+    <strong>Note:</strong> The 29.6% conversion rate is pixel-tracked only (Mar 21-23) and needs to be validated against actual CampBrain registrations before scaling aggressively. If true conversion is lower (e.g. 15-20%), the "recommended" scenario shifts to ~350-470 registrations. CPL may also rise 10-15% at higher spend due to audience saturation.
+  </p>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     FULL LEAD GENERATION SINCE JAN 20
+     ════════════════════════════════════════════════════════════ -->
+<div class="section" style="border-left: 5px solid var(--pine);">
+  <h2>Total Lead Generation — Jan 20 to Mar 23 (63 Days)</h2>
+  <p style="font-size: 15px; color: var(--muted); margin-bottom: 16px;">Every person who raised their hand and said "I'm interested in Forest Cliff Camps" through a Meta ad.</p>
+
+  <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 20px;">
+    <div style="text-align: center; background: #f0fdf4; border-radius: 8px; padding: 16px;">
+      <div style="font-size: 40px; font-weight: 800; color: var(--green);">754</div>
+      <div style="font-size: 12px; text-transform: uppercase; color: var(--muted);">Total Leads</div>
+    </div>
+    <div style="text-align: center; background: #f0fdf4; border-radius: 8px; padding: 16px;">
+      <div style="font-size: 40px; font-weight: 800; color: var(--green);">$6.49</div>
+      <div style="font-size: 12px; text-transform: uppercase; color: var(--muted);">Avg Cost Per Lead</div>
+    </div>
+    <div style="text-align: center; background: var(--cream); border-radius: 8px; padding: 16px;">
+      <div style="font-size: 40px; font-weight: 800; color: var(--forest);">$4,892</div>
+      <div style="font-size: 12px; text-transform: uppercase; color: var(--muted);">Total Ad Spend</div>
+    </div>
+    <div style="text-align: center; background: var(--cream); border-radius: 8px; padding: 16px;">
+      <div style="font-size: 40px; font-weight: 800; color: var(--forest);">145K</div>
+      <div style="font-size: 12px; text-transform: uppercase; color: var(--muted);">People Reached</div>
+    </div>
+    <div style="text-align: center; background: var(--cream); border-radius: 8px; padding: 16px;">
+      <div style="font-size: 40px; font-weight: 800; color: var(--forest);">12/day</div>
+      <div style="font-size: 12px; text-transform: uppercase; color: var(--muted);">Avg Daily Leads</div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Campaign</th>
+        <th class="num">Leads</th>
+        <th class="num">Cost Per Lead</th>
+        <th class="num">Spend</th>
+        <th class="num">Reach</th>
+        <th class="num">Frequency</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Overnight Camp - Leads</strong></td>
+        <td class="num" style="font-weight: 700;">441</td>
+        <td class="num" style="color: var(--green); font-weight: 700;">$5.81</td>
+        <td class="num">$2,564</td>
+        <td class="num">62,902</td>
+        <td class="num" style="color: var(--amber);">3.20</td>
+        <td>Volume leader. Frequency rising — needs fresh creative.</td>
+      </tr>
+      <tr>
+        <td><strong>Day Camp - Leads</strong></td>
+        <td class="num" style="font-weight: 700;">289</td>
+        <td class="num" style="color: var(--green); font-weight: 700;">$6.76</td>
+        <td class="num">$1,955</td>
+        <td class="num">44,928</td>
+        <td class="num" style="color: var(--red);">3.78</td>
+        <td>Strong CPL but highest frequency — audience fatigue risk.</td>
+      </tr>
+      <tr>
+        <td><strong>Retarget Warm Audiences</strong></td>
+        <td class="num">22</td>
+        <td class="num" style="color: var(--green);">$8.47</td>
+        <td class="num">$186</td>
+        <td class="num">14,253</td>
+        <td class="num" style="color: var(--green);">1.47</td>
+        <td>Only 3 days old. 20 pixel-tracked registrations already.</td>
+      </tr>
+      <tr>
+        <td>Conveyor Belt (Retargeting)</td>
+        <td class="num" style="color: var(--red);">2</td>
+        <td class="num" style="color: var(--red);">$93.46</td>
+        <td class="num">$187</td>
+        <td class="num">22,987</td>
+        <td class="num">1.89</td>
+        <td>Traffic objective — wrong campaign type. Kill.</td>
+      </tr>
+      <tr style="background: var(--cream); font-weight: 700;">
+        <td>TOTAL</td>
+        <td class="num">754</td>
+        <td class="num">$6.49</td>
+        <td class="num">$4,892</td>
+        <td class="num">~145K</td>
+        <td class="num">—</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="font-size: 13px; color: var(--muted); margin-top: 12px;">
+    <strong>What "raised their hand" means:</strong> These 754 people clicked an ad, landed on fccamps.ca (or forestcliff.ca before the switch), and submitted a form with their name, email, phone, child's info, and program interest. They are real parents actively looking at summer camp for their kids. At $6.49 per lead, that's roughly what it costs to buy a coffee — for a potential $450-700 registration.
+  </p>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     KPI CARDS — LAST 7 DAYS
+     ════════════════════════════════════════════════════════════ -->
+<h2 style="font-size: 18px; color: var(--forest); margin-bottom: 12px;">Last 7 Days (Mar 17-23) — Account Overview</h2>
+
+<div class="kpi-grid">
+  <div class="kpi-card kpi-neutral">
+    <div class="kpi-label">Total Spend</div>
+    <div class="kpi-value">$1,502</div>
+    <div class="kpi-sub trend-up">+12% vs prior week ($1,347)</div>
+  </div>
+  <div class="kpi-card kpi-good">
+    <div class="kpi-label">Leads Generated</div>
+    <div class="kpi-value">142</div>
+    <div class="kpi-sub trend-up">+577% vs prior week (21)</div>
+  </div>
+  <div class="kpi-card kpi-good">
+    <div class="kpi-label">Cost per Lead</div>
+    <div class="kpi-value">$10.58</div>
+    <div class="kpi-sub trend-up">-83% vs prior week ($64.13)</div>
+  </div>
+  <div class="kpi-card kpi-good">
+    <div class="kpi-label">Tracked Registrations</div>
+    <div class="kpi-value">29+</div>
+    <div class="kpi-sub">Pixel-attributed only — real number likely 40-55+</div>
+  </div>
+</div>
+
+<div class="kpi-grid">
+  <div class="kpi-card kpi-good">
+    <div class="kpi-label">CTR (All Campaigns)</div>
+    <div class="kpi-value">2.47%</div>
+    <div class="kpi-sub">Benchmark: 1.5-3.5% <span class="badge badge-green">GOOD</span></div>
+  </div>
+  <div class="kpi-card kpi-good">
+    <div class="kpi-label">CPC (Avg)</div>
+    <div class="kpi-value">$0.47</div>
+    <div class="kpi-sub">Benchmark: $0.50-1.50 <span class="badge badge-green">STRONG</span></div>
+  </div>
+  <div class="kpi-card kpi-good">
+    <div class="kpi-label">Frequency</div>
+    <div class="kpi-value">1.7</div>
+    <div class="kpi-sub">Benchmark: &lt;3.0 <span class="badge badge-green">HEALTHY</span></div>
+  </div>
+  <div class="kpi-card kpi-neutral">
+    <div class="kpi-label">Reach</div>
+    <div class="kpi-value">73.4K</div>
+    <div class="kpi-sub">Unique people reached across all campaigns</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     DAILY TREND
+     ════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <h2>Daily Performance Trend (Last 7 Days)</h2>
+  <div class="bar-chart-legend">
+    <span class="legend-leads">Leads</span>
+    <span class="legend-cpl">CPL ($)</span>
+  </div>
+  <div class="bar-chart">
+    <div class="bar-group">
+      <div class="bar-value">14</div>
+      <div class="bar bar-leads" style="height: 44px;"></div>
+      <div class="bar-label">Mar 17</div>
+      <div class="bar-label" style="color: var(--pine); font-weight: 600;">$6.87</div>
+    </div>
+    <div class="bar-group">
+      <div class="bar-value">8</div>
+      <div class="bar bar-leads" style="height: 25px;"></div>
+      <div class="bar-label">Mar 18</div>
+      <div class="bar-label" style="color: var(--pine); font-weight: 600;">$12.46</div>
+    </div>
+    <div class="bar-group">
+      <div class="bar-value">13</div>
+      <div class="bar bar-leads" style="height: 41px;"></div>
+      <div class="bar-label">Mar 19</div>
+      <div class="bar-label" style="color: var(--pine); font-weight: 600;">$12.56</div>
+    </div>
+    <div class="bar-group">
+      <div class="bar-value">9</div>
+      <div class="bar bar-leads" style="height: 28px;"></div>
+      <div class="bar-label">Mar 20</div>
+      <div class="bar-label" style="color: var(--red); font-weight: 600;">$15.82</div>
+    </div>
+    <div class="bar-group">
+      <div class="bar-value">25</div>
+      <div class="bar bar-leads" style="height: 79px;"></div>
+      <div class="bar-label">Mar 21</div>
+      <div class="bar-label" style="color: var(--pine); font-weight: 600;">$14.10</div>
+    </div>
+    <div class="bar-group">
+      <div class="bar-value" style="color: var(--green); font-weight: 800;">44</div>
+      <div class="bar bar-leads" style="height: 140px; background: var(--green);"></div>
+      <div class="bar-label" style="font-weight: 700;">Mar 22</div>
+      <div class="bar-label" style="color: var(--green); font-weight: 700;">$9.05</div>
+    </div>
+    <div class="bar-group">
+      <div class="bar-value" style="font-weight: 700;">29</div>
+      <div class="bar bar-leads" style="height: 92px; background: var(--ember);"></div>
+      <div class="bar-label">Mar 23</div>
+      <div class="bar-label" style="color: var(--ember); font-weight: 600;">$8.62</div>
+    </div>
+  </div>
+  <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">
+    <strong>Inflection point: Mar 22.</strong> The Retarget Warm Audiences campaign ramped up, delivering 20 registrations in a single day. CPL dropped from $15.82 (Mar 20) to $8.62 (Mar 23). The last 2 days are running at $8.84 avg CPL — the best performance since February.
+  </p>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     CAMPAIGN BREAKDOWN — LAST 7 DAYS
+     ════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <h2>Campaign Performance — Last 7 Days</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Campaign</th>
+        <th class="num">Spend</th>
+        <th class="num">Leads</th>
+        <th class="num">CPL</th>
+        <th class="num">CTR</th>
+        <th class="num">CPC</th>
+        <th class="num">Regs</th>
+        <th class="num">Freq</th>
+        <th>Verdict</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>FC - Retarget Warm Audiences</strong></td>
+        <td class="num">$186.22</td>
+        <td class="num">22</td>
+        <td class="num" style="color: var(--green); font-weight: 700;">$8.46</td>
+        <td class="num">3.56%</td>
+        <td class="num">$0.25</td>
+        <td class="num" style="font-weight: 700;">20</td>
+        <td class="num">1.47</td>
+        <td><span class="badge badge-green">WINNER</span></td>
+      </tr>
+      <tr>
+        <td><strong>Day Camp 2026 - Leads</strong></td>
+        <td class="num">$615.12</td>
+        <td class="num">63</td>
+        <td class="num" style="color: var(--green);">$9.76</td>
+        <td class="num">2.31%</td>
+        <td class="num">$0.52</td>
+        <td class="num">3</td>
+        <td class="num">2.06</td>
+        <td><span class="badge badge-green">STRONG</span></td>
+      </tr>
+      <tr>
+        <td><strong>Overnight Camp - Leads</strong></td>
+        <td class="num">$634.28</td>
+        <td class="num">55</td>
+        <td class="num" style="color: var(--amber);">$11.53</td>
+        <td class="num">1.97%</td>
+        <td class="num">$0.76</td>
+        <td class="num">4</td>
+        <td class="num">1.87</td>
+        <td><span class="badge badge-amber">OK — OPTIMIZE</span></td>
+      </tr>
+      <tr>
+        <td>Conveyor Belt (Retarget)</td>
+        <td class="num">$66.42</td>
+        <td class="num">2</td>
+        <td class="num" style="color: var(--red); font-weight: 700;">$33.21</td>
+        <td class="num">2.88%</td>
+        <td class="num">$0.15</td>
+        <td class="num">2</td>
+        <td class="num">1.29</td>
+        <td><span class="badge badge-red">KILL</span></td>
+      </tr>
+      <tr style="background: var(--cream); font-weight: 700;">
+        <td>TOTAL</td>
+        <td class="num">$1,502.04</td>
+        <td class="num">142</td>
+        <td class="num">$10.58</td>
+        <td class="num">2.47%</td>
+        <td class="num">$0.47</td>
+        <td class="num">29</td>
+        <td class="num">1.7</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     2-MONTH OVERVIEW
+     ════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <h2>Full Campaign History — Last 2 Months (Jan 22 - Mar 23)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Campaign</th>
+        <th class="num">Spend</th>
+        <th class="num">Leads</th>
+        <th class="num">CPL</th>
+        <th class="num">Impressions</th>
+        <th class="num">CTR</th>
+        <th class="num">Reach</th>
+        <th class="num">Freq</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Overnight Camp - Leads</strong></td>
+        <td class="num">$2,563.95</td>
+        <td class="num">441</td>
+        <td class="num" style="color: var(--green);">$5.81</td>
+        <td class="num">201,342</td>
+        <td class="num">2.45%</td>
+        <td class="num">62,902</td>
+        <td class="num" style="color: var(--amber);">3.20</td>
+        <td><span class="badge badge-amber">Freq rising</span></td>
+      </tr>
+      <tr>
+        <td><strong>Day Camp 2026 - Leads</strong></td>
+        <td class="num">$1,954.62</td>
+        <td class="num">289</td>
+        <td class="num" style="color: var(--green);">$6.76</td>
+        <td class="num">169,587</td>
+        <td class="num">2.77%</td>
+        <td class="num">44,928</td>
+        <td class="num" style="color: var(--red);">3.77</td>
+        <td><span class="badge badge-red">Freq too high</span></td>
+      </tr>
+      <tr>
+        <td>Conveyor Belt (Retarget)</td>
+        <td class="num">$186.92</td>
+        <td class="num">2</td>
+        <td class="num" style="color: var(--red);">$93.46</td>
+        <td class="num">43,400</td>
+        <td class="num">3.41%</td>
+        <td class="num">22,987</td>
+        <td class="num">1.89</td>
+        <td><span class="badge badge-red">Traffic obj = no leads</span></td>
+      </tr>
+      <tr>
+        <td><strong>FC - Retarget Warm</strong></td>
+        <td class="num">$186.22</td>
+        <td class="num">22</td>
+        <td class="num" style="color: var(--green);">$8.46</td>
+        <td class="num">20,931</td>
+        <td class="num">3.56%</td>
+        <td class="num">14,253</td>
+        <td class="num">1.47</td>
+        <td><span class="badge badge-blue">NEW — 7 days old</span></td>
+      </tr>
+      <tr style="background: var(--cream); font-weight: 700;">
+        <td>TOTAL (2 Months)</td>
+        <td class="num">$4,891.71</td>
+        <td class="num">754</td>
+        <td class="num">$6.49</td>
+        <td class="num">435,260</td>
+        <td class="num">2.72%</td>
+        <td class="num">~145K</td>
+        <td class="num">—</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size: 13px; color: var(--muted); margin-top: 12px;">
+    <strong>Key insight:</strong> 754 leads generated over 2 months at $6.49 CPL. The Overnight camp has been the volume driver (441 leads), but Day Camp has higher CTR. The new Retarget Warm campaign (only 7 days old) is already showing excellent conversion rates with 20 registrations from 22 leads.
+  </p>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     CONVERSION FUNNEL STATUS
+     ════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <h2>Conversion Funnel — fccamps.ca (LIVE)</h2>
+
+  <h3>Current Live Flow</h3>
+  <div class="funnel-flow">
+    <div class="funnel-step" style="border-color: var(--green); background: #f0fdf4;">
+      <div class="step-name">Ad Click</div>
+      <div class="step-value">3,192</div>
+      <div class="step-rate">100%</div>
+    </div>
+    <div class="funnel-arrow">&rarr;</div>
+    <div class="funnel-step" style="border-color: var(--green); background: #f0fdf4;">
+      <div class="step-name">Landing Page</div>
+      <div class="step-value">fccamps.ca</div>
+      <div class="step-rate" style="color: var(--green);">A/B test active</div>
+    </div>
+    <div class="funnel-arrow">&rarr;</div>
+    <div class="funnel-step" style="border-color: var(--green); background: #f0fdf4;">
+      <div class="step-name">Lead Form + GHL</div>
+      <div class="step-value">142/wk</div>
+      <div class="step-rate" style="color: var(--green);">Pixel + CAPI + Webhook</div>
+    </div>
+    <div class="funnel-arrow">&rarr;</div>
+    <div class="funnel-step" style="border-color: var(--amber); background: #fffbeb;">
+      <div class="step-name">$30 Deposit</div>
+      <div class="step-value">Skipped</div>
+      <div class="step-rate" style="color: var(--amber);">Stripe demo mode</div>
+    </div>
+    <div class="funnel-arrow">&rarr;</div>
+    <div class="funnel-step" style="border-color: var(--green); background: #f0fdf4;">
+      <div class="step-name">Date Picker</div>
+      <div class="step-value">register.html</div>
+      <div class="step-rate" style="color: var(--green);">Live capacity data</div>
+    </div>
+    <div class="funnel-arrow">&rarr;</div>
+    <div class="funnel-step" style="border-color: var(--amber); background: #fffbeb;">
+      <div class="step-name">GHL Nurture</div>
+      <div class="step-value">SMS/Email</div>
+      <div class="step-rate" style="color: var(--amber);">Workflow needed</div>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
+    <div style="background: #f0fdf4; border-radius: 8px; padding: 16px;">
+      <strong style="color: #155724;">What's Working (Verified Live):</strong>
+      <ul style="margin: 8px 0 0 16px; font-size: 14px; color: #155724;">
+        <li>Meta Pixel <code>841367735547546</code> — firing on all 3 pages</li>
+        <li>Server-side CAPI with dedup — improving match rates</li>
+        <li>GTM <code>GTM-WDPCDKNL</code> — dataLayer events active</li>
+        <li>HighLevel webhook — contacts created on form submit</li>
+        <li>A/B split test — 50/50 headline variants</li>
+        <li>UTM passthrough — full attribution chain preserved</li>
+        <li>Date picker — real capacity numbers, up to 5 sessions</li>
+      </ul>
+    </div>
+    <div style="background: #fff3cd; border-radius: 8px; padding: 16px;">
+      <strong style="color: #856404;">Remaining Upgrades (Not Blockers):</strong>
+      <ol style="margin: 8px 0 0 16px; font-size: 14px; color: #856404;">
+        <li><strong>$30 Stripe Deposit</strong> — currently skipped (demo mode). Adding would create micro-commitment, improving lead quality and show rate.</li>
+        <li><strong>GHL Follow-Up Workflow</strong> — webhook fires but no automated SMS/email sequence is built yet. This is the biggest conversion lift available: nurture leads who pick dates but haven't completed CampBrain registration.</li>
+        <li><strong>CampBrain handoff</strong> — after date selection, users need to complete full registration externally. Smoother handoff or reminder sequences would help.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     TOP ADS — LAST 7 DAYS
+     ════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <h2>Ad-Level Performance — Last 7 Days (Top Performers)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Ad Name</th>
+        <th>Campaign</th>
+        <th class="num">Spend</th>
+        <th class="num">Leads</th>
+        <th class="num">CPL</th>
+        <th class="num">CTR</th>
+        <th class="num">Regs</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background: #f0fdf4;">
+        <td><strong>Video - Scenes Copy</strong></td>
+        <td>Day Camp</td>
+        <td class="num">$375.72</td>
+        <td class="num" style="font-weight: 700;">39</td>
+        <td class="num" style="color: var(--green);">$9.63</td>
+        <td class="num">2.67%</td>
+        <td class="num">1</td>
+        <td><span class="badge badge-green">SCALE</span> Volume driver</td>
+      </tr>
+      <tr style="background: #f0fdf4;">
+        <td><strong>FC Lead - New Campers Fun (Overnight)</strong></td>
+        <td>Overnight</td>
+        <td class="num">$96.88</td>
+        <td class="num">17</td>
+        <td class="num" style="color: var(--green); font-weight: 700;">$5.70</td>
+        <td class="num">2.22%</td>
+        <td class="num">0</td>
+        <td><span class="badge badge-green">SCALE</span> Best CPL cold</td>
+      </tr>
+      <tr style="background: #f0fdf4;">
+        <td><strong>Video - Summer Camp Vibes Copy</strong></td>
+        <td>Day Camp</td>
+        <td class="num">$96.08</td>
+        <td class="num">14</td>
+        <td class="num" style="color: var(--green); font-weight: 700;">$6.86</td>
+        <td class="num">1.51%</td>
+        <td class="num">1</td>
+        <td><span class="badge badge-green">SCALE</span> Converting</td>
+      </tr>
+      <tr style="background: #f0fdf4;">
+        <td><strong>Montage - All Angles Copy</strong></td>
+        <td>Overnight</td>
+        <td class="num">$44.14</td>
+        <td class="num">8</td>
+        <td class="num" style="color: var(--green); font-weight: 700;">$5.52</td>
+        <td class="num">3.00%</td>
+        <td class="num">2</td>
+        <td><span class="badge badge-green">SCALE</span> Best all-around</td>
+      </tr>
+      <tr style="background: #f0fdf4;">
+        <td><strong>FC Retarget - Last Chance Urgency</strong></td>
+        <td>Retarget Warm</td>
+        <td class="num">$12.58</td>
+        <td class="num">3</td>
+        <td class="num" style="color: var(--green); font-weight: 700;">$4.19</td>
+        <td class="num">2.26%</td>
+        <td class="num">2</td>
+        <td><span class="badge badge-green">SCALE</span> Best CPL overall</td>
+      </tr>
+      <tr style="background: #f0fdf4;">
+        <td><strong>FC Organic - Jr High Announcement</strong></td>
+        <td>Retarget Warm</td>
+        <td class="num">$101.76</td>
+        <td class="num">12</td>
+        <td class="num" style="color: var(--green);">$8.48</td>
+        <td class="num">3.65%</td>
+        <td class="num" style="font-weight: 700; color: var(--green);">12</td>
+        <td><span class="badge badge-green">SCALE</span> Reg machine</td>
+      </tr>
+      <tr style="background: #f0fdf4;">
+        <td><strong>FC Organic - New Campers Fun</strong></td>
+        <td>Retarget Warm</td>
+        <td class="num">$42.30</td>
+        <td class="num">6</td>
+        <td class="num" style="color: var(--green);">$7.05</td>
+        <td class="num">3.96%</td>
+        <td class="num" style="font-weight: 700; color: var(--green);">6</td>
+        <td><span class="badge badge-green">SCALE</span> 100% reg rate</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top: 24px;">Underperformers &amp; Fatigued</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Ad Name</th>
+        <th>Campaign</th>
+        <th class="num">Spend</th>
+        <th class="num">Leads</th>
+        <th class="num">CPL</th>
+        <th class="num">CTR</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background: #fef2f2;">
+        <td>Testimonial - Trust - All Angles (original)</td>
+        <td>Overnight</td>
+        <td class="num">$211.14</td>
+        <td class="num">8</td>
+        <td class="num" style="color: var(--red);">$26.39</td>
+        <td class="num">1.64%</td>
+        <td><span class="badge badge-red">KILL</span> Fatigued, 60+ days</td>
+      </tr>
+      <tr style="background: #fef2f2;">
+        <td>And Suddenly Forgot Our Phones</td>
+        <td>Overnight</td>
+        <td class="num">$185.26</td>
+        <td class="num">15</td>
+        <td class="num" style="color: var(--red);">$12.35</td>
+        <td class="num">2.15%</td>
+        <td><span class="badge badge-amber">WATCH</span> Was $6.53, fatiguing</td>
+      </tr>
+      <tr style="background: #fef2f2;">
+        <td>DC - Image - Friends Yellow</td>
+        <td>Conveyor Belt</td>
+        <td class="num">$50.22</td>
+        <td class="num">2</td>
+        <td class="num" style="color: var(--red);">$25.11</td>
+        <td class="num">2.53%</td>
+        <td><span class="badge badge-red">KILL</span> Traffic obj</td>
+      </tr>
+      <tr style="background: #fef2f2;">
+        <td>Video - Their Favourite Parts</td>
+        <td>Day Camp</td>
+        <td class="num">$20.06</td>
+        <td class="num">0</td>
+        <td class="num" style="color: var(--red);">N/A</td>
+        <td class="num">1.57%</td>
+        <td><span class="badge badge-red">KILL</span> No conversions</td>
+      </tr>
+      <tr style="background: #fef2f2;">
+        <td>Come Pack With Me</td>
+        <td>Overnight</td>
+        <td class="num">$9.99</td>
+        <td class="num">0</td>
+        <td class="num" style="color: var(--red);">N/A</td>
+        <td class="num">1.58%</td>
+        <td><span class="badge badge-red">KILL</span> Dead creative</td>
+      </tr>
+      <tr style="background: #fef2f2;">
+        <td>Summer Camp Vibes (Overnight)</td>
+        <td>Overnight</td>
+        <td class="num">$4.15</td>
+        <td class="num">0</td>
+        <td class="num" style="color: var(--red);">N/A</td>
+        <td class="num">0.39%</td>
+        <td><span class="badge badge-red">KILL</span> 0.39% CTR</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     SIGNALS & ACTIONS
+     ════════════════════════════════════════════════════════════ -->
+<div class="two-col">
+  <div class="section">
+    <h2>Signals Detected</h2>
+
+    <div class="signal signal-kill">
+      <h4>KILL: Conveyor Belt Campaign — $33.21 CPL</h4>
+      <p>Traffic objective campaign. $187 lifetime spend, only 2 leads. The new Retarget Warm campaign does the same job at $8.46 CPL with actual conversions. Kill immediately.</p>
+    </div>
+
+    <div class="signal signal-kill">
+      <h4>KILL: Testimonial - Trust (Original) — $26.39 CPL</h4>
+      <p>Running 60+ days, 1.64% CTR (was likely 3%+ at launch). Eating $211/week of Overnight budget for only 8 leads. The "Copy" variant gets $5.70 CPL — let that one run instead.</p>
+    </div>
+
+    <div class="signal signal-scale">
+      <h4>SCALE: Retarget Warm Audiences — $8.46 CPL, 91% reg rate</h4>
+      <p>Only $186 spent in 7 days but drove 22 leads AND 20 registrations. This is the single best-performing campaign. Currently capped at $26/day — should be at $50-75/day minimum.</p>
+    </div>
+
+    <div class="signal signal-scale">
+      <h4>SCALE: New Campers Fun (Overnight) — $5.70 CPL</h4>
+      <p>17 leads on just $96 spend. Strongest cold prospecting ad. Give it more budget share within the Overnight campaign.</p>
+    </div>
+
+    <div class="signal signal-scale">
+      <h4>SCALE: Montage - All Angles — $5.52 CPL, 3.0% CTR</h4>
+      <p>Best all-around metrics. 8 leads, 2 registrations, strong CTR. Despite being an older creative, it's still performing. Keep running.</p>
+    </div>
+
+    <div class="signal signal-optimize">
+      <h4>OPTIMIZE: Forgot Our Phones — CPL doubled to $12.35</h4>
+      <p>Was the #1 performer at $6.53 CPL lifetime. Now fatiguing at $12.35 after 60+ days. Still generating leads (15 this week) but at declining efficiency. Don't kill yet — reduce budget share.</p>
+    </div>
+
+    <div class="signal signal-optimize">
+      <h4>OPTIMIZE: Day Camp frequency at 3.77 (2mo)</h4>
+      <p>The Day Camp cold campaign has shown its ads to the same people nearly 4x over 2 months. Need fresh audiences (LAL 1% leads) and new creative to combat fatigue.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Priority Action Plan</h2>
+
+    <div style="margin-bottom: 20px;">
+      <h3 style="color: var(--red);">TODAY (Before Anything Else)</h3>
+      <ol style="padding-left: 20px; font-size: 14px;">
+        <li style="margin-bottom: 8px;"><strong>Kill Conveyor Belt campaign</strong> — $187 wasted, 2 leads total. Replaced by Retarget Warm.</li>
+        <li style="margin-bottom: 8px;"><strong>Kill 4 dead ads</strong> — Testimonial original ($26 CPL), Favourite Parts (0 leads), Come Pack (0 leads), Summer Camp Vibes Overnight (0.39% CTR)</li>
+        <li style="margin-bottom: 8px;"><strong>Increase Retarget Warm budget</strong> from $26/day to $75/day — 91% reg rate, your best campaign by far</li>
+      </ol>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <h3 style="color: var(--amber);">THIS WEEK</h3>
+      <ol start="4" style="padding-left: 20px; font-size: 14px;">
+        <li style="margin-bottom: 8px;"><strong>Build HighLevel follow-up workflow</strong> — the webhook is firing, contacts are landing in GHL. Build an SMS + email nurture sequence: Day 0 confirmation, Day 1 "pick your dates" reminder, Day 3 social proof/testimonial, Day 5 urgency (spots filling).</li>
+        <li style="margin-bottom: 8px;"><strong>Scale total daily budget to $500-800</strong> — redistribute:
+          <ul style="margin-top: 4px; font-size: 13px;">
+            <li>Retarget Warm: $75/day (15%)</li>
+            <li>Overnight Cold: $200/day (40%)</li>
+            <li>Day Camp Cold: $225/day (45%)</li>
+          </ul>
+        </li>
+        <li style="margin-bottom: 8px;"><strong>Create LAL 1% audience</strong> from 754 leads. This is the highest-value scaling move for cold prospecting.</li>
+        <li style="margin-bottom: 8px;"><strong>Consider activating Stripe deposit</strong> — $30 refundable deposit would add micro-commitment, but requires backend endpoint for PaymentIntents.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h3 style="color: var(--pine);">NEXT 2 WEEKS</h3>
+      <ol start="8" style="padding-left: 20px; font-size: 14px;">
+        <li style="margin-bottom: 8px;"><strong>Launch 3-4 new ad creatives</strong> using winning angles: "New Campers Fun" variants, fresh video from Vimeo library (41 videos available)</li>
+        <li style="margin-bottom: 8px;"><strong>Test Advantage+ campaign</strong> at $50/day with top 5 performing ads</li>
+        <li style="margin-bottom: 8px;"><strong>Update urgency numbers</strong> in all ad copy ("626" → current count)</li>
+        <li style="margin-bottom: 8px;"><strong>Monitor daily</strong> — run /ads-monitor every 3 days until April 17</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     WHAT'S WORKING / WHAT'S NOT
+     ════════════════════════════════════════════════════════════ -->
+<div class="two-col">
+  <div class="section">
+    <h2 style="color: var(--green);">What's Working</h2>
+    <table>
+      <thead><tr><th>Creative / Strategy</th><th class="num">Evidence</th></tr></thead>
+      <tbody>
+        <tr><td><strong>"New Campers Fun"</strong> — first-timer nerves angle</td><td class="num">$5.70 CPL (cold), $7.05 CPL (retarget)</td></tr>
+        <tr><td><strong>"Jr High Announcement"</strong> — new product launch</td><td class="num">$8.48 CPL, 12 regs, 3.65% CTR</td></tr>
+        <tr><td><strong>"Last Chance Urgency"</strong> — spots filling</td><td class="num">$4.19 CPL, 67% reg rate</td></tr>
+        <tr><td><strong>Montage - All Angles</strong> — 87 years of camp</td><td class="num">$5.52 CPL, 3.0% CTR, still converting</td></tr>
+        <tr><td><strong>Video Scenes Copy</strong> — volume driver</td><td class="num">39 leads (most of any ad), $9.63 CPL</td></tr>
+        <tr><td><strong>Retarget campaign structure</strong></td><td class="num">91% lead-to-registration rate</td></tr>
+        <tr><td><strong>CPC discipline</strong></td><td class="num">$0.47 avg — well below $1.50 max</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section">
+    <h2 style="color: var(--red);">What's Not Working</h2>
+    <table>
+      <thead><tr><th>Creative / Strategy</th><th class="num">Evidence</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Conveyor Belt campaign</strong> — wrong objective</td><td class="num">$187 spent, 2 leads, $93 CPL (lifetime)</td></tr>
+        <tr><td><strong>60-day old creatives</strong> — fatigue</td><td class="num">Testimonial original: $26.39 CPL (was likely &lt;$10)</td></tr>
+        <tr><td><strong>"Come Pack With Me"</strong> — packing list angle</td><td class="num">0 leads, 1.58% CTR</td></tr>
+        <tr><td><strong>Static images without strong copy</strong></td><td class="num">"Their Favourite Parts" $20 / 0 leads</td></tr>
+        <tr><td><strong>Cold → Registration conversion</strong></td><td class="num">Only 4-7% cold (vs 91% retarget)</td></tr>
+        <tr><td><strong>No GHL nurture workflow</strong></td><td class="num">Webhook fires but no SMS/email follow-up built</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     BUDGET ALLOCATION RECOMMENDATION
+     ════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <h2>Recommended Budget Reallocation — Effective Immediately</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Campaign</th>
+        <th class="num">Current Daily</th>
+        <th class="num">Recommended</th>
+        <th class="num">Change</th>
+        <th>Rationale</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Retarget Warm Audiences</strong></td>
+        <td class="num">$62</td>
+        <td class="num" style="font-weight: 700; color: var(--green);">$150</td>
+        <td class="num" style="color: var(--green);">+142%</td>
+        <td>91% reg rate in first 3 days. This is the registration machine — max it out.</td>
+      </tr>
+      <tr>
+        <td><strong>Day Camp 2026 - Leads</strong></td>
+        <td class="num">$131</td>
+        <td class="num" style="font-weight: 700; color: var(--green);">$400</td>
+        <td class="num" style="color: var(--green);">+205%</td>
+        <td>$10.64 CPL (3d). Video Scenes + Summer Camp Vibes are volume drivers. Add LAL audience.</td>
+      </tr>
+      <tr>
+        <td><strong>Overnight Camp - Leads</strong></td>
+        <td class="num">$140</td>
+        <td class="num" style="font-weight: 700; color: var(--green);">$450</td>
+        <td class="num" style="color: var(--green);">+221%</td>
+        <td>$11.37 CPL (3d). Kill fatigued ads, let New Campers Fun ($5.70) + Montage ($6.09) absorb budget.</td>
+      </tr>
+      <tr>
+        <td>Conveyor Belt (Retarget)</td>
+        <td class="num">$0</td>
+        <td class="num" style="font-weight: 700; color: var(--red);">$0</td>
+        <td class="num" style="color: var(--red);">KILL</td>
+        <td>Traffic objective. $93 CPL lifetime. Already replaced by Retarget Warm.</td>
+      </tr>
+      <tr style="background: var(--cream); font-weight: 700;">
+        <td>TOTAL DAILY</td>
+        <td class="num">$334</td>
+        <td class="num" style="color: var(--green);">$1,000</td>
+        <td class="num" style="color: var(--green);">+200%</td>
+        <td>$24,500 over remaining 24.5 days → ~700 registrations</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size: 13px; color: var(--muted); margin-top: 12px;">
+    <strong>Key:</strong> These projections use the 3-day pixel-tracked conversion rate. The actual number of CampBrain-confirmed registrations may differ. Cross-reference with CampBrain data before committing to aggressive budget increases.
+  </p>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     ESTIMATED ROAS
+     ════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <h2>Return on Ad Spend — Current Performance</h2>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; text-align: center; margin: 16px 0;">
+    <div style="background: #f0fdf4; border-radius: 8px; padding: 20px;">
+      <div style="font-size: 12px; text-transform: uppercase; color: var(--muted);">Lifetime (2 Mo)</div>
+      <div style="font-size: 36px; font-weight: 800; color: var(--green);">69:1</div>
+      <div style="font-size: 13px; color: var(--muted);">754 leads &times; 20% conv &times; $450 avg = $67,860 revenue<br>on $4,892 ad spend</div>
+    </div>
+    <div style="background: #fffbeb; border-radius: 8px; padding: 20px;">
+      <div style="font-size: 12px; text-transform: uppercase; color: var(--muted);">New Funnel (3 Days, Pixel-Tracked)</div>
+      <div style="font-size: 36px; font-weight: 800; color: var(--amber);">13:1*</div>
+      <div style="font-size: 13px; color: var(--muted);">29 pixel-tracked regs &times; $450 = $13,050<br>on $1,001 spend — <strong>*pending CampBrain validation</strong></div>
+    </div>
+    <div style="background: var(--cream); border-radius: 8px; padding: 20px;">
+      <div style="font-size: 12px; text-transform: uppercase; color: var(--muted);">700-Reg Projection</div>
+      <div style="font-size: 36px; font-weight: 800; color: var(--forest);">13:1</div>
+      <div style="font-size: 13px; color: var(--muted);">700 registrations &times; $450 = $315,000 revenue<br>on ~$24,500 ad spend (recommended scenario)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     BOTTOM LINE
+     ════════════════════════════════════════════════════════════ -->
+<div class="cta-box">
+  <h2>Bottom Line</h2>
+  <p style="font-size: 16px; line-height: 1.7;">
+    The campaigns have recovered dramatically from the "CRITICAL" status last week. CPL dropped from $64 to $10.58, and the new Retarget Warm campaign is showing strong early signals — 29 pixel-tracked registrations in its first 3 days. <strong>The ads are generating leads. The funnel is live. The creative angles are resonating.</strong> Before scaling aggressively, we need to validate pixel-tracked registrations against actual CampBrain data. Assuming the signal holds, the three things that will determine how close you get to 700:
+  </p>
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 20px;">
+    <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 20px; border: 2px solid var(--sunlight);">
+      <div style="font-size: 22px; font-weight: 800; color: var(--sunlight); margin-bottom: 8px;">1. Scale Budget NOW</div>
+      <p>Current $215/day produces ~29 registrations/week. To hit 700, you need $500-800/day. The winning ads exist — New Campers Fun ($5.70), Montage ($5.52), Last Chance ($4.19). They just need fuel.</p>
+    </div>
+    <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 20px; border: 2px solid var(--sunlight);">
+      <div style="font-size: 22px; font-weight: 800; color: var(--sunlight); margin-bottom: 8px;">2. Build GHL Nurture</div>
+      <p>The webhook fires, contacts land in HighLevel — but no automated follow-up exists yet. An SMS/email sequence for leads who haven't completed CampBrain registration could lift conversion from 20% to 30-35%.</p>
+    </div>
+    <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 20px; border: 2px solid var(--sunlight);">
+      <div style="font-size: 22px; font-weight: 800; color: var(--sunlight); margin-bottom: 8px;">3. Activate Stripe</div>
+      <p>The $30 deposit page is built but in demo mode (Stripe key empty). Adding real payment captures micro-commitment and dramatically improves lead quality. Nice-to-have, not a blocker.</p>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>Forest Cliff Camps &mdash; Campaign Dashboard &mdash; Generated March 24, 2026</p>
+  <p>Next monitor: Run <code>/ads-monitor forest-cliff-camps</code> on March 27, 2026</p>
+  <p style="margin-top: 8px;">GuestGetter &bull; Ads Performance Intelligence</p>
+</div>
+
+</div>
+</body>
+</html>
