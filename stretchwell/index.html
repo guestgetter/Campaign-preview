@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StretchWell × Guest Getter — Growth Proposal</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+  :root {
+    --bg: #0F1117;
+    --surface: #181B24;
+    --surface-raised: #1E222E;
+    --border: #2A2F3E;
+    --border-light: #353A4C;
+    --text: #E8E9ED;
+    --text-muted: #8B8F9E;
+    --text-dim: #5C6175;
+    --accent: #4ECDC4;
+    --accent-soft: rgba(78,205,196,0.12);
+    --warm: #FF6B6B;
+    --warm-soft: rgba(255,107,107,0.08);
+    --gold: #F4D35E;
+    --gold-soft: rgba(244,211,94,0.10);
+    --green: #7BC47F;
+    --green-soft: rgba(123,196,127,0.10);
+    --purple: #A78BFA;
+    --purple-soft: rgba(167,139,250,0.10);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; min-height:100vh; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:56px 44px 72px; }
+
+  /* ---- COVER ---- */
+  .cover { text-align:center; margin-bottom:64px; padding-bottom:48px; border-bottom:1px solid var(--border); }
+  .cover-badge { display:inline-block; font-size:11px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--accent); background:var(--accent-soft); border:1px solid rgba(78,205,196,0.25); padding:6px 18px; border-radius:100px; margin-bottom:24px; }
+  .cover h1 { font-family:'DM Serif Display',serif; font-size:44px; font-weight:400; line-height:1.15; margin-bottom:12px; }
+  .cover h1 span { color:var(--accent); }
+  .cover .sub { font-size:17px; color:var(--text-muted); max-width:540px; margin:0 auto 8px; }
+  .cover .date { font-size:13px; color:var(--text-dim); margin-top:16px; }
+
+  /* ---- SECTIONS ---- */
+  .section { margin-bottom:56px; }
+  .section-label { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; margin-bottom:16px; }
+  .label-accent { color:var(--accent); }
+  .label-gold { color:var(--gold); }
+  .label-green { color:var(--green); }
+  .label-purple { color:var(--purple); }
+  .label-warm { color:var(--warm); }
+  .label-muted { color:var(--text-muted); }
+
+  h2 { font-family:'DM Serif Display',serif; font-size:28px; font-weight:400; margin-bottom:12px; line-height:1.25; }
+  h2 span { color:var(--accent); }
+  h2 .gold { color:var(--gold); }
+  h2 .green { color:var(--green); }
+  h2 .purple { color:var(--purple); }
+
+  h3 { font-family:'DM Serif Display',serif; font-size:20px; font-weight:400; margin-bottom:8px; line-height:1.3; }
+
+  .body-text { font-size:15px; color:var(--text-muted); line-height:1.7; max-width:700px; margin-bottom:20px; }
+  .body-text strong { color:var(--text); font-weight:600; }
+
+  /* ---- SITUATION CARDS ---- */
+  .situation-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; }
+  .sit-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:20px 22px; }
+  .sit-card .sit-label { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-dim); margin-bottom:8px; }
+  .sit-card .sit-value { font-family:'DM Serif Display',serif; font-size:22px; margin-bottom:4px; }
+  .sit-card .sit-note { font-size:13px; color:var(--text-muted); line-height:1.5; }
+
+  /* ---- WHAT WE BUILD ---- */
+  .build-grid { display:grid; grid-template-columns:1fr; gap:16px; }
+  .build-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:28px 28px; position:relative; overflow:hidden; }
+  .build-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+  .build-card.b1::before { background:var(--warm); }
+  .build-card.b2::before { background:var(--gold); }
+  .build-card.b3::before { background:var(--accent); }
+  .build-card.b4::before { background:var(--green); }
+
+  .build-num { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:12px; }
+  .build-card.b1 .build-num { color:var(--warm); }
+  .build-card.b2 .build-num { color:var(--gold); }
+  .build-card.b3 .build-num { color:var(--accent); }
+  .build-card.b4 .build-num { color:var(--green); }
+
+  .build-card h3 { margin-bottom:8px; }
+  .build-card .build-desc { font-size:14px; color:var(--text-muted); line-height:1.65; margin-bottom:14px; }
+
+  .build-items { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .build-item { display:flex; align-items:flex-start; gap:8px; font-size:13px; color:var(--text-muted); line-height:1.5; }
+  .build-item .bi-dot { margin-top:6px; width:5px; height:5px; border-radius:50%; flex-shrink:0; }
+  .build-card.b1 .bi-dot { background:var(--warm); }
+  .build-card.b2 .bi-dot { background:var(--gold); }
+  .build-card.b3 .bi-dot { background:var(--accent); }
+  .build-card.b4 .bi-dot { background:var(--green); }
+
+  /* ---- TIMELINE ---- */
+  .timeline { display:grid; grid-template-columns:repeat(3,1fr); gap:0; position:relative; margin-bottom:24px; }
+  .timeline::before { content:''; position:absolute; top:32px; left:8%; right:8%; height:2px; background:linear-gradient(to right,var(--gold),var(--accent),var(--green)); opacity:0.25; z-index:0; }
+
+  .tl-phase { position:relative; z-index:1; padding:0 12px; }
+  .tl-phase:first-child { padding-left:0; }
+  .tl-phase:last-child { padding-right:0; }
+
+  .tl-dot-row { display:flex; align-items:center; justify-content:center; margin-bottom:18px; gap:8px; }
+  .tl-dot { width:16px; height:16px; border-radius:50%; }
+  .tl-phase:nth-child(1) .tl-dot { background:var(--gold); }
+  .tl-phase:nth-child(2) .tl-dot { background:var(--accent); }
+  .tl-phase:nth-child(3) .tl-dot { background:var(--green); }
+  .tl-time { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; }
+  .tl-phase:nth-child(1) .tl-time { color:var(--gold); }
+  .tl-phase:nth-child(2) .tl-time { color:var(--accent); }
+  .tl-phase:nth-child(3) .tl-time { color:var(--green); }
+
+  .tl-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:20px 18px; }
+  .tl-card .tl-name { font-family:'DM Serif Display',serif; font-size:17px; margin-bottom:10px; line-height:1.3; }
+  .tl-step { display:flex; align-items:flex-start; gap:8px; margin-bottom:8px; font-size:13px; color:var(--text-muted); line-height:1.5; }
+  .tl-step:last-child { margin-bottom:0; }
+  .tl-step .ts-num { font-size:10px; font-weight:700; width:18px; height:18px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+  .tl-phase:nth-child(1) .ts-num { background:var(--gold-soft); color:var(--gold); border:1px solid rgba(244,211,94,0.25); }
+  .tl-phase:nth-child(2) .ts-num { background:var(--accent-soft); color:var(--accent); border:1px solid rgba(78,205,196,0.25); }
+  .tl-phase:nth-child(3) .ts-num { background:var(--green-soft); color:var(--green); border:1px solid rgba(123,196,127,0.25); }
+
+  /* ---- PRICING ---- */
+  .pricing-box { background:var(--surface); border:2px solid var(--accent); border-radius:20px; padding:40px 44px; position:relative; overflow:hidden; margin-bottom:20px; }
+  .pricing-box::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at top center,var(--accent-soft) 0%,transparent 60%); pointer-events:none; }
+
+  .price-row { display:flex; align-items:baseline; gap:8px; margin-bottom:4px; position:relative; z-index:1; }
+  .price-amount { font-family:'DM Serif Display',serif; font-size:56px; color:var(--accent); line-height:1; }
+  .price-period { font-size:18px; color:var(--text-muted); }
+
+  .price-context { font-size:15px; color:var(--text-muted); line-height:1.6; position:relative; z-index:1; margin-bottom:24px; max-width:600px; }
+  .price-context strong { color:var(--text); font-weight:600; }
+
+  .included-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; position:relative; z-index:1; }
+  .included-item { display:flex; align-items:flex-start; gap:8px; font-size:13px; color:var(--text-muted); line-height:1.5; }
+  .included-item .check { color:var(--accent); font-size:14px; margin-top:1px; flex-shrink:0; }
+  .included-item strong { color:var(--text); font-weight:500; }
+
+  /* ---- SAVINGS ---- */
+  .savings-bar { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:22px 28px; display:flex; align-items:center; gap:24px; margin-bottom:20px; }
+  .savings-bar .sav-icon { font-size:28px; flex-shrink:0; }
+  .savings-bar .sav-text { font-size:14px; color:var(--text-muted); line-height:1.6; }
+  .savings-bar .sav-text strong { color:var(--accent); font-weight:600; }
+
+  /* ---- TERMS ---- */
+  .terms-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .term-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:18px 16px; text-align:center; }
+  .term-card .term-icon { font-size:22px; margin-bottom:8px; }
+  .term-card .term-title { font-size:13px; font-weight:700; margin-bottom:4px; color:var(--text); }
+  .term-card .term-desc { font-size:12px; color:var(--text-muted); line-height:1.5; }
+
+  /* ---- EVOLVE ---- */
+  .evolve-timeline { display:grid; grid-template-columns:1fr; gap:0; margin-top:20px; }
+  .evolve-stage { display:grid; grid-template-columns:120px 1fr; gap:0; }
+  .evolve-label { display:flex; align-items:center; justify-content:flex-end; padding-right:20px; }
+  .evolve-label .ev-time { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
+  .evolve-content { border-left:2px solid var(--border); padding:16px 0 16px 20px; position:relative; }
+  .evolve-content::before { content:''; position:absolute; left:-6px; top:50%; transform:translateY(-50%); width:10px; height:10px; border-radius:50%; }
+  .evolve-stage:nth-child(1) .evolve-content::before { background:var(--accent); }
+  .evolve-stage:nth-child(1) .ev-time { color:var(--accent); }
+  .evolve-stage:nth-child(1) .evolve-content { border-color:rgba(78,205,196,0.3); }
+  .evolve-stage:nth-child(2) .evolve-content::before { background:var(--gold); }
+  .evolve-stage:nth-child(2) .ev-time { color:var(--gold); }
+  .evolve-stage:nth-child(2) .evolve-content { border-color:rgba(244,211,94,0.3); }
+  .evolve-stage:nth-child(3) .evolve-content::before { background:var(--green); }
+  .evolve-stage:nth-child(3) .ev-time { color:var(--green); }
+  .evolve-stage:nth-child(3) .evolve-content { border-color:rgba(123,196,127,0.3); }
+  .evolve-stage:nth-child(4) .evolve-content::before { background:var(--purple); }
+  .evolve-stage:nth-child(4) .ev-time { color:var(--purple); }
+  .evolve-stage:nth-child(4) .evolve-content { border-color:rgba(167,139,250,0.3); }
+
+  .ev-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px 18px; }
+  .ev-card .ev-title { font-size:14px; font-weight:700; margin-bottom:4px; color:var(--text); }
+  .ev-card .ev-desc { font-size:13px; color:var(--text-muted); line-height:1.55; }
+
+  /* ---- CTA ---- */
+  .cta-section { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:36px 40px; text-align:center; margin-bottom:48px; }
+  .cta-section h2 { margin-bottom:8px; }
+  .cta-section .cta-sub { font-size:15px; color:var(--text-muted); max-width:500px; margin:0 auto 20px; line-height:1.6; }
+  .cta-steps { display:flex; justify-content:center; gap:32px; }
+  .cta-step { text-align:center; }
+  .cta-step .cs-num { font-family:'DM Serif Display',serif; font-size:28px; color:var(--accent); margin-bottom:4px; }
+  .cta-step .cs-text { font-size:13px; color:var(--text-muted); }
+
+  /* ---- FOOTER ---- */
+  .footer { text-align:center; padding-top:32px; border-top:1px solid var(--border); }
+  .footer-logo { font-size:12px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-bottom:4px; }
+  .footer-sub { font-size:13px; color:var(--text-dim); }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width:800px) {
+    .page { padding:32px 20px 48px; }
+    .cover h1 { font-size:32px; }
+    .situation-grid { grid-template-columns:1fr; }
+    .build-items { grid-template-columns:1fr; }
+    .timeline { grid-template-columns:1fr; gap:20px; }
+    .timeline::before { display:none; }
+    .included-grid { grid-template-columns:1fr; }
+    .terms-grid { grid-template-columns:1fr; }
+    .savings-bar { flex-direction:column; text-align:center; }
+    .evolve-stage { grid-template-columns:90px 1fr; }
+    .cta-steps { flex-direction:column; gap:16px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-badge">Growth Proposal</div>
+    <h1>Let's Fill <span>Every Table</span></h1>
+    <p class="sub">An end-to-end system to drive new clients into all three StretchWell studios — and keep them coming back.</p>
+    <div class="date">Prepared for Chris Waugh &amp; Alicia · March 2026</div>
+  </div>
+
+  <!-- SECTION 1: WHERE WE ARE -->
+  <div class="section">
+    <div class="section-label label-muted">Where things stand</div>
+    <h2>You've built something people love.<br>Now it needs <span>a growth engine.</span></h2>
+    <p class="body-text">StretchWell has a premium product, a strong team, and a loyal core of clients. The challenge isn't the stretch — it's building a reliable, repeatable system that fills all three studios with new faces every week and turns first-timers into long-term members.</p>
+
+    <div class="situation-grid">
+      <div class="sit-card">
+        <div class="sit-label">Current Revenue</div>
+        <div class="sit-value">~$400K / location</div>
+        <div class="sit-note">Target: $700–800K within 12 months — in line with industry benchmarks you've hit before.</div>
+      </div>
+      <div class="sit-card">
+        <div class="sit-label">Lead Cost (Meta)</div>
+        <div class="sit-value">$6 – $14 CPL</div>
+        <div class="sit-note">Decent range. But leads alone don't grow revenue — the system behind them does.</div>
+      </div>
+      <div class="sit-card">
+        <div class="sit-label">Lead → First Visit</div>
+        <div class="sit-value">~30%</div>
+        <div class="sit-note">One in three leads walks in. That's solid — but it means two out of three are disappearing.</div>
+      </div>
+      <div class="sit-card">
+        <div class="sit-label">First Visit → Member</div>
+        <div class="sit-value">30 – 50%</div>
+        <div class="sit-note">Varies by studio. Systematizing this across all three locations is a big unlock.</div>
+      </div>
+    </div>
+
+    <p class="body-text">Right now your ad vendor runs Meta lead forms — and they do that well. But there's no retargeting. No video audience building. No conveyor belt moving people from "I've seen you" to "I'm booking." And the backend automations in Hapana are still being built out. <strong>The opportunity isn't to do more of the same — it's to build the system around it.</strong></p>
+  </div>
+
+  <!-- SECTION 2: WHAT WE BUILD -->
+  <div class="section">
+    <div class="section-label label-accent">What we build together</div>
+    <h2>One team. One system. <span>All three studios.</span></h2>
+    <p class="body-text">We don't just run ads. We build the full engine — from the first time someone sees you online to the moment they become a regular. Everything connected. Everything measurable.</p>
+
+    <div class="build-grid">
+
+      <div class="build-card b1">
+        <div class="build-num">Engine 1</div>
+        <h3>Get Them to Notice You</h3>
+        <div class="build-desc">We create 3–5 pieces of power content — the videos that capture what StretchWell is about — and run them as low-cost video views campaigns. This builds a warm audience of thousands of people in your neighbourhoods who've already watched your content. It's the foundation everything else sits on.</div>
+        <div class="build-items">
+          <div class="build-item"><span class="bi-dot"></span>Power content strategy &amp; production guidance</div>
+          <div class="build-item"><span class="bi-dot"></span>Video views campaigns across all 3 locations</div>
+          <div class="build-item"><span class="bi-dot"></span>Warm audience building (25%+ viewers)</div>
+          <div class="build-item"><span class="bi-dot"></span>Competitive positioning vs. StretchLab</div>
+        </div>
+      </div>
+
+      <div class="build-card b2">
+        <div class="build-num">Engine 2</div>
+        <h3>Get Them Through the Door</h3>
+        <div class="build-desc">Direct lead generation campaigns — the 40% intro offer and 2–3 other offers we test alongside it — running across Meta for all three studios. We manage the full ad account: creative, targeting, budgets, optimization. No order-taking. We think, test, and improve every week.</div>
+        <div class="build-items">
+          <div class="build-item"><span class="bi-dot"></span>Full Meta ad management — all 3 locations</div>
+          <div class="build-item"><span class="bi-dot"></span>Multiple offers tested simultaneously</div>
+          <div class="build-item"><span class="bi-dot"></span>Meta pixel installed &amp; tracking configured</div>
+          <div class="build-item"><span class="bi-dot"></span>Monthly creative refreshes to prevent fatigue</div>
+        </div>
+      </div>
+
+      <div class="build-card b3">
+        <div class="build-num">Engine 3</div>
+        <h3>The Conveyor Belt</h3>
+        <div class="build-desc">Retargeting campaigns that show up again and again for anyone who watched your content, clicked an ad, or visited your site. Four types of content — aspirational, analytical, stories, and actionable — so you're hitting different people in different ways. This is what turns "I've seen them around" into "I'm finally booking."</div>
+        <div class="build-items">
+          <div class="build-item"><span class="bi-dot"></span>Full retargeting architecture built out</div>
+          <div class="build-item"><span class="bi-dot"></span>4 content types on rotation</div>
+          <div class="build-item"><span class="bi-dot"></span>Website visitor retargeting (pixel-based)</div>
+          <div class="build-item"><span class="bi-dot"></span>Warm audience → lead gen handoff</div>
+        </div>
+      </div>
+
+      <div class="build-card b4">
+        <div class="build-num">Engine 4</div>
+        <h3>Make Them Regulars</h3>
+        <div class="build-desc">We engineer the journey from first visit to third visit — because that's where the data says people stick. Automated follow-up sequences in Hapana/GHL, behaviour-based triggers, and a clear path from "loved the intro" to "I'm a member." Built to work alongside your team's in-studio efforts, not replace them.</div>
+        <div class="build-items">
+          <div class="build-item"><span class="bi-dot"></span>Three-visit journey engineered in GHL</div>
+          <div class="build-item"><span class="bi-dot"></span>Automated follow-up sequences refined</div>
+          <div class="build-item"><span class="bi-dot"></span>Win-back campaigns for lapsed visitors</div>
+          <div class="build-item"><span class="bi-dot"></span>Monthly reporting on what's working</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 3: THE 90 DAYS -->
+  <div class="section">
+    <div class="section-label label-gold">The first 90 days</div>
+    <h2>Fast enough to see results. <span class="gold">Deliberate enough to last.</span></h2>
+
+    <div class="timeline">
+      <div class="tl-phase">
+        <div class="tl-dot-row">
+          <div class="tl-dot"></div>
+          <div class="tl-time">Weeks 1–2</div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-name">See the Full Picture</div>
+          <div class="tl-step"><div class="ts-num">1</div><div>Audit ad accounts, Hapana data, and existing content</div></div>
+          <div class="tl-step"><div class="ts-num">2</div><div>Install Meta pixel and configure tracking end-to-end</div></div>
+          <div class="tl-step"><div class="ts-num">3</div><div>Identify the top power content from your existing library</div></div>
+          <div class="tl-step"><div class="ts-num">4</div><div>Agree on the one number we're focused on this quarter</div></div>
+        </div>
+      </div>
+      <div class="tl-phase">
+        <div class="tl-dot-row">
+          <div class="tl-dot"></div>
+          <div class="tl-time">Weeks 3–6</div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-name">Build &amp; Launch</div>
+          <div class="tl-step"><div class="ts-num">1</div><div>Launch video views campaigns with power content</div></div>
+          <div class="tl-step"><div class="ts-num">2</div><div>Take over lead gen campaigns — multiple offers live</div></div>
+          <div class="tl-step"><div class="ts-num">3</div><div>Build the retargeting conveyor belt</div></div>
+          <div class="tl-step"><div class="ts-num">4</div><div>Wire up the three-visit journey in GHL</div></div>
+        </div>
+      </div>
+      <div class="tl-phase">
+        <div class="tl-dot-row">
+          <div class="tl-dot"></div>
+          <div class="tl-time">Weeks 7–12</div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-name">Optimize &amp; Expand</div>
+          <div class="tl-step"><div class="ts-num">1</div><div>Read the data — kill what's not working, double down on what is</div></div>
+          <div class="tl-step"><div class="ts-num">2</div><div>Roll winning campaigns across all three studios</div></div>
+          <div class="tl-step"><div class="ts-num">3</div><div>Refine the conveyor belt based on real performance</div></div>
+          <div class="tl-step"><div class="ts-num">4</div><div>90-day review: what worked, what's next, where to invest</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: PRICING -->
+  <div class="section">
+    <div class="section-label label-accent">The investment</div>
+    <h2>Built to be an <span>easy yes.</span></h2>
+
+    <div class="pricing-box">
+      <div class="section-label label-accent" style="position:relative;z-index:1;">Monthly — all three locations</div>
+      <div class="price-row">
+        <div class="price-amount">$1,500</div>
+        <div class="price-period">/ month</div>
+      </div>
+      <p class="price-context">That's <strong>$500 per studio per month</strong> for end-to-end growth management — strategy, ad creation, ad management, retargeting, backend automation, and monthly reporting. No setup fees. We absorb the buildout because we want to earn this.</p>
+
+      <div class="included-grid">
+        <div class="included-item"><span class="check">✓</span><span><strong>Full Meta ad management</strong> — all 3 locations</span></div>
+        <div class="included-item"><span class="check">✓</span><span><strong>Power content strategy</strong> &amp; creative direction</span></div>
+        <div class="included-item"><span class="check">✓</span><span><strong>Video views audience building</strong> campaigns</span></div>
+        <div class="included-item"><span class="check">✓</span><span><strong>Retargeting conveyor belt</strong> — built &amp; managed</span></div>
+        <div class="included-item"><span class="check">✓</span><span><strong>Meta pixel</strong> installed &amp; configured</span></div>
+        <div class="included-item"><span class="check">✓</span><span><strong>GHL/Hapana automations</strong> — three-visit journey</span></div>
+        <div class="included-item"><span class="check">✓</span><span><strong>Monthly performance reporting</strong> &amp; strategy calls</span></div>
+        <div class="included-item"><span class="check">✓</span><span><strong>Ongoing optimization</strong> — weekly adjustments</span></div>
+      </div>
+    </div>
+
+    <div class="savings-bar">
+      <div class="sav-icon">💡</div>
+      <div class="sav-text">Your current vendor charges a management fee on top of ad spend for running lead forms only. By consolidating to one team that handles everything — lead gen, retargeting, content strategy, backend automation — <strong>your total marketing spend stays flat or goes down while the scope of what you're getting goes way up.</strong></div>
+    </div>
+
+    <p class="body-text"><strong>Ad spend is separate and managed by us.</strong> We recommend maintaining your current $2,400/month budget. We'll allocate it across video views, lead gen, and retargeting based on what the data tells us each week. You'll see exactly where every dollar goes.</p>
+  </div>
+
+  <!-- SECTION 5: TERMS -->
+  <div class="section">
+    <div class="section-label label-muted">Simple terms</div>
+    <div class="terms-grid">
+      <div class="term-card">
+        <div class="term-icon">📅</div>
+        <div class="term-title">Month-to-Month</div>
+        <div class="term-desc">No long-term contract. 30 days written notice to cancel. We earn your business every month.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-icon">💳</div>
+        <div class="term-title">Auto-Charge</div>
+        <div class="term-desc">Payment via credit card, auto-billed monthly. Simple and predictable for both sides.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-icon">🤝</div>
+        <div class="term-title">90-Day Checkpoint</div>
+        <div class="term-desc">Full review at day 90. We look at what's working, what isn't, and decide together what's next.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: HOW THIS EVOLVES -->
+  <div class="section">
+    <div class="section-label label-purple">Looking ahead</div>
+    <h2>This is the beginning — <span class="purple">not the ceiling.</span></h2>
+    <p class="body-text">The first 90 days build the foundation. Once the engine is running and we have real data, there are natural places this partnership grows — always driven by what the numbers tell us, not a pre-set upsell path.</p>
+
+    <div class="evolve-timeline">
+      <div class="evolve-stage">
+        <div class="evolve-label"><div class="ev-time">Months 1–3</div></div>
+        <div class="evolve-content">
+          <div class="ev-card">
+            <div class="ev-title">Build the Engine</div>
+            <div class="ev-desc">Everything described in this proposal. Get the full system live, generating leads, building warm audiences, retargeting, and engineering repeat visits across all three studios.</div>
+          </div>
+        </div>
+      </div>
+      <div class="evolve-stage">
+        <div class="evolve-label"><div class="ev-time">Months 4–6</div></div>
+        <div class="evolve-content">
+          <div class="ev-card">
+            <div class="ev-title">Scale What Works</div>
+            <div class="ev-desc">By now we know which offers, content, and campaigns perform best. We increase spend behind the winners, cut the losers, and start building a referral engine on top of the paid system. Google Ads becomes a real option here — with data to back it.</div>
+          </div>
+        </div>
+      </div>
+      <div class="evolve-stage">
+        <div class="evolve-label"><div class="ev-time">Months 7–9</div></div>
+        <div class="evolve-content">
+          <div class="ev-card">
+            <div class="ev-title">Deepen the Intelligence</div>
+            <div class="ev-desc">Introduce smarter segmentation and AI-assisted tools — identifying at-risk members before they cancel, automating personalized reactivation, and surfacing the insights your studio managers need without them having to dig through reports.</div>
+          </div>
+        </div>
+      </div>
+      <div class="evolve-stage">
+        <div class="evolve-label"><div class="ev-time">Month 10+</div></div>
+        <div class="evolve-content">
+          <div class="ev-card">
+            <div class="ev-title">The Expansion Playbook</div>
+            <div class="ev-desc">When you're ready for studio #4 — or studios #5 and #6 — the system is already built. We hand the new location a tested, proven growth engine from day one. No more starting from scratch.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>Ready to <span>get moving?</span></h2>
+    <p class="cta-sub">We're looking forward to Friday's call with you and Alicia. If this feels right, we can be live within two weeks.</p>
+    <div class="cta-steps">
+      <div class="cta-step">
+        <div class="cs-num">1</div>
+        <div class="cs-text">Friday call — align<br>on the plan</div>
+      </div>
+      <div class="cta-step">
+        <div class="cs-num">2</div>
+        <div class="cs-text">Green light — we<br>start the audit</div>
+      </div>
+      <div class="cta-step">
+        <div class="cs-num">3</div>
+        <div class="cs-text">Campaigns live<br>within 2 weeks</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-logo">Guest Getter × StretchWell</div>
+    <div class="footer-sub">Prepared March 2026 · Kyle Guilfoyle &amp; Gabriel Malbogat</div>
+  </div>
+
+</div>
+</body>
+</html>
