@@ -455,6 +455,56 @@
       border-top: 1px solid var(--border);
       margin-top: 1rem;
     }
+
+    .badge.certain { background: var(--sky-soft); color: #1e4976; }
+    .callout-amber {
+      background: linear-gradient(135deg, rgba(232, 184, 74, 0.15), rgba(232, 184, 74, 0.05));
+      border: 1px solid rgba(180, 83, 9, 0.35);
+      border-radius: 12px;
+      padding: 1rem 1.15rem;
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-top: 1rem;
+    }
+    .callout-amber strong { color: #92400e; }
+    .fine-print {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--border);
+    }
+    .notable {
+      background: var(--ember-soft);
+      border: 1px solid rgba(194, 74, 26, 0.22);
+      border-radius: 12px;
+      padding: 1.1rem 1.2rem;
+      margin-top: 1.15rem;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .notable strong { color: var(--ember); }
+    ul.prose, ol.prose { margin: 0.5rem 0 0 1.15rem; color: var(--muted); font-size: 0.9rem; line-height: 1.65; }
+    ul.prose li, ol.prose li { margin-bottom: 0.4rem; }
+    .strategy-num {
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: var(--sunlight);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .strategy-head {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--forest);
+      margin-bottom: 0.5rem;
+    }
+    .roas-strip.four { grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 900px) { .roas-strip.four { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .roas-strip.four { grid-template-columns: 1fr; } }
+    table.data td small { color: var(--muted-light); font-weight: 400; }
   </style>
 </head>
 <body>
@@ -476,24 +526,24 @@
 
   <div class="stat-deck">
     <div class="stat-card">
-      <div class="label">Direct match</div>
-      <div class="value">36</div>
-      <div class="hint">Households GHL → CampBrain</div>
-    </div>
-    <div class="stat-card accent-sage">
-      <div class="label">Ad-influenced (est.)</div>
-      <div class="value">~284</div>
-      <div class="hint">From GA4 + session model</div>
+      <div class="label">Provable match</div>
+      <div class="value">92</div>
+      <div class="hint">Households · Meta lead → CampBrain</div>
     </div>
     <div class="stat-card accent-sun">
-      <div class="label">Revenue (est.)</div>
-      <div class="value">~$128k</div>
-      <div class="hint">@ $450 / household</div>
+      <div class="label">Provable revenue</div>
+      <div class="value">$41.4k</div>
+      <div class="hint">92 × $450 avg.</div>
     </div>
     <div class="stat-card accent-ember">
-      <div class="label">ROAS range</div>
-      <div class="value">2.9× – ~23×</div>
-      <div class="hint">Direct floor vs. full influence</div>
+      <div class="label">Ad spend</div>
+      <div class="value">$7,114</div>
+      <div class="hint">Jan 20 – Mar 30, 2026</div>
+    </div>
+    <div class="stat-card accent-sage">
+      <div class="label">Provable ROAS</div>
+      <div class="value">5.8×</div>
+      <div class="hint">~$77 cost per registration</div>
     </div>
   </div>
 
@@ -501,8 +551,8 @@
 
     <section class="bottom-line">
       <h2>The bottom line</h2>
-      <p><strong>36 households</strong> can be directly traced: Meta lead form → GHL → CampBrain registration. That is the hard, match-based floor.</p>
-      <p class="highlight">GA4 shows ads influenced roughly <strong>284 households</strong> through paid clicks plus organic and direct lift — about <strong>$128,000</strong> in estimated revenue. The true story sits between the provable 36 and that fuller picture.</p>
+      <p><strong>92 households</strong> can be traced from a Meta lead form to a CampBrain registration — matched by email, phone, and surname. That is <strong>$41,400</strong> in provable ad-driven revenue on <strong>$7,114</strong> in ad spend = <strong>5.8× ROAS</strong> on direct attribution alone.</p>
+      <p class="highlight">GA4 shows an additional layer of influence: <strong>direct traffic to fccamps.ca rose 34%</strong> after ads launched, which suggests many families saw ads and registered <em>without</em> ever filling out a lead form. True ROAS is higher than 5.8× — the 92 matches are the floor.</p>
     </section>
 
     <!-- Layer 1 -->
@@ -510,77 +560,107 @@
       <div class="layer-head">
         <span class="layer-num">Layer 1</span>
         <h2>Direct attribution</h2>
-        <p class="layer-sub">Email + phone match: HighLevel → CampBrain</p>
+        <p class="layer-sub">GHL → CampBrain · email, phone, and surname matching</p>
       </div>
 
       <div class="panel">
-        <h3>Source breakdown</h3>
+        <p style="color:var(--muted);font-size:0.95rem;margin-bottom:1rem;line-height:1.65;"><strong>790 contacts</strong> entered HighLevel via Meta lead forms since Jan 20. <strong>92 households</strong> appear in CampBrain’s 2026 registration list.</p>
+        <h3>Match method</h3>
         <div class="table-scroll">
           <table class="data">
             <thead>
               <tr>
-                <th>Source</th>
-                <th class="num">GHL leads</th>
-                <th class="num">CampBrain matches</th>
-                <th class="num">Conv. rate</th>
+                <th>Match method</th>
+                <th class="num">Households</th>
+                <th>Confidence</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>Facebook Ads</td><td class="num">706</td><td class="num">34</td><td class="num">4.8%</td></tr>
-              <tr><td>Vercel landing / Direct</td><td class="num">84</td><td class="num">2</td><td class="num">2.4%</td></tr>
-              <tr class="mark"><td>Total</td><td class="num">790</td><td class="num">36</td><td class="num">4.6%</td></tr>
+              <tr><td>Email match</td><td class="num">28</td><td><span class="badge certain">Certain</span></td></tr>
+              <tr><td>Phone match</td><td class="num">7</td><td><span class="badge certain">Certain</span></td></tr>
+              <tr><td>Surname match (unique / constrained in CampBrain)</td><td class="num">57</td><td><span class="badge high">High (~95%)</span></td></tr>
+              <tr class="mark"><td><strong>Total</strong></td><td class="num"><strong>92</strong></td><td></td></tr>
             </tbody>
           </table>
         </div>
-        <p class="callout-key"><strong>Direct revenue:</strong> 36 × $450 = <strong>$16,200</strong></p>
+        <p class="callout-key"><strong>Revenue:</strong> 92 × $450 avg. = <strong>$41,400</strong></p>
+        <p class="fine-print"><strong>Surname methodology:</strong> Matched only when the GHL contact’s last name appears in <strong>3 or fewer</strong> CampBrain households. For surnames on 2–3 households, first name was also required. Of CampBrain surnames, <strong>1,588 of 1,834</strong> are unique to one household — false-positive risk is very low for names like Vanderveen, Kustermans, Woodhouse, Bourdeau.</p>
       </div>
 
       <div class="panel">
-        <h3>By campaign (direct matches only)</h3>
+        <h3>By source</h3>
+        <div class="table-scroll">
+          <table class="data">
+            <thead>
+              <tr><th>Source</th><th class="num">Households</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Facebook Ads</td><td class="num">89</td></tr>
+              <tr><td>Other (direct, Vercel landing)</td><td class="num">3</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>By campaign (matched registrations)</h3>
         <div class="bar-list">
           <div class="bar-item">
-            <span class="name">Summer Leads (original)</span><span class="count">11</span>
+            <span class="name">Overnight Camp — Leads</span><span class="count">42</span>
             <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
           </div>
           <div class="bar-item">
-            <span class="name">Overnight Camp — Leads</span><span class="count">10</span>
-            <div class="bar-track"><div class="bar-fill" style="width:90.9%"></div></div>
+            <span class="name">Summer Leads (original)</span><span class="count">23</span>
+            <div class="bar-track"><div class="bar-fill" style="width:54.76%"></div></div>
           </div>
           <div class="bar-item">
-            <span class="name">Unattributed Facebook</span><span class="count">10</span>
-            <div class="bar-track"><div class="bar-fill" style="width:90.9%"></div></div>
+            <span class="name">Unattributed Facebook</span><span class="count">17</span>
+            <div class="bar-track"><div class="bar-fill" style="width:40.48%"></div></div>
           </div>
           <div class="bar-item">
-            <span class="name">Day Camp 2026 — Leads</span><span class="count">3</span>
-            <div class="bar-track"><div class="bar-fill" style="width:27.3%"></div></div>
+            <span class="name">Day Camp 2026 — Leads</span><span class="count">7</span>
+            <div class="bar-track"><div class="bar-fill" style="width:16.67%"></div></div>
           </div>
         </div>
       </div>
 
       <div class="panel">
-        <h3>By ad creative (direct matches only)</h3>
+        <h3>By ad creative (matched registrations)</h3>
         <div class="bar-list">
           <div class="bar-item ads">
-            <span class="name">Testimonial — Trust — All Angles</span><span class="count">14</span>
+            <span class="name">Testimonial — Trust — All Angles</span><span class="count">27</span>
             <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
           </div>
           <div class="bar-item ads">
-            <span class="name">Video — Scenes (via source tag)</span><span class="count">8</span>
-            <div class="bar-track"><div class="bar-fill" style="width:57.1%"></div></div>
+            <span class="name">And Suddenly Forgot Our Phones</span><span class="count">27</span>
+            <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
           </div>
           <div class="bar-item ads">
-            <span class="name">And Suddenly Forgot Our Phones</span><span class="count">5</span>
-            <div class="bar-track"><div class="bar-fill" style="width:35.7%"></div></div>
+            <span class="name">Unattributed</span><span class="count">17</span>
+            <div class="bar-track"><div class="bar-fill" style="width:62.96%"></div></div>
           </div>
           <div class="bar-item ads">
-            <span class="name">FC Lead — New Campers Fun (both)</span><span class="count">2</span>
-            <div class="bar-track"><div class="bar-fill" style="width:14.3%"></div></div>
+            <span class="name">FC Lead — New Campers Fun (Overnight)</span><span class="count">8</span>
+            <div class="bar-track"><div class="bar-fill" style="width:29.63%"></div></div>
           </div>
           <div class="bar-item ads">
-            <span class="name">Other</span><span class="count">7</span>
-            <div class="bar-track"><div class="bar-fill" style="width:50%"></div></div>
+            <span class="name">Video — Scenes Copy</span><span class="count">4</span>
+            <div class="bar-track"><div class="bar-fill" style="width:14.81%"></div></div>
+          </div>
+          <div class="bar-item ads">
+            <span class="name">Testimonial — Trust — All Angles (copy variant)</span><span class="count">2</span>
+            <div class="bar-track"><div class="bar-fill" style="width:7.41%"></div></div>
+          </div>
+          <div class="bar-item ads">
+            <span class="name">FC Lead — New Campers Fun (Day Camp)</span><span class="count">1</span>
+            <div class="bar-track"><div class="bar-fill" style="width:3.7%"></div></div>
+          </div>
+          <div class="bar-item ads">
+            <span class="name">Other (Summer Camp Vibes, Image — Confidence)</span><span class="count">3</span>
+            <div class="bar-track"><div class="bar-fill" style="width:11.11%"></div></div>
           </div>
         </div>
+        <div class="notable"><strong>Notable:</strong> The original ads (Testimonial Trust + Forgot Our Phones) drove <strong>54 of 75</strong> attributed registrations where creative is known (72%). They ran 60+ days with the longest conversion windows. Newer FC Lead ads (~8 days old) show <strong>9</strong> registrations so far — they need more time through the CampBrain funnel.</div>
       </div>
     </section>
 
@@ -702,7 +782,8 @@
           </div>
         </div>
 
-        <p class="callout-key"><strong>Key finding:</strong> Direct traffic rose <strong>34%</strong> after ads (398 → 535 / week). That pattern fits brand lift — people who saw Meta creative and later typed fccamps.ca or searched “Forest Cliff Camps” without clicking the ad.</p>
+        <p class="callout-key"><strong>Key finding:</strong> Direct traffic rose <strong>34%</strong> after ads (398 → 535 / week). That suggests people saw Meta ads and then visited fccamps.ca directly rather than clicking through.</p>
+        <div class="callout-amber"><strong>Caveat:</strong> The pre-ads baseline is only 3 weeks and includes early January (naturally lower traffic). Part of the increase may be <strong>seasonal registration ramp-up</strong>, not only ads. Year-over-year comparison (2025 vs. 2026) would help separate those factors.</div>
       </div>
     </section>
 
@@ -710,12 +791,30 @@
     <section class="layer" id="layer-3">
       <div class="layer-head">
         <span class="layer-num">Layer 3</span>
-        <h2>Total ad-influenced traffic</h2>
-        <p class="layer-sub">How the ~3,495 influenced sessions roll up</p>
+        <h2>Estimated total ad influence (sessions)</h2>
+        <p class="layer-sub">GA4-derived session picture — not a registration forecast</p>
       </div>
 
       <div class="panel">
-        <div class="funnel">
+        <div class="table-scroll">
+          <table class="data">
+            <thead>
+              <tr>
+                <th>Channel</th>
+                <th class="num">Sessions</th>
+                <th>How</th>
+                <th>Confidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Meta paid clicks</td><td class="num">1,228</td><td>Clicked ad → website</td><td><span class="badge certain">Certain</span></td></tr>
+              <tr><td>Facebook / IG referral</td><td class="num">~828</td><td>Clicked organic FB/IG post</td><td><span class="badge certain">Certain</span></td></tr>
+              <tr><td>Direct traffic uplift</td><td class="num">~1,439</td><td>+137 sessions/wk vs. baseline × 10.5 wk</td><td><span class="badge med">Estimated</span></td></tr>
+              <tr class="mark"><td><strong>Total ad-influenced</strong></td><td class="num"><strong>~3,495</strong></td><td></td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="funnel" style="margin-top:1.25rem;">
           <div class="funnel-step s1">
             <div class="f-title">Meta paid clicks</div>
             <div class="f-big">1,228</div>
@@ -724,41 +823,43 @@
           <div class="funnel-step s2">
             <div class="f-title">Facebook / IG referral</div>
             <div class="f-big">~828</div>
-            <div class="f-detail">Organic post clicks (often primed by ads)</div>
+            <div class="f-detail">Organic post clicks (GA4)</div>
           </div>
           <div class="funnel-step s3">
-            <div class="f-title">Direct traffic uplift</div>
+            <div class="f-title">Direct uplift</div>
             <div class="f-big">~1,439</div>
-            <div class="f-detail">+137 sessions/wk vs. pre-ad baseline × 10.5 weeks</div>
+            <div class="f-detail">May include seasonal effects</div>
           </div>
           <div class="funnel-step s4">
-            <div class="f-title">Total ad-influenced sessions</div>
+            <div class="f-title">Combined (sessions only)</div>
             <div class="f-big">~3,495</div>
-            <div class="f-detail">At 8.1% session → registration → <strong>~284 households</strong> · <strong>~$128,000</strong> revenue (est.)</div>
+            <div class="f-detail">Do <strong>not</strong> multiply by a blended session→registration rate for client-facing regs — many sessions are repeat visits. Use the <strong>92 household</strong> direct match as the defensible registration number.</div>
           </div>
         </div>
+        <p class="callout-amber" style="margin-top:1rem;"><strong>On the old ~284 household estimate:</strong> That used an 8.1% rate (households ÷ total sessions). That ratio is <strong>not reliable</strong> for reporting. <strong>Do not use it client-facing.</strong> The <strong>92</strong> matched households are the defensible figure.</p>
       </div>
     </section>
 
-    <!-- Layer 4 -->
+    <!-- Unmeasured -->
     <section class="layer" id="layer-4">
       <div class="layer-head">
         <span class="layer-num">Layer 4</span>
-        <h2>What we cannot measure (but know exists)</h2>
+        <h2>What we can’t measure (but know exists)</h2>
       </div>
       <div class="panel">
         <ul class="checks">
           <li><strong>Phone calls</strong> — Parents who saw an ad and called the camp directly.</li>
-          <li><strong>Word of mouth</strong> — “I saw this ad about Forest Cliff…”</li>
-          <li><strong>Spouse forwarding</strong> — One parent sees the ad; the other registers with a different email.</li>
-          <li><strong>Multi-touch</strong> — Saw the ad in January; registered in March after many touchpoints.</li>
-          <li><strong>Church / community amplification</strong> — Referrals often flow through churches; ad awareness can accelerate that network.</li>
+          <li><strong>Word of mouth</strong> — “Have you heard about Forest Cliff? I saw this ad…”</li>
+          <li><strong>Spouse / different device</strong> — One parent sees the ad; partner registers with no matching digital trail or UTMs.</li>
+          <li><strong>Multi-touch over weeks</strong> — Saw the ad in January, registered in March.</li>
+          <li><strong>Church / community amplification</strong> — Referrers include westparkchurch.ca, calvaryburlington.ca, cbcilderton.ca; ad awareness likely accelerated network referrals.</li>
         </ul>
+        <p class="callout-key" style="margin-top:1.15rem;"><strong>The math:</strong> <strong>1,770</strong> households registered. <strong>790</strong> ever touched a GHL lead form. So <strong>980 households (55%)</strong> registered with <em>no</em> lead form at all — other paths, many plausibly influenced by feed ads.</p>
       </div>
     </section>
 
-    <!-- Sources & methodology -->
-    <section class="layer">
+    <!-- Appendix: sources & methodology -->
+    <section class="layer" id="appendix">
       <div class="layer-head">
         <span class="layer-num">Appendix</span>
         <h2>Data sources &amp; methodology</h2>
@@ -766,28 +867,245 @@
       <div class="panel">
         <h3>Sources</h3>
         <ol class="sources">
-          <li><strong>CampBrain CSV</strong> — 1,770 households, 3,030 parent emails, 2,932 phones (2026 registrations).</li>
-          <li><strong>HighLevel CRM</strong> — 790 contacts (706 from Facebook ads, 84 from other).</li>
-          <li><strong>GA4</strong> (property 477599729) — Traffic by source/medium, weekly.</li>
+          <li><strong>CampBrain CSV</strong> — 1,770 households, 3,030 parent emails, 2,932 phones (2026 registrations only).</li>
+          <li><strong>HighLevel CRM</strong> — 790 contacts via API (706 Facebook ads, 84 other).</li>
+          <li><strong>GA4</strong> (property 477599729) — Traffic by source/medium; weekly via Data API.</li>
           <li><strong>Meta Ads API</strong> — Campaign spend and performance.</li>
         </ol>
       </div>
       <div class="panel">
-        <h3>Methodology notes</h3>
+        <h3>Matching methodology (GHL ↔ CampBrain)</h3>
+        <ol class="prose">
+          <li><strong>Email</strong> — Exact match (case-insensitive). <strong>28</strong> matches.</li>
+          <li><strong>Phone</strong> — Last 10 digits match. <strong>7</strong> additional.</li>
+          <li><strong>Surname</strong> — GHL last name matches a CampBrain household; restricted to surnames in ≤3 households; for 2–3 households, first name must match too. <strong>57</strong> additional. False-positive rate estimated &lt;5% (1,588 of 1,834 surnames are single-household).</li>
+        </ol>
+      </div>
+      <div class="panel">
+        <h3>Not in this report</h3>
         <ul class="checks">
-          <li><strong>Direct attribution:</strong> Email + phone match between GHL and CampBrain parents.</li>
-          <li><strong>Traffic influence:</strong> Pre-ad baseline (Jan 1 – 18) vs. ad-period weekly averages.</li>
-          <li><strong>Session → registration:</strong> Blended 8.1% across sources; new visitors likely convert higher.</li>
-          <li><strong>Value:</strong> $450 average registration (conservative; overnight camps often $500–729).</li>
+          <li>Year-over-year comparison (needs 2025 CampBrain data).</li>
+          <li>Registration date correlation (export lacks registration dates).</li>
+          <li>Google Search Console branded volume (would strengthen brand-lift proof).</li>
+          <li>Call tracking (not in place).</li>
         </ul>
       </div>
     </section>
 
-    <!-- Executive summary table -->
+    <!-- Unit economics -->
+    <section class="layer" id="unit-economics">
+      <div class="layer-head">
+        <span class="layer-num">Economics</span>
+        <h2>Unit economics — cost per registration</h2>
+      </div>
+      <div class="panel">
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Metric</th><th class="num">Value</th></tr></thead>
+            <tbody>
+              <tr class="mark"><td><strong>Total ad spend (Jan 20 – Mar 30)</strong></td><td class="num"><strong>$7,114</strong></td></tr>
+              <tr><td>Jan 20–31 (~$90/day × 11 days)</td><td class="num">~$1,000</td></tr>
+              <tr><td>February</td><td class="num">$1,819</td></tr>
+              <tr><td>March</td><td class="num">$4,295</td></tr>
+              <tr><td><strong>Provable registrations</strong></td><td class="num"><strong>92</strong> households</td></tr>
+              <tr><td><strong>Cost per registration</strong></td><td class="num"><strong>$77.33</strong></td></tr>
+              <tr><td><strong>Revenue per registration</strong></td><td class="num">$450 avg.</td></tr>
+              <tr><td><strong>Profit per registration (after ad cost)</strong></td><td class="num">$373</td></tr>
+              <tr class="mark"><td><strong>ROAS (provable)</strong></td><td class="num"><strong>5.8×</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="fine-print">Every <strong>$77</strong> in ad spend returns about <strong>$450</strong> in registration revenue — <strong>$373</strong> profit per registration after ad cost (at current match count).</p>
+      </div>
+      <div class="panel">
+        <h3>What it costs to hit a target</h3>
+        <p class="chart-note">Assumes ~$77/registration holds. Follow-up on existing leads costs $0 extra ad spend; scale may raise CPR via saturation.</p>
+        <div class="table-scroll">
+          <table class="data">
+            <thead>
+              <tr><th>Registration goal</th><th class="num">Ad spend</th><th class="num">Revenue</th><th class="num">Profit</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>100 additional</td><td class="num">$7,733</td><td class="num">$45,000</td><td class="num">$37,267</td></tr>
+              <tr><td>200 additional</td><td class="num">$15,466</td><td class="num">$90,000</td><td class="num">$74,534</td></tr>
+              <tr><td>300 additional</td><td class="num">$23,199</td><td class="num">$135,000</td><td class="num">$111,801</td></tr>
+              <tr><td>500 additional</td><td class="num">$38,665</td><td class="num">$225,000</td><td class="num">$186,335</td></tr>
+              <tr><td>700 additional</td><td class="num">$54,131</td><td class="num">$315,000</td><td class="num">$260,869</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="fine-print"><strong>Current run rate:</strong> March ~$4,295 → ~56 registrations/month. At that pace, ~700 additional regs ≈ 12.5 months unless spend or conversion efficiency improves.</p>
+      </div>
+    </section>
+
+    <!-- 650 leads -->
+    <section class="layer" id="follow-up">
+      <div class="layer-head">
+        <span class="layer-num">Opportunity</span>
+        <h2>The 650-lead follow-up</h2>
+        <p class="layer-sub">Meta lead forms submitted · not yet in CampBrain</p>
+      </div>
+      <div class="panel">
+        <p style="color:var(--muted);margin-bottom:1rem;line-height:1.65;"><strong>650 people</strong> filled out a Meta lead form but have <strong>not</strong> registered in CampBrain. Warm contacts in HighLevel — converting them costs <strong>$0</strong> in additional ad spend.</p>
+        <h3>Lead age</h3>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Age</th><th class="num">Count</th><th>Urgency</th></tr></thead>
+            <tbody>
+              <tr><td>0–7 days</td><td class="num">124</td><td>Hot — follow up immediately</td></tr>
+              <tr><td>8–14 days</td><td class="num">89</td><td>Warm — still deciding</td></tr>
+              <tr><td>15–30 days</td><td class="num">223</td><td>Cooling — needs a nudge</td></tr>
+              <tr><td>31–60 days</td><td class="num">202</td><td>Cold — strong reason to act now</td></tr>
+              <tr><td>60+ days</td><td class="num">12</td><td>Long shot — still worth trying</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Contact coverage</h3>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Attribute</th><th class="num">Count</th></tr></thead>
+            <tbody>
+              <tr><td>Has email</td><td class="num">631</td></tr>
+              <tr><td>Has phone</td><td class="num">628</td></tr>
+              <tr><td>Has email <em>and</em> phone</td><td class="num">628</td></tr>
+              <tr><td>Has interest tags</td><td class="num">289</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Interest signals (tags)</h3>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Tag</th><th class="num">Count</th><th>Note</th></tr></thead>
+            <tbody>
+              <tr><td>day-camp-interest-2026</td><td class="num">251</td><td>Day Camp interest</td></tr>
+              <tr><td>overnight-camp-interest</td><td class="num">49</td><td>Overnight interest</td></tr>
+              <tr><td>Grade 4–6</td><td class="num">60</td><td>Personalize by program</td></tr>
+              <tr><td>Grade 1–3</td><td class="num">43</td><td>Younger — Day Camp likely</td></tr>
+              <tr><td>Grade 7–9</td><td class="num">35</td><td>Jr. High week — limited spots</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Unconverted by campaign</h3>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Campaign</th><th class="num">Unconverted leads</th></tr></thead>
+            <tbody>
+              <tr><td>Overnight Camp — Leads</td><td class="num">242</td></tr>
+              <tr><td>Unattributed Facebook</td><td class="num">189</td></tr>
+              <tr><td>Summer Leads (original)</td><td class="num">111</td></tr>
+              <tr><td>Day Camp 2026 — Leads</td><td class="num">106</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Acceleration -->
+    <section class="layer" id="acceleration">
+      <div class="layer-head">
+        <span class="layer-num">Playbook</span>
+        <h2>Acceleration — convert more, faster</h2>
+      </div>
+
+      <div class="panel">
+        <div class="strategy-num">1</div>
+        <div class="strategy-head">Immediate lead follow-up sequence ($0 ad spend)</div>
+        <p style="color:var(--muted);font-size:0.9rem;margin-bottom:0.75rem;">Largest lever: 650 leads with email + phone. Expected <strong>10–20%</strong> hot, <strong>5–10%</strong> warm, <strong>2–5%</strong> cold → <strong>65–130</strong> extra registrations (~<strong>$29k–$59k</strong> revenue) at $0 incremental media.</p>
+        <p style="font-size:0.85rem;font-weight:700;color:var(--pine);margin:0.5rem 0 0.25rem;">Week 1 — Hot (0–14 days, 213 leads)</p>
+        <ul class="prose">
+          <li><strong>Day 0:</strong> SMS + Parent Handbook link.</li>
+          <li><strong>Day 1:</strong> Email — handbook PDF, dates, pricing.</li>
+          <li><strong>Day 3:</strong> SMS — Day vs. Overnight?</li>
+          <li><strong>Day 5:</strong> Email — social proof / reviews / gallery.</li>
+          <li><strong>Day 7:</strong> SMS — session filling / urgency.</li>
+        </ul>
+        <p style="font-size:0.85rem;font-weight:700;color:var(--pine);margin:0.75rem 0 0.25rem;">Weeks 2–3 — Warm (15–30 days, 223)</p>
+        <ul class="prose">
+          <li>Reactivation email (objections: safety, homesickness, what’s included).</li>
+          <li>SMS with session pick using grade tags.</li>
+          <li>Final email — holding a spot / deadline.</li>
+        </ul>
+        <p style="font-size:0.85rem;font-weight:700;color:var(--pine);margin:0.75rem 0 0.25rem;">Week 4+ — Cold (31–60 days, 202)</p>
+        <ul class="prose">
+          <li>One reactivation: sessions filling.</li>
+          <li>If click but no reg → retarget ads.</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <div class="strategy-num">2</div>
+        <div class="strategy-head">Scale retarget ($100–150/day)</div>
+        <p style="color:var(--muted);font-size:0.9rem;">Retarget is efficient (~$13.31/reg, ~73% lead-to-reg). Now ~$72/day. Test $100/day, then $150 if frequency stays &lt;3.5. At $100/day ~7.5 regs/day from retarget; ~$3k/mo → ~225 regs/mo projection. Watch frequency (2.47 now).</p>
+      </div>
+
+      <div class="panel">
+        <div class="strategy-num">3</div>
+        <div class="strategy-head">Lookalike from converters</div>
+        <p style="color:var(--muted);font-size:0.9rem;">Upload <strong>92</strong> matched emails as Custom Audience; build <strong>1% LAL</strong>. Test in cold at $25–50/day. Seed is registration-qualified, not just lead-qualified — often <strong>20–40% lower CPL</strong>. (Recommended repeatedly since Mar 20.)</p>
+      </div>
+
+      <div class="panel">
+        <div class="strategy-num">4</div>
+        <div class="strategy-head">Retarget site visitors (no lead form)</div>
+        <p style="color:var(--muted);font-size:0.9rem;">~1,228 paid sessions hit the site. Activate <strong>Website Visitors 30d</strong>; add <strong>visited registration, didn’t complete</strong>. Messaging: urgency + social proof.</p>
+      </div>
+
+      <div class="panel">
+        <div class="strategy-num">5</div>
+        <div class="strategy-head">CampBrain email list in Meta</div>
+        <ul class="prose">
+          <li><strong>Exclude</strong> registered families from prospecting.</li>
+          <li><strong>1% LAL</strong> from 3,030 parent emails — paying customers.</li>
+          <li><strong>Referral email</strong> to registered families.</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <div class="strategy-num">6</div>
+        <div class="strategy-head">Phone outreach (high-intent)</div>
+        <p style="color:var(--muted);font-size:0.9rem;">628 have phones; prioritize overnight + Grade 7–9. Example: <strong>84</strong> high-value leads × <strong>20%</strong> phone conversion → ~<strong>17</strong> regs (~$7.6k revenue). Staff voice beats automation for these.</p>
+      </div>
+    </section>
+
+    <!-- Impact projection -->
+    <section class="layer" id="impact">
+      <div class="layer-head">
+        <span class="layer-num">Projection</span>
+        <h2>Impact if strategies stack</h2>
+      </div>
+      <div class="panel">
+        <div class="table-scroll">
+          <table class="data">
+            <thead>
+              <tr><th>Strategy</th><th class="num">Est. regs</th><th class="num">Add’l ad spend</th><th>Timeline</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Lead follow-up sequence</td><td class="num">65–130</td><td class="num">$0</td><td>2–4 weeks</td></tr>
+              <tr><td>Scale retarget $100–150/day</td><td class="num">30–50/mo</td><td class="num">$1k–1.5k/mo</td><td>Ongoing</td></tr>
+              <tr><td>LAL from converters</td><td class="num">15–30/mo</td><td class="num">$750–1.5k/mo</td><td>2–3 weeks to build</td></tr>
+              <tr><td>Website visitor retargeting</td><td class="num">10–20/mo</td><td class="num">In retarget budget</td><td>Immediate</td></tr>
+              <tr><td>CampBrain exclusion + LAL</td><td class="num">20–40/mo</td><td class="num">$0 (efficiency)</td><td>~1 week</td></tr>
+              <tr><td>Phone outreach</td><td class="num">15–20</td><td class="num">$0</td><td>1–2 weeks</td></tr>
+              <tr class="mark"><td><strong>Combined (first 30 days)</strong></td><td class="num"><strong>~130–220</strong></td><td class="num"><strong>~$2k–3k</strong></td><td></td></tr>
+              <tr class="mark"><td><strong>Combined (first 90 days)</strong></td><td class="num"><strong>~250–400</strong></td><td class="num"><strong>~$6k–9k</strong></td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="callout-key">Follow-up alone could nearly <strong>double</strong> provable registrations with <strong>zero</strong> extra ad spend. With retarget scale + LALs, <strong>200+</strong> additional attributed registrations in 90 days is realistic.</p>
+      </div>
+    </section>
+
+    <!-- Summary -->
     <section class="layer" id="summary">
       <div class="layer-head">
         <span class="layer-num">Summary</span>
-        <h2>For Forest Cliff</h2>
+        <h2>At a glance</h2>
       </div>
       <div class="panel">
         <div class="table-scroll">
@@ -796,39 +1114,46 @@
               <tr>
                 <th>Attribution layer</th>
                 <th class="num">Households</th>
-                <th class="num">Revenue est.</th>
+                <th class="num">Revenue</th>
                 <th>Confidence</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>Direct match (GHL → CampBrain)</td><td class="num">36</td><td class="num">$16,200</td><td><span class="badge high">High</span></td></tr>
-              <tr><td>Meta paid → site → registration</td><td class="num">~100</td><td class="num">~$45,000</td><td><span class="badge med">Medium</span></td></tr>
-              <tr><td>Brand lift (direct / organic uplift)</td><td class="num">~148</td><td class="num">~$66,600</td><td><span class="badge medlow">Medium–low</span></td></tr>
-              <tr class="mark"><td><strong>Total estimated</strong></td><td class="num"><strong>~284</strong></td><td class="num"><strong>~$128,000</strong></td><td>—</td></tr>
-              <tr><td>Unmeasured (calls, WOM, spouse, etc.)</td><td class="num">—</td><td class="num">—</td><td>—</td></tr>
+              <tr><td>Direct match — email</td><td class="num">28</td><td class="num">$12,600</td><td><span class="badge certain">Certain</span></td></tr>
+              <tr><td>Direct match — phone</td><td class="num">7</td><td class="num">$3,150</td><td><span class="badge certain">Certain</span></td></tr>
+              <tr><td>Direct match — surname</td><td class="num">57</td><td class="num">$25,650</td><td><span class="badge high">High (~95%)</span></td></tr>
+              <tr class="mark"><td><strong>Total provable</strong></td><td class="num"><strong>92</strong></td><td class="num"><strong>$41,400</strong></td><td><span class="badge high">High</span></td></tr>
+              <tr><td>GA4 traffic influence</td><td class="num">—</td><td class="num">—</td><td><span class="badge medlow">See caveats</span></td></tr>
+              <tr><td>Unmeasured (calls, WOM, multi-touch)</td><td class="num">—</td><td class="num">—</td><td>—</td></tr>
             </tbody>
           </table>
         </div>
 
-        <div class="roas-strip">
+        <div class="roas-strip four">
           <div class="roas-box">
-            <div class="r-label">Ad spend (est.)</div>
-            <div class="r-val">~$5,500</div>
+            <div class="r-label">Ad spend</div>
+            <div class="r-val">$7,114</div>
             <div style="font-size:0.75rem;opacity:0.85;margin-top:0.35rem;">Jan 20 – Mar 30</div>
           </div>
           <div class="roas-box">
-            <div class="r-label">Conservative ROAS</div>
-            <div class="r-val">2.9×</div>
-            <div style="font-size:0.75rem;opacity:0.85;margin-top:0.35rem;">Direct match only</div>
+            <div class="r-label">Cost / registration</div>
+            <div class="r-val">$77.33</div>
+            <div style="font-size:0.75rem;opacity:0.85;margin-top:0.35rem;">Provable 92 regs</div>
           </div>
           <div class="roas-box">
-            <div class="r-label">Estimated true ROAS</div>
-            <div class="r-val">~23×</div>
-            <div style="font-size:0.75rem;opacity:0.85;margin-top:0.35rem;">All influenced regs</div>
+            <div class="r-label">Provable ROAS</div>
+            <div class="r-val">5.8×</div>
+            <div style="font-size:0.75rem;opacity:0.85;margin-top:0.35rem;">$41.4k ÷ $7.1k</div>
+          </div>
+          <div class="roas-box">
+            <div class="r-label">True ROAS</div>
+            <div class="r-val">&gt;5.8×</div>
+            <div style="font-size:0.75rem;opacity:0.85;margin-top:0.35rem;">92 = floor</div>
           </div>
         </div>
 
-        <p class="callout-key" style="margin-top:1.25rem;">Real ROAS likely falls <strong>between ~2.9× and ~23×</strong>. The direct-match floor is already profitable; traffic patterns point to a much higher true impact.</p>
+        <p class="callout-key" style="margin-top:1.25rem;"><strong>Biggest untapped opportunity:</strong> <strong>650</strong> leads in HighLevel with email + phone who haven’t registered. A follow-up sequence costs nothing extra and could convert <strong>65–130</strong> of them.</p>
+        <p class="fine-print">$450 average registration used throughout — conservative vs. overnight $500–729 and multi-child families.</p>
       </div>
     </section>
 
