@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Menu | Swans Pub in Victoria, BC</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #1a1a1a;
+    --bg2: #222222;
+    --bg3: #2a2a2a;
+    --text: #e8e4dc;
+    --text-muted: #9a9690;
+    --text-dim: #6a6660;
+    --accent: #c8b89a;
+    --border: #333330;
+    --tab-active-bg: #3a3530;
+    --tab-active-border: #c8b89a;
+    --price: #e8e4dc;
+    --tag-veg: #4a6a4a;
+    --tag-gf: #4a5a6a;
+    --tag-vegan: #3a5a4a;
+    --section-divider: #2e2e2e;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    background: #0d0d0d;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.7) 100%),
+      url('https://swanspub.com/wp-content/uploads/2025/11/untitled-6033-700x550-1.jpg') center/cover no-repeat;
+    filter: brightness(0.55);
+  }
+  .hero-content { position: relative; z-index: 1; padding: 40px 20px; }
+  .hero h1 {
+    font-family: 'Georgia', serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: 0.02em;
+    margin-bottom: 14px;
+  }
+  .hero p {
+    color: rgba(255,255,255,0.72);
+    font-size: 0.95rem;
+    max-width: 560px;
+    margin: 0 auto;
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  /* ── TAB NAV ── */
+  .tab-nav-wrapper {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .tab-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    padding: 10px 16px 0;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .tab-btn {
+    background: none;
+    border: 1px solid transparent;
+    border-bottom: none;
+    color: var(--text-muted);
+    font-family: 'Georgia', serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    padding: 8px 14px 9px;
+    cursor: pointer;
+    border-radius: 4px 4px 0 0;
+    transition: color 0.15s, background 0.15s, border-color 0.15s;
+    white-space: nowrap;
+    margin-bottom: -1px;
+  }
+  .tab-btn:hover { color: var(--text); background: var(--bg3); }
+  .tab-btn.active {
+    color: var(--accent);
+    background: var(--tab-active-bg);
+    border-color: var(--border);
+    border-bottom-color: var(--tab-active-bg);
+  }
+
+  /* ── MAIN CONTENT ── */
+  .menu-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+  }
+
+  /* ── SECTION ── */
+  .menu-section { display: none; }
+  .menu-section.active { display: block; }
+
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    padding: 40px 0 28px;
+    border-bottom: 1px solid var(--section-divider);
+    margin-bottom: 8px;
+  }
+  .section-img {
+    width: 200px;
+    min-width: 200px;
+    height: 158px;
+    object-fit: cover;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .section-title-block { flex: 1; }
+  .section-title-block h2 {
+    font-family: 'Georgia', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+  }
+  .section-subtitle {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    font-style: italic;
+    line-height: 1.6;
+  }
+  .section-note {
+    color: var(--accent);
+    font-size: 0.82rem;
+    margin-top: 8px;
+    font-style: normal;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── ITEMS GRID ── */
+  .items-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .item {
+    padding: 18px 20px 18px 0;
+    border-bottom: 1px solid var(--section-divider);
+  }
+  .item:nth-child(odd) { padding-right: 40px; border-right: 1px solid var(--section-divider); }
+  .item:nth-child(even) { padding-left: 32px; }
+
+  .item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+  .item-name {
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.01em;
+  }
+  .item-price {
+    font-size: 0.88rem;
+    color: var(--price);
+    white-space: nowrap;
+    font-style: italic;
+  }
+  .item-desc {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    line-height: 1.55;
+    margin-bottom: 6px;
+  }
+  .item-add {
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+  .tag {
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+  }
+  .tag-v  { background: var(--tag-veg);   color: #a8caa8; }
+  .tag-gf { background: var(--tag-gf);    color: #a8b8ca; }
+  .tag-vn { background: var(--tag-vegan); color: #98c0a8; }
+
+  /* full-width item (odd count last row) */
+  .item.full { grid-column: 1 / -1; padding-right: 0; border-right: none; }
+
+  /* ── SPECIAL BLOCKS ── */
+  .special-callout {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 3px;
+    padding: 18px 22px;
+    margin: 28px 0 0;
+  }
+  .special-callout h3 {
+    font-family: 'Georgia', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .specials-day-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px 24px;
+  }
+  .specials-day strong {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 3px;
+  }
+  .specials-day span {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+
+  .late-night-callout {
+    background: #1e1a17;
+    border: 1px solid #3a2e25;
+    border-radius: 3px;
+    padding: 20px 24px;
+    margin: 28px 0 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .late-night-callout .ln-badge {
+    background: #c8783a;
+    color: #fff;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .late-night-callout .ln-body h4 {
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .late-night-callout .ln-body p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+  .late-night-callout .ln-burgers {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .late-night-callout .ln-burgers span {
+    background: #2a2218;
+    border: 1px solid #4a3a2a;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    padding: 3px 10px;
+    border-radius: 2px;
+    font-style: italic;
+  }
+
+  /* Happy Hour prices */
+  .hh-drink-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+  }
+  .hh-drink-table td {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--section-divider);
+    font-size: 0.88rem;
+  }
+  .hh-drink-table td:first-child { color: var(--text-muted); font-style: italic; }
+  .hh-drink-table td:last-child { text-align: right; color: var(--text); font-weight: 700; width: 60px; }
+  .hh-drink-table tr:last-child td { border-bottom: none; }
+
+  .sauce-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .sauce-pill {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    padding: 3px 10px;
+    border-radius: 2px;
+    font-style: italic;
+  }
+  .sauce-pill.local { border-color: #4a5a3a; color: #98b088; }
+
+  /* subsection label */
+  .subsection-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 22px 0 8px;
+    border-bottom: 1px solid var(--section-divider);
+    margin-bottom: 0;
+  }
+
+  /* sourcing note */
+  .sourcing-note {
+    background: var(--bg3);
+    border-left: 2px solid var(--border);
+    padding: 10px 16px;
+    margin: 20px 0 4px;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-style: italic;
+  }
+
+  @media (max-width: 680px) {
+    .items-grid { grid-template-columns: 1fr; }
+    .item:nth-child(odd) { padding-right: 0; border-right: none; }
+    .item:nth-child(even) { padding-left: 0; }
+    .item.full { grid-column: 1; }
+    .section-header { flex-direction: column; gap: 16px; }
+    .section-img { width: 100%; min-width: unset; height: 180px; }
+    .tab-nav { gap: 4px; }
+    .tab-btn { font-size: 0.76rem; padding: 6px 10px 7px; }
+    .late-night-callout { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1>Our Menu</h1>
+    <p>Swans Pub is a place where life happens. A place where everyone could know your name. A place where the beer flows like wine. A pub worthy of the historic building's roots.</p>
+  </div>
+</div>
+
+<!-- TAB NAV -->
+<div class="tab-nav-wrapper">
+  <nav class="tab-nav" id="tabNav">
+    <button class="tab-btn active" data-tab="lunch-specials">Lunch Specials</button>
+    <button class="tab-btn" data-tab="happy-hour">Happy Hour (3pm–6pm)</button>
+    <button class="tab-btn" data-tab="appetizers">Appetizers</button>
+    <button class="tab-btn" data-tab="wings">Wings</button>
+    <button class="tab-btn" data-tab="nachos">Nachos</button>
+    <button class="tab-btn" data-tab="soup-salad">Soup &amp; Salad</button>
+    <button class="tab-btn" data-tab="sandwiches">Sandwiches</button>
+    <button class="tab-btn" data-tab="wraps">Wraps</button>
+    <button class="tab-btn" data-tab="burgers">Burgers</button>
+    <button class="tab-btn" data-tab="mains">Mains</button>
+    <button class="tab-btn" data-tab="dessert">Dessert</button>
+  </nav>
+</div>
+
+<div class="menu-wrap">
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- LUNCH SPECIALS -->
+  <!-- ══════════════════════════════════════ -->
+  <section class="menu-section active" id="lunch-specials">
+    <div class="section-header">
+      <img class="section-img" src="https://swanspub.com/wp-content/uploads/2025/11/untitled-6033-700x550-1.jpg" alt="Lunch Specials">
+      <div class="section-title-block">
+        <h2>Lunch Specials</h2>
+        <p class="section-subtitle">Monday to Friday until 3pm. Three dishes, one price.</p>
+        <p class="section-note">Dine in only &nbsp;·&nbsp; $15</p>
+      </div>
+    </div>
+    <div class="items-grid">
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Single Smash Burger</span>
+          <span class="item-price">$15</span>
+        </div>
+        <p class="item-desc">Juicy handcrafted burger, sharp cheddar.</p>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Mediterranean Wrap</span>
+          <span class="item-price">$15</span>
+        </div>
+        <p class="item-desc">House-made falafel, fresh &amp; bright.</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span></div>
+      </div>
+      <div class="item full">
+        <div class="item-header">
+          <span class="item-name">Fish &amp; Chips (one piece)</span>
+          <span class="item-price">$15</span>
+        </div>
+        <p class="item-desc">Beer battered Tofino Rockfish.</p>
+      </div>
+    </div>
+
+    <!-- Daily Specials callout -->
+    <div class="special-callout">
+      <h3>Daily Specials &nbsp;·&nbsp; Dine In Only</h3>
+      <div class="specials-day-grid">
+        <div class="specials-day"><strong>Monday</strong><span>Swans Double Smash Burger — $18</span></div>
+        <div class="specials-day"><strong>Tuesday</strong><span>One pound nachos — $16</span></div>
+        <div class="specials-day"><strong>Wednesday</strong><span>1lb chicken wings — $13</span></div>
+        <div class="specials-day"><strong>Thursday</strong><span>Mango Please Vodka Cocktail — $10<br>Raspberry Gin Smash Cocktail — $10</span></div>
+        <div class="specials-day"><strong>Friday</strong><span>Paloma (2oz) — $10<br>Espresso Martini — $10</span></div>
+        <div class="specials-day"><strong>Saturday</strong><span>Sangria (2oz) — $10<br>Margarita (2oz) — $10</span></div>
+        <div class="specials-day"><strong>Sunday</strong><span>Shaft (1oz) — Smooth cold brew coffee, vodka &amp; baileys — $5</span></div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- HAPPY HOUR -->
+  <!-- ══════════════════════════════════════ -->
+  <section class="menu-section" id="happy-hour">
+    <div class="section-header">
+      <img class="section-img" src="https://swanspub.com/wp-content/uploads/2025/11/Swans-food-5035-700x550-2.jpg" alt="Happy Hour">
+      <div class="section-title-block">
+        <h2>Happy Hour</h2>
+        <p class="section-subtitle">Snacks that go well with beer. Dine in only.</p>
+        <p class="section-note">3pm – 6pm daily</p>
+      </div>
+    </div>
+
+    <p class="subsection-label">Food</p>
+    <div class="items-grid">
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Soft Pretzel</span>
+          <span class="item-price">$10</span>
+        </div>
+        <p class="item-desc">Warm golden pretzel baked to a soft chew. Served with creamy beer cheese &amp; spicy honey mustard.</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span></div>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">The Scotch Egg</span>
+          <span class="item-price">$11</span>
+        </div>
+        <p class="item-desc">Crispy sausage crust, soft egg with a golden yolk center, red pepper relish. A classic pub tradition.</p>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Golden Panko Crusted Onion Rings</span>
+          <span class="item-price">$9</span>
+        </div>
+        <p class="item-desc">Served with chipotle aioli.</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span></div>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">House Cut Fries</span>
+          <span class="item-price">$8</span>
+        </div>
+        <p class="item-desc">Twice cooked Kennebec fries, sea salt, herbs with apple cider aioli.</p>
+        <p class="item-add">add: gravy $5</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span></div>
+      </div>
+      <div class="item full">
+        <div class="item-header">
+          <span class="item-name">Hummus &amp; Pita</span>
+          <span class="item-price">$10</span>
+        </div>
+        <p class="item-desc">Creamy hummus, crispy chickpeas, lemon &amp; sumac served with warm pita.</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span></div>
+      </div>
+    </div>
+
+    <p class="subsection-label">Drinks (3pm – 6pm)</p>
+    <div class="items-grid">
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Wine</span>
+          <span class="item-price">$7.50</span>
+        </div>
+        <p class="item-desc">Mt. Boucherie Pinot Gris (5oz) &nbsp;·&nbsp; Mt. Boucherie Cab Merlot (5oz)</p>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Phillips Draught Beer</span>
+          <span class="item-price">$5.95</span>
+        </div>
+        <p class="item-desc">Any Phillips draught beer (0.4L).</p>
+      </div>
+      <div class="item full">
+        <div class="item-header">
+          <span class="item-name">Cocktails</span>
+          <span class="item-price">$8.99</span>
+        </div>
+        <p class="item-desc">Mango Please vodka cocktail 6.9% (0.18L) &nbsp;·&nbsp; Raspberry gin smash cocktail 6.9% (0.18L)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- APPETIZERS -->
+  <!-- ══════════════════════════════════════ -->
+  <section class="menu-section" id="appetizers">
+    <div class="section-header">
+      <img class="section-img" src="https://swanspub.com/wp-content/uploads/2023/12/image-1.png" alt="Appetizers">
+      <div class="section-title-block">
+        <h2>Appetizers</h2>
+        <p class="section-subtitle">Small plates to start. Big flavours throughout.</p>
+      </div>
+    </div>
+    <div class="items-grid">
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">House Cut Fries</span>
+          <span class="item-price">$11</span>
+        </div>
+        <p class="item-desc">Twice-cooked Kennebec fries, sea salt, herbs with apple cider aioli.</p>
+        <p class="item-add">add: gravy $5</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span></div>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Soft Pretzel</span>
+          <span class="item-price">$14</span>
+        </div>
+        <p class="item-desc">Warm soft pretzel, served with creamy beer cheese &amp; honey mustard.</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span></div>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Classic Poutine</span>
+          <span class="item-price">$18</span>
+        </div>
+        <p class="item-desc">House cut Kennebec fries, squeaky cheese curds, rich gravy, green onions &amp; herbs.</p>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">The Scotch Egg</span>
+          <span class="item-price">$17</span>
+        </div>
+        <p class="item-desc">Crispy sausage crust, soft egg with a golden yolk center, red pepper relish. A classic pub tradition.</p>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Fire Roasted Olives</span>
+          <span class="item-price">$11</span>
+        </div>
+        <p class="item-desc">Warm marinated olives, herb focaccia.</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span></div>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Hummus &amp; Pita</span>
+          <span class="item-price">$16</span>
+        </div>
+        <p class="item-desc">Creamy hummus, crispy chickpeas, lemon &amp; sumac served with warm pita.</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span></div>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Golden Panko Crusted Onion Rings</span>
+          <span class="item-price">$16</span>
+        </div>
+        <p class="item-desc">Served with chipotle aioli.</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span></div>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Artichoke &amp; Smoked Onion Dip</span>
+          <span class="item-price">$16</span>
+        </div>
+        <p class="item-desc">Warm artichoke dip, house-fried tortilla chips.</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span></div>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Crispy Fried Calamari</span>
+          <span class="item-price">$21</span>
+        </div>
+        <p class="item-desc">Paprika-dill salt with chipotle aioli.</p>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Focaccia &amp; Honey-Rosemary Butter</span>
+          <span class="item-price">$10</span>
+        </div>
+        <p class="item-desc">Warm house focaccia.</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span></div>
+      </div>
+      <div class="item full">
+        <div class="item-header">
+          <span class="item-name">Corn Dogs</span>
+          <span class="item-price">$17</span>
+        </div>
+        <p class="item-desc">Premium dogs with house corn batter &amp; grainy mustard.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- WINGS -->
+  <!-- ══════════════════════════════════════ -->
+  <section class="menu-section" id="wings">
+    <div class="section-header">
+      <img class="section-img" src="https://swanspub.com/wp-content/uploads/2025/11/Swans-food-5035-700x550-1.jpg" alt="Wings">
+      <div class="section-title-block">
+        <h2>Chicken Wings</h2>
+        <p class="section-subtitle">One pound of chicken wings breaded, fried and tossed in sauce. Served with blue cheese.</p>
+        <p class="section-note">Wednesday special: 1lb wings — $13</p>
+      </div>
+    </div>
+    <div class="items-grid">
+      <div class="item full">
+        <div class="item-header">
+          <span class="item-name">Chicken Wings — 1lb</span>
+          <span class="item-price">$20</span>
+        </div>
+        <p class="item-desc">Breaded, fried and tossed in your choice of locally made sauce. Served with blue cheese.</p>
+        <p class="item-add">add: carrot, celery &amp; blue cheese — $3</p>
+        <div style="margin-top: 14px;">
+          <p style="font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px;">Choice of Locally Made Sauce</p>
+          <div class="sauce-list">
+            <span class="sauce-pill local">Salt &amp; Pepper – Swans Pub</span>
+            <span class="sauce-pill local">Hot Honey – Swans Pub</span>
+            <span class="sauce-pill local">Blue Moon – Swans Pub</span>
+            <span class="sauce-pill local">Honey Garlic – Swans Pub</span>
+            <span class="sauce-pill">Traditional Buffalo – Island Chef Pepper Co</span>
+            <span class="sauce-pill local">Ghost Pepper Maple – Swans Pub</span>
+            <span class="sauce-pill">Pineapple Express – Island Chef Pepper Co</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- NACHOS -->
+  <!-- ══════════════════════════════════════ -->
+  <section class="menu-section" id="nachos">
+    <div class="section-header">
+      <img class="section-img" src="https://swanspub.com/wp-content/uploads/2025/11/Swans-food-4979-700x550-1.jpg" alt="Nachos">
+      <div class="section-title-block">
+        <h2>Nachos</h2>
+        <p class="section-subtitle">Good for groups to share, or keep it all for yourself. Tuesday special: one pound nachos — $16.</p>
+      </div>
+    </div>
+    <div class="items-grid">
+      <div class="item full">
+        <div class="item-header">
+          <span class="item-name">Nachos by the Pound — 1lb</span>
+          <span class="item-price">$23</span>
+        </div>
+        <p class="item-desc">House fried white corn tortilla chips, melted cheddar &amp; Monterey Jack cheese, green onions, bell peppers, sliced black olives &amp; jalapeños, salsa &amp; sour cream.</p>
+        <p class="item-add">add: chicken $7 &nbsp;·&nbsp; beef $8 &nbsp;·&nbsp; guacamole $6</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- SOUP & SALAD -->
+  <!-- ══════════════════════════════════════ -->
+  <section class="menu-section" id="soup-salad">
+    <div class="section-header">
+      <img class="section-img" src="https://swanspub.com/wp-content/uploads/2023/12/image.png" alt="Soup and Salad">
+      <div class="section-title-block">
+        <h2>Soup &amp; Salad</h2>
+        <p class="section-subtitle">Made from scratch at Swans.</p>
+      </div>
+    </div>
+
+    <p class="subsection-label">Soup</p>
+    <div class="items-grid">
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Seafood Chowder</span>
+          <span class="item-price">$17</span>
+        </div>
+        <p class="item-desc">Creamy chowder with assorted local seafood, bacon, Yukon gold potatoes, &amp; fresh clams, croutons, herbs.</p>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Tomato Soup Gratinée</span>
+          <span class="item-price">$14</span>
+        </div>
+        <p class="item-desc">Velvety tomato soup finished with toasted baguette, melted gratinéed mozzarella &amp; basil oil.</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span></div>
+      </div>
+      <div class="item full">
+        <div class="item-header">
+          <span class="item-name">Daily Soup Selection</span>
+          <span class="item-price">$7 / $11</span>
+        </div>
+        <p class="item-desc">Made fresh daily.</p>
+      </div>
+    </div>
+
+    <p class="subsection-label">Salads</p>
+    <div class="items-grid">
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Golden Beet Salad</span>
+          <span class="item-price">$19</span>
+        </div>
+        <p class="item-desc">Whipped goat cheese, pickled onion, orange, arugula, red wine gastrique, candied pecans.</p>
+        <p class="item-add">add: chicken $7 &nbsp;·&nbsp; falafel $5 &nbsp;·&nbsp; avocado $5</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span></div>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Classic Caesar Salad</span>
+          <span class="item-price">$18</span>
+        </div>
+        <p class="item-desc">Crisp romaine, bacon, parmesan, house made Caesar dressing.</p>
+        <p class="item-add">add: chicken $7 &nbsp;·&nbsp; falafel $5 &nbsp;·&nbsp; avocado $5</p>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Cranberry Quinoa Salad</span>
+          <span class="item-price">$19</span>
+        </div>
+        <p class="item-desc">Feta, dried cranberry, granny smith apples and crunchy candied pecans tossed with a bright, citrusy vinaigrette.</p>
+        <p class="item-add">add: chicken $7 &nbsp;·&nbsp; falafel $5 &nbsp;·&nbsp; avocado $5</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span></div>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">House Greens</span>
+          <span class="item-price">$14</span>
+        </div>
+        <p class="item-desc">Arugula, pickled onion, Greek olives, bocconcini &amp; house made croutons.</p>
+        <p class="item-add">add: chicken $7 &nbsp;·&nbsp; falafel $5 &nbsp;·&nbsp; avocado $5</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- SANDWICHES -->
+  <!-- ══════════════════════════════════════ -->
+  <section class="menu-section" id="sandwiches">
+    <div class="section-header">
+      <img class="section-img" src="https://swanspub.com/wp-content/uploads/2025/11/Swans-food-5185-700x550-1.jpg" alt="Sandwiches">
+      <div class="section-title-block">
+        <h2>Sandwiches</h2>
+        <p class="section-subtitle">Each served with your choice of fries, mixed greens or daily soup.</p>
+        <p class="section-note">Substitute: caesar salad +$3 &nbsp;·&nbsp; onion rings +$5 &nbsp;·&nbsp; tomato soup +$3</p>
+      </div>
+    </div>
+    <div class="items-grid">
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Beef Dip</span>
+          <span class="item-price">$27</span>
+        </div>
+        <p class="item-desc">Slow roasted beef, crispy fried onions, horseradish aioli, red wine rosemary jus.</p>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Fig &amp; Goat Cheese Chicken Club</span>
+          <span class="item-price">$24</span>
+        </div>
+        <p class="item-desc">Grilled chicken breast with sweet fig jam, bacon, creamy goat cheese, tomato, arugula and garlic aioli on ciabatta.</p>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Traditional Turkey Club</span>
+          <span class="item-price">$22</span>
+        </div>
+        <p class="item-desc">Classic triple decker, slow roasted turkey breast, crisp bacon, aged cheddar, lettuce, tomato &amp; mayo.</p>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Lunchbox Feature</span>
+          <span class="item-price">$23</span>
+        </div>
+        <p class="item-desc">A weekly sandwich inspired by comfort, crafted with care — packed fresh from our kitchen. Please ask us for details.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- WRAPS -->
+  <!-- ══════════════════════════════════════ -->
+  <section class="menu-section" id="wraps">
+    <div class="section-header">
+      <img class="section-img" src="https://swanspub.com/wp-content/uploads/2025/11/Swans-food-5322-700x550-1.jpg" alt="Wraps">
+      <div class="section-title-block">
+        <h2>Wraps</h2>
+        <p class="section-subtitle">Each served with your choice of fries, mixed greens or daily soup.</p>
+        <p class="section-note">Substitute: caesar salad +$3 &nbsp;·&nbsp; onion rings +$5 &nbsp;·&nbsp; tomato soup +$3</p>
+      </div>
+    </div>
+    <div class="items-grid">
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Mediterranean Wrap</span>
+          <span class="item-price">$22</span>
+        </div>
+        <p class="item-desc">House made falafel, baby greens, sweet and sour cabbage, tomato, cucumber, pickle, tzatziki, grilled tortilla.</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span></div>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Buffalo Chicken Caesar Wrap</span>
+          <span class="item-price">$24</span>
+        </div>
+        <p class="item-desc">Romaine, bacon &amp; parmesan tossed in house made caesar dressing with crispy chicken, classic buffalo sauce in a grilled tortilla.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- BURGERS -->
+  <!-- ══════════════════════════════════════ -->
+  <section class="menu-section" id="burgers">
+    <div class="section-header">
+      <img class="section-img" src="https://swanspub.com/wp-content/uploads/2025/11/Swans-food-5185-700x550-1.jpg" alt="Burgers">
+      <div class="section-title-block">
+        <h2>Burgers</h2>
+        <p class="section-subtitle">Each served with your choice of fries, mixed greens or daily soup.</p>
+        <p class="section-note">Substitute: caesar salad +$3 &nbsp;·&nbsp; onion rings +$5 &nbsp;·&nbsp; tomato soup +$3 &nbsp;·&nbsp; GF bun +$3</p>
+      </div>
+    </div>
+    <div class="sourcing-note">Two Rivers beef is raised naturally &amp; organically with no added hormones or antibiotics. All beef burgers are cooked to 165°.</div>
+    <div class="items-grid">
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Swans Double Smash Burger</span>
+          <span class="item-price">$24</span>
+        </div>
+        <p class="item-desc">Two Rivers farms double stacked handmade patties, Canadian cheddar, special sauce, pickle, onion, lettuce &amp; tomato on a brioche bun.</p>
+        <p class="item-add">add: bacon $3 &nbsp;·&nbsp; mushrooms $2</p>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Swans Triple Smash Burger</span>
+          <span class="item-price">$27</span>
+        </div>
+        <p class="item-desc">Two Rivers farms handmade patties, Canadian cheddar, special sauce, pickle, onion, lettuce &amp; tomato on a brioche bun.</p>
+        <p class="item-add">add: bacon $3 &nbsp;·&nbsp; mushrooms $2</p>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Grilled Salmon Burger</span>
+          <span class="item-price">$26</span>
+        </div>
+        <p class="item-desc">Pacific salmon, tomato, red onion, arugula dill remoulade, on a brioche bun.</p>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Hot Fried Chicken Burger</span>
+          <span class="item-price">$25</span>
+        </div>
+        <p class="item-desc">Buttermilk marinated chicken breast, drizzled with hot honey and topped with crisp green apple slaw, chipotle mayo, on a brioche bun.</p>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Blue Bridge Burger</span>
+          <span class="item-price">$26</span>
+        </div>
+        <p class="item-desc">Two Rivers handmade patty dusted in blackening spice topped with crumbled blue cheese &amp; red pepper relish, pickle, onion, lettuce &amp; tomato with garlic aioli on a brioche bun.</p>
+        <p class="item-add">add: bacon $3</p>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Beet the Meat Burger</span>
+          <span class="item-price">$23</span>
+        </div>
+        <p class="item-desc">House made beet &amp; black bean patty, roasted garlic aioli, arugula &amp; tzatziki on a brioche bun.</p>
+        <p class="item-add">add: bacon $3</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span></div>
+      </div>
+    </div>
+    <!-- Late Night Burgers callout -->
+    <div class="late-night-callout">
+      <div class="ln-badge">Late Night</div>
+      <div class="ln-body">
+        <h4>$5 Off Burgers After 8pm</h4>
+        <p>Because great nights end with a great burger. Dine in only.<br>Add any Phillips draught beer (0.4L) for $5.95.</p>
+        <div class="ln-burgers">
+          <span>Blue Bridge Burger</span>
+          <span>Beet the Meat Burger</span>
+          <span>Swans Double Smash Burger</span>
+          <span>Hot Fried Chicken Burger</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- MAINS -->
+  <!-- ══════════════════════════════════════ -->
+  <section class="menu-section" id="mains">
+    <div class="section-header">
+      <img class="section-img" src="https://swanspub.com/wp-content/uploads/2025/11/Swans-food-5318-1-700x550-2.jpg" alt="Mains">
+      <div class="section-title-block">
+        <h2>Mains</h2>
+        <p class="section-subtitle">Great for lunch or dinner.</p>
+      </div>
+    </div>
+    <div class="items-grid">
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Shanghai Noodle Bowl</span>
+          <span class="item-price">$25</span>
+        </div>
+        <p class="item-desc">Wok-tossed noodles, egg, bok choy, nappa cabbage, carrot and peppers in a savory hoisin-chili garlic glaze.</p>
+        <p class="item-add">add: fried tofu $5 &nbsp;·&nbsp; chicken $7 &nbsp;·&nbsp; prawns $8</p>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Fish &amp; Chips</span>
+          <span class="item-price">$23 / $27</span>
+        </div>
+        <p class="item-desc">Beer battered Tofino Rockfish, Kennebec fries, green apple slaw, house tartar.</p>
+        <p class="item-add">one piece $23 &nbsp;·&nbsp; two piece $27</p>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Crispy Chicken Strips</span>
+          <span class="item-price">$22</span>
+        </div>
+        <p class="item-desc">Chicken strips served with house cut Kennebec fries &amp; plum sauce.</p>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Mediterranean Penne</span>
+          <span class="item-price">$25</span>
+        </div>
+        <p class="item-desc">Penne, fresh tomato, zucchini, red onion, artichoke hearts, greek olives, feta, lemon olive oil.</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span></div>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Chicken Pot Pie</span>
+          <span class="item-price">$25</span>
+        </div>
+        <p class="item-desc">Sous vide chicken breast, Yukon gold potatoes, carrot &amp; green peas served with house greens.</p>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Bangers &amp; Mash</span>
+          <span class="item-price">$31</span>
+        </div>
+        <p class="item-desc">Locally made bangers with red onion jam, green peas, Yukon gold mash &amp; house made gravy.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- DESSERT -->
+  <!-- ══════════════════════════════════════ -->
+  <section class="menu-section" id="dessert">
+    <div class="section-header">
+      <img class="section-img" src="https://swanspub.com/wp-content/uploads/2023/12/image-1.jpg" alt="Dessert">
+      <div class="section-title-block">
+        <h2>Dessert</h2>
+        <p class="section-subtitle">Dessert should really be the first course of any meal.</p>
+      </div>
+    </div>
+    <div class="items-grid">
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Seasonal Fruit Crumble</span>
+          <span class="item-price">$13</span>
+        </div>
+        <p class="item-desc">A sweet-tart rotating fruit filling balanced by a buttery, toasty crumble.</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span></div>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-name">Swans Strawberry Sundae</span>
+          <span class="item-price">$13</span>
+        </div>
+        <p class="item-desc">Vanilla ice cream, strawberry sauce, chopped peanuts, whipped cream.</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span></div>
+      </div>
+      <div class="item full">
+        <div class="item-header">
+          <span class="item-name">Crème Brûlée</span>
+          <span class="item-price">$13</span>
+        </div>
+        <p class="item-desc">Madagascar vanilla bean, fresh fruit garnish.</p>
+        <div class="tags"><span class="tag tag-v">Vegetarian</span><span class="tag tag-gf">Gluten-Free</span></div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /menu-wrap -->
+
+<script>
+  const tabs = document.querySelectorAll('.tab-btn');
+  const sections = document.querySelectorAll('.menu-section');
+
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      sections.forEach(s => s.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+      window.scrollTo({ top: document.querySelector('.tab-nav-wrapper').offsetTop - 1, behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
