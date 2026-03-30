@@ -551,8 +551,8 @@
 
     <section class="bottom-line">
       <h2>The bottom line</h2>
-      <p><strong>92 households</strong> can be traced from a Meta lead form to a CampBrain registration — matched by email, phone, and surname. That is <strong>$41,400</strong> in provable ad-driven revenue on <strong>$6,286</strong> in ad spend (all-time, per Meta Ads Manager) = <strong>6.6× ROAS</strong> on direct attribution alone.</p>
-      <p class="highlight">GA4 shows an additional layer of influence: <strong>direct traffic to fccamps.ca rose 34%</strong> after ads launched, which suggests many families saw ads and registered <em>without</em> ever filling out a lead form. True ROAS is higher than 6.6× — the 92 matches are the floor.</p>
+      <p><strong>92 households</strong> can be directly traced from a Meta lead form submission to a CampBrain registration — matched by email, phone, and surname. That’s <strong>$41,400</strong> in provable ad-driven revenue against <strong>$6,286</strong> in total ad spend = <strong>6.6× ROAS</strong> on direct attribution alone.</p>
+      <p class="highlight">GA4 traffic data shows an additional layer of influence: <strong>direct traffic to fccamps.ca jumped 34%</strong> after ads launched, suggesting many more families saw ads and registered without ever filling out a lead form.</p>
     </section>
 
     <!-- Layer 1 -->
@@ -668,7 +668,7 @@
     <section class="layer" id="layer-2">
       <div class="layer-head">
         <span class="layer-num">Layer 2</span>
-        <h2>GA4 traffic — the bigger picture</h2>
+        <h2>GA4 traffic analysis — the bigger picture</h2>
         <p class="layer-sub">Weekly sessions on fccamps.ca by source</p>
       </div>
 
@@ -782,8 +782,8 @@
           </div>
         </div>
 
-        <p class="callout-key"><strong>Key finding:</strong> Direct traffic rose <strong>34%</strong> after ads (398 → 535 / week). That suggests people saw Meta ads and then visited fccamps.ca directly rather than clicking through.</p>
-        <div class="callout-amber"><strong>Caveat:</strong> The pre-ads baseline is only 3 weeks and includes early January (naturally lower traffic). Part of the increase may be <strong>seasonal registration ramp-up</strong>, not only ads. Year-over-year comparison (2025 vs. 2026) would help separate those factors.</div>
+        <p class="callout-key"><strong>Key finding:</strong> Direct traffic jumped <strong>34%</strong> after ads launched — from <strong>398/wk</strong> to <strong>535/wk</strong>. This suggests people are seeing Meta ads and then visiting fccamps.ca directly rather than clicking through the ad.</p>
+        <div class="callout-amber"><strong>Caveat:</strong> The pre-ads baseline is only 3 weeks and includes early January (naturally lower traffic). Part of this increase may be seasonal registration ramp-up rather than ad influence. Year-over-year comparison (2025 vs 2026) would be needed to separate these factors.</div>
       </div>
     </section>
 
@@ -836,7 +836,7 @@
             <div class="f-detail">Do <strong>not</strong> multiply by a blended session→registration rate for client-facing regs — many sessions are repeat visits. Use the <strong>92 household</strong> direct match as the defensible registration number.</div>
           </div>
         </div>
-        <p class="callout-amber" style="margin-top:1rem;"><strong>Session-to-registration estimate (~284 households):</strong> Previously this used an <strong>8.1%</strong> rate (total households ÷ total sessions). That is <strong>unreliable</strong> — many sessions are repeat visits. <strong>Do not use for client-facing reporting.</strong> The direct match of <strong>92 households</strong> is the defensible figure.</p>
+        <p class="callout-amber" style="margin-top:1rem;"><strong>Note on the session-to-registration estimate:</strong> Previously we estimated ~<strong>284 households</strong> using an <strong>8.1%</strong> session-to-registration rate. That rate is <strong>unreliable</strong> — it divides total households by total sessions, but many sessions are repeat visits. We <strong>do not</strong> recommend using this number for client-facing reporting. The direct match of <strong>92 households</strong> is the defensible figure.</p>
       </div>
     </section>
 
@@ -851,10 +851,10 @@
           <li><strong>Phone calls</strong> — Parents who saw an ad and called the camp directly.</li>
           <li><strong>Word of mouth</strong> — “Have you heard about Forest Cliff? I saw this ad…”</li>
           <li><strong>Spouse registration with no digital trail</strong> — One parent sees the ad, discusses with partner; partner registers from a different device without UTMs.</li>
-          <li><strong>Multi-touch over weeks</strong> — Saw the ad in January, registered in March.</li>
-          <li><strong>Church / community amplification</strong> — Referrers include westparkchurch.ca, calvaryburlington.ca, cbcilderton.ca; ad awareness likely accelerated network referrals.</li>
+          <li><strong>Multi-touch over weeks</strong> — Saw the ad in January, thought about it, registered in March.</li>
+          <li><strong>Church / community referral amplification</strong> — Many Forest Cliff referral sources are churches (westparkchurch.ca, calvaryburlington.ca, cbcilderton.ca). Ad awareness likely accelerated church-network referrals.</li>
         </ul>
-        <p class="callout-key" style="margin-top:1.15rem;"><strong>The math:</strong> <strong>1,770</strong> households registered. <strong>790</strong> ever touched a GHL lead form. That means <strong>980 households (55%)</strong> registered <em>without</em> filling out any lead form — they found Forest Cliff through other paths, many plausibly influenced by seeing ads in Facebook/Instagram.</p>
+        <p class="callout-key" style="margin-top:1.15rem;"><strong>The math:</strong> <strong>1,770</strong> total households registered. <strong>790</strong> ever touched a GHL lead form. That means <strong>980 households (55%)</strong> registered without filling out any lead form at all. They found Forest Cliff through some other path — many of which were likely influenced by seeing ads in their Facebook/Instagram feed.</p>
       </div>
     </section>
 
@@ -870,11 +870,12 @@
           <li><strong>CampBrain CSV</strong> — 1,770 households, 3,030 parent emails, 2,932 phones (2026 registrations only).</li>
           <li><strong>HighLevel CRM</strong> — 790 contacts via API (706 Facebook ads, 84 other).</li>
           <li><strong>GA4</strong> (property 477599729) — Traffic by source/medium; weekly via Data API.</li>
-          <li><strong>Meta Ads API</strong> — Campaign spend and performance.</li>
+          <li><strong>Meta Ads API</strong> — Campaign-level spend and performance data.</li>
         </ol>
       </div>
       <div class="panel">
-        <h3>Matching methodology (GHL ↔ CampBrain)</h3>
+        <h3>Matching methodology</h3>
+        <p style="font-size:0.85rem;color:var(--muted);margin:-0.35rem 0 0.65rem;">Three-layer matching between GHL contacts and CampBrain households</p>
         <ol class="prose">
           <li><strong>Email</strong> — Exact match (case-insensitive). <strong>28</strong> matches.</li>
           <li><strong>Phone</strong> — Last 10 digits match. <strong>7</strong> additional.</li>
@@ -882,12 +883,12 @@
         </ol>
       </div>
       <div class="panel">
-        <h3>Not in this report</h3>
+        <h3>What’s NOT in this report</h3>
         <ul class="checks">
-          <li>Year-over-year comparison (needs 2025 CampBrain data).</li>
-          <li>Registration date correlation (export lacks registration dates).</li>
-          <li>Google Search Console branded volume (would strengthen brand-lift proof).</li>
-          <li>Call tracking (not in place).</li>
+          <li>Year-over-year comparison (would need 2025 CampBrain data).</li>
+          <li>Registration date correlation (CampBrain export doesn’t include registration dates).</li>
+          <li>Google Search Console branded search volume (would prove brand lift definitively).</li>
+          <li>Phone call tracking (no call tracking system in place).</li>
         </ul>
       </div>
     </section>
@@ -903,7 +904,7 @@
           <table class="data">
             <thead><tr><th>Metric</th><th class="num">Value</th></tr></thead>
             <tbody>
-              <tr class="mark"><td><strong>Total ad spend (all-time, Meta Ads Manager)</strong></td><td class="num"><strong>$6,286.00</strong></td></tr>
+              <tr class="mark"><td><strong>Total ad spend (all time, per Meta Ads Manager)</strong></td><td class="num"><strong>$6,286.00</strong></td></tr>
               <tr><td>FC Retarget Warm Audiences — Leads</td><td class="num">$664.80</td></tr>
               <tr><td>Forest Cliff Camp — Day Camp 2026 — Leads</td><td class="num">$2,410.67</td></tr>
               <tr><td>Forest Cliff Camp — Overnight Camp — Leads</td><td class="num">$3,023.61</td></tr>
@@ -911,12 +912,12 @@
               <tr><td><strong>Provable registrations</strong></td><td class="num"><strong>92</strong> households</td></tr>
               <tr><td><strong>Cost per registration</strong></td><td class="num"><strong>$68.33</strong></td></tr>
               <tr><td><strong>Revenue per registration</strong></td><td class="num">$450 avg.</td></tr>
-              <tr><td><strong>Profit per registration (after ad cost)</strong></td><td class="num">$382</td></tr>
-              <tr class="mark"><td><strong>ROAS (provable)</strong></td><td class="num"><strong>6.6×</strong></td></tr>
+              <tr><td><strong>Revenue minus ad cost per registration</strong></td><td class="num">$382</td></tr>
+              <tr class="mark"><td><strong>ROAS</strong></td><td class="num"><strong>6.6×</strong></td></tr>
             </tbody>
           </table>
         </div>
-        <p class="fine-print">Every <strong>$68</strong> in ad spend returns about <strong>$450</strong> in registration revenue — <strong>$382</strong> profit per registration after ad cost (at current match count).</p>
+        <p class="fine-print">For every <strong>$68</strong> Forest Cliff spends on ads, they get a <strong>$450</strong> registration back — <strong>$382</strong> in revenue after ad cost, <strong>before operating expenses</strong>.</p>
       </div>
       <div class="panel">
         <h3>What it costs to hit a target</h3>
@@ -924,7 +925,7 @@
         <div class="table-scroll">
           <table class="data">
             <thead>
-              <tr><th>Registration goal</th><th class="num">Ad spend</th><th class="num">Revenue</th><th class="num">Profit</th></tr>
+              <tr><th>Registration goal</th><th class="num">Ad spend required</th><th class="num">Revenue generated</th><th class="num">Revenue after ad cost</th></tr>
             </thead>
             <tbody>
               <tr><td>100 additional</td><td class="num">$6,833</td><td class="num">$45,000</td><td class="num">$38,167</td></tr>
@@ -935,8 +936,8 @@
             </tbody>
           </table>
         </div>
-        <p class="callout-key" style="margin-top:1rem;"><strong>Important:</strong> Projections assume ~<strong>$68</strong>/registration holds. CPR will likely <strong>decrease</strong> as lead follow-up converts existing GHL contacts ($0 extra media). CPR may <strong>increase</strong> at higher spend due to audience saturation — retarget is still below its ceiling.</p>
-        <p class="fine-print"><strong>Current run rate:</strong> March ~$4,295 spend → ~56 registrations/month. At that pace, ~700 additional regs ≈ 12.5 months unless the timeline is compressed (see acceleration playbook).</p>
+        <p class="callout-key" style="margin-top:1rem;"><strong>Important:</strong> These projections assume the current <strong>$68</strong>/registration cost holds. In reality, cost per registration will likely <strong>decrease</strong> as the follow-up strategy below is implemented (converting existing leads costs <strong>$0</strong> in additional ad spend). Cost may <strong>increase</strong> at higher spend levels due to audience saturation — but the retarget campaign is still well below its ceiling.</p>
+        <p class="fine-print"><strong>Current run rate:</strong> At March’s <strong>$4,295</strong> spend → ~<strong>56 registrations/month</strong>. To hit 700 additional registrations at this pace would take ~<strong>12.5 months</strong>. To compress that timeline, see the acceleration strategy below.</p>
       </div>
     </section>
 
@@ -1012,7 +1013,7 @@
     <section class="layer" id="acceleration">
       <div class="layer-head">
         <span class="layer-num">Playbook</span>
-        <h2>Acceleration — convert more, faster</h2>
+        <h2>Acceleration strategy — how to convert more, faster</h2>
       </div>
 
       <div class="panel">
@@ -1038,42 +1039,64 @@
           <li>One email: “Summer 2026 spots going fast — 7 sessions already full.”</li>
           <li>If they click but don’t register → trigger retarget sequence.</li>
         </ul>
-        <p class="notable" style="margin-top:1rem;"><strong>Expected conversion:</strong> 10–20% hot, 5–10% warm, 2–5% cold → <strong>65–130 additional registrations</strong> = <strong>$29,250–$58,500</strong> revenue at <strong>$0</strong> incremental ad spend.</p>
+        <p class="notable" style="margin-top:1rem;"><strong>Expected conversion:</strong> 10–20% of hot leads, 5–10% of warm, 2–5% of cold = <strong>65–130 additional registrations</strong> = <strong>$29,250–$58,500</strong> in revenue at <strong>$0</strong> additional ad spend.</p>
       </div>
 
       <div class="panel">
         <div class="strategy-num">2</div>
-        <div class="strategy-head">Scale retarget ($100–150/day)</div>
-        <p style="color:var(--muted);font-size:0.9rem;">Retarget is efficient (~$13.31/reg, ~73% lead-to-reg). Now ~$72/day. Test $100/day, then $150 if frequency stays &lt;3.5. At $100/day ~7.5 regs/day from retarget; ~$3k/mo → ~225 regs/mo projection. Watch frequency (2.47 now).</p>
+        <div class="strategy-head">Scale retarget campaign ($100–150/day)</div>
+        <p style="color:var(--muted);font-size:0.9rem;margin-bottom:0.65rem;">The <strong>retarget campaign is the most efficient channel</strong>: <strong>$13.31</strong> cost per registration with a <strong>73%</strong> lead-to-registration rate. It’s currently spending ~<strong>$72/day</strong>.</p>
+        <ul class="prose">
+          <li>Increase to <strong>$100/day</strong> immediately, <strong>$150/day</strong> if frequency stays below <strong>3.5</strong>.</li>
+          <li>At $100/day: ~<strong>7.5 registrations/day</strong> from retarget alone.</li>
+          <li>Monthly projection: ~<strong>225</strong> additional registrations for <strong>$3,000</strong> in spend = <strong>$13.33/registration</strong>.</li>
+          <li><strong>Watch:</strong> Retarget frequency is at <strong>2.47</strong>. If it hits 3.5, the audience is saturated — expand the retarget pool (email list, LAL audience).</li>
+        </ul>
       </div>
 
       <div class="panel">
         <div class="strategy-num">3</div>
-        <div class="strategy-head">Lookalike from converters</div>
-        <p style="color:var(--muted);font-size:0.9rem;"><strong>This has been recommended in every monitor since March 20 and still hasn’t been done.</strong> Upload the <strong>92</strong> matched registrant emails as a Custom Audience seed; create a <strong>1% Lookalike</strong> — parents who look like people who actually registered, not just filled out a form. Test in a new ad set in cold campaigns at <strong>$25–50/day</strong>. Expect <strong>20–40% better CPL</strong> than current cold targeting because the seed is registration-qualified.</p>
+        <div class="strategy-head">Build lookalike audience from converters</div>
+        <p style="color:var(--muted);font-size:0.9rem;margin-bottom:0.65rem;"><strong>This has been recommended in every monitor since March 20 and still hasn’t been done.</strong></p>
+        <ul class="prose">
+          <li>Upload the <strong>92</strong> matched registrant emails as a Custom Audience seed.</li>
+          <li>Create <strong>1% Lookalike</strong> from this seed — parents who look like people who actually <em>registered</em>, not just filled out a form.</li>
+          <li>Test in a <strong>new ad set</strong> within the cold campaigns at <strong>$25–50/day</strong>.</li>
+          <li>Expected CPL improvement: <strong>20–40% better</strong> than current cold targeting because the seed is registration-qualified, not just lead-qualified.</li>
+        </ul>
       </div>
 
       <div class="panel">
         <div class="strategy-num">4</div>
-        <div class="strategy-head">Retarget site visitors (no lead form)</div>
-        <p style="color:var(--muted);font-size:0.9rem;">GA4 shows <strong>1,228</strong> paid sessions hit the website — most browsed but didn’t fill a lead form or register; they’re already in the pixel pool. Keep <strong>Website Visitors 30d</strong> active in retarget. Add <strong>Visited registration page but didn’t complete</strong> — these are the highest-intent people. Ads: urgency (“Sessions filling fast”) + social proof.</p>
+        <div class="strategy-head">Retarget website visitors who didn’t fill out a lead form</div>
+        <p style="color:var(--muted);font-size:0.9rem;margin-bottom:0.65rem;">GA4 shows <strong>1,228</strong> paid sessions hit the website. Most browsed but <strong>neither</strong> filled the lead form <strong>nor</strong> registered. They’re already in the Meta pixel audience.</p>
+        <ul class="prose">
+          <li>Ensure <strong>“Website Visitors 30d”</strong> is active and used in the retarget campaign.</li>
+          <li>Create <strong>“Visited registration page but didn’t complete”</strong> — highest-intent people.</li>
+          <li>Serve ads with urgency (“Sessions filling fast”) and social proof.</li>
+        </ul>
       </div>
 
       <div class="panel">
         <div class="strategy-num">5</div>
         <div class="strategy-head">Leverage the CampBrain email list</div>
-        <p style="color:var(--muted);font-size:0.9rem;"><strong>1,770</strong> registered households = <strong>3,030</strong> parent emails.</p>
+        <p style="color:var(--muted);font-size:0.9rem;"><strong>1,770</strong> registered households = <strong>3,030</strong> parent emails. This is a powerful asset:</p>
         <ul class="prose" style="margin-top:0.65rem;">
-          <li><strong>Custom audience exclusion</strong> — Stop ads to people who already registered; cuts waste and lifts efficiency.</li>
-          <li><strong>Lookalike seed</strong> — 1% LAL from 3,030 paying parents is the strongest cold seed available (not lead-form fillers).</li>
-          <li><strong>Referral campaign</strong> — Email registered families: “Know a family who’d love camp? Share this — they’ll get $X off.” Word-of-mouth from registered families is the #1 driver of camp registrations.</li>
+          <li><strong>Custom Audience exclusion</strong> — Stop showing ads to people who already registered. Reduces wasted spend and improves efficiency.</li>
+          <li><strong>Lookalike seed</strong> — A <strong>1% LAL</strong> from 3,030 registered parents is the single best cold targeting option. They’re paying customers, not lead-form fillers.</li>
+          <li><strong>Referral campaign</strong> — Email registered families: “Know a family that would love camp? Share this and they’ll get $X off.” Word-of-mouth from registered families is the #1 driver of camp registrations.</li>
         </ul>
       </div>
 
       <div class="panel">
         <div class="strategy-num">6</div>
-        <div class="strategy-head">Phone outreach (high-intent)</div>
-        <p style="color:var(--muted);font-size:0.9rem;"><strong>628</strong> unconverted leads have phone numbers. Prioritize <strong>49</strong> tagged overnight-camp-interest and <strong>35</strong> Grade 7–9 (Jr. High — limited spots): personal staff call, session urgency, answer questions. <strong>84</strong> leads × <strong>20%</strong> conversion → <strong>17</strong> registrations ≈ <strong>$7,650</strong> revenue. Camp staff voice beats automation for high-value regs.</p>
+        <div class="strategy-head">Phone outreach for high-intent leads</div>
+        <p style="color:var(--muted);font-size:0.9rem;margin-bottom:0.65rem;"><strong>628</strong> unconverted leads have phone numbers. For the <strong>49</strong> tagged “overnight-camp-interest” and the <strong>35</strong> tagged “Grade 7–9” (Jr. High — limited spots):</p>
+        <ul class="prose">
+          <li>Personal call from staff: “Hi, I’m [Name] from Forest Cliff. I saw you were interested in [Overnight Camp / Jr. High Week]. We only have [X] spots left for that session. Can I answer any questions?”</li>
+          <li>Camp staff voice <strong>&gt;&gt;&gt;</strong> automated message for high-value registrations.</li>
+          <li><strong>84</strong> leads × <strong>20%</strong> phone conversion = <strong>17</strong> registrations = <strong>$7,650</strong> revenue.</li>
+        </ul>
       </div>
     </section>
 
@@ -1081,7 +1104,7 @@
     <section class="layer" id="impact">
       <div class="layer-head">
         <span class="layer-num">Projection</span>
-        <h2>Impact if strategies stack</h2>
+        <h2>Impact projection — combining all strategies</h2>
       </div>
       <div class="panel">
         <div class="table-scroll">
@@ -1156,9 +1179,16 @@
           </div>
         </div>
 
-        <p class="callout-key" style="margin-top:1.25rem;"><strong>Biggest untapped opportunity:</strong> <strong>650</strong> leads in HighLevel with email + phone who haven’t registered. A follow-up sequence costs nothing extra and could convert <strong>65–130</strong> of them.</p>
-        <p class="fine-print" style="margin-top:1rem;"><strong>True ROAS</strong> is higher than <strong>6.6×</strong> — the 92 matched households are the floor. <strong>55%</strong> of registrations have no lead-form trail at all, and GA4 shows ads driving significant site traffic beyond what lead forms capture.</p>
-        <p class="fine-print">$450 average registration used throughout — conservative vs. overnight $500–729 per session and families with multiple children.</p>
+        <p class="callout-key" style="margin-top:1.25rem;"><strong>Biggest untapped opportunity:</strong> <strong>650</strong> leads in HighLevel with email + phone who haven’t registered. A follow-up sequence <strong>costs nothing</strong> and could convert <strong>65–130</strong> of them.</p>
+        <ul class="prose" style="margin-top:1.1rem;color:var(--muted);list-style:none;margin-left:0;padding:0;font-size:0.9rem;line-height:1.75;">
+          <li><strong style="color:var(--text)">Total ad spend (all time, per Meta Ads Manager):</strong> $6,286.00</li>
+          <li><strong style="color:var(--text)">Cost per registration:</strong> $68.33</li>
+          <li><strong style="color:var(--text)">Revenue per registration:</strong> $450</li>
+          <li><strong style="color:var(--text)">Profit per registration:</strong> $382</li>
+          <li><strong style="color:var(--text)">Provable ROAS:</strong> $41,400 ÷ $6,286 = <strong style="color:var(--pine)">6.6×</strong></li>
+          <li><strong style="color:var(--text)">True ROAS:</strong> Higher than 6.6× — the 92 matched households are the floor, not the ceiling. 55% of registrations have no lead form trail at all, and GA4 confirms ads are driving significant website traffic beyond what lead forms capture.</li>
+        </ul>
+        <p class="fine-print" style="margin-top:1rem;">$450 average registration value used throughout — conservative, as overnight camps range $500–$729 per session and many families register multiple children.</p>
       </div>
     </section>
 
