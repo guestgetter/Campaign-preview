@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forest Cliff Camps — Ad Attribution Report — Mar 30, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest: #143524;
+      --pine: #1f4d36;
+      --sage: #4a7c59;
+      --sage-soft: rgba(74, 124, 89, 0.12);
+      --ember: #c24a1a;
+      --ember-soft: rgba(194, 74, 26, 0.12);
+      --sunlight: #e8b84a;
+      --sun-soft: rgba(232, 184, 74, 0.18);
+      --sky: #3d6b8c;
+      --sky-soft: rgba(61, 107, 140, 0.12);
+      --cream: #f6f3ec;
+      --cream-dark: #e8e4db;
+      --paper: #fffcf7;
+      --text: #1c1917;
+      --muted: #57534e;
+      --muted-light: #78716c;
+      --border: #d6d3cd;
+      --shadow: 0 1px 3px rgba(28, 25, 23, 0.06), 0 8px 24px rgba(28, 25, 23, 0.06);
+      --radius: 14px;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "DM Sans", system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* —— Top band —— */
+    .masthead {
+      background: linear-gradient(145deg, var(--forest) 0%, var(--pine) 48%, #1a3d2e 100%);
+      color: #fff;
+      padding: clamp(2rem, 5vw, 3.25rem) clamp(1.25rem, 4vw, 2.5rem) clamp(2.5rem, 6vw, 4rem);
+      position: relative;
+      overflow: hidden;
+    }
+    .masthead::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 100% 0%, rgba(232, 184, 74, 0.15), transparent 55%),
+                  radial-gradient(ellipse 50% 40% at 0% 100%, rgba(74, 124, 89, 0.2), transparent 50%);
+      pointer-events: none;
+    }
+    .masthead-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+    .eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 0.75rem;
+    }
+    .masthead h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.65rem);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      max-width: 18ch;
+      margin-bottom: 1rem;
+    }
+    .masthead h1 em { font-style: italic; font-weight: 500; color: var(--sunlight); }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.78);
+      margin-bottom: 2rem;
+    }
+    .meta-row span { display: inline-flex; align-items: center; gap: 0.35rem; }
+    .meta-row strong { color: #fff; font-weight: 600; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .pill.ads { background: var(--ember-soft); border-color: rgba(255, 255, 255, 0.25); color: #fde8dc; }
+    .pill.spend { background: var(--sun-soft); border-color: rgba(255, 255, 255, 0.2); color: #fff8e7; }
+
+    /* —— Hero stats —— */
+    .stat-deck {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      max-width: 1100px;
+      margin: -2.5rem auto 0;
+      padding: 0 clamp(1rem, 3vw, 1.5rem);
+      position: relative;
+      z-index: 2;
+    }
+    @media (max-width: 900px) {
+      .stat-deck { grid-template-columns: repeat(2, 1fr); margin-top: -1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .stat-deck { grid-template-columns: 1fr; }
+    }
+    .stat-card {
+      background: var(--paper);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.35rem;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(214, 211, 205, 0.6);
+    }
+    .stat-card .label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+    .stat-card .value {
+      font-family: var(--font-display);
+      font-size: clamp(1.65rem, 3.5vw, 2.1rem);
+      font-weight: 700;
+      color: var(--forest);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .stat-card .hint { font-size: 0.8rem; color: var(--muted-light); margin-top: 0.35rem; line-height: 1.4; }
+    .stat-card.accent-ember .value { color: var(--ember); }
+    .stat-card.accent-sun .value { color: #b8860b; }
+    .stat-card.accent-sage .value { color: var(--sage); }
+
+    /* —— Layout —— */
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 2.5rem clamp(1rem, 3vw, 1.5rem) 4rem; }
+
+    .bottom-line {
+      background: linear-gradient(135deg, var(--paper) 0%, #fff 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.85rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow);
+    }
+    .bottom-line h2 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--forest);
+      margin-bottom: 0.75rem;
+    }
+    .bottom-line p { color: var(--muted); font-size: 1rem; line-height: 1.7; }
+    .bottom-line p strong { color: var(--text); font-weight: 600; }
+    .bottom-line .highlight {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--border);
+      font-size: 0.95rem;
+    }
+
+    /* —— Layer sections —— */
+    .layer {
+      margin-bottom: 2.5rem;
+    }
+    .layer-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.5rem 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .layer-num {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      color: var(--sage);
+      background: var(--sage-soft);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+    }
+    .layer h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 2.5vw, 1.55rem);
+      font-weight: 600;
+      color: var(--forest);
+    }
+    .layer-sub { font-size: 0.9rem; color: var(--muted); width: 100%; }
+
+    .panel {
+      background: var(--paper);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 1.5rem 1.65rem;
+      margin-bottom: 1.25rem;
+      box-shadow: var(--shadow);
+    }
+    .panel h3 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--pine);
+      margin-bottom: 1rem;
+    }
+
+    /* —— Tables —— */
+    .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 -0.25rem; }
+    table.data {
+      width: 100%;
+      min-width: 520px;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    table.data th {
+      text-align: left;
+      padding: 0.65rem 0.75rem;
+      background: var(--cream-dark);
+      color: var(--forest);
+      font-weight: 600;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-bottom: 2px solid var(--border);
+    }
+    table.data td {
+      padding: 0.65rem 0.75rem;
+      border-bottom: 1px solid var(--cream-dark);
+      color: var(--text);
+    }
+    table.data tr:hover td { background: rgba(246, 243, 236, 0.6); }
+    table.data tr.mark td { background: rgba(232, 184, 74, 0.12); font-weight: 600; }
+    table.data tr.mark-spend td { background: rgba(194, 74, 26, 0.08); font-weight: 600; }
+    table.data .num { font-variant-numeric: tabular-nums; text-align: right; }
+    table.data th.num { text-align: right; }
+
+    /* —— Bar charts —— */
+    .bar-list { display: flex; flex-direction: column; gap: 0.85rem; }
+    .bar-item { display: grid; grid-template-columns: minmax(0, 1fr) 2.5rem; gap: 0.65rem; align-items: center; }
+    .bar-item .name { font-size: 0.82rem; color: var(--text); line-height: 1.35; }
+    .bar-item .count { font-size: 0.8rem; font-weight: 700; color: var(--forest); text-align: right; font-variant-numeric: tabular-nums; }
+    .bar-track {
+      grid-column: 1 / -1;
+      height: 8px;
+      background: var(--cream-dark);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--sage), var(--pine));
+    }
+    .bar-item.ads .bar-fill { background: linear-gradient(90deg, var(--ember), #d97706); }
+
+    /* —— Weekly chart —— */
+    .chart-note { font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem; }
+    .week-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 140px;
+      padding: 0.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0.75rem;
+    }
+    .week-col {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .week-bar-wrap {
+      width: 100%;
+      max-width: 22px;
+      height: 110px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: stretch;
+    }
+    .week-bar-total {
+      width: 100%;
+      background: var(--cream-dark);
+      border-radius: 4px 4px 0 0;
+      min-height: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+    .week-bar-paid {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, var(--ember), #9a3412);
+      border-radius: 0 0 3px 3px;
+      min-height: 2px;
+    }
+    .week-label {
+      font-size: 0.55rem;
+      color: var(--muted-light);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      max-height: 3rem;
+      text-align: center;
+      line-height: 1.1;
+    }
+    .week-col.highlight .week-bar-total { box-shadow: 0 0 0 2px var(--sunlight); }
+    .chart-legend { display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.75rem; color: var(--muted); }
+    .chart-legend span { display: inline-flex; align-items: center; gap: 0.35rem; }
+    .swatch { width: 10px; height: 10px; border-radius: 2px; }
+    .swatch.total { background: var(--cream-dark); border: 1px solid var(--border); }
+    .swatch.paid { background: linear-gradient(180deg, var(--ember), #9a3412); }
+
+    /* —— Period compare —— */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 720px) { .compare-grid { grid-template-columns: 1fr; } }
+    .compare-card {
+      background: var(--cream);
+      border-radius: 12px;
+      padding: 1.1rem 1.2rem;
+      border: 1px solid var(--border);
+    }
+    .compare-card h4 {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--pine);
+      margin-bottom: 0.85rem;
+    }
+    .metric-bar { margin-bottom: 0.65rem; }
+    .metric-bar .m-label { font-size: 0.72rem; color: var(--muted); margin-bottom: 0.2rem; display: flex; justify-content: space-between; }
+    .metric-bar .m-track { height: 6px; background: #fff; border-radius: 99px; overflow: hidden; border: 1px solid var(--border); }
+    .metric-bar .m-fill { height: 100%; border-radius: 99px; }
+    .metric-bar.google .m-fill { background: var(--sky); }
+    .metric-bar.direct .m-fill { background: var(--sage); }
+    .metric-bar.paid .m-fill { background: var(--ember); }
+    .metric-bar.total .m-fill { background: var(--forest); }
+
+    /* —— Funnel / layers visual —— */
+    .funnel {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin: 1.5rem 0;
+    }
+    .funnel-step {
+      border-radius: 10px;
+      padding: 1rem 1.15rem;
+      color: #fff;
+      font-size: 0.9rem;
+      position: relative;
+    }
+    .funnel-step .f-title { font-weight: 700; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; margin-bottom: 0.35rem; }
+    .funnel-step .f-big { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; }
+    .funnel-step .f-detail { font-size: 0.8rem; opacity: 0.9; margin-top: 0.25rem; }
+    .funnel-step.s1 { background: linear-gradient(90deg, var(--pine), var(--sage)); width: 38%; min-width: 200px; }
+    .funnel-step.s2 { background: linear-gradient(90deg, var(--sky), #2d5a73); width: 62%; min-width: 240px; }
+    .funnel-step.s3 { background: linear-gradient(90deg, var(--ember), #b45309); width: 88%; min-width: 280px; }
+    .funnel-step.s4 { background: linear-gradient(90deg, var(--forest), #0f2918); width: 100%; }
+
+    /* —— List callouts —— */
+    ul.checks { list-style: none; margin: 0; }
+    ul.checks li {
+      padding: 0.55rem 0 0.55rem 1.5rem;
+      position: relative;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+    ul.checks li:last-child { border-bottom: none; }
+    ul.checks li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.85rem;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--sunlight);
+    }
+
+    ol.sources { margin: 0; padding-left: 1.2rem; color: var(--muted); font-size: 0.9rem; }
+    ol.sources li { margin-bottom: 0.5rem; padding-left: 0.35rem; }
+    ol.sources strong { color: var(--text); }
+
+    /* —— Summary table badges —— */
+    .badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.2rem 0.45rem;
+      border-radius: 4px;
+    }
+    .badge.high { background: var(--sage-soft); color: var(--pine); }
+    .badge.med { background: var(--sun-soft); color: #92400e; }
+    .badge.medlow { background: var(--cream-dark); color: var(--muted); }
+
+    .callout-key {
+      background: linear-gradient(135deg, rgba(74, 124, 89, 0.1), rgba(31, 77, 54, 0.06));
+      border: 1px solid rgba(74, 124, 89, 0.25);
+      border-radius: 12px;
+      padding: 1.1rem 1.25rem;
+      font-size: 0.92rem;
+      color: var(--text);
+      margin-top: 1rem;
+    }
+    .callout-key strong { color: var(--pine); }
+
+    .roas-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+    @media (max-width: 640px) { .roas-strip { grid-template-columns: 1fr; } }
+    .roas-box {
+      text-align: center;
+      padding: 1rem;
+      background: var(--forest);
+      color: #fff;
+      border-radius: 12px;
+    }
+    .roas-box .r-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7; margin-bottom: 0.35rem; }
+    .roas-box .r-val { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; color: var(--sunlight); }
+
+    footer.report-foot {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--muted-light);
+      padding: 2rem 1rem 3rem;
+      border-top: 1px solid var(--border);
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="masthead-inner">
+      <p class="eyebrow">Attribution report</p>
+      <h1>Forest Cliff Camps — <em>Ad impact</em> in one view</h1>
+      <div class="meta-row">
+        <span><strong>Date</strong> March 30, 2026</span>
+        <span><strong>Period</strong> Jan 1 – Mar 30, 2026</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+        <span class="pill ads">Ads launched · Jan 20, 2026</span>
+        <span class="pill spend">Spend increased · ~Mar 16, 2026</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="stat-deck">
+    <div class="stat-card">
+      <div class="label">Direct match</div>
+      <div class="value">36</div>
+      <div class="hint">Households GHL → CampBrain</div>
+    </div>
+    <div class="stat-card accent-sage">
+      <div class="label">Ad-influenced (est.)</div>
+      <div class="value">~284</div>
+      <div class="hint">From GA4 + session model</div>
+    </div>
+    <div class="stat-card accent-sun">
+      <div class="label">Revenue (est.)</div>
+      <div class="value">~$128k</div>
+      <div class="hint">@ $450 / household</div>
+    </div>
+    <div class="stat-card accent-ember">
+      <div class="label">ROAS range</div>
+      <div class="value">2.9× – ~23×</div>
+      <div class="hint">Direct floor vs. full influence</div>
+    </div>
+  </div>
+
+  <main class="wrap">
+
+    <section class="bottom-line">
+      <h2>The bottom line</h2>
+      <p><strong>36 households</strong> can be directly traced: Meta lead form → GHL → CampBrain registration. That is the hard, match-based floor.</p>
+      <p class="highlight">GA4 shows ads influenced roughly <strong>284 households</strong> through paid clicks plus organic and direct lift — about <strong>$128,000</strong> in estimated revenue. The true story sits between the provable 36 and that fuller picture.</p>
+    </section>
+
+    <!-- Layer 1 -->
+    <section class="layer" id="layer-1">
+      <div class="layer-head">
+        <span class="layer-num">Layer 1</span>
+        <h2>Direct attribution</h2>
+        <p class="layer-sub">Email + phone match: HighLevel → CampBrain</p>
+      </div>
+
+      <div class="panel">
+        <h3>Source breakdown</h3>
+        <div class="table-scroll">
+          <table class="data">
+            <thead>
+              <tr>
+                <th>Source</th>
+                <th class="num">GHL leads</th>
+                <th class="num">CampBrain matches</th>
+                <th class="num">Conv. rate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Facebook Ads</td><td class="num">706</td><td class="num">34</td><td class="num">4.8%</td></tr>
+              <tr><td>Vercel landing / Direct</td><td class="num">84</td><td class="num">2</td><td class="num">2.4%</td></tr>
+              <tr class="mark"><td>Total</td><td class="num">790</td><td class="num">36</td><td class="num">4.6%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="callout-key"><strong>Direct revenue:</strong> 36 × $450 = <strong>$16,200</strong></p>
+      </div>
+
+      <div class="panel">
+        <h3>By campaign (direct matches only)</h3>
+        <div class="bar-list">
+          <div class="bar-item">
+            <span class="name">Summer Leads (original)</span><span class="count">11</span>
+            <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+          </div>
+          <div class="bar-item">
+            <span class="name">Overnight Camp — Leads</span><span class="count">10</span>
+            <div class="bar-track"><div class="bar-fill" style="width:90.9%"></div></div>
+          </div>
+          <div class="bar-item">
+            <span class="name">Unattributed Facebook</span><span class="count">10</span>
+            <div class="bar-track"><div class="bar-fill" style="width:90.9%"></div></div>
+          </div>
+          <div class="bar-item">
+            <span class="name">Day Camp 2026 — Leads</span><span class="count">3</span>
+            <div class="bar-track"><div class="bar-fill" style="width:27.3%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>By ad creative (direct matches only)</h3>
+        <div class="bar-list">
+          <div class="bar-item ads">
+            <span class="name">Testimonial — Trust — All Angles</span><span class="count">14</span>
+            <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+          </div>
+          <div class="bar-item ads">
+            <span class="name">Video — Scenes (via source tag)</span><span class="count">8</span>
+            <div class="bar-track"><div class="bar-fill" style="width:57.1%"></div></div>
+          </div>
+          <div class="bar-item ads">
+            <span class="name">And Suddenly Forgot Our Phones</span><span class="count">5</span>
+            <div class="bar-track"><div class="bar-fill" style="width:35.7%"></div></div>
+          </div>
+          <div class="bar-item ads">
+            <span class="name">FC Lead — New Campers Fun (both)</span><span class="count">2</span>
+            <div class="bar-track"><div class="bar-fill" style="width:14.3%"></div></div>
+          </div>
+          <div class="bar-item ads">
+            <span class="name">Other</span><span class="count">7</span>
+            <div class="bar-track"><div class="bar-fill" style="width:50%"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Layer 2 -->
+    <section class="layer" id="layer-2">
+      <div class="layer-head">
+        <span class="layer-num">Layer 2</span>
+        <h2>GA4 traffic — the bigger picture</h2>
+        <p class="layer-sub">Weekly sessions on fccamps.ca by source</p>
+      </div>
+
+      <div class="panel">
+        <h3>Meta paid vs. total traffic (weekly)</h3>
+        <p class="chart-note">Bar height = total sessions; <strong>orange overlay</strong> = Meta paid. Gold outline = ads start week; amber = spend-up week.</p>
+        <div class="week-chart" role="img" aria-label="Weekly total sessions with Meta paid portion">
+          <!-- Total bar height ∝ sessions/max(2343); orange fill ∝ meta_paid/total within each bar -->
+          <div class="week-col"><div class="week-bar-wrap"><div class="week-bar-total" style="height:20.95%"><div class="week-bar-paid" style="height:0%"></div></div></div><span class="week-label">W1</span></div>
+          <div class="week-col"><div class="week-bar-wrap"><div class="week-bar-total" style="height:72.47%"><div class="week-bar-paid" style="height:0%"></div></div></div><span class="week-label">W2</span></div>
+          <div class="week-col"><div class="week-bar-wrap"><div class="week-bar-total" style="height:87.36%"><div class="week-bar-paid" style="height:0%"></div></div></div><span class="week-label">W3</span></div>
+          <div class="week-col highlight"><div class="week-bar-wrap"><div class="week-bar-total" style="height:80.58%"><div class="week-bar-paid" style="height:0%"></div></div></div><span class="week-label">Ads</span></div>
+          <div class="week-col"><div class="week-bar-wrap"><div class="week-bar-total" style="height:83.06%"><div class="week-bar-paid" style="height:1.23%"></div></div></div><span class="week-label">W5</span></div>
+          <div class="week-col"><div class="week-bar-wrap"><div class="week-bar-total" style="height:80.88%"><div class="week-bar-paid" style="height:1.27%"></div></div></div><span class="week-label">W6</span></div>
+          <div class="week-col"><div class="week-bar-wrap"><div class="week-bar-total" style="height:64.49%"><div class="week-bar-paid" style="height:2.32%"></div></div></div><span class="week-label">W7</span></div>
+          <div class="week-col"><div class="week-bar-wrap"><div class="week-bar-total" style="height:69.61%"><div class="week-bar-paid" style="height:3.19%"></div></div></div><span class="week-label">W8</span></div>
+          <div class="week-col"><div class="week-bar-wrap"><div class="week-bar-total" style="height:67.73%"><div class="week-bar-paid" style="height:3.21%"></div></div></div><span class="week-label">W9</span></div>
+          <div class="week-col"><div class="week-bar-wrap"><div class="week-bar-total" style="height:66.45%"><div class="week-bar-paid" style="height:2.06%"></div></div></div><span class="week-label">W10</span></div>
+          <div class="week-col"><div class="week-bar-wrap"><div class="week-bar-total" style="height:60.31%"><div class="week-bar-paid" style="height:2.55%"></div></div></div><span class="week-label">W11</span></div>
+          <div class="week-col mark-spend"><div class="week-bar-wrap"><div class="week-bar-total" style="height:62.40%"><div class="week-bar-paid" style="height:6.91%"></div></div></div><span class="week-label">Spend</span></div>
+          <div class="week-col"><div class="week-bar-wrap"><div class="week-bar-total" style="height:100%"><div class="week-bar-paid" style="height:32.35%"></div></div></div><span class="week-label">W13</span></div>
+          <div class="week-col"><div class="week-bar-wrap"><div class="week-bar-total" style="height:12.59%"><div class="week-bar-paid" style="height:38.98%"></div></div></div><span class="week-label">W14</span></div>
+        </div>
+        <div class="chart-legend">
+          <span><i class="swatch total"></i> Total sessions</span>
+          <span><i class="swatch paid"></i> Meta paid (share of bar)</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Full weekly table</h3>
+        <div class="table-scroll">
+          <table class="data">
+            <thead>
+              <tr>
+                <th>Week</th>
+                <th>Dates</th>
+                <th class="num">Total</th>
+                <th class="num">Meta paid</th>
+                <th class="num">Meta org.</th>
+                <th class="num">Google org.</th>
+                <th class="num">Direct</th>
+                <th class="num">Referral</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>202601</td><td>Dec 29 – Jan 4</td><td class="num">491</td><td class="num">0</td><td class="num">14</td><td class="num">305</td><td class="num">132</td><td class="num">15</td></tr>
+              <tr><td>202602</td><td>Jan 5 – 11</td><td class="num">1,698</td><td class="num">0</td><td class="num">43</td><td class="num">1,077</td><td class="num">461</td><td class="num">38</td></tr>
+              <tr><td>202603</td><td>Jan 12 – 18</td><td class="num">2,047</td><td class="num">0</td><td class="num">93</td><td class="num">1,205</td><td class="num">600</td><td class="num">49</td></tr>
+              <tr class="mark"><td>202604</td><td>Jan 19 – 25 · ads start</td><td class="num">1,888</td><td class="num">0</td><td class="num">56</td><td class="num">1,106</td><td class="num">585</td><td class="num">46</td></tr>
+              <tr><td>202605</td><td>Jan 26 – Feb 1</td><td class="num">1,946</td><td class="num">24</td><td class="num">75</td><td class="num">1,103</td><td class="num">630</td><td class="num">33</td></tr>
+              <tr><td>202606</td><td>Feb 2 – 8</td><td class="num">1,895</td><td class="num">24</td><td class="num">42</td><td class="num">1,096</td><td class="num">592</td><td class="num">43</td></tr>
+              <tr><td>202607</td><td>Feb 9 – 15</td><td class="num">1,511</td><td class="num">35</td><td class="num">65</td><td class="num">869</td><td class="num">455</td><td class="num">31</td></tr>
+              <tr><td>202608</td><td>Feb 16 – 22</td><td class="num">1,631</td><td class="num">52</td><td class="num">90</td><td class="num">871</td><td class="num">513</td><td class="num">36</td></tr>
+              <tr><td>202609</td><td>Feb 23 – Mar 1</td><td class="num">1,587</td><td class="num">51</td><td class="num">74</td><td class="num">847</td><td class="num">507</td><td class="num">34</td></tr>
+              <tr><td>202610</td><td>Mar 2 – 8</td><td class="num">1,557</td><td class="num">32</td><td class="num">77</td><td class="num">822</td><td class="num">510</td><td class="num">51</td></tr>
+              <tr><td>202611</td><td>Mar 9 – 15</td><td class="num">1,413</td><td class="num">36</td><td class="num">59</td><td class="num">721</td><td class="num">484</td><td class="num">28</td></tr>
+              <tr class="mark-spend"><td>202612</td><td>Mar 16 – 22 · spend up</td><td class="num">1,462</td><td class="num">101</td><td class="num">90</td><td class="num">746</td><td class="num">431</td><td class="num">22</td></tr>
+              <tr><td>202613</td><td>Mar 23 – 29</td><td class="num">2,343</td><td class="num">758</td><td class="num">148</td><td class="num">801</td><td class="num">481</td><td class="num">42</td></tr>
+              <tr><td>202614</td><td>Mar 30 (partial)</td><td class="num">295</td><td class="num">115</td><td class="num">10</td><td class="num">105</td><td class="num">47</td><td class="num">6</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Period comparison (weekly averages)</h3>
+        <div class="table-scroll">
+          <table class="data">
+            <thead>
+              <tr>
+                <th>Period</th>
+                <th class="num">Google org./wk</th>
+                <th class="num">Direct/wk</th>
+                <th class="num">Meta paid/wk</th>
+                <th class="num">Total/wk</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Pre-ads (Jan 1 – 18)</td><td class="num">862</td><td class="num">398</td><td class="num">0</td><td class="num">1,260</td></tr>
+              <tr class="mark"><td>Ads running (Jan 19 – Mar 15)</td><td class="num">929 <small>(+8%)</small></td><td class="num">535 <small>(+34%)</small></td><td class="num">32</td><td class="num">1,496 <small>(+19%)</small></td></tr>
+              <tr class="mark-spend"><td>Spend increased (Mar 16 – 30)</td><td class="num">661</td><td class="num">384</td><td class="num">390</td><td class="num">1,434</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="compare-grid" style="margin-top:1.25rem;">
+          <div class="compare-card">
+            <h4>Pre-ads</h4>
+            <p style="font-size:0.7rem;color:var(--muted);margin:-0.35rem 0 0.65rem;">Bars vs. weekly total (1,260)</p>
+            <div class="metric-bar google"><div class="m-label"><span>Google org.</span><span>862</span></div><div class="m-track"><div class="m-fill" style="width:68.45%"></div></div></div>
+            <div class="metric-bar direct"><div class="m-label"><span>Direct</span><span>398</span></div><div class="m-track"><div class="m-fill" style="width:31.59%"></div></div></div>
+            <div class="metric-bar paid"><div class="m-label"><span>Meta paid</span><span>0</span></div><div class="m-track"><div class="m-fill" style="width:0%"></div></div></div>
+            <div class="metric-bar total"><div class="m-label"><span>Total / wk</span><span>1,260</span></div><div class="m-track"><div class="m-fill" style="width:100%"></div></div></div>
+          </div>
+          <div class="compare-card">
+            <h4>Ads running</h4>
+            <p style="font-size:0.7rem;color:var(--muted);margin:-0.35rem 0 0.65rem;">Bars vs. weekly total (1,496)</p>
+            <div class="metric-bar google"><div class="m-label"><span>Google org.</span><span>929</span></div><div class="m-track"><div class="m-fill" style="width:62.1%"></div></div></div>
+            <div class="metric-bar direct"><div class="m-label"><span>Direct</span><span>535</span></div><div class="m-track"><div class="m-fill" style="width:35.76%"></div></div></div>
+            <div class="metric-bar paid"><div class="m-label"><span>Meta paid</span><span>32</span></div><div class="m-track"><div class="m-fill" style="width:2.14%"></div></div></div>
+            <div class="metric-bar total"><div class="m-label"><span>Total / wk</span><span>1,496</span></div><div class="m-track"><div class="m-fill" style="width:100%"></div></div></div>
+          </div>
+          <div class="compare-card">
+            <h4>Spend up</h4>
+            <p style="font-size:0.7rem;color:var(--muted);margin:-0.35rem 0 0.65rem;">Bars vs. weekly total (1,434)</p>
+            <div class="metric-bar google"><div class="m-label"><span>Google org.</span><span>661</span></div><div class="m-track"><div class="m-fill" style="width:46.1%"></div></div></div>
+            <div class="metric-bar direct"><div class="m-label"><span>Direct</span><span>384</span></div><div class="m-track"><div class="m-fill" style="width:26.78%"></div></div></div>
+            <div class="metric-bar paid"><div class="m-label"><span>Meta paid</span><span>390</span></div><div class="m-track"><div class="m-fill" style="width:27.2%"></div></div></div>
+            <div class="metric-bar total"><div class="m-label"><span>Total / wk</span><span>1,434</span></div><div class="m-track"><div class="m-fill" style="width:100%"></div></div></div>
+          </div>
+        </div>
+
+        <p class="callout-key"><strong>Key finding:</strong> Direct traffic rose <strong>34%</strong> after ads (398 → 535 / week). That pattern fits brand lift — people who saw Meta creative and later typed fccamps.ca or searched “Forest Cliff Camps” without clicking the ad.</p>
+      </div>
+    </section>
+
+    <!-- Layer 3 -->
+    <section class="layer" id="layer-3">
+      <div class="layer-head">
+        <span class="layer-num">Layer 3</span>
+        <h2>Total ad-influenced traffic</h2>
+        <p class="layer-sub">How the ~3,495 influenced sessions roll up</p>
+      </div>
+
+      <div class="panel">
+        <div class="funnel">
+          <div class="funnel-step s1">
+            <div class="f-title">Meta paid clicks</div>
+            <div class="f-big">1,228</div>
+            <div class="f-detail">Clicked ad → website</div>
+          </div>
+          <div class="funnel-step s2">
+            <div class="f-title">Facebook / IG referral</div>
+            <div class="f-big">~828</div>
+            <div class="f-detail">Organic post clicks (often primed by ads)</div>
+          </div>
+          <div class="funnel-step s3">
+            <div class="f-title">Direct traffic uplift</div>
+            <div class="f-big">~1,439</div>
+            <div class="f-detail">+137 sessions/wk vs. pre-ad baseline × 10.5 weeks</div>
+          </div>
+          <div class="funnel-step s4">
+            <div class="f-title">Total ad-influenced sessions</div>
+            <div class="f-big">~3,495</div>
+            <div class="f-detail">At 8.1% session → registration → <strong>~284 households</strong> · <strong>~$128,000</strong> revenue (est.)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Layer 4 -->
+    <section class="layer" id="layer-4">
+      <div class="layer-head">
+        <span class="layer-num">Layer 4</span>
+        <h2>What we cannot measure (but know exists)</h2>
+      </div>
+      <div class="panel">
+        <ul class="checks">
+          <li><strong>Phone calls</strong> — Parents who saw an ad and called the camp directly.</li>
+          <li><strong>Word of mouth</strong> — “I saw this ad about Forest Cliff…”</li>
+          <li><strong>Spouse forwarding</strong> — One parent sees the ad; the other registers with a different email.</li>
+          <li><strong>Multi-touch</strong> — Saw the ad in January; registered in March after many touchpoints.</li>
+          <li><strong>Church / community amplification</strong> — Referrals often flow through churches; ad awareness can accelerate that network.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Sources & methodology -->
+    <section class="layer">
+      <div class="layer-head">
+        <span class="layer-num">Appendix</span>
+        <h2>Data sources &amp; methodology</h2>
+      </div>
+      <div class="panel">
+        <h3>Sources</h3>
+        <ol class="sources">
+          <li><strong>CampBrain CSV</strong> — 1,770 households, 3,030 parent emails, 2,932 phones (2026 registrations).</li>
+          <li><strong>HighLevel CRM</strong> — 790 contacts (706 from Facebook ads, 84 from other).</li>
+          <li><strong>GA4</strong> (property 477599729) — Traffic by source/medium, weekly.</li>
+          <li><strong>Meta Ads API</strong> — Campaign spend and performance.</li>
+        </ol>
+      </div>
+      <div class="panel">
+        <h3>Methodology notes</h3>
+        <ul class="checks">
+          <li><strong>Direct attribution:</strong> Email + phone match between GHL and CampBrain parents.</li>
+          <li><strong>Traffic influence:</strong> Pre-ad baseline (Jan 1 – 18) vs. ad-period weekly averages.</li>
+          <li><strong>Session → registration:</strong> Blended 8.1% across sources; new visitors likely convert higher.</li>
+          <li><strong>Value:</strong> $450 average registration (conservative; overnight camps often $500–729).</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Executive summary table -->
+    <section class="layer" id="summary">
+      <div class="layer-head">
+        <span class="layer-num">Summary</span>
+        <h2>For Forest Cliff</h2>
+      </div>
+      <div class="panel">
+        <div class="table-scroll">
+          <table class="data">
+            <thead>
+              <tr>
+                <th>Attribution layer</th>
+                <th class="num">Households</th>
+                <th class="num">Revenue est.</th>
+                <th>Confidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Direct match (GHL → CampBrain)</td><td class="num">36</td><td class="num">$16,200</td><td><span class="badge high">High</span></td></tr>
+              <tr><td>Meta paid → site → registration</td><td class="num">~100</td><td class="num">~$45,000</td><td><span class="badge med">Medium</span></td></tr>
+              <tr><td>Brand lift (direct / organic uplift)</td><td class="num">~148</td><td class="num">~$66,600</td><td><span class="badge medlow">Medium–low</span></td></tr>
+              <tr class="mark"><td><strong>Total estimated</strong></td><td class="num"><strong>~284</strong></td><td class="num"><strong>~$128,000</strong></td><td>—</td></tr>
+              <tr><td>Unmeasured (calls, WOM, spouse, etc.)</td><td class="num">—</td><td class="num">—</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="roas-strip">
+          <div class="roas-box">
+            <div class="r-label">Ad spend (est.)</div>
+            <div class="r-val">~$5,500</div>
+            <div style="font-size:0.75rem;opacity:0.85;margin-top:0.35rem;">Jan 20 – Mar 30</div>
+          </div>
+          <div class="roas-box">
+            <div class="r-label">Conservative ROAS</div>
+            <div class="r-val">2.9×</div>
+            <div style="font-size:0.75rem;opacity:0.85;margin-top:0.35rem;">Direct match only</div>
+          </div>
+          <div class="roas-box">
+            <div class="r-label">Estimated true ROAS</div>
+            <div class="r-val">~23×</div>
+            <div style="font-size:0.75rem;opacity:0.85;margin-top:0.35rem;">All influenced regs</div>
+          </div>
+        </div>
+
+        <p class="callout-key" style="margin-top:1.25rem;">Real ROAS likely falls <strong>between ~2.9× and ~23×</strong>. The direct-match floor is already profitable; traffic patterns point to a much higher true impact.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="report-foot">
+    Forest Cliff Camps · Ad attribution report · Internal use · March 30, 2026
+  </footer>
+
+</body>
+</html>
