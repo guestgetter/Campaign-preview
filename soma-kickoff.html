@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soma × Guest Getter — 90-Day Kickoff</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF6F0;
+    --ink: #1A1A1A;
+    --amber: #D4860B;
+    --amber-light: #F5E6CC;
+    --muted: #8A8478;
+    --card-bg: #FFFFFF;
+    --border: #E8E2D8;
+    --green: #2D6A4F;
+    --green-light: #D8F3DC;
+    --red: #C1292E;
+    --red-light: #FDDEDE;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .header h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 2.8rem;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .header h1 em {
+    font-style: italic;
+    color: var(--amber);
+  }
+
+  .header-meta {
+    text-align: right;
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .header-meta strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .deal-terms {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .deal-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    text-align: center;
+  }
+
+  .deal-card .label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .deal-card .value {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--ink);
+  }
+
+  .deal-card .value em { color: var(--amber); font-style: italic; }
+
+  .section {
+    margin-bottom: 2.5rem;
+  }
+
+  .section-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-title span {
+    color: var(--amber);
+    font-style: italic;
+  }
+
+  .objective {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--amber);
+    border-radius: 0 8px 8px 0;
+    padding: 1.25rem 1.5rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .objective strong { font-weight: 600; }
+
+  .phase-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .phase {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    position: relative;
+  }
+
+  .phase.now {
+    border-color: var(--amber);
+    box-shadow: 0 0 0 1px var(--amber);
+  }
+
+  .phase-tag {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--muted);
+  }
+
+  .phase.now .phase-tag { color: var(--amber); }
+
+  .phase h3 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+  }
+
+  .phase ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .phase li {
+    font-size: 0.85rem;
+    color: var(--ink);
+    padding: 0.3rem 0;
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .phase li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+  }
+
+  .call-agenda {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .agenda-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .agenda-item:last-child { border-bottom: none; }
+
+  .agenda-time {
+    background: var(--bg);
+    padding: 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .agenda-content {
+    padding: 1rem 1.25rem;
+  }
+
+  .agenda-content h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .agenda-content p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .agenda-content .talk-track {
+    font-size: 0.8rem;
+    color: var(--ink);
+    background: var(--amber-light);
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .access-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .access-col h4 {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .access-col ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .access-col li {
+    font-size: 0.85rem;
+    padding: 0.4rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .check {
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .kpi {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    text-align: center;
+  }
+
+  .kpi .kpi-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+  }
+
+  .kpi .kpi-value {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.3rem;
+  }
+
+  .kpi .kpi-note {
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-top: 0.25rem;
+  }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .footer strong { color: var(--ink); }
+
+  .ownership-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .ownership-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .ownership-card h4 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .ownership-card.gg h4 { color: var(--amber); }
+  .ownership-card.soma h4 { color: var(--green); }
+
+  .ownership-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .ownership-card li {
+    font-size: 0.85rem;
+    padding: 0.3rem 0;
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .ownership-card li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+  }
+
+  @media print {
+    body { padding: 1rem; }
+    .phase, .deal-card, .agenda-item { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Soma × Guest Getter<br><em>90-Day Kickoff</em></h1>
+  <div class="header-meta">
+    <strong>Kickoff Call</strong><br>
+    Tuesday, March 31, 2026<br>
+    2:00 PM EDT<br><br>
+    Michel Salvador · Jeremy Walker<br>
+    Kyle Guilfoyle · Gabriel Malbogat
+  </div>
+</div>
+
+<div class="deal-terms">
+  <div class="deal-card">
+    <div class="label">Monthly Retainer</div>
+    <div class="value">$500<em>/mo</em></div>
+  </div>
+  <div class="deal-card">
+    <div class="label">Ad Spend</div>
+    <div class="value">$500<em>/mo</em></div>
+  </div>
+  <div class="deal-card">
+    <div class="label">Proof of Concept</div>
+    <div class="value"><em>90</em> days</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">The <span>objective</span></div>
+  <div class="objective">
+    Find out exactly <strong>what it costs Soma to acquire a customer</strong> through paid digital. Build a measurable system around Free Broth Friday so every dollar in produces a trackable dollar out. In 90 days, the numbers either tell a story that makes everyone want to keep going — or they don't, and Soma walks away with more clarity than before.
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">The <span>90 days</span></div>
+  <div class="phase-grid">
+    <div class="phase now">
+      <div class="phase-tag">Weeks 1–2 · Now</div>
+      <h3>Wire it up</h3>
+      <ul>
+        <li>Meta Pixel + Conversions API on Shopify</li>
+        <li>Google Analytics cleanup</li>
+        <li>QR capture system for Free Broth Friday &amp; demos</li>
+        <li>Email/SMS capture flow built</li>
+        <li>Baseline metrics documented</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-tag">Weeks 3–8 · Run</div>
+      <h3>Launch &amp; learn</h3>
+      <ul>
+        <li>Free Broth Friday Meta campaign live</li>
+        <li>A/B test audiences: Women 35+ health-conscious vs. broader radius</li>
+        <li>Retarget website visitors + store QR scans</li>
+        <li>Weekly email to captured leads</li>
+        <li>Optimize toward cost-per-lead &amp; cost-per-purchase</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-tag">Weeks 9–12 · Prove</div>
+      <h3>Read the numbers</h3>
+      <ul>
+        <li>Full cost-per-customer report</li>
+        <li>Channel comparison: Meta vs. in-store vs. email</li>
+        <li>Winning audience &amp; creative identified</li>
+        <li>Clear recommendation: scale, adjust, or stop</li>
+        <li>Peak season plan for September if numbers justify it</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Tracking from <span>day one</span></div>
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-label">Cost Per Lead</div>
+      <div class="kpi-value">$___</div>
+      <div class="kpi-note">What it costs to get a name + email</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Cost Per Customer</div>
+      <div class="kpi-value">$___</div>
+      <div class="kpi-note">What it costs to get a first purchase</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Website Sessions</div>
+      <div class="kpi-value">1,200</div>
+      <div class="kpi-note">Current baseline / month</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Conversion Rate</div>
+      <div class="kpi-value">2.5%</div>
+      <div class="kpi-note">Current baseline</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Call <span>agenda</span></div>
+  <div class="call-agenda">
+    <div class="agenda-item">
+      <div class="agenda-time">0–5<br>min</div>
+      <div class="agenda-content">
+        <h4>Confirm the plan</h4>
+        <p>Restate the deal: $500/mo + $500 ad spend, 3 months, anchored around Free Broth Friday. Weekly check-ins for the first month. Confirm invoice details.</p>
+      </div>
+    </div>
+    <div class="agenda-item">
+      <div class="agenda-time">5–12<br>min</div>
+      <div class="agenda-content">
+        <h4>Walk through the 90-day roadmap</h4>
+        <p>Show the three phases. Get Michel and Jeremy nodding on the sequence: tracking first, campaign second, read the numbers third.</p>
+        <div class="talk-track">"Before we spend a dollar on ads, every conversion path is tracked. So when the numbers come in, we trust them."</div>
+      </div>
+    </div>
+    <div class="agenda-item">
+      <div class="agenda-time">12–18<br>min</div>
+      <div class="agenda-content">
+        <h4>Free Broth Friday — the anchor campaign</h4>
+        <p>This is the campaign. People already show up. We put a Meta campaign behind it to drive more foot traffic + online orders, and a QR capture system so every free cup turns into a follow-up opportunity.</p>
+        <div class="talk-track">"You're already giving away broth every Friday. We're just putting a capture mechanism around it and amplifying it with $500/mo in ads so we can measure exactly what that costs you per new customer."</div>
+      </div>
+    </div>
+    <div class="agenda-item">
+      <div class="agenda-time">18–23<br>min</div>
+      <div class="agenda-content">
+        <h4>Get access</h4>
+        <p><strong>Priority #1: Meta Business Manager partner access</strong> — we need this to create and run the ads account. Then: Facebook Page admin · Instagram access · Shopify staff account · Google Analytics · Email platform (Klaviyo/Mailchimp). Also need: existing product photos, any company media (video, BTS footage, press), brand assets, customer list export.</p>
+      </div>
+    </div>
+    <div class="agenda-item">
+      <div class="agenda-time">23–28<br>min</div>
+      <div name="agenda-content" class="agenda-content">
+        <h4>Ownership &amp; cadence</h4>
+        <p>Who does what. Weekly check-ins for month one, bi-weekly after. First deliverable from us: tracking setup + campaign creative, end of week one.</p>
+      </div>
+    </div>
+    <div class="agenda-item">
+      <div class="agenda-time">28–30<br>min</div>
+      <div class="agenda-content">
+        <h4>Next steps &amp; homework</h4>
+        <p>Michel sends: platform logins, sales data, wholesale list, brand assets. Guest Getter sends: invoice, tracking setup confirmation, first campaign brief.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Who <span>owns</span> what</div>
+  <div class="ownership-grid">
+    <div class="ownership-card gg">
+      <h4>Guest Getter</h4>
+      <ul>
+        <li>Meta Pixel + tracking setup</li>
+        <li>Free Broth Friday campaign (creative, targeting, optimization)</li>
+        <li>QR code capture system design</li>
+        <li>Email/SMS follow-up sequences</li>
+        <li>Weekly reporting + cost-per-customer tracking</li>
+        <li>Retargeting campaigns</li>
+      </ul>
+    </div>
+    <div class="ownership-card soma">
+      <h4>Soma</h4>
+      <ul>
+        <li>Meta Business Manager partner access (ads account)</li>
+        <li>Platform access (Facebook, Shopify, Analytics, email)</li>
+        <li>Product photos + any company media (video, BTS, press)</li>
+        <li>Brand assets (logos, colour codes, fonts)</li>
+        <li>Sales data &amp; wholesale account list</li>
+        <li>Free Broth Friday execution in-store</li>
+        <li>QR code printed &amp; displayed at store + demos</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Access <span>checklist</span></div>
+  <div class="access-grid">
+    <div class="access-col">
+      <h4>Platforms — Critical</h4>
+      <ul>
+        <li><span class="check" style="border-color: var(--amber); border-width: 2px;"></span> <strong>Meta Business Manager — partner access</strong> (we need an ads account)</li>
+        <li><span class="check"></span> Facebook Page (admin access)</li>
+        <li><span class="check"></span> Instagram (collaborator access)</li>
+        <li><span class="check"></span> Shopify (staff account)</li>
+        <li><span class="check"></span> Google Analytics (viewer access)</li>
+        <li><span class="check"></span> Email platform (Klaviyo / Mailchimp)</li>
+        <li><span class="check"></span> TikTok (if applicable)</li>
+      </ul>
+    </div>
+    <div class="access-col">
+      <h4>Assets &amp; Data</h4>
+      <ul>
+        <li><span class="check"></span> Existing product photos</li>
+        <li><span class="check"></span> Any company media (video, behind-the-scenes, event footage, press)</li>
+        <li><span class="check"></span> Logo files (vector preferred)</li>
+        <li><span class="check"></span> Brand colours &amp; fonts</li>
+        <li><span class="check"></span> Customer / email list (CSV)</li>
+        <li><span class="check"></span> Annual or monthly sales data</li>
+        <li><span class="check"></span> Wholesale account list</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div><strong>Guest Getter</strong> × Soma Bone Broth Co.</div>
+  <div>90-Day Proof of Concept · April–June 2026</div>
+</div>
+
+</body>
+</html>
