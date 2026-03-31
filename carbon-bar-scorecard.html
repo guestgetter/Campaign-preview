@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Carbon Bar — Performance Scorecard · March 27, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parchment: #FAF6F1;
+    --ink: #1A1714;
+    --ink-soft: #3D3832;
+    --ink-muted: #6B6359;
+    --amber: #D4860B;
+    --amber-light: #F5E6CC;
+    --amber-glow: #FFF3E0;
+    --green: #2D7A4F;
+    --green-bg: #E8F5E9;
+    --red: #C4432B;
+    --red-bg: #FDECEA;
+    --blue: #2563EB;
+    --blue-bg: #EFF6FF;
+    --divider: #E8E2DA;
+    --card: #FFFFFF;
+    --card-shadow: 0 1px 3px rgba(26,23,20,0.06), 0 4px 12px rgba(26,23,20,0.04);
+    --card-shadow-hover: 0 2px 8px rgba(26,23,20,0.08), 0 8px 24px rgba(26,23,20,0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--parchment);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--amber);
+    background: var(--amber-glow);
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+
+  .header h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .header-sub {
+    font-size: 15px;
+    color: var(--ink-muted);
+    font-weight: 400;
+  }
+
+  .header-sub strong {
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  /* Period badge */
+  .period-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-muted);
+    margin-top: 12px;
+  }
+
+  /* Metric Cards Grid */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .metric-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--card-shadow);
+    transition: box-shadow 0.2s;
+  }
+
+  .metric-card:hover { box-shadow: var(--card-shadow-hover); }
+
+  .metric-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    margin-bottom: 8px;
+  }
+
+  .metric-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+
+  .metric-context {
+    font-size: 12px;
+    color: var(--ink-muted);
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  .metric-delta {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-top: 6px;
+  }
+
+  .delta-up { color: var(--green); background: var(--green-bg); }
+  .delta-down { color: var(--red); background: var(--red-bg); }
+  .delta-neutral { color: var(--ink-muted); background: #F5F3F0; }
+
+  /* Section */
+  .section {
+    margin-bottom: 40px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .section-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+  }
+
+  /* Channel Cards */
+  .channel-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 16px;
+  }
+
+  .channel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .channel-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .channel-spend {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+
+  .channel-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .cm-item {}
+
+  .cm-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+
+  .cm-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-top: 2px;
+  }
+
+  .cm-note {
+    font-size: 11px;
+    color: var(--ink-muted);
+    margin-top: 2px;
+  }
+
+  /* Insight callout */
+  .insight-box {
+    background: var(--amber-glow);
+    border-left: 3px solid var(--amber);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin-top: 12px;
+  }
+
+  .insight-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+
+  .insight-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  /* SEO section */
+  .seo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .seo-stat {
+    text-align: center;
+    padding: 14px 8px;
+    background: #F9F7F4;
+    border-radius: 8px;
+  }
+
+  .seo-stat-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    font-weight: 600;
+  }
+
+  .seo-stat-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 4px 0 2px;
+  }
+
+  .seo-stat-change {
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* Next Steps */
+  .next-steps {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+  }
+
+  .step-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .step-item:last-child { border-bottom: none; }
+
+  .step-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: var(--amber-glow);
+    color: var(--amber);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .step-content {}
+
+  .step-title {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .step-desc {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+
+  /* Big number highlight */
+  .highlight-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .highlight-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+    text-align: center;
+  }
+
+  .highlight-card .metric-value {
+    font-size: 36px;
+    margin-bottom: 4px;
+  }
+
+  .highlight-card .metric-label {
+    margin-bottom: 0;
+    font-size: 12px;
+  }
+
+  /* Compounding box */
+  .compounding-box {
+    background: linear-gradient(135deg, #1A1714 0%, #2D2822 100%);
+    border-radius: 12px;
+    padding: 28px;
+    color: #FAF6F1;
+    margin-bottom: 40px;
+  }
+
+  .compounding-box .section-title {
+    color: var(--amber-light);
+    margin-bottom: 12px;
+  }
+
+  .compounding-box p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: rgba(250,246,241,0.8);
+  }
+
+  .compounding-box strong {
+    color: var(--amber-light);
+    font-weight: 500;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 32px;
+    border-top: 1px solid var(--divider);
+    margin-top: 48px;
+  }
+
+  .footer-logo {
+    font-family: 'Instrument Serif', serif;
+    font-size: 16px;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+
+  .footer-text {
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+
+  /* OpenTable row */
+  .ot-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .ot-stat {
+    background: #F9F7F4;
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+  }
+
+  /* Conversion funnel */
+  .funnel-section {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 16px;
+  }
+
+  .funnel-bar-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .funnel-bar-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink-muted);
+    width: 100px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .funnel-bar-track {
+    flex: 1;
+    height: 32px;
+    background: #F5F3F0;
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .funnel-bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: white;
+  }
+
+  .funnel-bar-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-muted);
+    width: 70px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .funnel-comparison {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid var(--divider);
+  }
+
+  .funnel-comp-item { text-align: center; }
+
+  .funnel-comp-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    font-weight: 600;
+  }
+
+  .funnel-comp-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 22px;
+    font-weight: 500;
+    margin-top: 2px;
+  }
+
+  .leak-callout {
+    background: #FEF2F2;
+    border-left: 3px solid var(--red);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin-top: 12px;
+  }
+
+  .leak-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--red);
+    margin-bottom: 4px;
+  }
+
+  .leak-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  .decision-box {
+    background: var(--blue-bg);
+    border-left: 3px solid var(--blue);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin-top: 16px;
+  }
+
+  .decision-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--blue);
+    margin-bottom: 4px;
+  }
+
+  .decision-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  @media (max-width: 640px) {
+    .metrics-grid { grid-template-columns: 1fr; }
+    .seo-grid { grid-template-columns: repeat(2, 1fr); }
+    .highlight-row { grid-template-columns: 1fr; }
+    .ot-row { grid-template-columns: repeat(2, 1fr); }
+    .header h1 { font-size: 28px; }
+    .container { padding: 24px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-badge">● Guest Getter — Performance Scorecard</div>
+    <h1>The Carbon Bar</h1>
+    <div class="header-sub">Bi-weekly performance review · Prepared for <strong>March 27, 2026</strong> call</div>
+    <div class="period-tag">Reporting period: Mar 13 – Mar 26, 2026</div>
+  </div>
+
+  <!-- THE THREE NUMBERS THAT MATTER -->
+  <div class="metrics-grid">
+    <div class="metric-card" style="background:linear-gradient(135deg, #1A1714 0%, #2D2822 100%);color:#FAF6F1;">
+      <div class="metric-label" style="color:var(--amber-light);">Total Ad Spend</div>
+      <div class="metric-value" style="color:#FAF6F1;">$2,066</div>
+      <div class="metric-context" style="color:rgba(250,246,241,0.6);">Meta $1,222 · Google $844</div>
+    </div>
+    <div class="metric-card" style="background:linear-gradient(135deg, #1A1714 0%, #2D2822 100%);color:#FAF6F1;">
+      <div class="metric-label" style="color:var(--amber-light);">Seated Guests (from Meta)</div>
+      <div class="metric-value" style="color:#FAF6F1;">111</div>
+      <div class="metric-context" style="color:rgba(250,246,241,0.6);">matched leads who actually showed up</div>
+    </div>
+    <div class="metric-card" style="background:linear-gradient(135deg, #1A1714 0%, #2D2822 100%);color:#FAF6F1;">
+      <div class="metric-label" style="color:var(--amber-light);">Cost / Seated Guest</div>
+      <div class="metric-value" style="color:#FAF6F1;">$30</div>
+      <div class="metric-context" style="color:rgba(250,246,241,0.6);">$19,599 revenue · 5.9x ROAS</div>
+    </div>
+  </div>
+
+  <!-- Google Ads hero row -->
+  <div class="highlight-row">
+    <div class="highlight-card">
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:#4285F4;margin-bottom:8px;">Google Ads</div>
+      <div class="metric-value" style="color: var(--green);">$13.19</div>
+      <div class="metric-label">Cost / Reservation</div>
+      <div class="metric-delta delta-up" style="margin-top:6px;">↓ 11% (was $14.76)</div>
+      <div class="metric-context">49 reservations · 15 calls · 448 store visits</div>
+    </div>
+    <div class="highlight-card">
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:#1877F2;margin-bottom:8px;">Meta Ads</div>
+      <div class="metric-value" style="color: var(--green);">$2.98</div>
+      <div class="metric-label">Cost / Lead</div>
+      <div class="metric-delta delta-up" style="margin-top:6px;">↓ 72% from prev.</div>
+      <div class="metric-context">349 leads this period · 11.6% convert to guests</div>
+    </div>
+  </div>
+
+  <!-- OT snapshot inline -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: var(--green-bg); color: var(--green);">◉</div>
+      <div class="section-title">OpenTable — This Period</div>
+    </div>
+    <div class="channel-card">
+      <div class="channel-metrics">
+        <div class="cm-item">
+          <div class="cm-label">OT Reservations</div>
+          <div class="cm-value">631</div>
+          <div class="cm-note">↑ 10.5%</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-label">Total Guests</div>
+          <div class="cm-value">1,886</div>
+          <div class="cm-note">↑ 11.2%</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-label">First-Time Guests</div>
+          <div class="cm-value">252</div>
+          <div class="cm-note">↑ 14.1% (prev: 242)</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-label">Avg Party Size</div>
+          <div class="cm-value">3.0</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Conversion Gap — streamlined -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: var(--red-bg); color: var(--red);">⚡</div>
+      <div class="section-title">The Conversion Gap</div>
+    </div>
+
+    <div class="funnel-section">
+      <p style="font-size:13px;color:var(--ink-muted);margin-bottom:16px;line-height:1.55;">Reservations are up 7.3% over the last 90 days (3,637 → 3,901). But actual covers dropped 8.1% (12,666 → 11,646). The marketing is driving more demand — roughly 1,020 covers are getting lost to cancellations and no-shows downstream.</p>
+
+      <div class="leak-callout">
+        <div class="leak-label">Revenue Opportunity</div>
+        <div class="leak-text">At $85 average per cover, 1,020 lost covers represents roughly $87K in leaked revenue over 90 days. A pre-visit confirmation system (3 days out + day-of) recaptures a meaningful share by either locking in attendance or freeing the table for someone who will show.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Google Ads -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: #E8F0FE; color: #4285F4;">G</div>
+      <div class="section-title">Google Ads</div>
+    </div>
+
+    <div class="channel-card">
+      <div class="channel-header">
+        <div class="channel-name">Search + Performance Max</div>
+        <div class="channel-spend">CA$844 spent · <span class="metric-delta delta-down" style="padding:0;background:none;">↓ 8% spend</span></div>
+      </div>
+
+      <div class="channel-metrics">
+        <div class="cm-item">
+          <div class="cm-label">OT Reservations</div>
+          <div class="cm-value">49</div>
+          <div class="cm-note">↑ from 62 prev. period</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-label">Phone Calls</div>
+          <div class="cm-value">15</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-label">Store Visits</div>
+          <div class="cm-value">448</div>
+          <div class="cm-note">↑ 14.5%</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-label">Cost / Reservation</div>
+          <div class="cm-value">$13.19</div>
+          <div class="cm-note">↓ 11% (was $14.76)</div>
+        </div>
+      </div>
+
+      <div class="insight-box">
+        <div class="insight-label">What's Working</div>
+        <div class="insight-text">Continued negative keyword pruning (excluding irrelevant cuisines and far-away locations) drove CPR down 11% on lower spend. The spend-to-reservation ratio keeps improving — the system is getting sharper every period.</div>
+      </div>
+
+      <div class="decision-box">
+        <div class="decision-label">Recommended Move</div>
+        <div class="decision-text">Pause the Private Events search campaign (CA$146 spent, zero leads from 53 page views). Redistribute that budget to PMax and Non-Branded Search where conversions are actually happening.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Meta Ads — Lead-to-Guest Pipeline -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: #E7F0FE; color: #1877F2;">f</div>
+      <div class="section-title">Meta Ads — Lead to Guest Pipeline</div>
+    </div>
+
+    <div class="channel-card">
+      <div class="channel-header">
+        <div class="channel-name">All Carbon Bar Meta Campaigns (Since Jan 2026)</div>
+        <div class="channel-spend">957 total leads · ~$3,350 est. spend</div>
+      </div>
+
+      <div class="funnel-bar-container">
+        <div class="funnel-bar-label">Leads</div>
+        <div class="funnel-bar-track">
+          <div class="funnel-bar-fill" style="width: 100%; background: #6B7280;">957</div>
+        </div>
+        <div class="funnel-bar-value"></div>
+      </div>
+      <div class="funnel-bar-container">
+        <div class="funnel-bar-label">Found in OT</div>
+        <div class="funnel-bar-track">
+          <div class="funnel-bar-fill" style="width: 23.4%; background: var(--amber);">224</div>
+        </div>
+        <div class="funnel-bar-value">23.4%</div>
+      </div>
+      <div class="funnel-bar-container">
+        <div class="funnel-bar-label">Visited</div>
+        <div class="funnel-bar-track">
+          <div class="funnel-bar-fill" style="width: 11.6%; background: var(--green);">111</div>
+        </div>
+        <div class="funnel-bar-value">11.6%</div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--divider);">
+        <div style="text-align:center;">
+          <div class="cm-label">Tracked Revenue</div>
+          <div style="font-family:'DM Mono',monospace;font-size:24px;font-weight:500;color:var(--green);margin-top:4px;">$19,599</div>
+          <div class="cm-note">from 186 visits</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="cm-label">Avg / Visit</div>
+          <div style="font-family:'DM Mono',monospace;font-size:24px;font-weight:500;color:var(--ink);margin-top:4px;">$105</div>
+          <div class="cm-note">$85 per cover</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="cm-label">Cost / Seated Guest</div>
+          <div style="font-family:'DM Mono',monospace;font-size:24px;font-weight:500;color:var(--ink);margin-top:4px;">$30</div>
+          <div class="cm-note">ad spend ÷ 111 guests</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="cm-label">ROAS</div>
+          <div style="font-family:'DM Mono',monospace;font-size:24px;font-weight:500;color:var(--green);margin-top:4px;">5.9x</div>
+          <div class="cm-note">$1 in → $5.85 back</div>
+        </div>
+      </div>
+
+      <!-- Campaign breakdown table -->
+      <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--divider);">
+        <div class="cm-label" style="margin-bottom: 12px;">By Campaign</div>
+        
+        <div style="display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-muted); font-weight: 600; padding-bottom: 8px; border-bottom: 1px solid var(--divider);">
+          <div>Campaign</div>
+          <div style="text-align:right;">Leads</div>
+          <div style="text-align:right;">Visited</div>
+          <div style="text-align:right;">Revenue</div>
+        </div>
+        
+        <div style="display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; font-size: 13px; padding: 10px 0; border-bottom: 1px solid var(--divider);">
+          <div style="color:var(--ink-soft);">Discover The Carbon Bar</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;">731</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;color:var(--green);">92</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;">$14,918</div>
+        </div>
+        <div style="display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; font-size: 13px; padding: 10px 0; border-bottom: 1px solid var(--divider);">
+          <div style="color:var(--ink-soft);">Coast to Coals <span style="font-size:10px;color:var(--amber);font-weight:600;">(Extended thru April)</span></div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;">112</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;color:var(--green);">12</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;">$1,755</div>
+        </div>
+        <div style="display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; font-size: 13px; padding: 10px 0; border-bottom: 1px solid var(--divider);">
+          <div style="color:var(--ink-soft);">Private Events Inquiry</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;">102</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;color:var(--green);">6</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;">$2,925</div>
+        </div>
+        <div style="display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; font-size: 13px; padding: 10px 0;">
+          <div style="color:var(--ink-soft);">12 Year Anniversary</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;">12</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;color:var(--green);">1</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;">—</div>
+        </div>
+      </div>
+
+      <div class="insight-box" style="margin-top:16px;">
+        <div class="insight-label">What This Means</div>
+        <div class="insight-text">We matched every Meta lead by email, phone, and name against the full OpenTable guest database. 224 of 957 leads booked a table. 111 actually showed up and ate — generating $19,599 in tracked revenue at $30 per seated guest. These guests average 1.7 visits each, so the ads aren't just filling a seat once. The 23.4% match rate is a floor — the real number influenced by Meta is higher.</div>
+      </div>
+
+      <div class="insight-box" style="margin-top:12px; background: var(--green-bg); border-color: var(--green);">
+        <div class="insight-label" style="color: var(--green);">Discover Campaign Is the Engine</div>
+        <div class="insight-text">731 leads across both Discover variants, 92 who visited, $14,918 in revenue. At roughly $1.84 CPL, this campaign is producing seated guests at an extraordinary cost — under $15 per person who walks through the door. Chef's Table continues to stand out as the group dining format that actually converts interest into bookings.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- This Period Meta snapshot -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: #E7F0FE; color: #1877F2;">f</div>
+      <div class="section-title">This Period — Meta Snapshot</div>
+    </div>
+
+    <div class="channel-card">
+      <div class="channel-header">
+        <div class="channel-name">Mar 13–26 Lead Generation</div>
+        <div class="channel-spend">CA$1,222 spent · 349 leads</div>
+      </div>
+
+      <div class="channel-metrics">
+        <div class="cm-item">
+          <div class="cm-label">Discover Carbon Bar</div>
+          <div class="cm-value">228 <span style="font-size:13px;color:var(--ink-muted);">leads</span></div>
+          <div class="cm-note">$1.84 CPL</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-label">Coast to Coals</div>
+          <div class="cm-value">81 <span style="font-size:13px;color:var(--ink-muted);">leads</span></div>
+          <div class="cm-note">$3.28 CPL</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-label">Group Dining</div>
+          <div class="cm-value">41 <span style="font-size:13px;color:var(--ink-muted);">leads</span></div>
+          <div class="cm-note">$9.08 CPL</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Private Events -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: #F3E8FF; color: #7C3AED;">◆</div>
+      <div class="section-title">Private Events (Perfect Venue)</div>
+    </div>
+
+    <div class="channel-card">
+      <div class="channel-metrics">
+        <div class="cm-item">
+          <div class="cm-label">Private Leads</div>
+          <div class="cm-value">29</div>
+          <div class="cm-note">↑ 17.4%</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-label">Group Size</div>
+          <div class="cm-value">1,208</div>
+          <div class="cm-note">↑ 28%</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-label">Close Rate</div>
+          <div class="cm-value">6.9%</div>
+          <div class="cm-note">↑ 37.9%</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-label">Booked</div>
+          <div class="cm-value">2</div>
+          <div class="cm-note">↑ 33.3%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEO -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: #E8F5E9; color: var(--green);">◎</div>
+      <div class="section-title">SEO &amp; Structured Data</div>
+    </div>
+
+    <div class="channel-card">
+      <div class="seo-grid">
+        <div class="seo-stat">
+          <div class="seo-stat-label">Impressions</div>
+          <div class="seo-stat-value" style="color:var(--green);">101K</div>
+          <div class="seo-stat-change" style="color:var(--green);">↑ 10.9%</div>
+        </div>
+        <div class="seo-stat">
+          <div class="seo-stat-label">Clicks</div>
+          <div class="seo-stat-value">3.14K</div>
+          <div class="seo-stat-change" style="color:var(--red);">↓ 13.7%</div>
+        </div>
+        <div class="seo-stat">
+          <div class="seo-stat-label">Avg CTR</div>
+          <div class="seo-stat-value">3.1%</div>
+          <div class="seo-stat-change" style="color:var(--red);">↓ from 4%</div>
+        </div>
+        <div class="seo-stat">
+          <div class="seo-stat-label">Avg Position</div>
+          <div class="seo-stat-value" style="color:var(--green);">10.1</div>
+          <div class="seo-stat-change" style="color:var(--green);">↑ from 10.7</div>
+        </div>
+      </div>
+
+      <div class="insight-box">
+        <div class="insight-label">What This Means</div>
+        <div class="insight-text">Google is showing Carbon Bar to more people across a wider range of restaurant searches — impressions up 11% with average position improving. The CTR dip is expected: you're now showing up for broader, discovery-based queries (people searching "BBQ Toronto" rather than "Carbon Bar"). This is how organic growth works — visibility first, then we optimize click-through as these new audiences become familiar.</div>
+      </div>
+
+      <div class="insight-box" style="background: var(--green-bg); border-color: var(--green); margin-top: 12px;">
+        <div class="insight-label" style="color: var(--green);">Milestone</div>
+        <div class="insight-text">Full structured data layer deployed across the entire site — menu schema, local business, and organization markup. Google's Rich Results Test confirms 4 valid items. Carbon Bar has moved from limited machine-readability to a fully structured entity. This is infrastructure that compounds.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Compounding -->
+  <div class="compounding-box">
+    <div class="section-title" style="font-family:'Instrument Serif',serif;font-size:22px;">The Compounding Picture</div>
+    <p style="margin-top:8px;">Every period, the system gets smarter. Negative keywords sharpen Google Ads efficiency. Structured data deepens how search engines understand the restaurant. Lead campaigns build an owned audience you keep forever. This isn't just marketing spend — it's <strong>accumulated intelligence</strong> that makes every future dollar work harder.</p>
+  </div>
+
+  <!-- What's Next -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: var(--amber-glow); color: var(--amber);">→</div>
+      <div class="section-title">Next Moves</div>
+    </div>
+
+    <div class="next-steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Close the Reservation-to-Visit Gap</div>
+          <div class="step-desc">Reservations up 7.3%, actual covers down 8.1% — roughly 1,020 lost covers. A pre-visit confirmation system (3 days + day-of) recaptures lost revenue by locking in attendance or freeing the table. This is the highest-leverage move available right now.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Kill Private Events Search, Redeploy Budget</div>
+          <div class="step-desc">Move CA$146/period from zero-converting Private Events campaign into PMax and Non-Branded Search where conversion data is strong.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Expand Geo-Specific Keywords</div>
+          <div class="step-desc">Add previously converted exact-match keywords from past periods into Non-Branded Search. The data shows which locations and terms actually drive bookings.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Chef's Table Video Push + Lead Nurture</div>
+          <div class="step-desc">Use new Chef's Table clips for group bookings. Follow-up emails deployed across all campaigns — Discover leads get visit reminders, Coast to Coals leads get the April extension, group inquiries get pushed toward confirmed bookings.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">Local Signal Reinforcement (SEO Phase 2)</div>
+          <div class="step-desc">GBP posting cadence for BBQ, happy hour, group dining. Content expansion around Massey Hall, Financial District, St. Lawrence Market neighborhoods. CTR optimization on titles and descriptions.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scale-Up Plan -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: var(--amber-glow); color: var(--amber);">↗</div>
+      <div class="section-title">Budget &amp; Scale-Up Plan</div>
+    </div>
+
+    <div class="channel-card">
+      <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+        <div style="text-align:center; padding: 16px; background: #F9F7F4; border-radius: 8px;">
+          <div class="cm-label">Approved Budget</div>
+          <div style="font-family:'DM Mono',monospace;font-size:22px;font-weight:500;color:var(--ink);margin-top:4px;">$5,000</div>
+          <div class="cm-note">/month</div>
+        </div>
+        <div style="text-align:center; padding: 16px; background: var(--amber-glow); border-radius: 8px;">
+          <div class="cm-label">Current Run Rate</div>
+          <div style="font-family:'DM Mono',monospace;font-size:22px;font-weight:500;color:var(--amber);margin-top:4px;">~$4,130</div>
+          <div class="cm-note">/month · ($2,066 × 2)</div>
+        </div>
+        <div style="text-align:center; padding: 16px; background: var(--green-bg); border-radius: 8px;">
+          <div class="cm-label">Proposed Budget</div>
+          <div style="font-family:'DM Mono',monospace;font-size:22px;font-weight:500;color:var(--green);margin-top:4px;">$7,000</div>
+          <div class="cm-note">/month · +$2K increase</div>
+        </div>
+      </div>
+
+      <div class="insight-box">
+        <div class="insight-label">Why We're Under Budget</div>
+        <div class="insight-text">We deliberately held spend below the $5K ceiling while optimizing. The goal was to get cost-per-reservation and cost-per-guest down before scaling — because scaling inefficient campaigns just burns money faster. Google CPR dropped 11% to $13.19. Meta CPL dropped 72% to $2.98. Both channels are now producing at rates worth scaling into.</div>
+      </div>
+
+      <!-- Allocation table -->
+      <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--divider);">
+        <div class="cm-label" style="margin-bottom: 12px;">Proposed Allocation at $7K/month</div>
+
+        <div style="display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-muted); font-weight: 600; padding-bottom: 8px; border-bottom: 1px solid var(--divider);">
+          <div>Channel</div>
+          <div style="text-align:right;">Current/mo</div>
+          <div style="text-align:right;">Additional</div>
+          <div style="text-align:right;">New Total</div>
+        </div>
+        
+        <div style="display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; font-size: 13px; padding: 12px 0; border-bottom: 1px solid var(--divider);">
+          <div style="color:var(--ink);font-weight:500;">Google Ads</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;">$1,688</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;color:var(--green);">+$1,800</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;font-weight:500;">$3,488</div>
+        </div>
+        <div style="display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; font-size: 13px; padding: 12px 0; border-bottom: 1px solid var(--divider);">
+          <div style="color:var(--ink);font-weight:500;">Meta Ads</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;">$2,444</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;color:var(--green);">+$1,070</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;font-weight:500;">$3,514</div>
+        </div>
+        <div style="display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; font-size: 13px; padding: 12px 0; font-weight:600;">
+          <div>Total</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;">$4,132</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;color:var(--green);">+$2,870</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;">$7,000</div>
+        </div>
+      </div>
+
+      <!-- What the extra spend buys -->
+      <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--divider);">
+        <div class="cm-label" style="margin-bottom: 12px;">What The Additional Spend Buys</div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div style="padding: 16px; background: #F9F7F4; border-radius: 8px;">
+            <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:#4285F4;margin-bottom:6px;">Google +$1,800/mo</div>
+            <div style="font-size:13px;color:var(--ink-soft);line-height:1.5;">Scale PMax and Non-Branded Search where CPR is $13.19 and improving. At current rates: ~136 additional reservations/month plus proportional store visits and calls. Budget also absorbs the Private Events reallocation and geo-keyword expansion.</div>
+          </div>
+          <div style="padding: 16px; background: #F9F7F4; border-radius: 8px;">
+            <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:#1877F2;margin-bottom:6px;">Meta +$1,070/mo</div>
+            <div style="font-size:13px;color:var(--ink-soft);line-height:1.5;">Expand the Discover campaign (producing seated guests at $30 each) and scale Coast to Coals through April. At current rates: ~305 additional leads/month → ~35 more seated guests generating ~$3,700 in revenue.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight-box" style="margin-top: 16px; background: var(--green-bg); border-color: var(--green);">
+        <div class="insight-label" style="color: var(--green);">Why Weight Toward Google</div>
+        <div class="insight-text">Google captures people actively searching for restaurants right now — "BBQ Toronto," "restaurants near Massey Hall." That's high-intent traffic that converts directly to reservations and store visits. The CPR is $13.19 and still improving through negative keyword optimization. With structured data now live across the site, Google has richer information to work with. This is the channel with the clearest room to scale.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-logo">Guest Getter</div>
+    <div class="footer-text">Prepared for The Carbon Bar · March 31, 2026</div>
+    <div class="footer-text" style="margin-top:4px;font-size:11px;color:#A9A19A;">Data sources: Meta Ads Manager, Google Ads, Google Search Console, OpenTable GuestCenter, Perfect Venue · Lead-to-guest matching performed Mar 31, 2026</div>
+  </div>
+
+</div>
+
+</body>
+</html>

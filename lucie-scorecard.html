@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurant Lucie — Performance Scorecard · March 27, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parchment: #FAF6F1;
+    --ink: #1A1714;
+    --ink-soft: #3D3832;
+    --ink-muted: #6B6359;
+    --amber: #D4860B;
+    --amber-light: #F5E6CC;
+    --amber-glow: #FFF3E0;
+    --green: #2D7A4F;
+    --green-bg: #E8F5E9;
+    --red: #C4432B;
+    --red-bg: #FDECEA;
+    --blue: #2563EB;
+    --blue-bg: #EFF6FF;
+    --plum: #6B2157;
+    --plum-bg: #F9EDF7;
+    --divider: #E8E2DA;
+    --card: #FFFFFF;
+    --card-shadow: 0 1px 3px rgba(26,23,20,0.06), 0 4px 12px rgba(26,23,20,0.04);
+    --card-shadow-hover: 0 2px 8px rgba(26,23,20,0.08), 0 8px 24px rgba(26,23,20,0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--parchment);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--amber);
+    background: var(--amber-glow);
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+
+  .header h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .header-sub {
+    font-size: 15px;
+    color: var(--ink-muted);
+    font-weight: 400;
+  }
+
+  .header-sub strong { color: var(--ink-soft); font-weight: 500; }
+
+  .period-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-muted);
+    margin-top: 12px;
+  }
+
+  /* Campaign countdown */
+  .countdown-bar {
+    background: linear-gradient(135deg, #1A1714 0%, #2D2822 100%);
+    border-radius: 12px;
+    padding: 24px 28px;
+    color: #FAF6F1;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .countdown-left {
+    flex: 1;
+    min-width: 240px;
+  }
+
+  .countdown-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--amber-light);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .countdown-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    color: #FAF6F1;
+    line-height: 1.3;
+  }
+
+  .countdown-stats {
+    display: flex;
+    gap: 24px;
+  }
+
+  .cd-stat { text-align: center; }
+
+  .cd-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--amber-light);
+    line-height: 1.1;
+  }
+
+  .cd-unit {
+    font-size: 11px;
+    color: rgba(250,246,241,0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Metrics */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .metric-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--card-shadow);
+    transition: box-shadow 0.2s;
+  }
+
+  .metric-card:hover { box-shadow: var(--card-shadow-hover); }
+
+  .metric-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    margin-bottom: 8px;
+  }
+
+  .metric-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+
+  .metric-context {
+    font-size: 12px;
+    color: var(--ink-muted);
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  .metric-delta {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-top: 6px;
+  }
+
+  .delta-up { color: var(--green); background: var(--green-bg); }
+  .delta-down { color: var(--red); background: var(--red-bg); }
+
+  .highlight-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .highlight-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+    text-align: center;
+  }
+
+  .highlight-card .metric-value { font-size: 36px; margin-bottom: 4px; }
+  .highlight-card .metric-label { margin-bottom: 0; font-size: 12px; }
+
+  /* Section */
+  .section { margin-bottom: 40px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .section-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+  }
+
+  .channel-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 16px;
+  }
+
+  .channel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .channel-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .channel-spend {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+
+  .channel-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .cm-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+
+  .cm-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-top: 2px;
+  }
+
+  .cm-note {
+    font-size: 11px;
+    color: var(--ink-muted);
+    margin-top: 2px;
+  }
+
+  .insight-box {
+    background: var(--amber-glow);
+    border-left: 3px solid var(--amber);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin-top: 12px;
+  }
+
+  .insight-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+
+  .insight-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  .decision-box {
+    background: var(--blue-bg);
+    border-left: 3px solid var(--blue);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin-top: 12px;
+  }
+
+  .decision-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--blue);
+    margin-bottom: 4px;
+  }
+
+  .decision-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  /* SEO Grid */
+  .seo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .seo-stat {
+    text-align: center;
+    padding: 14px 8px;
+    background: #F9F7F4;
+    border-radius: 8px;
+  }
+
+  .seo-stat-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    font-weight: 600;
+  }
+
+  .seo-stat-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 4px 0 2px;
+  }
+
+  .seo-stat-change {
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* Timeline */
+  .timeline-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+  }
+
+  .timeline-phase {
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--divider);
+    align-items: flex-start;
+  }
+
+  .timeline-phase:last-child { border-bottom: none; }
+
+  .phase-marker {
+    width: 40px;
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  .phase-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 4px auto 4px;
+  }
+
+  .phase-dot.active { background: var(--amber); box-shadow: 0 0 0 4px var(--amber-glow); }
+  .phase-dot.complete { background: var(--green); }
+  .phase-dot.upcoming { background: var(--divider); }
+
+  .phase-line {
+    width: 2px;
+    height: 100%;
+    margin: 0 auto;
+  }
+
+  .phase-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-muted);
+    margin-top: 4px;
+  }
+
+  .phase-content { flex: 1; }
+
+  .phase-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .phase-desc {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+
+  .phase-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+  }
+
+  .tag-active { background: var(--amber-glow); color: var(--amber); }
+  .tag-complete { background: var(--green-bg); color: var(--green); }
+  .tag-upcoming { background: #F5F3F0; color: var(--ink-muted); }
+
+  /* Next Steps */
+  .next-steps {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+  }
+
+  .step-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .step-item:last-child { border-bottom: none; }
+
+  .step-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: var(--amber-glow);
+    color: var(--amber);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .step-title {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .step-desc {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 32px;
+    border-top: 1px solid var(--divider);
+    margin-top: 48px;
+  }
+
+  .footer-logo {
+    font-family: 'Instrument Serif', serif;
+    font-size: 16px;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+
+  .footer-text {
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+
+  /* Tracking callout */
+  /* Conversion funnel visual */
+  .funnel-section {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 16px;
+  }
+
+  .funnel-bar-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .funnel-bar-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink-muted);
+    width: 100px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .funnel-bar-track {
+    flex: 1;
+    height: 32px;
+    background: #F5F3F0;
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .funnel-bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: white;
+    transition: width 0.6s ease;
+  }
+
+  .funnel-bar-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-muted);
+    width: 70px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .funnel-comparison {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid var(--divider);
+  }
+
+  .funnel-comp-item {
+    text-align: center;
+  }
+
+  .funnel-comp-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    font-weight: 600;
+  }
+
+  .funnel-comp-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 22px;
+    font-weight: 500;
+    margin-top: 2px;
+  }
+
+  .leak-callout {
+    background: #FEF2F2;
+    border-left: 3px solid var(--red);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin-top: 12px;
+  }
+
+  .leak-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--red);
+    margin-bottom: 4px;
+  }
+
+  .leak-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  .day-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-top: 12px;
+  }
+
+  .day-cell {
+    text-align: center;
+    padding: 10px 4px;
+    border-radius: 6px;
+    background: #F9F7F4;
+  }
+
+  .day-cell-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .day-cell-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 2px;
+  }
+
+  .day-cell.strong { background: var(--green-bg); }
+  .day-cell.strong .day-cell-value { color: var(--green); }
+  .day-cell.weak { background: var(--red-bg); }
+  .day-cell.weak .day-cell-value { color: var(--red); }
+
+  .tracking-alert {
+    background: #FFFBEB;
+    border: 1px solid #F59E0B;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .tracking-alert-icon {
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .tracking-alert-text {
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .tracking-alert-text strong {
+    color: var(--ink);
+  }
+
+  @media (max-width: 640px) {
+    .metrics-grid { grid-template-columns: 1fr; }
+    .seo-grid { grid-template-columns: repeat(2, 1fr); }
+    .highlight-row { grid-template-columns: 1fr; }
+    .countdown-bar { flex-direction: column; text-align: center; }
+    .countdown-stats { justify-content: center; }
+    .header h1 { font-size: 28px; }
+    .container { padding: 24px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-badge">● Guest Getter — Performance Scorecard</div>
+    <h1>Restaurant Lucie</h1>
+    <div class="header-sub">Bi-weekly performance review · Prepared for <strong>March 27, 2026</strong> call</div>
+    <div class="period-tag">Reporting period: Mar 13 – Mar 26, 2026</div>
+  </div>
+
+  <!-- Campaign Countdown -->
+  <div class="countdown-bar">
+    <div class="countdown-left">
+      <div class="countdown-label">The Last Table Campaign</div>
+      <div class="countdown-title">Chef Arnaud's Final Chapter</div>
+      <div style="font-size:13px;color:rgba(250,246,241,0.6);margin-top:6px;">Phase 2 active — Urgency Engine running through April 25</div>
+    </div>
+    <div class="countdown-stats">
+      <div class="cd-stat">
+        <div class="cd-num">36</div>
+        <div class="cd-unit">Days Left</div>
+      </div>
+      <div class="cd-stat">
+        <div class="cd-num">25</div>
+        <div class="cd-unit">Paid Days Left</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top-line numbers -->
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-label">Total Ad Spend</div>
+      <div class="metric-value">$2,189</div>
+      <div class="metric-context">Meta $1,311 · Google $878</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Meta Leads</div>
+      <div class="metric-value">153</div>
+      <div class="metric-context">at $7.90 each</div>
+      <div class="metric-delta delta-up">↑ 856%</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">OT Reservations</div>
+      <div class="metric-value">159</div>
+      <div class="metric-delta delta-up">↑ 30.3%</div>
+    </div>
+  </div>
+
+  <!-- Headline: Reservations + First Visits -->
+  <div class="highlight-row">
+    <div class="highlight-card">
+      <div class="metric-value" style="color: var(--green);">1,328</div>
+      <div class="metric-label">Reservations (Last 90 Days)</div>
+      <div class="metric-delta delta-up" style="margin-top:6px;">↑ 10% (prev: 1,207)</div>
+      <div class="metric-context">3,518 total covers booked</div>
+    </div>
+    <div class="highlight-card">
+      <div class="metric-value" style="color: var(--red);">49%</div>
+      <div class="metric-label">"Done" Rate</div>
+      <div class="metric-delta delta-down" style="margin-top:6px;">↓ from 64% prev. period</div>
+      <div class="metric-context">Largest revenue gap right now</div>
+    </div>
+  </div>
+
+  <!-- Reservation-to-Visit Conversion Gap -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: var(--red-bg); color: var(--red);">⚡</div>
+      <div class="section-title">The Conversion Gap</div>
+    </div>
+
+    <div class="funnel-section">
+      <div class="funnel-bar-container">
+        <div class="funnel-bar-label">Reservations</div>
+        <div class="funnel-bar-track">
+          <div class="funnel-bar-fill" style="width: 100%; background: var(--green);">1,328</div>
+        </div>
+        <div class="funnel-bar-value">↑ 10%</div>
+      </div>
+      <div class="funnel-bar-container">
+        <div class="funnel-bar-label">Completed</div>
+        <div class="funnel-bar-track">
+          <div class="funnel-bar-fill" style="width: 49%; background: var(--red);">~651</div>
+        </div>
+        <div class="funnel-bar-value" style="color:var(--red);">49%</div>
+      </div>
+
+      <div class="funnel-comparison">
+        <div class="funnel-comp-item">
+          <div class="funnel-comp-label">Previous Period</div>
+          <div class="funnel-comp-value" style="color:var(--green);">64%</div>
+        </div>
+        <div class="funnel-comp-item">
+          <div class="funnel-comp-label">Current Period</div>
+          <div class="funnel-comp-value" style="color:var(--red);">49%</div>
+        </div>
+        <div class="funnel-comp-item">
+          <div class="funnel-comp-label">Gap</div>
+          <div class="funnel-comp-value" style="color:var(--red);">-15pts</div>
+        </div>
+      </div>
+
+      <div class="leak-callout">
+        <div class="leak-label">Revenue Leak</div>
+        <div class="leak-text">Demand is healthy — bookings are up 10%, covers up 11.9%. The issue is downstream: more reservations are being canceled or going incomplete. This is the single biggest revenue opportunity right now. Cancellations also block table availability in advance, which means guests who would actually show up can't find open dates when they try to book.</div>
+      </div>
+
+      <div class="insight-box" style="margin-top:12px;">
+        <div class="insight-label">Day-of-Week Signal</div>
+        <div class="insight-text">Friday covers surged 45%, Saturday up 13%. Weekends are strong. The clearest growth opportunity is Monday and Wednesday — the weakest days with the most room to fill.</div>
+      </div>
+
+      <div class="day-grid">
+        <div class="day-cell weak"><div class="day-cell-label">Mon</div><div class="day-cell-value">Low</div></div>
+        <div class="day-cell"><div class="day-cell-label">Tue</div><div class="day-cell-value">—</div></div>
+        <div class="day-cell weak"><div class="day-cell-label">Wed</div><div class="day-cell-value">Low</div></div>
+        <div class="day-cell"><div class="day-cell-label">Thu</div><div class="day-cell-value">—</div></div>
+        <div class="day-cell strong"><div class="day-cell-label">Fri</div><div class="day-cell-value">↑ 45%</div></div>
+        <div class="day-cell strong"><div class="day-cell-label">Sat</div><div class="day-cell-value">↑ 13%</div></div>
+        <div class="day-cell"><div class="day-cell-label">Sun</div><div class="day-cell-value">—</div></div>
+      </div>
+
+      <div class="decision-box" style="margin-top:16px;">
+        <div class="decision-label">Discussion Point for Call</div>
+        <div class="decision-text">Does the team currently confirm reservations ahead of time? A pre-visit confirmation (3 days out + day-of) could recapture a significant share of these lost covers by either confirming attendance or freeing the table early enough for someone else to book it. This is a high-leverage, low-cost fix.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Google Ads -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: #E8F0FE; color: #4285F4;">G</div>
+      <div class="section-title">Google Ads</div>
+    </div>
+
+    <div class="channel-card">
+      <div class="channel-header">
+        <div class="channel-name">Search + Performance Max</div>
+        <div class="channel-spend">CA$878 spent</div>
+      </div>
+
+      <div class="channel-metrics">
+        <div class="cm-item">
+          <div class="cm-label">OT Reservations</div>
+          <div class="cm-value">4</div>
+          <div class="cm-note">Tracking issue — see below</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-label">Phone Calls</div>
+          <div class="cm-value">2</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-label">Store Visits</div>
+          <div class="cm-value">98</div>
+          <div class="cm-note">↓ 40.4%</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-label">Non-Branded CPR</div>
+          <div class="cm-value">$87.54</div>
+          <div class="cm-note">↓ 36% (was $136.67)</div>
+        </div>
+      </div>
+
+      <div class="tracking-alert">
+        <div class="tracking-alert-icon">⚠️</div>
+        <div class="tracking-alert-text"><strong>Tracking gap now resolved.</strong> The Chef Arnaud asset group was consuming ~40% of PMax budget but sending traffic to the GHL landing page, which couldn't track OT reservations. The OT conversion action has been properly configured — going forward, all reservation data will be tracked accurately.</div>
+      </div>
+
+      <div class="insight-box" style="margin-top:12px;">
+        <div class="insight-label">What's Working</div>
+        <div class="insight-text">Location-specific keywords ("best French restaurant in Toronto," "fine dining restaurant Toronto") outperform broader terms. Non-Branded Search improved CPR by 36% while growing reservations from 1 to 3. The GA4 OpenTable conversion action is now live.</div>
+      </div>
+
+      <div class="decision-box">
+        <div class="decision-label">Recommended Moves</div>
+        <div class="decision-text">Pause Branded Search (already covered by PMax). Launch a dedicated Chef Arnaud Farewell campaign with properly configured OT tracking. Increase budget on Non-Branded Search toward hotel and general Toronto terms that are converting.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Meta Ads — Lead-to-Guest Pipeline -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: #E7F0FE; color: #1877F2;">f</div>
+      <div class="section-title">Meta Ads — Lead to Guest Pipeline</div>
+    </div>
+
+    <!-- Active campaign card -->
+    <div class="channel-card">
+      <div class="channel-header">
+        <div class="channel-name">Chef Arnaud Campaign <span style="font-size:11px;color:var(--amber);font-weight:600;margin-left:6px;">ACTIVE · Launched Mar 6</span></div>
+        <div class="channel-spend">308 leads · ~$2,640 est. spend</div>
+      </div>
+
+      <div class="funnel-bar-container">
+        <div class="funnel-bar-label">Leads</div>
+        <div class="funnel-bar-track">
+          <div class="funnel-bar-fill" style="width: 100%; background: #6B7280;">308</div>
+        </div>
+        <div class="funnel-bar-value"></div>
+      </div>
+      <div class="funnel-bar-container">
+        <div class="funnel-bar-label">Found in OT</div>
+        <div class="funnel-bar-track">
+          <div class="funnel-bar-fill" style="width: 17.2%; background: var(--amber);">53</div>
+        </div>
+        <div class="funnel-bar-value">17.2%</div>
+      </div>
+      <div class="funnel-bar-container">
+        <div class="funnel-bar-label">Visited</div>
+        <div class="funnel-bar-track">
+          <div class="funnel-bar-fill" style="width: 8.4%; background: var(--green);">26</div>
+        </div>
+        <div class="funnel-bar-value">8.4%</div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--divider);">
+        <div style="text-align:center;">
+          <div class="cm-label">Campaign Revenue</div>
+          <div style="font-family:'DM Mono',monospace;font-size:24px;font-weight:500;color:var(--green);margin-top:4px;">$14,325</div>
+          <div class="cm-note">from 38 visits</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="cm-label">Avg / Visit</div>
+          <div style="font-family:'DM Mono',monospace;font-size:24px;font-weight:500;color:var(--ink);margin-top:4px;">$377</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="cm-label">Cost / Seated Guest</div>
+          <div style="font-family:'DM Mono',monospace;font-size:24px;font-weight:500;color:var(--ink);margin-top:4px;">$101</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="cm-label">ROAS</div>
+          <div style="font-family:'DM Mono',monospace;font-size:24px;font-weight:500;color:var(--green);margin-top:4px;">5.4x</div>
+          <div class="cm-note">and climbing</div>
+        </div>
+      </div>
+
+      <div class="insight-box" style="margin-top:16px; background: var(--green-bg); border-color: var(--green);">
+        <div class="insight-label" style="color: var(--green);">The Conversion Window Is Still Open</div>
+        <div class="insight-text">This campaign is 25 days old with 36 days left to May 2. 28 matched leads already have upcoming visits booked. 255 leads haven't matched to OT yet — they're still in the pipeline. The ROAS will keep climbing as more leads convert into reservations over the next five weeks.</div>
+      </div>
+    </div>
+
+    <!-- All-time pipeline card -->
+    <div class="channel-card" style="margin-top:16px;">
+      <div class="channel-header">
+        <div class="channel-name">All Lucie Meta Campaigns (Since Dec 2025)</div>
+        <div class="channel-spend">1,126 total leads · ~$8,900 est. spend</div>
+      </div>
+
+      <div class="funnel-bar-container">
+        <div class="funnel-bar-label">Leads</div>
+        <div class="funnel-bar-track">
+          <div class="funnel-bar-fill" style="width: 100%; background: #6B7280;">1,126</div>
+        </div>
+        <div class="funnel-bar-value"></div>
+      </div>
+      <div class="funnel-bar-container">
+        <div class="funnel-bar-label">Found in OT</div>
+        <div class="funnel-bar-track">
+          <div class="funnel-bar-fill" style="width: 19.3%; background: var(--amber);">217</div>
+        </div>
+        <div class="funnel-bar-value">19.3%</div>
+      </div>
+      <div class="funnel-bar-container">
+        <div class="funnel-bar-label">Visited</div>
+        <div class="funnel-bar-track">
+          <div class="funnel-bar-fill" style="width: 9.4%; background: var(--green);">106</div>
+        </div>
+        <div class="funnel-bar-value">9.4%</div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--divider);">
+        <div style="text-align:center;">
+          <div class="cm-label">Total Revenue</div>
+          <div style="font-family:'DM Mono',monospace;font-size:24px;font-weight:500;color:var(--green);margin-top:4px;">$60,927</div>
+          <div class="cm-note">from 176 visits</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="cm-label">Avg / Visit</div>
+          <div style="font-family:'DM Mono',monospace;font-size:24px;font-weight:500;color:var(--ink);margin-top:4px;">$346</div>
+          <div class="cm-note">$236 per cover</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="cm-label">Cost / Seated Guest</div>
+          <div style="font-family:'DM Mono',monospace;font-size:24px;font-weight:500;color:var(--ink);margin-top:4px;">$84</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="cm-label">ROAS</div>
+          <div style="font-family:'DM Mono',monospace;font-size:24px;font-weight:500;color:var(--green);margin-top:4px;">6.8x</div>
+          <div class="cm-note">$1 in → $6.85 back</div>
+        </div>
+      </div>
+
+      <!-- Campaign breakdown table -->
+      <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--divider);">
+        <div class="cm-label" style="margin-bottom: 12px;">By Campaign</div>
+        
+        <div style="display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-muted); font-weight: 600; padding-bottom: 8px; border-bottom: 1px solid var(--divider);">
+          <div>Campaign</div>
+          <div style="text-align:right;">Leads</div>
+          <div style="text-align:right;">Visited</div>
+          <div style="text-align:right;">Revenue</div>
+        </div>
+        
+        <div style="display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; font-size: 13px; padding: 10px 0; border-bottom: 1px solid var(--divider);">
+          <div style="color:var(--ink-soft);">French Winter Invitation</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;">434</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;color:var(--green);">56</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;">$30,807</div>
+        </div>
+        <div style="display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; font-size: 13px; padding: 10px 0; border-bottom: 1px solid var(--divider);">
+          <div style="color:var(--ink-soft);">Carte Blanche Invitation</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;">384</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;color:var(--green);">24</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;">$15,795</div>
+        </div>
+        <div style="display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; font-size: 13px; padding: 10px 0;">
+          <div style="color:var(--ink-soft);">Before The Next Chapter <span style="font-size:10px;color:var(--amber);font-weight:600;">(ACTIVE)</span></div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;">308</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;color:var(--green);">26</div>
+          <div style="text-align:right;font-family:'DM Mono',monospace;">$14,325</div>
+        </div>
+      </div>
+
+      <div class="insight-box" style="margin-top: 16px;">
+        <div class="insight-label">How We Calculated This</div>
+        <div class="insight-text">We matched every Meta lead by email, phone, and name against the full OpenTable guest database. The 19.3% match rate is a floor — guests who booked under a partner's name, used a different email, or reserved by phone won't show up in this match. The real number of guests influenced by Meta is higher than what the data can prove.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- This Period Meta (2-week snapshot) -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: #E7F0FE; color: #1877F2;">f</div>
+      <div class="section-title">This Period — Meta Snapshot</div>
+    </div>
+
+    <div class="channel-card">
+      <div class="channel-header">
+        <div class="channel-name">Mar 13–26 Lead Generation</div>
+        <div class="channel-spend">CA$1,311 spent · 153 leads</div>
+      </div>
+
+      <div class="channel-metrics">
+        <div class="cm-item">
+          <div class="cm-label">Leads This Period</div>
+          <div class="cm-value">153</div>
+          <div class="cm-note">↑ 856%</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-label">Cost per Lead</div>
+          <div class="cm-value">$8.57</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-label">Spend</div>
+          <div class="cm-value">$1,311</div>
+          <div class="cm-note">↑ 18%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Private Events -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: #F3E8FF; color: #7C3AED;">◆</div>
+      <div class="section-title">Private Events (Perfect Venue)</div>
+    </div>
+
+    <div class="channel-card">
+      <div class="channel-metrics">
+        <div class="cm-item">
+          <div class="cm-label">Private Leads</div>
+          <div class="cm-value">25</div>
+          <div class="cm-note">↑ 19%</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-label">Group Size</div>
+          <div class="cm-value">547</div>
+          <div class="cm-note">↑ 32.2%</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-label">Close Rate</div>
+          <div class="cm-value">4.0%</div>
+          <div class="cm-note">↑ 16%</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-label">Booked</div>
+          <div class="cm-value">1</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEO -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: #E8F5E9; color: var(--green);">◎</div>
+      <div class="section-title">SEO — Q1 Performance</div>
+    </div>
+
+    <div class="channel-card">
+      <div class="seo-grid">
+        <div class="seo-stat">
+          <div class="seo-stat-label">Impressions</div>
+          <div class="seo-stat-value" style="color:var(--green);">280K</div>
+          <div class="seo-stat-change" style="color:var(--green);">↑ 9.3%</div>
+        </div>
+        <div class="seo-stat">
+          <div class="seo-stat-label">Clicks</div>
+          <div class="seo-stat-value">9.15K</div>
+          <div class="seo-stat-change" style="color:var(--red);">↓ 1.9%</div>
+        </div>
+        <div class="seo-stat">
+          <div class="seo-stat-label">Avg CTR</div>
+          <div class="seo-stat-value">3.3%</div>
+          <div class="seo-stat-change" style="color:var(--red);">↓ from 3.6%</div>
+        </div>
+        <div class="seo-stat">
+          <div class="seo-stat-label">Avg Position</div>
+          <div class="seo-stat-value" style="color:var(--green);">9.6</div>
+          <div class="seo-stat-change" style="color:var(--green);">↑ from 9.7</div>
+        </div>
+      </div>
+
+      <div class="insight-box">
+        <div class="insight-label">What This Means</div>
+        <div class="insight-text">Lucie's search presence expanded meaningfully in Q1 — impressions up over 9%, average position solidly in the top 10. The slight click dip reflects a deliberate shift: Lucie now shows up for broader, experience-based discovery queries (premium dining, tasting menus, fine dining occasions) rather than just branded traffic. This positions Lucie to capture high-value diners who are searching for the experience, not the name.</div>
+      </div>
+
+      <div class="insight-box" style="background: var(--green-bg); border-color: var(--green); margin-top:12px;">
+        <div class="insight-label" style="color:var(--green);">Content Roadmap Active</div>
+        <div class="insight-text">Priority pages and enhancements from the SEO strategy are being rolled out — translating planning into live, search-visible assets that will continue compounding Lucie's organic presence through the next chapter and beyond.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Campaign Timeline -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: var(--amber-glow); color: var(--amber);">◷</div>
+      <div class="section-title">Campaign Timeline — Where We Are</div>
+    </div>
+
+    <div class="timeline-card">
+      <div class="timeline-phase">
+        <div class="phase-marker">
+          <div class="phase-dot complete"></div>
+          <div class="phase-label">Mar 5</div>
+        </div>
+        <div class="phase-content">
+          <div class="phase-tag tag-complete">Complete</div>
+          <div class="phase-title">Phase 1 — The Announcement Wave</div>
+          <div class="phase-desc">Landing page live. Announcement email sent. Paid amplification launched. Arnaud video captured and deployed as ad creative.</div>
+        </div>
+      </div>
+
+      <div class="timeline-phase">
+        <div class="phase-marker">
+          <div class="phase-dot active"></div>
+          <div class="phase-label">Now</div>
+        </div>
+        <div class="phase-content">
+          <div class="phase-tag tag-active">We are here</div>
+          <div class="phase-title">Phase 2 — The Urgency Engine</div>
+          <div class="phase-desc">Continuous bookings through content, ads, and retargeting. 153 leads generated. Lead nurture sequences in play — reminding Discover leads to visit, pushing the farewell experience, following up on group dining inquiries.</div>
+        </div>
+      </div>
+
+      <div class="timeline-phase">
+        <div class="phase-marker">
+          <div class="phase-dot upcoming"></div>
+          <div class="phase-label">Apr 15</div>
+        </div>
+        <div class="phase-content">
+          <div class="phase-tag tag-upcoming">Upcoming</div>
+          <div class="phase-title">Phase 3 — The Final Count</div>
+          <div class="phase-desc">Last push. Direct conversion ads with specific remaining dates. All paid spend stops April 24–25. Organic only through May 2. Final service captured for transition content.</div>
+        </div>
+      </div>
+
+      <div class="timeline-phase">
+        <div class="phase-marker">
+          <div class="phase-dot upcoming"></div>
+          <div class="phase-label">May 3</div>
+        </div>
+        <div class="phase-content">
+          <div class="phase-tag tag-upcoming">The Pivot</div>
+          <div class="phase-title">Lucie's Next Chapter</div>
+          <div class="phase-desc">Gratitude email. Tease the new Lucie — à la carte, lunch service, refreshed concept. New website build. Every lead captured during this campaign becomes the launch audience for what comes next.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- What's Next -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: var(--amber-glow); color: var(--amber);">→</div>
+      <div class="section-title">Next Moves</div>
+    </div>
+
+    <div class="next-steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Close the Reservation-to-Visit Gap</div>
+          <div class="step-desc">This is the highest-leverage move. Explore a confirmation call/text system (3 days before + day-of) to either lock in attendance or free the table for someone who will show. With the "Done" rate at 49%, even a 10-point improvement recaptures meaningful revenue.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Google Ads Tracking — Fixed ✓</div>
+          <div class="step-desc">Chef Arnaud campaign now has a properly configured OT conversion action. Going forward, reservation data from Google Ads will be tracked accurately. Next period's numbers will reflect real performance.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Convert the 153-Lead Pipeline</div>
+          <div class="step-desc">Follow-up sequences running — reminding leads to book, pushing remaining availability, creating urgency with specific dates. This is conversion phase.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Strengthen Monday &amp; Wednesday</div>
+          <div class="step-desc">Weekends are running strong. The incremental revenue opportunity is midweek — targeted campaigns, email pushes, or weekday-specific experiences to fill Monday and Wednesday covers.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">Reallocate Google Budget + Continue SEO Rollout</div>
+          <div class="step-desc">Pause Branded Search (covered by PMax). Increase Non-Branded Search spend on high-converting hotel/Toronto terms. Keep executing the SEO content roadmap — this carries through Lucie's next chapter.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OpenTable Optimization Audit -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: var(--plum-bg); color: var(--plum);">◉</div>
+      <div class="section-title">OpenTable Optimization — Quick Wins</div>
+    </div>
+
+    <div class="channel-card">
+      <p style="font-size:13px;color:var(--ink-muted);margin-bottom:16px;line-height:1.55;">We audited Lucie's OpenTable setup. The infrastructure is strong — Premium plan, SMS confirmation and reminders enabled, waitlist SMS active, direct messaging templates built. Here's where we can tighten it up to close the reservation-to-visit gap.</p>
+
+      <div style="display:grid; gap:12px;">
+
+        <div class="insight-box" style="background:#FEF2F2;border-color:var(--red);">
+          <div class="insight-label" style="color:var(--red);">No-Show Prevention</div>
+          <div class="insight-text">Credit card hold is available but not enabled. Turning on a $25–50/person hold in OpenTable settings is the single fastest way to reduce no-shows. People who put a card down show up.</div>
+        </div>
+
+        <div class="insight-box">
+          <div class="insight-label">Confirmation &amp; Reminder SMS</div>
+          <div class="insight-text">Both are active but using generic copy. The confirmation SMS opens with "we don't offer à la carte" — should lead with a warm welcome. The reminder SMS is functional but could build excitement for the meal. Rewriting both to sound like Lucie takes 10 minutes and changes the guest's first impression.</div>
+        </div>
+
+        <div class="insight-box" style="background:var(--blue-bg);border-color:var(--blue);">
+          <div class="insight-label" style="color:var(--blue);">Transactional Email &amp; Response Messages</div>
+          <div class="insight-text">Confirmation emails have no branding — no logo, no colors, no welcome line. The response time message says "staff will respond when available." Both are easy fixes that make every automated touchpoint feel like Lucie instead of a generic system.</div>
+        </div>
+
+        <div class="insight-box" style="background:var(--green-bg);border-color:var(--green);">
+          <div class="insight-label" style="color:var(--green);">Untapped: Email Marketing</div>
+          <div class="insight-text">Lucie has a full guest database in OpenTable but has never sent a marketing email through it. Three ready-to-launch campaigns: re-engagement for lapsed guests (60–90 days), birthday/anniversary automation, and a private dining upsell. This is owned audience — zero ad spend required.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-logo">Guest Getter</div>
+    <div class="footer-text">Prepared for Restaurant Lucie · March 31, 2026</div>
+    <div class="footer-text" style="margin-top:4px;font-size:11px;color:#A9A19A;">Data sources: Meta Ads Manager, Google Ads, Google Search Console, OpenTable GuestCenter, Perfect Venue · Lead-to-guest matching performed Mar 31, 2026</div>
+  </div>
+
+</div>
+
+</body>
+</html>
