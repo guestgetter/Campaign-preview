@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uniburger Growth System</title>
+<style>
+  :root {
+    --red: #DC2626;
+    --red-soft: rgba(220,38,38,0.06);
+    --dark: #0a0a0a;
+    --ink: #171717;
+    --ink2: #4B5563;
+    --muted: #8A8A8A;
+    --bg: #fff;
+    --bg2: #F9FAFB;
+    --border: #E5E7EB;
+    --green: #16a34a;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { font-size:17px; scroll-behavior:smooth; }
+  body { font-family:var(--sans); color:var(--ink); background:var(--bg); -webkit-font-smoothing:antialiased; line-height:1.7; }
+
+  .header { background:var(--dark); color:#fff; padding:3.5rem 1.5rem 3rem; text-align:center; }
+  .header-label { font-family:var(--mono); font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--red); margin-bottom:1.2rem; display:flex; align-items:center; justify-content:center; gap:0.45rem; }
+  .header-label::before { content:''; width:6px; height:6px; background:var(--red); border-radius:50%; }
+  .header h1 { font-size:1.9rem; font-weight:800; letter-spacing:-0.03em; margin-bottom:0.5rem; }
+  .header-sub { font-size:0.9rem; color:rgba(255,255,255,0.4); max-width:400px; margin:0 auto; line-height:1.6; }
+
+  .wrap { max-width:640px; margin:0 auto; padding:0 1.5rem; }
+
+  .section-label { font-family:var(--mono); font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--red); margin-bottom:1.2rem; }
+
+  /* Pillars */
+  .pillars { padding:2.5rem 0; }
+  .pillar { margin-bottom:1.8rem; }
+  .pillar-head { display:flex; align-items:center; gap:0.5rem; margin-bottom:0.4rem; }
+  .pillar-head span { font-size:1.2rem; }
+  .pillar-head h3 { font-size:1.1rem; font-weight:700; }
+  .pillar-desc { font-size:0.88rem; color:var(--ink2); line-height:1.7; margin-bottom:0.7rem; }
+  .pillar-item { display:flex; align-items:baseline; gap:0.5rem; font-size:0.88rem; color:#4B5563; padding:0.2rem 0; }
+  .pillar-item span { color:var(--red); flex-shrink:0; }
+  .divider { border:none; border-top:1px solid #F3F4F6; margin:1.8rem 0; }
+
+  /* Phone mockup */
+  .phone { background:var(--dark); border-radius:12px; padding:1rem; max-width:320px; margin:0.6rem 0; }
+  .bubble-out { display:flex; justify-content:flex-end; margin-bottom:0.4rem; }
+  .bubble-out div { background:var(--red); border-radius:14px; padding:0.4rem 0.7rem; font-size:0.82rem; color:#fff; }
+  .bubble-in { display:flex; justify-content:flex-start; }
+  .bubble-in div { background:rgba(255,255,255,0.08); border-radius:14px; padding:0.4rem 0.7rem; font-size:0.82rem; color:rgba(255,255,255,0.8); line-height:1.5; }
+
+  /* Timeline */
+  .timeline { background:var(--bg2); border-top:1px solid var(--border); padding:2.5rem 1.5rem; }
+  .timeline-sub { font-size:0.85rem; color:var(--muted); margin-bottom:1.2rem; }
+  .time-block { background:#fff; border:1px solid var(--border); border-radius:12px; padding:1rem; margin-bottom:0.7rem; }
+  .time-label { font-family:var(--mono); font-size:0.65rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); margin-bottom:0.5rem; font-weight:600; }
+  .time-item { display:flex; align-items:baseline; gap:0.5rem; font-size:0.88rem; color:var(--ink); padding:0.15rem 0; }
+  .time-item span { opacity:0.35; flex-shrink:0; }
+
+  /* Principles */
+  .principles { background:var(--dark); color:#fff; padding:2.5rem 1.5rem; }
+  .principle { margin-bottom:1rem; }
+  .principle h4 { font-size:0.88rem; font-weight:700; margin-bottom:0.15rem; }
+  .principle p { font-size:0.85rem; color:rgba(255,255,255,0.4); line-height:1.6; }
+
+  .footer { padding:1.2rem 1.5rem; text-align:center; font-size:0.75rem; color:var(--muted); }
+  .footer strong { color:var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-label">Uniburger · Roadmap</div>
+  <h1>Uniburger Growth System</h1>
+  <p class="header-sub">More revenue, better margins. Systems that get smarter the longer they run.</p>
+</div>
+
+<div class="pillars">
+  <div class="wrap">
+    <div class="section-label">What we're building</div>
+
+    <div class="pillar">
+      <div class="pillar-head"><span>🧠</span><h3>The Brain</h3></div>
+      <p class="pillar-desc">All data — customers, orders, ads, website, SEO, POS — into one place that any AI tool can work with. Never start from scratch again.</p>
+      <div class="pillar-item"><span>—</span> Customer data across all 10 locations</div>
+      <div class="pillar-item"><span>—</span> Ad performance (Meta + Google)</div>
+      <div class="pillar-item"><span>—</span> Revenue, expenses, suppliers</div>
+      <div class="pillar-item"><span>—</span> Google Analytics + Search Console</div>
+      <div class="pillar-item"><span>—</span> Market analysis + constraint diagnostics</div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="pillar">
+      <div class="pillar-head"><span>🦞</span><h3>The Claw</h3></div>
+      <p class="pillar-desc">Connect to all your systems through iMessage, WhatsApp, or Telegram. Ask questions, get answers, give instructions — in seconds, from your phone.</p>
+      <div class="pillar-item"><span>—</span> Talk to your business in plain language</div>
+      <div class="pillar-item"><span>—</span> Pull reports, compare locations, check performance</div>
+      <div class="pillar-item"><span>—</span> Tell it to do something and it does it</div>
+    </div>
+
+    <div class="phone">
+      <div class="bubble-out"><div>How'd Saint-Denis do vs Verdun?</div></div>
+      <div class="bubble-in"><div>Saint-Denis: +18% vs last week<br>Verdun: −4%. Peak: Friday 6–9pm.</div></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="pillar">
+      <div class="pillar-head"><span>🎧</span><h3>Acquisition</h3></div>
+      <p class="pillar-desc">All paid and organic traffic flowing to a site you control.</p>
+      <div class="pillar-item"><span>—</span> Social Media Agent — weekly posts across IG and Facebook, runs on its own</div>
+      <div class="pillar-item"><span>—</span> Meta Ads — pointed at uniburger.com</div>
+      <div class="pillar-item"><span>—</span> Google Ads — with conversion tracking wired from scratch</div>
+      <div class="pillar-item"><span>—</span> SEO — location pages for all 10 stores</div>
+      <div class="pillar-item"><span>—</span> Online ordering on your own site — 1PD, saved details, easier reordering, a path toward an app</div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="pillar">
+      <div class="pillar-head"><span>🧲</span><h3>Retention</h3></div>
+      <p class="pillar-desc">Different customers get different paths. No more blasting the same message to everyone.</p>
+      <div class="pillar-item"><span>—</span> New Customer Follow-Up → drive visit 2 ASAP</div>
+      <div class="pillar-item"><span>—</span> Red Carpet VIP — high spenders, high frequency</div>
+      <div class="pillar-item"><span>—</span> 45-day lapse follow-up</div>
+      <div class="pillar-item"><span>—</span> 90-day lapse follow-up</div>
+      <div class="pillar-item"><span>—</span> Monthly newsletter</div>
+      <div class="pillar-item"><span>—</span> Franchise inquiries — completely separate pipeline</div>
+      <div class="pillar-item"><span>—</span> Review automation — happy → Google, unhappy → you first</div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="pillar">
+      <div class="pillar-head"><span>📐</span><h3>Measurement</h3></div>
+      <p class="pillar-desc">Know what every channel actually cost you — not clicks, not impressions. Real customer value, repeat behavior, and margin.</p>
+      <div class="pillar-item"><span>—</span> Trace the path: ad click → first visit → repeat → lifetime value</div>
+      <div class="pillar-item"><span>—</span> ROI per channel, per location</div>
+      <div class="pillar-item"><span>—</span> Which promos drive real repeat customers vs. one-time discount traffic that never comes back</div>
+      <div class="pillar-item"><span>—</span> Spend decisions based on profit, not volume</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="timeline">
+  <div class="wrap">
+    <div class="section-label">Rough timeline</div>
+    <p class="timeline-sub">Pieces go live as they're ready. This is the general order.</p>
+
+    <div class="time-block">
+      <div class="time-label">Months 1–2</div>
+      <div class="time-item"><span>→</span> Updated uniburger.com goes live</div>
+      <div class="time-item"><span>→</span> Social media agent running</div>
+      <div class="time-item"><span>→</span> Retention automations live</div>
+      <div class="time-item"><span>→</span> Direct online ordering on the site (MYR integration)</div>
+    </div>
+
+    <div class="time-block">
+      <div class="time-label">Months 3–4</div>
+      <div class="time-item"><span>→</span> The Claw — talk to your business from your phone</div>
+      <div class="time-item"><span>→</span> All ad campaigns pointed at your site</div>
+      <div class="time-item"><span>→</span> Location pages optimized for local search</div>
+    </div>
+
+    <div class="time-block">
+      <div class="time-label">Months 5–6</div>
+      <div class="time-item"><span>→</span> Franchise pipeline separated</div>
+      <div class="time-item"><span>→</span> Review automation live</div>
+      <div class="time-item"><span>→</span> Six months of data — first real ROI view by channel and location</div>
+      <div class="time-item"><span>→</span> The Brain is getting smarter every week from here</div>
+    </div>
+  </div>
+</div>
+
+<div class="principles">
+  <div class="wrap">
+    <div class="section-label" style="color:var(--red);">Key principles</div>
+    <div class="principle">
+      <h4>Own the customer</h4>
+      <p>Platforms stay for discovery. Repeat customers order direct — first-party delivery, first-party data. The economics work and the data stays in your system.</p>
+    </div>
+    <div class="principle">
+      <h4>Profit over volume</h4>
+      <p>Stop spending where the economics don't work. A retained customer who orders 1PD is worth more than 10 subsidized one-time discount transactions.</p>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Prepared for <strong>Uniburger</strong> by <strong>Kyle</strong> · Guest Getter · April 2026
+</div>
+
+</body>
+</html>
