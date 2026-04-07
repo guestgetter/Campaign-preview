@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StretchWell — Ad Strategy & Copy Deck</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parchment: #FAF6F1;
+    --ink: #1A1714;
+    --ink-soft: #4A4640;
+    --ink-muted: #8A8580;
+    --amber: #D4872C;
+    --amber-light: #F5DFC4;
+    --amber-glow: #FFF3E4;
+    --sage: #5B7A5E;
+    --sage-light: #E8F0E9;
+    --card: #FFFFFF;
+    --border: #E8E4DF;
+    --border-light: #F0ECE7;
+    --tech-blue: #3D6B8E;
+    --tech-blue-light: #E8F1F8;
+    --experience-warm: #8E5A3D;
+    --experience-warm-light: #F8EDE8;
+    --offer1-accent: #D4872C;
+    --offer2-accent: #3D6B8E;
+    --offer3-accent: #5B7A5E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--parchment);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250, 246, 241, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+  }
+  .sticky-nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo {
+    font-family: 'Instrument Serif', serif;
+    font-size: 20px;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--amber); }
+  .nav-links { display: flex; gap: 6px; }
+  .nav-links a {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink-muted);
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); background: var(--amber-glow); }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 32px 48px;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--amber);
+    background: var(--amber-glow);
+    padding: 8px 18px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    max-width: 700px;
+    margin-bottom: 20px;
+  }
+  .hero-sub {
+    font-size: 19px;
+    color: var(--ink-soft);
+    max-width: 600px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    font-size: 15px;
+    color: var(--ink-muted);
+  }
+  .hero-meta-item strong {
+    display: block;
+    font-size: 17px;
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  /* ── STRATEGY OVERVIEW ── */
+  .strategy-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 32px 64px;
+  }
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 24px;
+  }
+  .strategy-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    transition: box-shadow 0.25s;
+  }
+  .strategy-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.06); }
+  .strategy-card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+  .strategy-card h3 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 24px;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .strategy-card p {
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 32px 0;
+  }
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+  }
+  .section-header h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(30px, 4vw, 44px);
+    letter-spacing: -0.025em;
+    line-height: 1.12;
+    margin-bottom: 12px;
+  }
+  .section-header p {
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 600px;
+    line-height: 1.65;
+  }
+
+  /* ── VERSION TABS ── */
+  .version-tabs-container {
+    max-width: 1200px;
+    margin: 32px auto 0;
+    padding: 0 32px;
+  }
+  .version-tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--border-light);
+    padding: 4px;
+    border-radius: 12px;
+    width: fit-content;
+  }
+  .version-tab {
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 24px;
+    border-radius: 9px;
+    border: none;
+    background: transparent;
+    color: var(--ink-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .version-tab.active {
+    background: var(--card);
+    color: var(--ink);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+  .version-content { display: none; }
+  .version-content.active { display: block; }
+
+  /* ── AD CARDS ── */
+  .ad-grid {
+    max-width: 1200px;
+    margin: 24px auto 0;
+    padding: 0 32px 64px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    gap: 20px;
+  }
+  @media (max-width: 560px) {
+    .ad-grid { grid-template-columns: 1fr; }
+  }
+  .ad-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: box-shadow 0.25s;
+  }
+  .ad-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.06); }
+  .ad-card-header {
+    padding: 20px 24px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .ad-card-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 6px;
+  }
+  .ad-card-badges { display: flex; gap: 6px; }
+  .badge {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .badge-tech { background: var(--tech-blue-light); color: var(--tech-blue); }
+  .badge-exp { background: var(--experience-warm-light); color: var(--experience-warm); }
+  .badge-stack { background: var(--sage-light); color: var(--sage); }
+  .badge-nostack { background: #F5F3F0; color: var(--ink-muted); }
+
+  .ad-card-body { padding: 28px; }
+
+  .ad-hook {
+    font-family: 'Instrument Serif', serif;
+    font-size: 24px;
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 20px;
+    padding-left: 18px;
+    border-left: 3px solid var(--amber);
+  }
+
+  .ad-body-text {
+    font-size: 17px;
+    color: var(--ink-soft);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    white-space: pre-line;
+  }
+
+  .ad-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--amber);
+    margin-bottom: 20px;
+  }
+
+  .ad-creative {
+    background: var(--parchment);
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin-top: 4px;
+  }
+  .ad-creative-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+    margin-bottom: 8px;
+  }
+  .ad-creative p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  /* ── BRIDGE SCRIPT ── */
+  .bridge-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px 64px;
+  }
+  .bridge-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px;
+    max-width: 680px;
+  }
+  .bridge-card h3 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 26px;
+    margin-bottom: 6px;
+  }
+  .bridge-card .bridge-sub {
+    font-size: 16px;
+    color: var(--ink-muted);
+    margin-bottom: 20px;
+  }
+  .bridge-script-text {
+    background: var(--parchment);
+    border-radius: 10px;
+    padding: 24px;
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+    font-style: italic;
+    border-left: 3px solid var(--offer2-accent);
+  }
+  .why-list {
+    list-style: none;
+    padding: 0;
+  }
+  .why-list li {
+    font-size: 16px;
+    color: var(--ink-soft);
+    padding: 6px 0;
+    padding-left: 20px;
+    position: relative;
+  }
+  .why-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--sage);
+    font-weight: 700;
+  }
+
+  /* ── REFERRAL FORMATS ── */
+  .referral-grid {
+    max-width: 1200px;
+    margin: 24px auto 0;
+    padding: 0 32px 64px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .referral-format-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .referral-format-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .referral-format-header h3 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+  }
+  .referral-format-header .format-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    background: var(--sage-light);
+  }
+  .referral-versions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 0;
+  }
+  .referral-version {
+    padding: 24px;
+    border-right: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+  }
+  .referral-version:last-child { border-right: none; }
+  .referral-version-label {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+    margin-bottom: 4px;
+  }
+  .referral-subject {
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+  .referral-body {
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.75;
+    white-space: pre-line;
+  }
+
+  /* ── COMPOUNDING CALLOUT ── */
+  .compound-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px 100px;
+  }
+  .compound-card {
+    background: linear-gradient(135deg, var(--ink) 0%, #2A2520 100%);
+    border-radius: 18px;
+    padding: 48px;
+    color: #FAF6F1;
+    position: relative;
+    overflow: hidden;
+  }
+  .compound-card::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 200px;
+    height: 200px;
+    background: var(--amber);
+    opacity: 0.08;
+    border-radius: 50%;
+  }
+  .compound-card h3 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 32px;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  .compound-card p {
+    font-size: 18px;
+    line-height: 1.75;
+    opacity: 0.8;
+    max-width: 600px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 32px;
+    font-size: 15px;
+    color: var(--ink-muted);
+    border-top: 1px solid var(--border);
+  }
+  .footer a { color: var(--amber); text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero, .strategy-section, .section-header, .ad-grid, .bridge-section, .referral-grid, .compound-section {
+    animation: fadeUp 0.5s ease-out both;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .nav-links { display: none; }
+    .hero { padding: 48px 20px 32px; }
+    .section-header, .strategy-section, .ad-grid, .bridge-section, .referral-grid, .compound-section, .version-tabs-container { padding-left: 20px; padding-right: 20px; }
+    .ad-grid { grid-template-columns: 1fr; }
+    .compound-card { padding: 32px 24px; }
+    .referral-versions { grid-template-columns: 1fr; }
+    .bridge-card { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="sticky-nav">
+  <div class="sticky-nav-inner">
+    <div class="nav-logo">Guest Getter <span>×</span> StretchWell</div>
+    <div class="nav-links">
+      <a href="javascript:void(0)" onclick="document.getElementById('offer1').scrollIntoView({behavior:'smooth'})">Intro Offer</a>
+      <a href="javascript:void(0)" onclick="document.getElementById('offer2').scrollIntoView({behavior:'smooth'})">Mobility Reset</a>
+      <a href="javascript:void(0)" onclick="document.getElementById('offer3').scrollIntoView({behavior:'smooth'})">Referral</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">● Ad Strategy & Copy Deck</div>
+  <h1>StretchWell Toronto — Launch Campaign</h1>
+  <p class="hero-sub">3 offers. 2 creative angles per offer. 4 ad variations each. A full referral engine. Everything StretchWell needs to fill the studio with the right people.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <strong>Prepared by</strong>
+      Guest Getter Inc.
+    </div>
+    <div class="hero-meta-item">
+      <strong>Date</strong>
+      April 2026
+    </div>
+    <div class="hero-meta-item">
+      <strong>Total Ad Variations</strong>
+      16 unique ads + referral system
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGY OVERVIEW -->
+<section class="strategy-section">
+  <div class="strategy-grid">
+    <div class="strategy-card">
+      <div class="strategy-card-icon" style="background:var(--amber-glow);color:var(--amber);">◎</div>
+      <h3>Sell the Experience</h3>
+      <p>StretchWell isn't a gym. Every ad is written to sell what it feels like to walk in and walk out — not a membership. No gym-brain copy anywhere.</p>
+    </div>
+    <div class="strategy-card">
+      <div class="strategy-card-icon" style="background:var(--tech-blue-light);color:var(--tech-blue);">◈</div>
+      <h3>Two Angles Per Offer</h3>
+      <p><strong>Version A</strong> leads with the Kinotek technology — motion-capture, scored reports, data. <strong>Version B</strong> leads with the human experience — the practitioner, the feeling, the relationship.</p>
+    </div>
+    <div class="strategy-card">
+      <div class="strategy-card-icon" style="background:var(--sage-light);color:var(--sage);">△</div>
+      <h3>Differentiated From Current Ads</h3>
+      <p>Every hook and angle is built to be distinct from what StretchWell is already running. No overlap. No jargon. No AI slop.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DIAGRAM 1: FUNNEL FLOW -->
+<section class="diagram-section" style="max-width:1200px;margin:0 auto;padding:0 32px 48px;">
+  <h3 style="font-family:'Instrument Serif',serif;font-size:24px;margin-bottom:6px;letter-spacing:-0.01em;">How the three offers connect</h3>
+  <p style="font-size:16px;color:var(--ink-soft);margin-bottom:24px;">Each offer feeds the next. Cold traffic enters at $79, converts to $199, then compounds through referrals.</p>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:36px 24px;overflow-x:auto;">
+    <svg width="100%" viewBox="0 0 900 320" style="display:block;max-width:900px;margin:0 auto;">
+      <!-- Offer 1 -->
+      <rect x="20" y="60" width="220" height="90" rx="12" fill="var(--amber-glow)" stroke="#D4872C" stroke-width="1"/>
+      <text x="130" y="93" text-anchor="middle" font-family="Instrument Serif,serif" font-size="20" fill="#D4872C" font-weight="400">Intro Session</text>
+      <text x="130" y="118" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="15" fill="var(--ink-soft)">$79 · First visit</text>
+      <text x="130" y="137" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="var(--ink-muted)">Cold traffic + retargeting</text>
+
+      <!-- Arrow 1→2 -->
+      <line x1="240" y1="105" x2="310" y2="105" stroke="var(--ink-muted)" stroke-width="1.5" marker-end="url(#arrowF)"/>
+      <text x="275" y="95" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="var(--ink-muted)">Converts or</text>
+      <text x="275" y="83" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="var(--ink-muted)">retargets to</text>
+
+      <!-- Offer 2 -->
+      <rect x="320" y="60" width="240" height="90" rx="12" fill="#E8F1F8" stroke="#3D6B8E" stroke-width="1"/>
+      <text x="440" y="93" text-anchor="middle" font-family="Instrument Serif,serif" font-size="20" fill="#3D6B8E" font-weight="400">3-Visit Mobility Reset</text>
+      <text x="440" y="118" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="15" fill="var(--ink-soft)">$199 · 21 days</text>
+      <text x="440" y="137" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="var(--ink-muted)">Retargeting + bridge only</text>
+
+      <!-- Arrow 2→3 -->
+      <line x1="560" y1="105" x2="630" y2="105" stroke="var(--ink-muted)" stroke-width="1.5" marker-end="url(#arrowF)"/>
+      <text x="595" y="95" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="var(--ink-muted)">Becomes</text>
+      <text x="595" y="83" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="var(--ink-muted)">member</text>
+
+      <!-- Offer 3 -->
+      <rect x="640" y="60" width="240" height="90" rx="12" fill="#E8F0E9" stroke="#5B7A5E" stroke-width="1"/>
+      <text x="760" y="93" text-anchor="middle" font-family="Instrument Serif,serif" font-size="20" fill="#5B7A5E" font-weight="400">Share the Stretch</text>
+      <text x="760" y="118" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="15" fill="var(--ink-soft)">Referral program</text>
+      <text x="760" y="137" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="var(--ink-muted)">$30 credit · Thornhill pilot</text>
+
+      <!-- Referral loop arrow back to Offer 1 -->
+      <path d="M760 150 L760 230 Q760 250 740 250 L160 250 Q140 250 140 230 L140 150" fill="none" stroke="#5B7A5E" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrowG)"/>
+      <rect x="365" y="237" width="180" height="26" rx="13" fill="#E8F0E9" stroke="#5B7A5E" stroke-width="0.5"/>
+      <text x="455" y="254" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#5B7A5E" font-weight="500">Friend enters at $79</text>
+
+      <!-- Arrow markers -->
+      <defs>
+        <marker id="arrowF" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="var(--ink-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+        <marker id="arrowG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#5B7A5E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+</section>
+
+<!-- DIAGRAM 2: REFERRAL COMPOUNDING -->
+<section class="diagram-section" style="max-width:1200px;margin:0 auto;padding:0 32px 64px;">
+  <h3 style="font-family:'Instrument Serif',serif;font-size:24px;margin-bottom:6px;letter-spacing:-0.01em;">The referral compounding effect</h3>
+  <p style="font-size:16px;color:var(--ink-soft);margin-bottom:24px;">One member refers three friends. Those three friends arrive with trust already built — and each one can refer three more.</p>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:36px 24px;overflow-x:auto;">
+    <svg width="100%" viewBox="0 0 800 380" style="display:block;max-width:800px;margin:0 auto;">
+      <defs>
+        <marker id="arrowR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#5B7A5E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+
+      <!-- Member (center top) -->
+      <rect x="310" y="20" width="180" height="70" rx="12" fill="#E8F0E9" stroke="#5B7A5E" stroke-width="1.5"/>
+      <text x="400" y="50" text-anchor="middle" font-family="Instrument Serif,serif" font-size="19" fill="#5B7A5E">Original member</text>
+      <text x="400" y="72" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" fill="var(--ink-muted)">3 referrals = $90 credit</text>
+
+      <!-- Lines from member to 3 friends -->
+      <line x1="350" y1="90" x2="140" y2="155" stroke="#5B7A5E" stroke-width="1" marker-end="url(#arrowR)"/>
+      <line x1="400" y1="90" x2="400" y2="155" stroke="#5B7A5E" stroke-width="1" marker-end="url(#arrowR)"/>
+      <line x1="450" y1="90" x2="660" y2="155" stroke="#5B7A5E" stroke-width="1" marker-end="url(#arrowR)"/>
+
+      <!-- Friend 1 -->
+      <rect x="40" y="160" width="200" height="65" rx="10" fill="var(--amber-glow)" stroke="#D4872C" stroke-width="0.8"/>
+      <text x="140" y="187" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="15" fill="#D4872C" font-weight="500">Friend 1</text>
+      <text x="140" y="207" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="var(--ink-muted)">Books at $79 · high trust</text>
+
+      <!-- Friend 2 -->
+      <rect x="300" y="160" width="200" height="65" rx="10" fill="var(--amber-glow)" stroke="#D4872C" stroke-width="0.8"/>
+      <text x="400" y="187" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="15" fill="#D4872C" font-weight="500">Friend 2</text>
+      <text x="400" y="207" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="var(--ink-muted)">Books at $79 · high trust</text>
+
+      <!-- Friend 3 -->
+      <rect x="560" y="160" width="200" height="65" rx="10" fill="var(--amber-glow)" stroke="#D4872C" stroke-width="0.8"/>
+      <text x="660" y="187" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="15" fill="#D4872C" font-weight="500">Friend 3</text>
+      <text x="660" y="207" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="var(--ink-muted)">Books at $79 · high trust</text>
+
+      <!-- Lines from friends to their conversions -->
+      <line x1="140" y1="225" x2="140" y2="275" stroke="var(--ink-muted)" stroke-width="0.8" stroke-dasharray="4 3"/>
+      <line x1="400" y1="225" x2="400" y2="275" stroke="var(--ink-muted)" stroke-width="0.8" stroke-dasharray="4 3"/>
+      <line x1="660" y1="225" x2="660" y2="275" stroke="var(--ink-muted)" stroke-width="0.8" stroke-dasharray="4 3"/>
+
+      <!-- Conversion row -->
+      <rect x="45" y="280" width="190" height="50" rx="8" fill="#E8F1F8" stroke="#3D6B8E" stroke-width="0.5"/>
+      <text x="140" y="302" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" fill="#3D6B8E" font-weight="500">Converts to $199 Reset</text>
+      <text x="140" y="318" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="var(--ink-muted)">Then refers their own friends</text>
+
+      <rect x="305" y="280" width="190" height="50" rx="8" fill="#E8F1F8" stroke="#3D6B8E" stroke-width="0.5"/>
+      <text x="400" y="302" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" fill="#3D6B8E" font-weight="500">Converts to $199 Reset</text>
+      <text x="400" y="318" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="var(--ink-muted)">Then refers their own friends</text>
+
+      <rect x="565" y="280" width="190" height="50" rx="8" fill="#E8F1F8" stroke="#3D6B8E" stroke-width="0.5"/>
+      <text x="660" y="302" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" fill="#3D6B8E" font-weight="500">Converts to $199 Reset</text>
+      <text x="660" y="318" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="var(--ink-muted)">Then refers their own friends</text>
+
+      <!-- Bottom callout -->
+      <rect x="220" y="350" width="360" height="28" rx="14" fill="var(--ink)" opacity="0.9"/>
+      <text x="400" y="369" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" fill="#FAF6F1" font-weight="500">Referrals convert higher than cold traffic — every time</text>
+    </svg>
+  </div>
+</section>
+<div id="offer1">
+  <section class="section-header">
+    <div class="section-tag" style="background:var(--amber-glow);color:var(--amber);">Offer 1</div>
+    <h2>Introductory Session — $79</h2>
+    <p>The front door. One 50-minute session with Kinotek assessment, scored mobility report, and first stretch done. Limited spots per week.</p>
+  </section>
+
+  <div class="version-tabs-container">
+    <div class="version-tabs" data-group="offer1">
+      <button class="version-tab active" data-target="offer1-a">Version A — Technology Forward</button>
+      <button class="version-tab" data-target="offer1-b">Version B — Experience Forward</button>
+    </div>
+  </div>
+
+  <!-- OFFER 1 — VERSION A -->
+  <div class="version-content active" id="offer1-a">
+    <div class="ad-grid">
+      <!-- A1 -->
+      <div class="ad-card">
+        <div class="ad-card-header">
+          <span class="ad-card-id" style="background:var(--amber-glow);color:var(--amber);">A1</span>
+          <div class="ad-card-badges">
+            <span class="badge badge-tech">Tech</span>
+            <span class="badge badge-stack">Value Stack</span>
+          </div>
+        </div>
+        <div class="ad-card-body">
+          <div class="ad-hook">"Your body has been compensating for years. You just don't know for what yet."</div>
+          <div class="ad-body-text">Every tight muscle, every stiff morning, every nagging ache — your body has been trying to tell you something.
+
+StretchWell's Kinotek technology finally shows you what.
+
+In one 50-minute visit, a certified practitioner uses 3D motion-capture to map exactly where your body is restricted and why. You walk out with a scored mobility report, a clear plan, and your first stretch already done.
+
+One visit. Real answers. A plan that's actually built for your body.
+
+$79. Limited spots per week.</div>
+          <div class="ad-cta">Book Your First Session →</div>
+          <div class="ad-creative">
+            <div class="ad-creative-label">Suggested Creative</div>
+            <p>Kinotek screen showing a live 3D body scan with a practitioner reviewing it alongside a client. Warm studio lighting in background. Text overlay: "Finally find out what your body has been trying to tell you." Feels clinical but personal — not cold.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- A2 -->
+      <div class="ad-card">
+        <div class="ad-card-header">
+          <span class="ad-card-id" style="background:var(--amber-glow);color:var(--amber);">A2</span>
+          <div class="ad-card-badges">
+            <span class="badge badge-tech">Tech</span>
+            <span class="badge badge-nostack">No Stack</span>
+          </div>
+        </div>
+        <div class="ad-card-body">
+          <div class="ad-hook">"After 40, stretching feels productive. But if you're working on the symptom instead of the source, nothing really changes."</div>
+          <div class="ad-body-text">Stretching the wrong things doesn't fix anything — it just keeps you busy.
+
+StretchWell uses Kinotek — 3D motion-capture technology — to show you exactly what's restricted in your body. Not just what feels tight.
+
+One visit. A full scored report. Your first personalized session done.
+
+StretchWell doesn't run promotions. The $79 consultation is simply how every membership starts — with a real picture of what your body needs.
+
+$79. Limited spots per week.</div>
+          <div class="ad-cta">Book Your First Session →</div>
+          <div class="ad-creative">
+            <div class="ad-creative-label">Suggested Creative</div>
+            <p>Split screen — left side someone foam rolling alone at home looking frustrated. Right side a StretchWell practitioner working with a client, Kinotek screen visible in background. Text overlay: "Working on the wrong things?"</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- A3 -->
+      <div class="ad-card">
+        <div class="ad-card-header">
+          <span class="ad-card-id" style="background:var(--amber-glow);color:var(--amber);">A3</span>
+          <div class="ad-card-badges">
+            <span class="badge badge-tech">Tech</span>
+            <span class="badge badge-stack">Value Stack</span>
+          </div>
+        </div>
+        <div class="ad-card-body">
+          <div class="ad-hook">"Pro athletes have known exactly how their body moves for decades. Now you can too."</div>
+          <div class="ad-body-text">Motion-capture technology used to live in elite sports labs.
+
+StretchWell brought it to Toronto.
+
+In one visit, Kinotek maps exactly how your body moves, scores your mobility, and shows your practitioner exactly where to focus. Your entire first session is built around what the data finds.
+
+One visit. A scored report. Your first personalized 50-min session done.
+
+$79. Limited spots per week.</div>
+          <div class="ad-cta">Book Your First Session →</div>
+          <div class="ad-creative">
+            <div class="ad-creative-label">Suggested Creative</div>
+            <p>2-second clip of pro athlete motion-capture footage. Hard cut to StretchWell's Kinotek in action in studio. Text overlay: "This technology isn't just for pros anymore." End on practitioner reviewing scored report with client on tablet.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- A4 -->
+      <div class="ad-card">
+        <div class="ad-card-header">
+          <span class="ad-card-id" style="background:var(--amber-glow);color:var(--amber);">A4</span>
+          <div class="ad-card-badges">
+            <span class="badge badge-tech">Tech</span>
+            <span class="badge badge-nostack">No Stack</span>
+          </div>
+        </div>
+        <div class="ad-card-body">
+          <div class="ad-hook">"You track your sleep. You track your steps. Nobody's ever tracked how your body actually moves — until now."</div>
+          <div class="ad-body-text">You've put real effort into your health. Workouts, recovery, the whole thing.
+
+But how your body actually moves has never been measured.
+
+StretchWell's Kinotek consultation gives you a scored, personalized picture of exactly where you're tight, restricted, and compensating. Your first stretch session is built entirely around what it finds.
+
+For people who want to know — not guess.
+
+$79. Limited spots per week.</div>
+          <div class="ad-cta">Book Your First Session →</div>
+          <div class="ad-creative">
+            <div class="ad-creative-label">Suggested Creative</div>
+            <p>Quick montage — Apple Watch on wrist, phone showing step count, sleep tracker. Hard cut to Kinotek 3D body scan on screen. Text overlay: "You track everything. Except this."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OFFER 1 — VERSION B -->
+  <div class="version-content" id="offer1-b">
+    <div class="ad-grid">
+      <!-- B1 -->
+      <div class="ad-card">
+        <div class="ad-card-header">
+          <span class="ad-card-id" style="background:var(--experience-warm-light);color:var(--experience-warm);">B1</span>
+          <div class="ad-card-badges">
+            <span class="badge badge-exp">Experience</span>
+            <span class="badge badge-nostack">No Stack</span>
+          </div>
+        </div>
+        <div class="ad-card-body">
+          <div class="ad-hook" style="border-left-color:var(--experience-warm);">"The massage feels good for 2 days. The chiro cracks it back into place. But it keeps coming back. There's a reason for that."</div>
+          <div class="ad-body-text">You're not broken. Nobody's ever looked at the full picture.
+
+The same spots keep flaring up because the source has never been found. Just the symptoms.
+
+At StretchWell, your first visit is a full one-on-one session with a certified practitioner who actually takes the time to understand your body — where it's breaking down, why, and what to do about it.
+
+Walk out feeling better than you have in years. And knowing exactly why.
+
+$79. Limited spots per week.</div>
+          <div class="ad-cta">Book Your First Session →</div>
+          <div class="ad-creative">
+            <div class="ad-creative-label">Suggested Creative</div>
+            <p>Talking head — real StretchWell client, 50s, active-looking, straight to camera. "I'd been seeing the same chiropractor for years for the same problem. One session at StretchWell and I finally understood what was actually going on." Raw, no production gloss. Feels like a friend's recommendation.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- B2 -->
+      <div class="ad-card">
+        <div class="ad-card-header">
+          <span class="ad-card-id" style="background:var(--experience-warm-light);color:var(--experience-warm);">B2</span>
+          <div class="ad-card-badges">
+            <span class="badge badge-exp">Experience</span>
+            <span class="badge badge-stack">Value Stack</span>
+          </div>
+        </div>
+        <div class="ad-card-body">
+          <div class="ad-hook" style="border-left-color:var(--experience-warm);">"Your hips are probably why your back hurts. Your shoulders are probably why your neck is tight. One session will tell you for sure."</div>
+          <div class="ad-body-text">Pain rarely lives where it starts.
+
+Most people spend years treating the wrong spot because nobody's ever connected the dots.
+
+At StretchWell, your first session is a proper one-on-one with a certified practitioner. They'll find exactly where your body is breaking down, explain what's behind it, and start working on it — all in your first visit.
+
+Walk in with questions. Walk out with a plan.
+
+Your first 50-min session + a full mobility assessment. $79. Limited spots per week.</div>
+          <div class="ad-cta">Book Your First Session →</div>
+          <div class="ad-creative">
+            <div class="ad-creative-label">Suggested Creative</div>
+            <p>Clean graphic — outline of a human body with dotted lines connecting hip to lower back, shoulder to neck. Text overlay: "Pain rarely lives where it starts." Simple, educational, scroll-stopping. Best as a static image on Facebook and Instagram feed.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- B3 -->
+      <div class="ad-card">
+        <div class="ad-card-header">
+          <span class="ad-card-id" style="background:var(--experience-warm-light);color:var(--experience-warm);">B3</span>
+          <div class="ad-card-badges">
+            <span class="badge badge-exp">Experience</span>
+            <span class="badge badge-nostack">No Stack</span>
+          </div>
+        </div>
+        <div class="ad-card-body">
+          <div class="ad-hook" style="border-left-color:var(--experience-warm);">"Getting stiffer every year isn't inevitable. It's what happens when nobody's ever actually looked at how your body moves."</div>
+          <div class="ad-body-text">Years of sport, sitting, and daily life leave a mark.
+
+Tightness that never fully goes away. Movements that feel different than they used to. Something that's just slightly off.
+
+StretchWell's practitioners are trained to find that. One visit and you'll know exactly what needs work — and they'll start working on it the same day.
+
+This isn't a spa stretch. It's a proper one-on-one session with someone who actually knows what they're looking at.
+
+$79. Limited spots per week.</div>
+          <div class="ad-cta">Book Your First Session →</div>
+          <div class="ad-creative">
+            <div class="ad-creative-label">Suggested Creative</div>
+            <p>Slow motion — someone in their 50s finishing a golf swing, rubbing their lower back. Cut to same person on a StretchWell table, visibly relaxed, practitioner working with intention. End frame: "Find out what your body actually needs."</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- B4 -->
+      <div class="ad-card">
+        <div class="ad-card-header">
+          <span class="ad-card-id" style="background:var(--experience-warm-light);color:var(--experience-warm);">B4</span>
+          <div class="ad-card-badges">
+            <span class="badge badge-exp">Experience</span>
+            <span class="badge badge-stack">Value Stack</span>
+          </div>
+        </div>
+        <div class="ad-card-body">
+          <div class="ad-hook" style="border-left-color:var(--experience-warm);">"Still dealing with the same tight spots you've had for years? That's not just wear and tear. That's a pattern nobody's found yet."</div>
+          <div class="ad-body-text">Your body doesn't just randomly tighten up.
+
+It's the same movement, hitting the same restriction, over and over — and nobody's ever caught it.
+
+Your first session at StretchWell is a full one-on-one with a certified practitioner. They'll find the pattern, show you exactly what's causing it, and start fixing it — same visit.
+
+Your first 50-min session + full mobility assessment. $79. Limited spots per week.</div>
+          <div class="ad-cta">Book Your First Session →</div>
+          <div class="ad-creative">
+            <div class="ad-creative-label">Suggested Creative</div>
+            <p>Text on dark background, words appearing one by one: "Same tight hip. For years. Not wear and tear. A pattern. StretchWell will find it." Clean, punchy, native to Stories and Reels.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ OFFER 2 ═══════════════════════════════════ -->
+<div id="offer2">
+  <section class="section-header">
+    <div class="section-tag" style="background:var(--tech-blue-light);color:var(--tech-blue);">Offer 2</div>
+    <h2>The 3-Visit Mobility Reset — $199</h2>
+    <p>Three 25-minute focused sessions over 21 days. Retargeting and in-studio bridge only — no cold ad spend behind this offer.</p>
+  </section>
+
+  <div class="version-tabs-container">
+    <div class="version-tabs" data-group="offer2">
+      <button class="version-tab active" data-target="offer2-a">Version A — Technology Forward</button>
+      <button class="version-tab" data-target="offer2-b">Version B — Experience Forward</button>
+    </div>
+  </div>
+
+  <!-- OFFER 2 — VERSION A -->
+  <div class="version-content active" id="offer2-a">
+    <div class="ad-grid">
+      <!-- A1 -->
+      <div class="ad-card">
+        <div class="ad-card-header">
+          <span class="ad-card-id" style="background:var(--tech-blue-light);color:var(--tech-blue);">A1</span>
+          <div class="ad-card-badges">
+            <span class="badge badge-tech">Tech</span>
+            <span class="badge badge-stack">Value Stack</span>
+          </div>
+        </div>
+        <div class="ad-card-body">
+          <div class="ad-hook" style="border-left-color:var(--tech-blue);">"One stretch session feels good. Three in 21 days actually changes something."</div>
+          <div class="ad-body-text">Most people try one session, feel great, and never come back.
+
+And then two weeks later they're back to square one.
+
+StretchWell's 3-Visit Mobility Reset is built around how the body actually changes — three one-on-one sessions spaced over 21 days, starting with a full Kinotek assessment on visit one.
+
+Your practitioner maps exactly where you're restricted on day one. By session three you'll feel — and see in the data — exactly how far you've come.
+
+Three sessions + Kinotek mobility assessment + personalized plan. $199.
+Limited spots per week.</div>
+          <div class="ad-cta">Book Your Mobility Reset →</div>
+          <div class="ad-creative">
+            <div class="ad-creative-label">Suggested Creative</div>
+            <p>Three-panel visual — Visit 1 showing Kinotek assessment on screen, Visit 2 showing practitioner working on client, Visit 3 showing client standing tall, moving freely. Text overlay: "Three visits. One plan. Real change." Clean, sequential, tells the story visually.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- A2 -->
+      <div class="ad-card">
+        <div class="ad-card-header">
+          <span class="ad-card-id" style="background:var(--tech-blue-light);color:var(--tech-blue);">A2</span>
+          <div class="ad-card-badges">
+            <span class="badge badge-tech">Tech</span>
+            <span class="badge badge-nostack">No Stack</span>
+          </div>
+        </div>
+        <div class="ad-card-body">
+          <div class="ad-hook" style="border-left-color:var(--tech-blue);">"Your body didn't get stiff overnight. One session won't fix it. But three sessions over 21 days will start to."</div>
+          <div class="ad-body-text">The problem with one-off stretches is that nothing sticks.
+
+StretchWell's 3-Visit Mobility Reset is different. It starts with a full Kinotek motion-capture assessment so your practitioner knows exactly what your body needs. Then two more sessions built around what they found.
+
+By the end you'll know exactly where you started, how far you've come, and what your body needs to keep improving.
+
+$199. Three sessions. 21 days. Limited spots per week.</div>
+          <div class="ad-cta">Book Your Mobility Reset →</div>
+          <div class="ad-creative">
+            <div class="ad-creative-label">Suggested Creative</div>
+            <p>Short reel — opens on Kinotek screen showing a body scan. Practitioner points to a restriction area and explains it to the client. Cut to session 2, same client, visibly more relaxed. Cut to session 3, client standing, rolling their shoulder freely. Text overlay: "This is what three sessions actually looks like."</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- A3 -->
+      <div class="ad-card">
+        <div class="ad-card-header">
+          <span class="ad-card-id" style="background:var(--tech-blue-light);color:var(--tech-blue);">A3</span>
+          <div class="ad-card-badges">
+            <span class="badge badge-tech">Tech</span>
+            <span class="badge badge-stack">Value Stack</span>
+          </div>
+        </div>
+        <div class="ad-card-body">
+          <div class="ad-hook" style="border-left-color:var(--tech-blue);">"Three sessions with a plan beats ten sessions without one. Every time."</div>
+          <div class="ad-body-text">Random stretching is just maintenance.
+
+StretchWell's 3-Visit Mobility Reset starts with a Kinotek assessment on visit one — a full 3D map of how your body moves and where it's breaking down. Your practitioner builds the next two sessions entirely around what it shows.
+
+You're not just getting stretched. You're working through a plan built specifically for your body.
+
+Three sessions + Kinotek assessment + personalized movement plan. $199. Limited spots per week.</div>
+          <div class="ad-cta">Book Your Mobility Reset →</div>
+          <div class="ad-creative">
+            <div class="ad-creative-label">Suggested Creative</div>
+            <p>Split screen — left side someone doing random stretches at a gym, no direction. Right side a StretchWell practitioner working through a specific plan with a client, tablet showing their Kinotek report. Text overlay: "Random stretching vs. a plan built for your body."</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- A4 -->
+      <div class="ad-card">
+        <div class="ad-card-header">
+          <span class="ad-card-id" style="background:var(--tech-blue-light);color:var(--tech-blue);">A4</span>
+          <div class="ad-card-badges">
+            <span class="badge badge-tech">Tech</span>
+            <span class="badge badge-nostack">No Stack</span>
+          </div>
+        </div>
+        <div class="ad-card-body">
+          <div class="ad-hook" style="border-left-color:var(--tech-blue);">"Most people need to feel a real change — not just one good session. That takes three."</div>
+          <div class="ad-body-text">One session at StretchWell will show you what's possible.
+
+Three sessions over 21 days will actually start to change it.
+
+Your first visit includes a full Kinotek mobility assessment — a 3D picture of exactly where your body is restricted. The next two sessions are built entirely around what it finds.
+
+By visit three your body will feel different. And you'll have the data to show exactly why.
+
+$199. Three sessions. 21 days. Limited spots per week.</div>
+          <div class="ad-cta">Book Your Mobility Reset →</div>
+          <div class="ad-creative">
+            <div class="ad-creative-label">Suggested Creative</div>
+            <p>Data-driven static — before and after Kinotek scored reports side by side. Scores visibly improved. Text overlay: "This is what 21 days looks like in the numbers." Speaks directly to the analytical buyer who wants proof, not promises.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OFFER 2 — VERSION B -->
+  <div class="version-content" id="offer2-b">
+    <div class="ad-grid">
+      <!-- B1 -->
+      <div class="ad-card">
+        <div class="ad-card-header">
+          <span class="ad-card-id" style="background:var(--experience-warm-light);color:var(--experience-warm);">B1</span>
+          <div class="ad-card-badges">
+            <span class="badge badge-exp">Experience</span>
+            <span class="badge badge-nostack">No Stack</span>
+          </div>
+        </div>
+        <div class="ad-card-body">
+          <div class="ad-hook" style="border-left-color:var(--experience-warm);">"You've tried the one-off massage. The occasional chiro visit. It helps for a bit. Then you're back where you started."</div>
+          <div class="ad-body-text">The problem isn't the treatment. It's the lack of a plan.
+
+StretchWell's 3-Visit Mobility Reset gives you both. Three proper one-on-one sessions over 21 days with the same certified practitioner — starting from a full assessment of where your body actually is.
+
+By session three most people can't believe how different they feel. Not just looser. Actually different.
+
+$199. Three sessions. 21 days. Limited spots per week.</div>
+          <div class="ad-cta">Book Your Mobility Reset →</div>
+          <div class="ad-creative">
+            <div class="ad-creative-label">Suggested Creative</div>
+            <p>Talking head — real client, 50s, to camera. "I'd done massages, chiro, physio. They all helped a little. After three sessions at StretchWell I actually felt like something had changed." No script feel. Just someone talking honestly.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- B2 -->
+      <div class="ad-card">
+        <div class="ad-card-header">
+          <span class="ad-card-id" style="background:var(--experience-warm-light);color:var(--experience-warm);">B2</span>
+          <div class="ad-card-badges">
+            <span class="badge badge-exp">Experience</span>
+            <span class="badge badge-stack">Value Stack</span>
+          </div>
+        </div>
+        <div class="ad-card-body">
+          <div class="ad-hook" style="border-left-color:var(--experience-warm);">"Three sessions with someone who actually knows your body. That's when things start to change."</div>
+          <div class="ad-body-text">The difference between a one-off stretch and real progress is consistency and a plan.
+
+StretchWell's 3-Visit Mobility Reset gives you both. Your first session includes a full mobility assessment — your practitioner maps exactly where your body is tight, restricted, and compensating. The next two sessions are built around what they found.
+
+Same practitioner. Same plan. Three visits over 21 days.
+
+Most people come out the other side wondering why they waited so long.
+
+Three sessions + full mobility assessment + personalized plan. $199. Limited spots per week.</div>
+          <div class="ad-cta">Book Your Mobility Reset →</div>
+          <div class="ad-creative">
+            <div class="ad-creative-label">Suggested Creative</div>
+            <p>Warm studio reel — slow close-ups of the StretchWell environment. Bamboo trays, clean benches, soft lighting. Cut to practitioner working one-on-one, clearly in a relationship with the client — not transactional. Text overlay: "Three sessions. One practitioner. A plan built for your body."</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- B3 -->
+      <div class="ad-card">
+        <div class="ad-card-header">
+          <span class="ad-card-id" style="background:var(--experience-warm-light);color:var(--experience-warm);">B3</span>
+          <div class="ad-card-badges">
+            <span class="badge badge-exp">Experience</span>
+            <span class="badge badge-nostack">No Stack</span>
+          </div>
+        </div>
+        <div class="ad-card-body">
+          <div class="ad-hook" style="border-left-color:var(--experience-warm);">"21 days from now you could still be dealing with the same tight hips and stiff back. Or you could actually have done something about it."</div>
+          <div class="ad-body-text">Most people put it off. They mean to do something about it. Life gets in the way.
+
+StretchWell's 3-Visit Mobility Reset makes it simple. Three sessions over 21 days — roughly once a week. A certified practitioner who knows your body by visit two. A plan that's actually built around what you need.
+
+21 days goes fast either way. Might as well feel different at the end of it.
+
+$199. Three sessions. 21 days. Limited spots per week.</div>
+          <div class="ad-cta">Book Your Mobility Reset →</div>
+          <div class="ad-creative">
+            <div class="ad-creative-label">Suggested Creative</div>
+            <p>Simple text creative — white text on dark background. "21 days from now — same tight back. Or not. Your call." Single line. Holds on screen for 3 seconds. Cut to StretchWell studio, warm and inviting. CTA appears: "Book your 3-Visit Reset. $199." Uncomfortable enough to stop the scroll without being preachy.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- B4 -->
+      <div class="ad-card">
+        <div class="ad-card-header">
+          <span class="ad-card-id" style="background:var(--experience-warm-light);color:var(--experience-warm);">B4</span>
+          <div class="ad-card-badges">
+            <span class="badge badge-exp">Experience</span>
+            <span class="badge badge-stack">Value Stack</span>
+          </div>
+        </div>
+        <div class="ad-card-body">
+          <div class="ad-hook" style="border-left-color:var(--experience-warm);">"One good session is a reminder of what your body can feel like. Three sessions is where it actually starts to change."</div>
+          <div class="ad-body-text">There's a difference between feeling good for a day and your body actually moving better.
+
+StretchWell's 3-Visit Mobility Reset is built around the second thing. Three one-on-one sessions over 21 days — the same rhythm a member follows every week.
+
+Your first visit starts with a full mobility assessment. Your practitioner builds the next two sessions around exactly what they find. By visit three most people don't want to stop.
+
+Three sessions + full mobility assessment + personalized plan. $199. Limited spots per week.</div>
+          <div class="ad-cta">Book Your Mobility Reset →</div>
+          <div class="ad-creative">
+            <div class="ad-creative-label">Suggested Creative</div>
+            <p>Slow motion reel — client arriving at StretchWell for what's clearly not their first time. Greeted by name at the front desk. Practitioner already set up and ready. Session underway — focused, purposeful, not generic. Text overlay: "This is what session three feels like." Sells the relationship, not the service.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRIDGE SCRIPT -->
+  <section class="bridge-section">
+    <div class="bridge-card">
+      <h3>In-Studio Bridge Script</h3>
+      <p class="bridge-sub">Practitioner delivers this verbally after the $79 session. Not ad copy — a conversation.</p>
+      <div class="bridge-script-text">"So based on what we found today — your [specific area] is where most of your restriction is coming from. One session can start to open that up, but to actually change how it feels day to day you really need two or three more focused sessions over the next few weeks.
+
+We have a 3-visit reset that most new clients do — it's $199 total, so your session today counts as visit one. The next two are shorter, focused sessions built entirely around what we found today.
+
+Want to go ahead and lock those in before you leave?"</div>
+      <ul class="why-list">
+        <li>References what they personally found — not generic</li>
+        <li>Positions additional sessions as clinical recommendation, not a sale</li>
+        <li>The $79 retroactively becomes visit one — they're already in</li>
+        <li>"Before you leave" creates soft urgency without pressure</li>
+        <li>Open question at the end — not a hard close</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════ OFFER 3 ═══════════════════════════════════ -->
+<div id="offer3">
+  <section class="section-header">
+    <div class="section-tag" style="background:var(--sage-light);color:var(--sage);">Offer 3</div>
+    <h2>Share the Stretch — Referral Program</h2>
+    <p>Member refers a friend. Friend gets $79 intro or $30 off the Reset. Member gets $30 credit. No cap. Piloting at Thornhill location first.</p>
+  </section>
+
+  <!-- REFERRAL FORMATS -->
+  <div class="referral-grid">
+
+    <!-- EMAIL -->
+    <div class="referral-format-card">
+      <div class="referral-format-header">
+        <div class="format-icon">✉</div>
+        <h3>Member Email</h3>
+      </div>
+      <div class="referral-versions">
+        <div class="referral-version">
+          <div class="referral-version-label">Version A — Relationship Angle</div>
+          <div class="referral-subject">Subject: Something we think you'll appreciate</div>
+          <div class="referral-body">You found StretchWell the same way most of our best members do — through someone who knew it would be good for you.
+
+We've never run promotions or discounts to bring people in. We'd rather grow the way we always have — through people who genuinely love what they've experienced here.
+
+So we wanted to make that official.
+
+If there's someone in your life who could use this — a partner who's been complaining about their back, a friend who plays golf three times a week, anyone who's been putting their body on the back burner — send them your referral code.
+
+They get their first session at $79. Or $30 off the 3-Visit Reset.
+You get a $30 credit toward your next session the moment they book.
+
+No forms. No pitching. Just share it with someone who'd genuinely benefit.
+
+[Your referral code: XXXXX]
+— The StretchWell Team</div>
+        </div>
+        <div class="referral-version">
+          <div class="referral-version-label">Version B — Direct Angle</div>
+          <div class="referral-subject">Subject: Your $30 credit is waiting</div>
+          <div class="referral-body">Quick one.
+
+We're making it official — every time you refer someone to StretchWell and they book their first session, you get $30 off your next one.
+
+No cap on how many times you can use it.
+
+Your friend gets their intro session at $79, or $30 off the 3-Visit Reset. You get the credit the moment they book.
+
+If you know someone who's been dealing with a stiff back, tight hips, or just hasn't felt right in their body for a while — this is a pretty easy thing to pass along.
+
+[Your referral code: XXXXX]
+— The StretchWell Team</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SMS -->
+    <div class="referral-format-card">
+      <div class="referral-format-header">
+        <div class="format-icon">💬</div>
+        <h3>SMS</h3>
+      </div>
+      <div class="referral-versions">
+        <div class="referral-version">
+          <div class="referral-version-label">Version A</div>
+          <div class="referral-body">Hey [Name] — we just launched a referral program. Know someone who'd love StretchWell? Share your code and they get $30 off their first visit. You get $30 credit when they book. No limit. Code: XXXXX</div>
+        </div>
+        <div class="referral-version">
+          <div class="referral-version-label">Version B</div>
+          <div class="referral-body">[Name] — if you've got a friend who's been dealing with a stiff back or tight hips, pass this along. They get their first StretchWell session at $79. You get $30 off your next one. Code: XXXXX</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IN-STUDIO -->
+    <div class="referral-format-card">
+      <div class="referral-format-header">
+        <div class="format-icon">🏛</div>
+        <h3>In-Studio Signage</h3>
+      </div>
+      <div class="referral-versions">
+        <div class="referral-version">
+          <div class="referral-version-label">Version A</div>
+          <div class="referral-body">Know someone who needs this?
+
+Send them your referral code. They get their first session at $79. You get $30 off your next one.
+
+Ask us for your code at the front desk.</div>
+        </div>
+        <div class="referral-version">
+          <div class="referral-version-label">Version B</div>
+          <div class="referral-body">The best thing you can do for someone you care about is send them here.
+
+Referral codes at the front desk. $30 credit for you. $30 off for them.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORGANIC SOCIAL -->
+    <div class="referral-format-card">
+      <div class="referral-format-header">
+        <div class="format-icon">📱</div>
+        <h3>Organic Social</h3>
+      </div>
+      <div class="referral-versions">
+        <div class="referral-version">
+          <div class="referral-version-label">Version A — Story Format</div>
+          <div class="referral-body">Most of our members found us through a friend.
+
+Not an ad. Not a promotion. Just someone saying 'you need to try this.'
+
+That's how we've always grown — and we want to keep it that way.
+
+If StretchWell has made a difference for you, pass it on. Ask us about our referral program at your next session.</div>
+        </div>
+        <div class="referral-version">
+          <div class="referral-version-label">Version B — Direct Format</div>
+          <div class="referral-body">Your friend has been complaining about their back for two years.
+
+You've been coming here for three months.
+
+You know what to do.
+
+Ask about our referral program at the front desk or send us a DM.</div>
+        </div>
+      </div>
+      <div class="referral-versions" style="border-top: 1px solid var(--border-light);">
+        <div class="referral-version">
+          <div class="referral-version-label">Version C — Subtle / Brand</div>
+          <div class="referral-body">We don't run flash sales.
+We don't do 40% off Tuesdays.
+We grow through relationships.
+
+Ask about our referral program.</div>
+        </div>
+        <div class="referral-version"></div>
+      </div>
+    </div>
+
+    <!-- POST-SESSION AUTOMATION -->
+    <div class="referral-format-card">
+      <div class="referral-format-header">
+        <div class="format-icon">⏱</div>
+        <h3>Post-Session Automation</h3>
+      </div>
+      <div class="referral-versions">
+        <div class="referral-version">
+          <div class="referral-version-label">Email — Triggered 2hrs Post-Session</div>
+          <div class="referral-subject">Subject: How was your session today?</div>
+          <div class="referral-body">Hope today's session hit the spot.
+
+Quick note — if you know anyone who's been meaning to do something about their body, now's a good time to pass StretchWell along.
+
+They get their first session at $79 or $30 off the 3-Visit Reset. You get a $30 credit toward your next session the moment they book.
+
+Your referral code: XXXXX
+
+See you next week.</div>
+        </div>
+        <div class="referral-version">
+          <div class="referral-version-label">SMS — Triggered 2hrs Post-Session</div>
+          <div class="referral-body">Hope you're feeling good after today [Name]. If you know someone who could use this — your referral code gets them $30 off and puts $30 credit on your account. Code: XXXXX</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPOUNDING LOGIC -->
+  <section class="compound-section">
+    <div class="compound-card">
+      <h3>The Compounding Logic</h3>
+      <p>A member who refers three friends has essentially paid for their own membership in credits. And those three friends convert at a higher rate than any cold traffic ad — because they arrived with trust already built.</p>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  Prepared by <a href="#">Guest Getter Inc.</a> — April 2026
+</footer>
+
+<script>
+  // Version tab switching
+  document.querySelectorAll('.version-tabs').forEach(tabGroup => {
+    tabGroup.querySelectorAll('.version-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const group = tabGroup.dataset.group;
+        // Deactivate all tabs in this group
+        tabGroup.querySelectorAll('.version-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        // Show/hide content
+        const targetId = tab.dataset.target;
+        // Find sibling content divs
+        const parent = tabGroup.closest('div[id]') || tabGroup.closest('section')?.parentElement;
+        if (parent) {
+          parent.querySelectorAll('.version-content').forEach(c => c.classList.remove('active'));
+          const target = parent.querySelector('#' + targetId);
+          if (target) target.classList.add('active');
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
