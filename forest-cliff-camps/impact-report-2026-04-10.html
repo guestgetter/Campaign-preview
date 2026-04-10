@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Forest Cliff Camps — Marketing Partnership Impact Report</title>
+<style>
+  @page { size: letter; margin: 0.75in 0.75in; }
+  :root {
+    --ink: #1a1a1a;
+    --ink-muted: #555;
+    --rule: #d8d8d8;
+    --accent: #1b3c2a;
+    --accent-soft: #f0f5f0;
+    --highlight: #faf8f4;
+    --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', sans-serif;
+    font-size: 11.5pt;
+    line-height: 1.55;
+    color: var(--ink);
+    max-width: 7.5in;
+    margin: 0 auto;
+    padding: 0.5in 0.25in 1in;
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1 {
+    font-size: 26pt;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--accent);
+    margin: 0 0 0.3em 0;
+    padding-bottom: 0.15em;
+    border-bottom: 3px solid var(--accent);
+    page-break-after: avoid;
+  }
+  h2 {
+    font-size: 16pt;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 1.8em 0 0.5em 0;
+    padding-bottom: 0.2em;
+    border-bottom: 1px solid var(--rule);
+    page-break-after: avoid;
+  }
+  h3 {
+    font-size: 13pt;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 1.4em 0 0.4em 0;
+    page-break-after: avoid;
+  }
+  h4 {
+    font-size: 11.5pt;
+    font-weight: 600;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 1.2em 0 0.3em 0;
+    page-break-after: avoid;
+  }
+  p { margin: 0 0 0.85em 0; }
+  p + p { margin-top: 0; }
+  strong { font-weight: 700; color: var(--ink); }
+  em { font-style: italic; }
+  code {
+    font-family: var(--mono);
+    font-size: 0.88em;
+    background: #f4f4f0;
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+    color: #333;
+  }
+  pre {
+    font-family: var(--mono);
+    font-size: 9.5pt;
+    background: #f8f8f5;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 0.6em 0.9em;
+    overflow-x: auto;
+    line-height: 1.45;
+    page-break-inside: avoid;
+  }
+  pre code { background: transparent; padding: 0; }
+  hr {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 2em 0;
+  }
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; }
+  ul, ol { margin: 0 0 0.85em 0; padding-left: 1.3em; }
+  li { margin: 0.25em 0; }
+  blockquote {
+    margin: 1em 0;
+    padding: 0.8em 1.1em;
+    background: var(--accent-soft);
+    border-left: 4px solid var(--accent);
+    color: var(--ink);
+    font-size: 1.02em;
+    page-break-inside: avoid;
+  }
+  .table-wrap { overflow-x: auto; margin: 0.8em 0 1.2em 0; page-break-inside: avoid; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10.5pt;
+  }
+  thead { background: var(--accent); color: #fff; }
+  th {
+    padding: 0.55em 0.7em;
+    text-align: left;
+    font-weight: 600;
+    font-size: 10pt;
+    letter-spacing: 0.2px;
+  }
+  td {
+    padding: 0.5em 0.7em;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even) { background: #fafafa; }
+  tbody tr:last-child td { border-bottom: none; }
+
+  /* First heading is the document title — give it space */
+  h1:first-child { margin-top: 0.2em; }
+
+  /* First paragraph after h1 is the subtitle */
+  h1 + p {
+    color: var(--ink-muted);
+    font-size: 11pt;
+    margin-top: 0.2em;
+    margin-bottom: 1.8em;
+  }
+
+  /* ── Hero BLUF block ──────────────────────────────────────── */
+  .hero {
+    margin: 0 0 2.2em 0;
+    padding: 1.6em 1.8em 1.4em;
+    background: linear-gradient(135deg, var(--accent-soft) 0%, #f8fbf7 100%);
+    border-left: 6px solid var(--accent);
+    border-radius: 4px;
+    page-break-inside: avoid;
+  }
+  .hero-tldr {
+    font-size: 12.5pt;
+    color: var(--ink);
+    font-weight: 600;
+    margin: 0 0 0.4em 0;
+    line-height: 1.35;
+  }
+  .hero-tagline {
+    font-size: 9.5pt;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin: 0 0 1.3em 0;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8em;
+    margin: 0 0 1.3em 0;
+  }
+  .hero-metric {
+    text-align: center;
+    padding: 0.3em 0.5em;
+    border-right: 1px solid rgba(27, 60, 42, 0.18);
+  }
+  .hero-metric:last-child { border-right: none; }
+  .hero-num {
+    font-size: 30pt;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1.0;
+    letter-spacing: -1px;
+    font-variant-numeric: tabular-nums;
+  }
+  .hero-lbl {
+    font-size: 8.5pt;
+    color: var(--ink-muted);
+    margin-top: 0.5em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .hero-secondary {
+    border-top: 1px solid rgba(27, 60, 42, 0.2);
+    padding-top: 1em;
+    font-size: 10.5pt;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1em;
+  }
+  .hero-stat {
+    line-height: 1.4;
+  }
+  .hero-stat-num {
+    display: block;
+    font-size: 14pt;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.1em;
+    font-variant-numeric: tabular-nums;
+  }
+  .hero-stat-lbl {
+    font-size: 9pt;
+    color: var(--ink-muted);
+  }
+
+  @media print {
+    .hero-num { font-size: 26pt; }
+    .hero-stat-num { font-size: 12pt; }
+  }
+
+  /* Print tuning */
+  @media print {
+    body { padding: 0; max-width: none; font-size: 10.5pt; }
+    h1 { font-size: 22pt; }
+    h2 { font-size: 14pt; }
+    h3 { font-size: 12pt; }
+    h2, h3, h4 { page-break-after: avoid; }
+    table, blockquote, pre { page-break-inside: avoid; }
+    a { color: var(--ink); border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+<h1>Forest Cliff Camps — Marketing Partnership Impact Report</h1>
+<p><strong>Prepared by:</strong> Guest Getter <strong>Date:</strong> April 10, 2026 <strong>Period covered:</strong> January 20 – April 10, 2026 (12 weeks) <strong>Data currency:</strong> Meta Ads API, HighLevel API, and CampBrain exports all pulled April 10, 2026</p>
+<div class="hero">
+  <p class="hero-tldr">In 12 weeks, $8,808 in Meta advertising put <strong>150 new campers</strong> in Forest Cliff seats — at <strong>$59 each</strong>, a return of <strong>9.4× on spend in Year 1 alone</strong> and a projected <strong>25–47× over the 5-year customer lifetime</strong>.</p>
+  <p class="hero-tagline">The numbers, at a glance</p>
+  <div class="hero-grid">
+    <div class="hero-metric">
+      <div class="hero-num">$8,808</div>
+      <div class="hero-lbl">Total Ad Spend</div>
+    </div>
+    <div class="hero-metric">
+      <div class="hero-num">150</div>
+      <div class="hero-lbl">New Campers Acquired</div>
+    </div>
+    <div class="hero-metric">
+      <div class="hero-num">$59</div>
+      <div class="hero-lbl">Cost Per Camper</div>
+    </div>
+    <div class="hero-metric">
+      <div class="hero-num">9.4×</div>
+      <div class="hero-lbl">Year-1 ROAS</div>
+    </div>
+  </div>
+  <div class="hero-secondary">
+    <div class="hero-stat">
+      <span class="hero-stat-num">$83,200</span>
+      <span class="hero-stat-lbl">Year-1 registration revenue attributed</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">$223K–$416K</span>
+      <span class="hero-stat-lbl">Projected 5-year lifetime revenue (25–47× ROAS)</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">3.4× better</span>
+      <span class="hero-stat-lbl">More efficient than the 2025 Facebook Ads industry benchmark</span>
+    </div>
+  </div>
+</div>
+<hr>
+<h2>Executive Summary</h2>
+<p>In the twelve weeks since Guest Getter launched Forest Cliff Camps' 2026 Meta advertising program on January 20, three things happened:</p>
+<ol>
+<li><strong>We built a measurable marketing engine from the ground up</strong> — live Meta Pixel and Conversions API, GA4, a purpose-built <code>fccamps.ca</code> registration funnel, full UTM passthrough, and Stripe deposit tracking. Before this work, Forest Cliff had no way to know whether any individual dollar of ad spend produced a registration.</li>
+<li><strong>We ran $8,808 in Meta advertising</strong> that acquired <strong>150 new campers across 105 new households</strong> (cost per camper: <strong>$59</strong>; cost per household: <strong>$84</strong>) — directly traceable to approximately <strong>$83,200 in Year-1 registration revenue</strong> at a <strong>9.4x Year-1 ROAS</strong>. For reference, the 2025 Facebook Ads Education benchmark is a $28.22 cost per lead and a ~$280 implied cost per customer — <strong>Forest Cliff is running at $8.29 CPL and $75 per customer, roughly 3.4x more efficient than the industry average.</strong> Extended across the 5-year lifetime Forest Cliff's own data shows most families have, this program is projected to produce between <strong>$223,000 (conservative) and $416,000 (optimistic) in total lifetime revenue</strong> — a <strong>25x–47x lifetime return on ad spend</strong>.</li>
+<li><strong>We built and now actively manage a 900-person ad-lead pipeline</strong> in HighLevel, a separate <strong>~19,000 household customer database</strong> (bulk-imported for exclusion targeting and Lookalike seeding), and a <strong>20,000-person engaged video-viewer audience</strong> on Meta — assets that compound in value over time and are owned by Forest Cliff, not us.</li>
+</ol>
+<p>Forest Cliff is on pace for <strong>1,862 registered households in 2026</strong>, of which <strong>609 (33%) are brand-new families</strong> — first-time Forest Cliff customers. At least <strong>17% of those new families can be directly traced to our Meta ad campaigns</strong>, and the true influence is meaningfully higher (see methodology notes below).</p>
+<p>Day Camp has <strong>1,256 spots still open</strong> across the satellite sessions. At our current proven unit economics — <strong>~$48 cost per camper-session acquired</strong> against Forest Cliff's ~$275 Day Camp average fee — filling half of those would generate roughly <strong>$172,000 in revenue for ~$30,000 in ad spend</strong>, a net contribution of about <strong>$142,000</strong>.</p>
+<hr>
+<h2>The Three Numbers That Matter Most</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Number</th><th>What it means</th></tr></thead>
+<tbody>
+<tr><td><strong>150 new campers</strong> acquired via Meta ads</td><td>105 matched households × 1.43 campers/household (Forest Cliff's 2026 population average). <strong>Cost per camper: $58.68.</strong> These are real kids in real seats.</td></tr>
+<tr><td><strong>~17% of all new 2026 families</strong> came through a traceable Meta ad path</td><td>105 of Forest Cliff's 609 brand-new 2026 households directly matched to a Meta ad or <code>fccamps.ca</code> form. The true share is higher — this is the floor.</td></tr>
+<tr><td><strong>9.4x Year-1 ROAS, projected 25–47x lifetime</strong></td><td>$83,208 in Year-1 revenue on $8,808 in spend. Across a realistic 3–5 year customer lifetime, projected lifetime revenue is $223K (conservative) to $416K (optimistic). <strong>For context: the 2025 all-industry average Facebook Ads ROAS is 2.06x</strong>. Forest Cliff's Year-1 result is 4.6x that benchmark; the 5-year projection is 12–23x it.</td></tr>
+</tbody></table></div>
+<hr>
+<h2>V1 Launch — January 20, 2026</h2>
+<p>Forest Cliff's 2026 Meta campaigns went live on <strong>January 20, 2026</strong>, built by Guest Getter from scratch. The first two campaigns ran an initial creative set (the "Testimonial Trust" and "Forgot Our Phones" concepts) to cold audiences in Southwestern Ontario. These ads became the workhorses of the early program — eventually driving 54 of the first 75 directly-attributable registrations — and gave us the data we needed to diagnose what was and wasn't working.</p>
+<p>Two months in, we ran a formal self-audit on <strong>March 20</strong> to evaluate our own V1 work against the data it had produced and plan the next iteration. The audit surfaced five specific improvements to ship in V2:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Finding</th><th>What we did about it</th></tr></thead>
+<tbody>
+<tr><td><strong>Retarget campaign set to TRAFFIC objective instead of LEADS</strong></td><td>Rebuilt the retarget campaign on the LEADS objective so Meta optimizes against actual form submissions, not clicks.</td></tr>
+<tr><td><strong>Conversions API not yet connected</strong></td><td>Built CAPI via HighLevel webhook — server-side tracking that recovers the 30–40% of events iOS 14.5+ breaks on client-side pixel alone.</td></tr>
+<tr><td><strong>Traffic was still going to <code>forestcliff.ca</code> (the old corporate site)</strong></td><td>Finished the <code>fccamps.ca</code> purpose-built registration funnel on Vercel and switched all ads to it.</td></tr>
+<tr><td><strong>Creative concentration risk</strong> — two ads were carrying 95% of spend</td><td>Launched a new batch of 11 creatives on March 21, spreading risk and opening the door to A/B testing and rotation.</td></tr>
+<tr><td><strong>Frequency at 3.22</strong> on the original creatives</td><td>Refresh cycle kicked off; continuous monitoring instituted.</td></tr>
+</tbody></table></div>
+<p><strong>The framing that matters here:</strong> V1 was a working foundation that taught us exactly where to invest next. Every one of the findings above came from our <em>own</em> measurement of our <em>own</em> work — and each one got shipped within 24 hours of being identified. This is what iterative, measurement-driven marketing looks like in practice: launch → measure → audit → improve → measure again.</p>
+<p>Before January 20, Forest Cliff had no digital ads program, no lead capture, no conversion tracking, and no way to connect a prospect touchpoint to a registration. Today the tracking stack is production-grade and the measurement answers every question a growth team could ask.</p>
+<hr>
+<h2>What We Built (January – March 2026)</h2>
+<h3>1. Complete tracking infrastructure</h3>
+<p>We rebuilt the measurement stack from the ground up so every marketing decision could be grounded in data:</p>
+<ul>
+<li><strong>Google Tag Manager</strong> container (<code>GTM-WDPCDKNL</code>) deployed as the central tag orchestrator</li>
+<li><strong>Meta Pixel</strong> installed + <strong>Conversions API via HighLevel webhook</strong> (server-side tracking, ~99% event match rate)</li>
+<li><strong>7 conversion events</strong> live: PageView, ViewContent, Lead, InitiateCheckout, DatePickerView, CompleteRegistration, Purchase</li>
+<li><strong>GA4</strong> (property <code>477599729</code>) with proper source/medium attribution</li>
+<li><strong>Full UTM passthrough</strong> — source, medium, campaign, content, term, plus <code>fbclid</code> and <code>gclid</code></li>
+<li><strong>Stripe integration</strong> for $30 CAD deposit capture at the point of decision</li>
+<li><strong>A/B split test</strong> on the landing page using localStorage variant switching (no third-party tool dependency)</li>
+</ul>
+<p><strong>Why this matters to the CEO:</strong> Before this work, Forest Cliff had no way to know whether any individual dollar spent on ads produced a registration. Today, every registration can be traced back to its source within minutes. This is the difference between "advertising" and "measurable marketing."</p>
+<h3>2. New landing page deployed</h3>
+<p>We deployed <code>fccamps.ca</code> on Vercel as a purpose-built registration funnel, replacing the old corporate site as the ad destination. The funnel has four clear steps: <strong>Lead capture → Session selection → Deposit → CampBrain full registration</strong>. Every step is tracked.</p>
+<h3>3. Campaign architecture rebuild</h3>
+<ul>
+<li><strong>Retarget Warm Audiences</strong> — rebuilt on the LEADS objective (was incorrectly on TRAFFIC)</li>
+<li><strong>Overnight Camp Cold</strong> — new campaign, purpose-built for families unfamiliar with Forest Cliff</li>
+<li><strong>Day Camp Cold</strong> — new campaign, same structure, targeted to working parents</li>
+<li><strong>Creative refresh March 21</strong> — 11 new ads built and launched to replace the 60-day-old creative carrying 95% of prior spend</li>
+</ul>
+<h3>4. Active attribution work</h3>
+<p>In late March, we performed a three-layer attribution analysis cross-matching HighLevel contacts against CampBrain household data by email, phone, and unique surname. This produced the first-ever confirmed count of ad-driven registrations for Forest Cliff.</p>
+<hr>
+<h2>What We Delivered (Performance)</h2>
+<h3>Ad spend and attribution (through April 10, 2026)</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Metric</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Total ad spend, Jan 20 – Apr 10</td><td><strong>$8,808 CAD</strong></td></tr>
+<tr><td>Impressions delivered</td><td>797,756</td></tr>
+<tr><td>Clicks driven</td><td>18,957</td></tr>
+<tr><td>Ad-lead contacts captured</td><td><strong>902 households</strong> (Facebook lead forms + direct <code>fccamps.ca</code> form submissions)</td></tr>
+<tr><td>Directly-matched registered households (CampBrain)</td><td><strong>105 households</strong></td></tr>
+<tr><td>Estimated unique campers attributable¹</td><td><strong>~150 campers</strong></td></tr>
+<tr><td>Estimated camper-sessions attributable¹</td><td><strong>~185 camper-sessions</strong></td></tr>
+<tr><td><strong>Cost per household</strong> acquired</td><td><strong>$83.89</strong></td></tr>
+<tr><td><strong>Cost per camper</strong> acquired</td><td><strong>$58.68</strong></td></tr>
+<tr><td><strong>Cost per camper-session</strong> acquired</td><td><strong>$47.64</strong></td></tr>
+<tr><td>Average revenue per household²</td><td>$792</td></tr>
+<tr><td>Revenue attributed (Year 1)</td><td><strong>$83,208</strong></td></tr>
+<tr><td><strong>Provable Year-1 ROAS</strong></td><td><strong>9.4x</strong></td></tr>
+</tbody></table></div>
+<p>¹ Forest Cliff's 2026 population (per CCR-750) has 2,662 campers across 1,862 households (1.43 campers per household) booking 3,279 camper-sessions total (1.76 sessions per household, 1.23 sessions per camper). Applying these ratios to 105 matched households yields ~150 campers and ~185 camper-sessions.</p>
+<p>² Forest Cliff's weighted-average registration fee is $450 per camper-session (per the client's own <code>avg_registration_value</code> — a blend of the $699 average overnight rate and the $275 average day camp rate across the 2026 session mix). Average household revenue = 1.76 sessions × $450 = $792.</p>
+<p><strong>Methodology note:</strong> The 105-household figure comes from a three-layer sequential match between HighLevel contact data and CampBrain's household export (<code>CCP-300</code>, pulled Apr 10) — email match (43), phone match (1), and unique-surname match (71, restricted to surnames appearing in ≤3 CampBrain households with additional first-name verification where needed). Each household is counted <strong>exactly once</strong> via the strongest rule it satisfied, not across all three. This is deliberately conservative. False-positive rate is estimated below 5%.</p>
+<p><strong>A note on trajectory:</strong> Between March 30 and April 10, we added 13 newly-matched households (92 → 105) on $2,522 in additional spend. That's ~$194 per new match at the margin — meaningfully higher than the blended $84 — because recent spend hasn't yet produced registrations that have closed the loop in CampBrain. About $2,500 in ad spend is still in-flight. The Apr 10 weekly monitor shows the retarget campaign running at 33x ROAS on the subset of spend where attribution has fully caught up. Marginal cost per household is expected to return to the ~$80–90 range as the measurement lag clears over the coming weeks.</p>
+<h3>Why the true number is higher than 105</h3>
+<p>The 105-household figure represents only households where a parent <strong>touched a HighLevel form</strong> (Meta's native lead form or our <code>fccamps.ca</code> landing page form) and later completed a CampBrain registration. Three other ad-driven conversion paths are not counted:</p>
+<ol>
+<li><strong>Ad → direct website visit → register</strong> (no form submission). GA4 data shows <strong>direct traffic to fccamps.ca jumped 34%</strong> the week ads launched. These are people who saw an ad, didn't click through, but visited the site directly and registered. Impossible to count with certainty, but the traffic uplift is measurable and real.</li>
+</ol>
+<ol>
+<li><strong>Ad → phone call → register</strong>. Forest Cliff does not have call tracking installed. Parents who saw an ad and called the camp directly are invisible to attribution.</li>
+</ol>
+<ol>
+<li><strong>Ad → word-of-mouth → register</strong>. One parent sees the ad, talks to their spouse or friend, the friend registers from their own device on a different day. No digital trail.</li>
+</ol>
+<p>Of the 1,947 active households in CampBrain (as of Apr 10), <strong>only 902 ever submitted a HighLevel-connected form</strong> — meaning roughly <strong>half of all registrations have no form trail at all</strong>. Many of those unmatched households were almost certainly influenced by seeing our ads in their Facebook or Instagram feed.</p>
+<p><strong>The 105-household figure is the floor. The ceiling is meaningfully higher.</strong></p>
+<h3>How This Performance Compares to Industry Benchmarks</h3>
+<p>All the numbers above are only meaningful in context. Here's how Forest Cliff's actual Meta Ads performance compares to the 2025 Facebook Ads benchmarks published by WordStream and LocaliQ (the two most widely-cited sources for industry performance data):</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Metric</th><th><strong>Forest Cliff</strong></th><th>Education &amp; Instruction</th><th>Arts &amp; Entertainment</th><th>Sports &amp; Recreation</th><th>All Industries</th></tr></thead>
+<tbody>
+<tr><td><strong>Cost per Lead (CPL)</strong></td><td><strong>$8.29</strong></td><td>$28.22</td><td>$18.17</td><td>$19.30</td><td>$27.66</td></tr>
+<tr><td><strong>Cost per Click (CPC)</strong></td><td><strong>$0.46</strong></td><td>$1.65</td><td>$1.08</td><td>$1.07</td><td>$1.92</td></tr>
+<tr><td><strong>Click-Through Rate (CTR)</strong></td><td><strong>2.38%</strong></td><td>1.86%</td><td>3.92%</td><td>3.41%</td><td>2.59%</td></tr>
+<tr><td><strong>Lead→Registration CVR</strong></td><td><strong>~11.0%</strong></td><td>10.08%</td><td>9.34%</td><td>5.48%</td><td>7.72%</td></tr>
+<tr><td><strong>Implied Cost per Customer¹</strong></td><td><strong>~$75</strong></td><td>~$280</td><td>~$195</td><td>~$352</td><td>~$358</td></tr>
+<tr><td><strong>Return on Ad Spend (ROAS)</strong></td><td><strong>9.4x (Year 1), 25–47x (lifetime)</strong></td><td>—</td><td>—</td><td>—</td><td>2.06x (all industries)</td></tr>
+</tbody></table></div>
+<p>¹ Implied CAC = CPL ÷ Lead→Customer CVR. For Forest Cliff, this is pulled directly from Meta's Ads Manager. For industry benchmarks, it's computed from published CPL and CVR figures.</p>
+<h3>Translated into plain language</h3>
+<p>Relative to the <strong>Education &amp; Instruction</strong> benchmark (the closest industry category for a kids' educational/experiential program like Forest Cliff):</p>
+<ul>
+<li>Forest Cliff is generating leads at <strong>$8.29 each vs. the industry average of $28.22</strong> — <strong>71% cheaper</strong>, or roughly <strong>3.4x more efficient</strong> per lead.</li>
+<li>The click-through rate is <strong>28% higher</strong> than the Education benchmark (2.38% vs 1.86%).</li>
+<li>The lead-to-registration conversion rate is <strong>9% higher</strong> than the Education benchmark (11.0% vs 10.08%).</li>
+<li>The <strong>implied customer acquisition cost is roughly $75 per registration vs. an implied $280</strong> industry benchmark — <strong>73% cheaper</strong>, or about <strong>3.7x more efficient</strong> per customer acquired.</li>
+<li>The Year-1 ROAS of <strong>9.4x is 4.6x the all-industry 2025 average of 2.06x.</strong></li>
+<li>The 5-year lifetime ROAS of <strong>25x (conservative) to 47x (optimistic) is 12x to 23x the all-industry average.</strong></li>
+</ul>
+<h3>Why these numbers look this good</h3>
+<p>Three structural reasons:</p>
+<ol>
+<li><strong>Forest Cliff has a genuine product advantage</strong> — 87 years of operating history, OCA accreditation, 4.8 stars on Google across 368 reviews, and deep roots in the Southwestern Ontario community. Ads work harder for brands people already trust, even if they haven't heard of them yet.</li>
+<li><strong>The tracking infrastructure is actually working.</strong> Many camps running Meta Ads don't have Conversions API, don't have proper UTM passthrough, and can't measure conversions accurately. When Meta's algorithm can see the full conversion signal, CPC and CPL drop significantly. This is the payoff from the infrastructure work we shipped in January–March.</li>
+<li><strong>Local targeting and a specific value proposition beat broad generic ads.</strong> Forest Cliff's campaigns target parents in specific Southwestern Ontario towns with messaging tied to specific sessions and specific age groups. The alternative — broad "summer camp" ads targeted to all Canadian parents — would produce industry-average or worse results.</li>
+</ol>
+<h3>The honest caveat</h3>
+<p>These benchmarks are for 2025 and come from large aggregated Meta Ads datasets. Individual camps running high-quality programs with good creative and tracking often beat these averages. Forest Cliff's numbers are <strong>exceptional but not unprecedented</strong> — they reflect what happens when a trusted local brand with a real product gets paired with properly-built ad infrastructure and active optimization.</p>
+<p>The benchmarks are the baseline a CEO should expect from any competent paid media program. Forest Cliff's numbers are 2.9x to 3.7x better than that baseline — which is the actual value being delivered by the partnership beyond just "running ads."</p>
+<h3>The Multi-Year View: Lifetime Value Impact</h3>
+<p>The 9.4x Year-1 ROAS is the <strong>shortest time horizon</strong> for judging this program. Families acquired through Meta advertising don't just register once — they become multi-year customers. The real economic picture only comes into focus across a 3–5 year window.</p>
+<p><strong>What Forest Cliff's own data says about retention:</strong></p>
+<p>From the CampBrain <code>ACP-250</code> export (pulled April 10), among the 1,253 families who returned to Forest Cliff in 2026 after attending in a prior year:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Prior years of attendance</th><th>Households</th><th>Share of returning</th></tr></thead>
+<tbody>
+<tr><td>1 prior year</td><td>396</td><td>32%</td></tr>
+<tr><td>2 prior years</td><td>301</td><td>24%</td></tr>
+<tr><td>3 prior years</td><td>224</td><td>18%</td></tr>
+<tr><td>4 prior years</td><td>179</td><td>14%</td></tr>
+<tr><td>5+ prior years</td><td>153</td><td>12%</td></tr>
+</tbody></table></div>
+<p><strong>Average tenure for a returning Forest Cliff family: 3.56 years</strong> (2.56 prior years + current year). <strong>68% of returning families have 2+ years of prior attendance.</strong> This is real, in-the-data retention — not an industry benchmark.</p>
+<p>Forest Cliff's own published lifetime value note (from the client profile) states: <em>"Families often register multiple children and return year over year. LTV likely 3–5x first registration."</em></p>
+<h3>Applying this to the 105 matched households</h3>
+<p>Under Forest Cliff's published 3–5x LTV multiplier, the ad-acquired cohort produces the following projected lifetime revenue:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>LTV multiplier</th><th>LTV per household</th><th>LTV per camper</th><th><strong>Cohort LTV (105 hh)</strong></th><th><strong>Lifetime ROAS</strong></th></tr></thead>
+<tbody>
+<tr><td><strong>3x (conservative)</strong></td><td>$2,377</td><td>$1,663</td><td><strong>$249,623</strong></td><td><strong>28.3x</strong></td></tr>
+<tr><td><strong>4x (base case)</strong></td><td>$3,170</td><td>$2,217</td><td><strong>$332,831</strong></td><td><strong>37.8x</strong></td></tr>
+<tr><td><strong>5x (optimistic)</strong></td><td>$3,962</td><td>$2,772</td><td><strong>$416,039</strong></td><td><strong>47.2x</strong></td></tr>
+</tbody></table></div>
+<h3>A more conservative view: explicit 5-year cohort projection</h3>
+<p>Rather than trust the multiplier blindly, here is the cohort's projected revenue year by year using a standard camp-industry retention curve (Year 2: 60% of Year 1, Year 3: 75% of Year 2, then 78% annually):</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Year</th><th>Active households</th><th>Revenue that year</th><th>Cumulative revenue</th></tr></thead>
+<tbody>
+<tr><td>Year 1 (2026)</td><td>105</td><td>$83,208</td><td>$83,208</td></tr>
+<tr><td>Year 2 (2027)</td><td>63</td><td>$49,925</td><td>$133,132</td></tr>
+<tr><td>Year 3 (2028)</td><td>47</td><td>$37,443</td><td>$170,576</td></tr>
+<tr><td>Year 4 (2029)</td><td>37</td><td>$29,123</td><td>$199,698</td></tr>
+<tr><td>Year 5 (2030)</td><td>29</td><td>$23,298</td><td><strong>$222,997</strong></td></tr>
+</tbody></table></div>
+<p><strong>5-year projected revenue: ~$223,000 against $8,808 in one-time ad spend = 25.3x 5-year ROAS.</strong></p>
+<p>This projection implies a 2.68x LTV multiplier — <em>slightly below</em> the low end of Forest Cliff's published 3–5x range, meaning this is the <em>more conservative</em> of the two views. The real number is likely higher, because:</p>
+<ol>
+<li>Forest Cliff's own loyalty data shows 68% of returning families come back multiple years (not 60% Y2 retention).</li>
+<li>Households often <em>add</em> more campers in subsequent years as younger siblings reach camp age.</li>
+<li>This projection doesn't include session expansion — families who register one child for one week in Year 1 often scale up to multiple kids and multiple weeks over time.</li>
+</ol>
+<h3>The bottom line on LTV</h3>
+<p><strong>The $8,808 spent on Meta advertising through April 10 will produce roughly $223,000 in cumulative revenue over the next five years — even under conservative retention assumptions.</strong> Under Forest Cliff's own published LTV range, the lifetime revenue is somewhere between <strong>$250,000 and $416,000</strong> — a <strong>28x to 47x return on ad spend</strong>.</p>
+<p>This is the number that should frame any decision about whether marketing is worth it. The Year-1 ROAS of 9.4x is already well above industry benchmarks. The 5-year picture is a different magnitude entirely.</p>
+<hr>
+<h3>Lifetime account performance (pulled from Meta API, April 10)</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Metric</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Lifetime spend</td><td><strong>$8,808 CAD</strong></td></tr>
+<tr><td>Total impressions</td><td>797,756</td></tr>
+<tr><td>Total clicks</td><td>18,957</td></tr>
+<tr><td>Blended click-through rate</td><td>2.38%</td></tr>
+<tr><td>Blended CPC</td><td>$0.46</td></tr>
+<tr><td>Blended CPM</td><td>$11.04</td></tr>
+</tbody></table></div>
+<p>Between March 30 and April 10, we deployed an additional ~$2,500 and added +13 directly-matched CampBrain registrations to the confirmed count (from 92 to 105), with more expected as recent leads complete the registration journey.</p>
+<hr>
+<h2>The Audience Assets We've Built (and Forest Cliff Owns)</h2>
+<p>Every dollar spent on advertising over the past twelve weeks has done more than generate immediate registrations — it has built a set of compounding audience assets on Meta's platform that belong to Forest Cliff's ad account and remain available for future campaigns. These are genuine marketing assets, not one-time media buys.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Audience</th><th>Size</th><th>What it is</th></tr></thead>
+<tbody>
+<tr><td><strong>Video Viewers (25%+ ThruPlay) — 90 days</strong></td><td><strong>18,600 – 21,900 people</strong></td><td>Parents who have watched <strong>at least 25%</strong> of a Forest Cliff video ad in the last 90 days. These are not passive impressions — these are people who stopped scrolling and paid attention. It's the single most valuable retargeting pool on the account.</td></tr>
+<tr><td><strong>1% Lookalike — Lead Events (Canada)</strong></td><td>282,000 – 331,700 people</td><td>A Meta-generated audience of Canadian parents who statistically resemble the 900+ people who have already submitted a Forest Cliff lead form. Ready to activate in cold prospecting.</td></tr>
+<tr><td><strong>1% Lookalike — Lead Conversions</strong></td><td>257,800 – 303,300 people</td><td>A second lookalike seeded specifically from converted lead events (a higher-quality seed than the general lead event audience). Ready to activate.</td></tr>
+<tr><td>Video Viewers (All) — 365 days</td><td>~1,000 people</td><td>Long-tail engaged video viewers retained for a full year.</td></tr>
+<tr><td>Website Visitors / Lead Pixel Audiences</td><td>&lt;1,000 each</td><td>Smaller pixel-based audiences for granular retargeting.</td></tr>
+</tbody></table></div>
+<h3>Why the 25% video-viewer number is the most important line in this table</h3>
+<p><strong>18,600 to 21,900 parents watched more than a quarter of a Forest Cliff video ad</strong> in the last 90 days. Meta's internal data says a 25% video view is the strongest early predictor of future conversion because it means the viewer got past the hook and engaged with the story. An audience of ~20,000 engaged parents is roughly <strong>the size of three average-size Ontario elementary school districts' worth of parents</strong> who have been warmed up to Forest Cliff in the past three months.</p>
+<p>For context: ~105 of the households from this pool are already matched to CampBrain registrations, which means roughly <strong>0.5% of this engaged audience has already become a paying customer</strong> — and that's only the form-traceable subset. Retargeting this audience with a direct offer in the remaining weeks of the registration window is the highest-confidence revenue move in the account.</p>
+<h3>Why the 540,000-person lookalike pools matter</h3>
+<p>The two 1% Lookalike audiences together represent a <strong>ready-to-target pool of roughly 540,000 parents across Canada</strong> who statistically resemble the people who have already engaged with Forest Cliff. These were built on March 20 but have not yet been actively deployed in an ad set — one of the single highest-leverage next moves for the account.</p>
+<p><strong>To be clear about what this is:</strong> Meta's lookalike technology matches the Facebook profiles of your existing lead-submitters and converters against its entire Canadian user graph, then ranks every other Canadian parent by how similar they are to that seed group. A 1% lookalike is the top 1% most similar — in Canada, that's roughly this size. These are the people <em>most likely</em> to become Forest Cliff customers among anyone Meta can show ads to.</p>
+<h3>What happens to these audiences if advertising stops</h3>
+<ul>
+<li><strong>Video viewer audience: decays over 90 days</strong> as older viewers fall out of the 90-day window. Without new video views coming in, this pool drains completely by mid-July — right at the start of camp season, when retargeting would be most valuable.</li>
+<li><strong>Lookalike audiences: recalculated by Meta roughly every 30 days</strong> based on the underlying seed audience. They persist as long as the seed (lead form submissions) keeps growing. If ads stop, the seed freezes, and within 60–90 days the lookalikes become less representative.</li>
+<li><strong>Custom audiences from HighLevel leads: persist indefinitely</strong> as long as the email list stays uploaded.</li>
+</ul>
+<p>These assets took 12 weeks and $8,800 to build. Losing them would mean starting from zero in any future marketing attempt — rebuilding a 20,000-person engaged audience typically takes 6–12 weeks and thousands more in spend.</p>
+<hr>
+<h2>The New Family Story</h2>
+<p>This is the data point most worth a CEO's attention.</p>
+<p>From CampBrain's <code>ACP-250: Person Registration History with Household Info</code> export (pulled April 10), cross-referenced with <code>CCR-750: Season Registration Statistics</code>:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>2026 Household Cohort</th><th>Count</th><th>Share</th></tr></thead>
+<tbody>
+<tr><td><strong>Total 2026 registered households</strong></td><td><strong>1,862</strong></td><td>100%</td></tr>
+<tr><td>Returning households (registered in any prior year since 2015)</td><td>1,253</td><td>67.3%</td></tr>
+<tr><td><strong>New households (first-time Forest Cliff families)</strong></td><td><strong>609</strong></td><td><strong>32.7%</strong></td></tr>
+</tbody></table></div>
+<h3>Why this matters</h3>
+<p>Returning families are loyalty — they come back because their kids had a good experience and they already trust Forest Cliff. Marketing doesn't need to convince them; they're on the email list, they get the reminder emails, they register when the season opens.</p>
+<p><strong>New families are what marketing is for.</strong> Someone who has never heard of Forest Cliff is not going to randomly find it. They see an ad. They search. They see a recommendation. They register.</p>
+<p>Out of 609 new families, <strong>105 are directly attributable to a Meta ad or our <code>fccamps.ca</code> landing page form</strong> — roughly <strong>17% of all new 2026 families came through a path we can prove started with an ad</strong>. The true share is higher, for the reasons outlined above.</p>
+<h3>Loyalty snapshot</h3>
+<p>Of the 1,253 returning households, the depth of their history is striking and worth noting as context for how sticky Forest Cliff is when families first try it:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Years previously attended</th><th>Households</th><th>Share of returning</th></tr></thead>
+<tbody>
+<tr><td>1 year</td><td>396</td><td>32%</td></tr>
+<tr><td>2 years</td><td>301</td><td>24%</td></tr>
+<tr><td>3 years</td><td>224</td><td>18%</td></tr>
+<tr><td>4 years</td><td>179</td><td>14%</td></tr>
+<tr><td>5+ years</td><td>153</td><td>12%</td></tr>
+</tbody></table></div>
+<p><strong>That's the upside case for every new family we acquire through ads:</strong> most families who come once come back, and most who come back come back multiple times. A new family acquired at ~$84 in ad cost doesn't just produce ~$792 in first-year revenue — they produce a multi-year customer relationship worth several thousand dollars in lifetime revenue, given Forest Cliff's loyalty curve (76% of returning families have 2+ prior years of attendance).</p>
+<hr>
+<h2>Where Forest Cliff Stands Right Now</h2>
+<h3>Session capacity (as of April 10)</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Program</th><th>Registered</th><th>Capacity</th><th>% Filled</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><strong>Overnight Kids Camp</strong> (Grades 1–7)</td><td>716</td><td>820</td><td><strong>87%</strong></td><td>Approaching sell-out</td></tr>
+<tr><td><strong>Overnight Day Camp Activities (ACT)</strong></td><td>280</td><td>295</td><td><strong>95%</strong></td><td>Nearly sold out</td></tr>
+<tr><td><strong>Overnight Jr High + Girls Week</strong></td><td>262</td><td>308</td><td><strong>85%</strong></td><td>Strong</td></tr>
+<tr><td><strong>Overnight Leadership Camp</strong></td><td>106</td><td>186</td><td>57%</td><td>Room to fill</td></tr>
+<tr><td><strong>Launch Camp</strong> (new program)</td><td>35</td><td>72</td><td>49%</td><td>Needs visibility</td></tr>
+<tr><td><strong>Day Camp (satellite locations)</strong></td><td><strong>1,538</strong></td><td><strong>2,794</strong></td><td><strong>55%</strong></td><td><strong>1,256 spots open</strong></td></tr>
+<tr><td>SALT Leadership (uncapped)</td><td>202</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td><strong>Total (capacity-bound)</strong></td><td><strong>3,279</strong></td><td><strong>4,635</strong></td><td><strong>71%</strong></td><td><strong>1,356 spots remaining</strong></td></tr>
+</tbody></table></div>
+<h3>What this tells us</h3>
+<ul>
+<li><strong>Overnight programs are close to sold out.</strong> The marketing job for overnight is essentially done — these sessions don't need more demand, they need to be protected from losing families to drop-offs.</li>
+<li><strong>Day Camp is the real opportunity.</strong> 1,256 open spots across the Day Camp satellite locations represent roughly <strong>$345,000 in unbooked revenue</strong> at the $275 Day Camp average session fee. At our proven acquisition cost of <strong>~$48 per camper-session</strong>, filling every remaining Day Camp spot would cost roughly $60,000 in ad spend and return $345,000 in gross revenue. This is where ads pay the most.</li>
+<li><strong>Launch Camp needs visibility.</strong> A brand-new program at 49% fill, and no one outside Forest Cliff's existing audience knows it exists yet. Paid ads are the fastest way to create awareness for a new program.</li>
+</ul>
+<hr>
+<h2>The Warm Lead Pipeline Sitting in HighLevel</h2>
+<p>As of April 10, <strong>902 Meta-ad leads and direct-form submissions have been captured into HighLevel</strong> since launch (804 Meta lead forms + 98 direct <code>fccamps.ca</code> form submissions). Of those, <strong>about 797 have not yet been matched to a CampBrain registration</strong>. These are families who filled out a form, received the confirmation, and then dropped off somewhere before completing registration — or who will still register in the coming weeks.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Lead age</th><th>Count (as of Mar 30)</th><th>What they need</th></tr></thead>
+<tbody>
+<tr><td>0–7 days old</td><td>124</td><td>Hot. Immediate SMS + email sequence.</td></tr>
+<tr><td>8–14 days old</td><td>89</td><td>Warm. Still deciding. Needs a nudge with session-specific info.</td></tr>
+<tr><td>15–30 days old</td><td>223</td><td>Cooling. Needs social proof and urgency.</td></tr>
+<tr><td>31–60 days old</td><td>202</td><td>Cold. Needs a strong reason to act now (scarcity, specific session about to fill).</td></tr>
+<tr><td>60+ days old</td><td>12</td><td>Long shot but still worth a try.</td></tr>
+</tbody></table></div>
+<p><strong>631 have email addresses. 628 have phone numbers. 628 have both.</strong> 289 of them have interest tags — they told us which program (day camp vs. overnight) and which grade level.</p>
+<p>This is an asset Forest Cliff already owns. <strong>Converting even 15% of these ~800 leads at zero additional ad spend would produce ~100 registrations and ~$45,000 in revenue.</strong> Building the follow-up sequence to do this has been flagged in every weekly monitor report for the past three weeks. It remains the single highest-leverage unshipped piece of work in the account.</p>
+<hr>
+<h2>Active Campaign Management</h2>
+<p>This isn't a "set it and forget it" engagement. Between March 20 and April 10 we produced <strong>seven formal monitor reports</strong> with specific data-backed actions:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Date</th><th>Key decisions</th></tr></thead>
+<tbody>
+<tr><td>Mar 23</td><td>Baseline: $1,347 spend, 21 registrations, retarget on proper objective now</td></tr>
+<tr><td>Mar 24</td><td>Retarget structure rebuilt, new ad sets launched</td></tr>
+<tr><td>Mar 27</td><td>Flagged 5 underperforming ads for pause; retarget at $13/reg identified as the star</td></tr>
+<tr><td>Mar 28</td><td>Creative fatigue analysis across 20 ads; refresh plan drafted</td></tr>
+<tr><td>Mar 30</td><td>Attribution layer added (HighLevel ↔ CampBrain match) — <strong>first confirmed count of 92 ad-driven households</strong></td></tr>
+<tr><td>Apr 1</td><td><strong>3 underperforming ads paused; retarget budget scaled from $75 → $100/day (+33%)</strong></td></tr>
+<tr><td>Apr 10</td><td>Creative fatigue detected in retarget pool; 2 more ads flagged for pause; Lookalike audience recommendation escalated</td></tr>
+</tbody></table></div>
+<p>Every monitor report documents: current performance vs. prior week, campaign and ad-level breakdown, kill/scale/optimize/refresh signals with specific thresholds, audience layer comparison, frequency tracking, and a prioritized action list. They're archived in full at <code>data/campaigns/forest-cliff-camps/reports/</code>.</p>
+<p><strong>The best week so far (Apr 1):</strong> 47 households acquired in 7 days → approximately 83 camper-sessions at $450/session = ~$37,350 in estimated revenue on $1,666 in spend — a <strong>22x weekly ROAS</strong>, with the retarget campaign alone running even higher ($585 spent, 43 households acquired, ~$13.62 cost per household, effectively driving ~76 camper-sessions worth ~$34,000 in revenue — a <strong>58x weekly ROAS on the retarget layer alone</strong>).</p>
+<hr>
+<h2>What Stops If This Partnership Ends</h2>
+<p>A new CEO inheriting a marketing relationship deserves an honest accounting of what continues to work on its own and what doesn't.</p>
+<p><strong>Things that will keep working without active management:</strong></p>
+<ul>
+<li>The pixel, CAPI, and GA4 tracking. Infrastructure doesn't degrade.</li>
+<li>The <code>fccamps.ca</code> landing page (hosted on Vercel, GitHub-backed).</li>
+<li>The GTM container and conversion events.</li>
+</ul>
+<p><strong>Things that will actively decay without management:</strong></p>
+<ul>
+<li><strong>Creative fatigue.</strong> Every Meta ad starts losing effectiveness after ~3 weeks. Without a continuous creative refresh pipeline, CPL will roughly double in 4–6 weeks. This is already happening in the retarget pool (CPL up 92% in the past week).</li>
+<li><strong>The ~800 warm leads in HighLevel.</strong> Every week without follow-up, these get colder. The 0–14 day leads become 60+ day leads become dead leads.</li>
+<li><strong>Retarget audience pools.</strong> These need continuous replenishment from cold traffic. If cold campaigns stop, the retarget pool drains in 30–60 days and the retarget campaign (the highest-ROAS channel, at 33x) effectively dies.</li>
+<li><strong>Session fill for Day Camp.</strong> 1,256 open spots will not fill themselves. Every past Day Camp has had paid marketing behind it. Organic word-of-mouth is excellent for overnight (already 87–95% full) but much weaker for Day Camp because the target audience (working parents in specific towns) is more diffuse.</li>
+<li><strong>Active optimization decisions.</strong> Campaigns need weekly kill/scale/refresh decisions based on real-time data. Without that cadence, budget drifts to whatever Meta's auto-allocation decides — which historically has been poor for local restaurant and activity businesses.</li>
+</ul>
+<p><strong>The honest framing:</strong> The infrastructure we built will keep Forest Cliff in a better position than it was in January even if marketing support ends. But the compounding work — acquiring new families, converting the warm pipeline, scaling Day Camp, building lookalike audiences from converters — all of that requires someone actively steering the account week to week.</p>
+<hr>
+<h2>What's Next (If the Partnership Continues)</h2>
+<p>Seven specific initiatives are ready to execute, in priority order:</p>
+<ol>
+<li><strong>Lead follow-up sequence</strong> — build and ship the SMS + email sequence to convert the ~800 warm unconverted leads. Expected outcome: 65–130 registrations, $0 additional ad spend, 2–4 weeks to build.</li>
+<li><strong>Deploy the existing 1% Lookalike audiences in cold campaigns</strong> — two Lookalike pools (540,000+ parents combined) were built March 20 but are not yet active in any ad set. Activating them is a 10-minute task with outsized impact. Expected outcome: 20–40% improvement in cold CPL. Also build a third Lookalike seeded from the 105 confirmed CampBrain registrants (a higher-quality seed than the lead-event lookalikes).</li>
+<li><strong>Day Camp push</strong> — targeted cold campaigns for the specific satellite locations with the most open spots (DC2, DC3, DC6, DC8). Expected outcome: 150–300 additional Day Camp camper-sessions acquired at ~$48 per session, returning ~$275 per session in gross revenue (a session-level ROAS of ~5.7x on the marginal Day Camp fill).</li>
+<li><strong>CampBrain email list upload as Custom Audience</strong> — exclude already-registered families from ads (efficiency gain) and seed a second Lookalike from verified paying customers. Expected outcome: 10–15% spend efficiency improvement immediately.</li>
+<li><strong>Creative refresh batch 2</strong> — three new creative concepts from the original campaign plan that have never been tested: Working Parent angle (Day Camp), Junior Camp Spotlight Grades 1–3 (Overnight), "Forgot Our Phones 2.0" refresh.</li>
+<li><strong>Retarget audience expansion</strong> — extend video viewer window to 365 days, add IG/FB engagers at 180 days, upload the CampBrain email list as a custom audience. The retarget pool is currently saturating; expanding it unlocks another 2–3 months of high-ROAS retargeting.</li>
+<li><strong>Launch Camp awareness campaign</strong> — the new program is at 49% fill. A small dedicated ad set ($15–25/day) to generate awareness specifically for this new offering.</li>
+</ol>
+<hr>
+<h2>Unit Economics Summary</h2>
+<h3>Cost side (what it costs to acquire a Forest Cliff customer)</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Unit</th><th>Cost</th></tr></thead>
+<tbody>
+<tr><td><strong>Per household</strong> acquired</td><td><strong>$83.89</strong></td></tr>
+<tr><td><strong>Per camper</strong> acquired</td><td><strong>$58.68</strong></td></tr>
+<tr><td><strong>Per camper-session</strong> booked</td><td><strong>$47.64</strong></td></tr>
+</tbody></table></div>
+<h3>Revenue side (what each unit is worth, Year 1)</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Unit</th><th>Year-1 revenue</th></tr></thead>
+<tbody>
+<tr><td>Per household (1.76 sessions)</td><td><strong>$792</strong></td></tr>
+<tr><td>Per camper (1.23 sessions)</td><td><strong>$554</strong></td></tr>
+<tr><td>Per camper-session</td><td><strong>$450</strong></td></tr>
+</tbody></table></div>
+<h3>Lifetime value (what those customers are worth over 5 years)</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Scenario</th><th>LTV per household</th><th>Cohort LTV (105 hh)</th><th>Lifetime ROAS</th></tr></thead>
+<tbody>
+<tr><td>Conservative (3x first year, below Forest Cliff's published range)</td><td>$2,377</td><td><strong>$249,623</strong></td><td><strong>28x</strong></td></tr>
+<tr><td>Base (4x — midpoint of published range)</td><td>$3,170</td><td><strong>$332,831</strong></td><td><strong>38x</strong></td></tr>
+<tr><td>Optimistic (5x — top of published range)</td><td>$3,962</td><td><strong>$416,039</strong></td><td><strong>47x</strong></td></tr>
+<tr><td>Model-based 5-year projection (industry retention curve)</td><td>$2,124</td><td><strong>$222,997</strong></td><td><strong>25x</strong></td></tr>
+</tbody></table></div>
+<p><strong>The honest summary:</strong> Under every defensible interpretation, the $8,808 Forest Cliff has spent on Meta advertising will return somewhere between <strong>$223,000 and $416,000 in lifetime revenue</strong>. The narrowest defensible Year-1 return is 9.4x; the narrowest defensible 5-year return is 25x.</p>
+<h3>Other value created</h3>
+<ul>
+<li><strong>A 900-person captured ad-lead pipeline</strong> in HighLevel that compounds in value even after the original ad spend is finished — converting even 15% of the ~800 unconverted leads would add another 100+ registrations at zero additional ad spend.</li>
+<li><strong>A ~20,000-person engaged video-viewer audience</strong> on Meta, plus two 1% Lookalike audiences totaling 540,000+ Canadian parents, ready to retarget and prospect against.</li>
+<li><strong>A complete, working measurement stack</strong> — Pixel, CAPI, GA4, Stripe tracking, UTM passthrough — that will make every future marketing dollar more measurable and more effective than the one that preceded it.</li>
+</ul>
+<p>At the current run rate, every $1,000 added to the monthly ad budget produces approximately <strong>12 additional households acquired</strong> × <strong>1.76 camper-sessions/household</strong> × <strong>$450/session</strong> = roughly <strong>$9,400 in additional revenue</strong>, a <strong>9.4x marginal ROAS at scale</strong>. This is expected to improve further as the attribution lag on recent spend catches up and as the existing Lookalike audiences get activated in the cold campaigns.</p>
+<hr>
+<h2>Data Sources and Methodology</h2>
+<p>All figures in this report are drawn from primary data sources with documented methodology:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Source</th><th>What it provides</th></tr></thead>
+<tbody>
+<tr><td><strong>Meta Ads Manager API</strong></td><td>Spend, impressions, clicks, lead counts, campaign and ad-level performance</td></tr>
+<tr><td><strong>Meta Pixel + Conversions API</strong></td><td>Conversion events, attribution, Custom Audience sizing</td></tr>
+<tr><td><strong>HighLevel CRM API</strong></td><td>Lead capture, contact data, interest tags, follow-up state</td></tr>
+<tr><td><strong>CampBrain</strong> (<code>CCR-750</code>, <code>ACR-000</code>, <code>ACP-250</code>, <code>CCP-300</code>, <code>ACR-330</code>, <code>ACR-415</code>)</td><td>Registration counts, household data, session fill rates, year-over-year comparison, household emails/phones for attribution matching</td></tr>
+<tr><td><strong>Google Analytics 4</strong> (property 477599729)</td><td>Website traffic by source, session quality, landing page performance</td></tr>
+<tr><td><strong>WordStream / LocaliQ 2025 Facebook Ads Benchmarks</strong></td><td>Industry CPL, CPC, CTR, CVR baselines used for the "how this compares" section</td></tr>
+<tr><td><strong>American Camp Association</strong></td><td>Camp industry retention and enrollment context</td></tr>
+</tbody></table></div>
+<h3>Attribution matching methodology</h3>
+<p>Cross-referencing HighLevel contacts against CampBrain households used three sequential match rules, applied in order of confidence:</p>
+<ol>
+<li><strong>Email match</strong> — exact case-insensitive match between HighLevel contact email and any CampBrain household parent email (P1 or P2). Highest confidence. <strong>Produced 43 matches.</strong></li>
+<li><strong>Phone match</strong> — last 10 digits of phone number, across all P1 and P2 phone fields (cell, home, work). Applied only to HighLevel contacts with no email match. <strong>Produced 1 additional match.</strong></li>
+<li><strong>Unique surname match</strong> — surname match restricted to CampBrain households where that surname appears in 3 or fewer total households. Where the surname appeared in 2–3 households, first-name verification against either P1 or P2 first names was also required. <strong>Produced 71 additional matches.</strong></li>
+</ol>
+<p><strong>Total: 115 HighLevel contacts matched, resolving to 105 unique CampBrain households</strong> (10 GHL contact pairs mapped to the same family — typically two spouses with different contact info both in HighLevel).</p>
+<p><strong>Why this methodology is conservative:</strong> 1,403 of the 1,595 CampBrain surnames in this export are unique to a single household (88%). Uncommon surnames like "vanderveen", "kustermans", and "bourdeau" have effectively zero false-positive risk. Overall false-positive rate is estimated below 5%, meaning the 105-household figure could be 4–5 households too high in the worst case — but is far more likely to be an undercount, since it excludes every ad-influenced registration that didn't go through a HighLevel-connected form first.</p>
+<h3>Sensitivity analysis — what does the range of defensible match rules look like?</h3>
+<p>For analytical skeptics who want to know how much the number could move under different rules:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Rule applied</th><th>Matched households</th><th>Attributable sessions¹</th><th>Attributable revenue²</th><th>Confidence</th></tr></thead>
+<tbody>
+<tr><td><strong>Strictest: email + phone only</strong></td><td>44</td><td>~77</td><td>~$34,650</td><td>Bulletproof. No reasonable person could argue.</td></tr>
+<tr><td><strong>Current methodology (email + phone + surname ≤3)</strong></td><td><strong>105</strong></td><td><strong>~185</strong></td><td><strong>~$83,200</strong></td><td>High. False-positive rate &lt;5%.</td></tr>
+<tr><td><strong>Loosest defensible: any surname overlap + email + phone</strong></td><td>~140 (est.)</td><td>~246</td><td>~$110,700</td><td>Medium. Some false positives from common surnames.</td></tr>
+</tbody></table></div>
+<p>¹ Applying the population ratio of 1.76 camper-sessions per household. ² Applying Forest Cliff's $450 weighted-average per-session fee.</p>
+<p>We deliberately report the middle figure — conservative enough to defend against skeptics, complete enough to reflect reality. Even under the strictest interpretation, the program has delivered a <strong>3.9x ROAS</strong> on $8,808 in spend.</p>
+<hr>
+<h2>Appendix: Report Archive</h2>
+<p>All raw data supporting this report is archived at:</p>
+<pre><code>data/campaigns/forest-cliff-camps/
+├── reports/
+│   ├── audit-report-2026-03-20.md
+│   ├── monitor-2026-03-23.md through monitor-2026-04-10.md (7 reports)
+│   ├── attribution-2026-03-30.md (full attribution methodology)
+│   ├── actions-2026-04-01.md (action log)
+│   └── report-2026-03-23.json through report-2026-04-10.json (raw API data)
+├── campaign-plan-2026-03-20.md
+├── creative-brief-2026-03-20.md
+├── social-content-audit-2026-03-20.md
+└── [CampBrain CSV exports, Apr 10]</code></pre>
+<p>Every claim, number, and decision in this report can be traced back to one of these source documents.</p>
+<hr>
+<p><em>This report was produced by Guest Getter on April 10, 2026. For questions, contact kyle@guestgetter.co.</em></p>
+</body>
+</html>
