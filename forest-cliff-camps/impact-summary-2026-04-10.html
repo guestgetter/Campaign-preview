@@ -18,201 +18,233 @@
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
+  /* ══════════════════════════════════════════════════════════════
+     BASE / DESKTOP SCREEN STYLES
+     Screen-first, modern, tight. Print overrides below.
+     ══════════════════════════════════════════════════════════════ */
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', sans-serif;
-    font-size: 11.5pt;
-    line-height: 1.55;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
     color: var(--ink);
-    max-width: 7.5in;
+    max-width: 780px;
     margin: 0 auto;
-    padding: 0.5in 0.25in 1in;
-    background: #fff;
+    padding: 3rem 2rem 5rem;
+    background: #fcfcfa;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
   h1 {
-    font-size: 26pt;
-    font-weight: 700;
-    letter-spacing: -0.5px;
+    font-size: 2rem;
+    font-weight: 750;
+    letter-spacing: -0.02em;
     color: var(--accent);
-    margin: 0 0 0.3em 0;
-    padding-bottom: 0.15em;
-    border-bottom: 3px solid var(--accent);
+    margin: 0 0 0.5rem 0;
+    padding-bottom: 0.6rem;
+    border-bottom: 2px solid var(--accent);
+    line-height: 1.15;
     page-break-after: avoid;
   }
   h2 {
-    font-size: 16pt;
+    font-size: 1.35rem;
     font-weight: 700;
+    letter-spacing: -0.01em;
     color: var(--accent);
-    margin: 1.8em 0 0.5em 0;
-    padding-bottom: 0.2em;
+    margin: 3rem 0 0.8rem 0;
+    padding-bottom: 0.4rem;
     border-bottom: 1px solid var(--rule);
+    line-height: 1.25;
     page-break-after: avoid;
   }
   h3 {
-    font-size: 13pt;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 650;
     color: var(--ink);
-    margin: 1.4em 0 0.4em 0;
+    margin: 2rem 0 0.5rem 0;
+    line-height: 1.3;
     page-break-after: avoid;
   }
   h4 {
-    font-size: 11.5pt;
-    font-weight: 600;
+    font-size: 0.78rem;
+    font-weight: 700;
     color: var(--ink-muted);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin: 1.2em 0 0.3em 0;
+    letter-spacing: 0.6px;
+    margin: 1.6rem 0 0.4rem 0;
     page-break-after: avoid;
   }
-  p { margin: 0 0 0.85em 0; }
+  p { margin: 0 0 1rem 0; }
   p + p { margin-top: 0; }
   strong { font-weight: 700; color: var(--ink); }
   em { font-style: italic; }
   code {
     font-family: var(--mono);
     font-size: 0.88em;
-    background: #f4f4f0;
-    padding: 0.1em 0.35em;
+    background: #f3f3ee;
+    padding: 0.12em 0.38em;
     border-radius: 3px;
     color: #333;
   }
   pre {
     font-family: var(--mono);
-    font-size: 9.5pt;
+    font-size: 0.82rem;
     background: #f8f8f5;
     border: 1px solid var(--rule);
-    border-radius: 4px;
-    padding: 0.6em 0.9em;
+    border-radius: 6px;
+    padding: 0.9rem 1.1rem;
     overflow-x: auto;
-    line-height: 1.45;
+    line-height: 1.55;
     page-break-inside: avoid;
+    margin: 1rem 0 1.4rem;
   }
   pre code { background: transparent; padding: 0; }
   hr {
     border: none;
     border-top: 1px solid var(--rule);
-    margin: 2em 0;
+    margin: 2.25rem 0;
   }
   a { color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; }
-  ul, ol { margin: 0 0 0.85em 0; padding-left: 1.3em; }
-  li { margin: 0.25em 0; }
+  ul, ol { margin: 0 0 1rem 0; padding-left: 1.3rem; }
+  li { margin: 0.35rem 0; }
   blockquote {
-    margin: 1em 0;
-    padding: 0.8em 1.1em;
+    margin: 1.2rem 0;
+    padding: 1rem 1.2rem;
     background: var(--accent-soft);
     border-left: 4px solid var(--accent);
     color: var(--ink);
-    font-size: 1.02em;
-    page-break-inside: avoid;
-  }
-  .table-wrap { overflow-x: auto; margin: 0.8em 0 1.2em 0; page-break-inside: avoid; }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 10.5pt;
-  }
-  thead { background: var(--accent); color: #fff; }
-  th {
-    padding: 0.55em 0.7em;
-    text-align: left;
-    font-weight: 600;
-    font-size: 10pt;
-    letter-spacing: 0.2px;
-  }
-  td {
-    padding: 0.5em 0.7em;
-    border-bottom: 1px solid var(--rule);
-    vertical-align: top;
-  }
-  tbody tr:nth-child(even) { background: #fafafa; }
-  tbody tr:last-child td { border-bottom: none; }
-
-  /* First heading is the document title — give it space */
-  h1:first-child { margin-top: 0.2em; }
-
-  /* First paragraph after h1 is the subtitle */
-  h1 + p {
-    color: var(--ink-muted);
-    font-size: 11pt;
-    margin-top: 0.2em;
-    margin-bottom: 1.8em;
-  }
-
-  /* ── Hero BLUF block ──────────────────────────────────────── */
-  .hero {
-    margin: 0 0 2.2em 0;
-    padding: 1.6em 1.8em 1.4em;
-    background: linear-gradient(135deg, var(--accent-soft) 0%, #f8fbf7 100%);
-    border-left: 6px solid var(--accent);
+    font-size: 1.02rem;
     border-radius: 4px;
     page-break-inside: avoid;
   }
-  .hero-tldr {
-    font-size: 12.5pt;
+  .table-wrap {
+    overflow-x: auto;
+    margin: 1rem 0 1.5rem 0;
+    page-break-inside: avoid;
+    border-radius: 6px;
+    border: 1px solid var(--rule);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+  thead { background: var(--accent); color: #fff; }
+  th {
+    padding: 0.75rem 0.9rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+  td {
+    padding: 0.7rem 0.9rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tbody tr:nth-child(even) { background: #fafaf7; }
+  tbody tr:last-child td { border-bottom: none; }
+
+  /* First heading is the document title */
+  h1:first-child { margin-top: 0; }
+
+  /* Byline paragraph after h1 */
+  h1 + p {
+    color: var(--ink-muted);
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin: 0.6rem 0 2.2rem 0;
+  }
+  h1 + p strong {
     color: var(--ink);
     font-weight: 600;
-    margin: 0 0 0.4em 0;
-    line-height: 1.35;
   }
-  .hero-tagline {
-    font-size: 9.5pt;
-    color: var(--ink-muted);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 600;
-    margin: 0 0 1.3em 0;
+
+  /* ══════════════════════════════════════════════════════════════
+     HERO BLUF BLOCK (desktop/screen)
+     No internal grid borders. Clean rhythm. Tight hierarchy.
+     ══════════════════════════════════════════════════════════════ */
+  .hero {
+    margin: 0 0 2.5rem 0;
+    padding: 1.8rem 1.9rem 1.6rem;
+    background: linear-gradient(160deg, #f1f6f1 0%, #fbfcfa 65%);
+    border-left: 5px solid var(--accent);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(27, 60, 42, 0.07);
+    page-break-inside: avoid;
   }
+  .hero-tldr {
+    font-size: 1.08rem;
+    color: var(--ink);
+    font-weight: 550;
+    margin: 0 0 1.4rem 0;
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+  }
+  .hero-tldr strong {
+    color: var(--accent);
+    font-weight: 750;
+  }
+  /* Hide the filler tagline entirely — "THE NUMBERS, AT A GLANCE" was redundant */
+  .hero-tagline { display: none; }
+
   .hero-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 0.8em;
-    margin: 0 0 1.3em 0;
+    gap: 1.2rem;
+    margin: 0 0 1.4rem 0;
+    padding-top: 1.3rem;
+    border-top: 1px solid rgba(27, 60, 42, 0.14);
   }
   .hero-metric {
-    text-align: center;
-    padding: 0.3em 0.5em;
-    border-right: 1px solid rgba(27, 60, 42, 0.18);
+    padding: 0;
+    border: none;
+    text-align: left;
   }
-  .hero-metric:last-child { border-right: none; }
   .hero-num {
-    font-size: 30pt;
+    font-size: 2.1rem;
     font-weight: 800;
     color: var(--accent);
-    line-height: 1.0;
-    letter-spacing: -1px;
+    line-height: 1;
+    letter-spacing: -0.035em;
     font-variant-numeric: tabular-nums;
+    display: block;
+    margin-bottom: 0.45rem;
   }
   .hero-lbl {
-    font-size: 8.5pt;
+    font-size: 0.64rem;
     color: var(--ink-muted);
-    margin-top: 0.5em;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-weight: 600;
-    line-height: 1.2;
+    letter-spacing: 0.7px;
+    font-weight: 700;
+    line-height: 1.3;
+    display: block;
   }
+
   .hero-secondary {
-    border-top: 1px solid rgba(27, 60, 42, 0.2);
-    padding-top: 1em;
-    font-size: 10.5pt;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 1em;
+    gap: 1.4rem;
+    padding-top: 1.3rem;
+    border-top: 1px solid rgba(27, 60, 42, 0.14);
   }
   .hero-stat {
     line-height: 1.4;
   }
   .hero-stat-num {
     display: block;
-    font-size: 14pt;
-    font-weight: 700;
+    font-size: 1.1rem;
+    font-weight: 750;
     color: var(--accent);
-    margin-bottom: 0.1em;
+    margin-bottom: 0.25rem;
     font-variant-numeric: tabular-nums;
+    line-height: 1.2;
   }
   .hero-stat-lbl {
-    font-size: 9pt;
+    font-size: 0.78rem;
     color: var(--ink-muted);
+    line-height: 1.4;
   }
 
   @media print {
@@ -457,15 +489,54 @@
     }
   }
 
-  /* Print tuning */
+  /* ══════════════════════════════════════════════════════════════
+     PRINT TUNING (PDF export via Chrome → Save as PDF)
+     ══════════════════════════════════════════════════════════════ */
   @media print {
-    body { padding: 0; max-width: none; font-size: 10.5pt; }
-    h1 { font-size: 22pt; }
-    h2 { font-size: 14pt; }
-    h3 { font-size: 12pt; }
+    body {
+      padding: 0;
+      max-width: none;
+      font-size: 10.5pt;
+      line-height: 1.5;
+      background: #fff;
+    }
+    h1 {
+      font-size: 22pt;
+      padding-bottom: 0.3em;
+      border-bottom-width: 2.5px;
+    }
+    h2 {
+      font-size: 14pt;
+      margin: 1.6em 0 0.45em 0;
+      padding-bottom: 0.2em;
+    }
+    h3 { font-size: 12pt; margin: 1.3em 0 0.35em 0; }
+    h4 { font-size: 9.5pt; }
+    p { margin-bottom: 0.75em; }
+    h1 + p { font-size: 10pt; margin-bottom: 1.4em; }
     h2, h3, h4 { page-break-after: avoid; }
-    table, blockquote, pre { page-break-inside: avoid; }
+    table, blockquote, pre, .hero { page-break-inside: avoid; }
     a { color: var(--ink); border-bottom: none; }
+
+    .hero {
+      padding: 1.1em 1.3em;
+      margin-bottom: 1.6em;
+      box-shadow: none;
+    }
+    .hero-tldr { font-size: 11.5pt; margin-bottom: 1em; }
+    .hero-grid { gap: 0.8em; padding-top: 0.9em; margin-bottom: 1em; }
+    .hero-num { font-size: 22pt; margin-bottom: 0.3em; }
+    .hero-lbl { font-size: 7.5pt; }
+    .hero-secondary { padding-top: 0.9em; gap: 1em; }
+    .hero-stat-num { font-size: 11pt; }
+    .hero-stat-lbl { font-size: 8.5pt; }
+
+    pre { font-size: 9pt; }
+    table { font-size: 10pt; }
+    th { font-size: 9pt; text-transform: none; }
+    td { padding: 0.45em 0.7em; }
+    .table-wrap { border: none; }
+    .table-wrap::after { display: none; }
   }
 </style>
 </head>
@@ -474,7 +545,6 @@
 <p><strong>Prepared by:</strong> Tim and Kyle <strong>Date:</strong> April 10, 2026</p>
 <div class="hero">
   <p class="hero-tldr">In 12 weeks, $8,808 in Meta advertising put <strong>150 new campers</strong> in Forest Cliff seats — at <strong>$59 each</strong>, a return of <strong>9.4× on spend in Year 1 alone</strong> and a projected <strong>25–47× over the 5-year customer lifetime</strong>.</p>
-  <p class="hero-tagline">The numbers, at a glance</p>
   <div class="hero-grid">
     <div class="hero-metric">
       <div class="hero-num">$8,808</div>
