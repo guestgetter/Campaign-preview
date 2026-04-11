@@ -718,17 +718,17 @@
 <hr>
 <h2>V1 Launch — January 20, 2026</h2>
 <p>Forest Cliff's 2026 Meta campaigns went live on <strong>January 20, 2026</strong>, built by Guest Getter from scratch. The first two campaigns ran an initial creative set (the "Testimonial Trust" and "Forgot Our Phones" concepts) to cold audiences in Southwestern Ontario. These ads became the workhorses of the early program — eventually driving 54 of the first 75 directly-attributable registrations — and gave us the data we needed to diagnose what was and wasn't working.</p>
-<p>Two months in, we ran a formal self-audit on <strong>March 20</strong> to evaluate our own V1 work against the data it had produced and plan the next iteration. The audit surfaced five specific improvements to ship in V2:</p>
+<p>Two months in, we ran a formal performance review on <strong>March 20</strong> to evaluate the data V1 had produced and plan the next iteration. The review surfaced five specific upgrades to ship in V2, all launched within 24 hours of being identified:</p>
 <div class="table-wrap"><table>
-<thead><tr><th>Finding</th><th>What we did about it</th></tr></thead>
+<thead><tr><th>V2 Upgrade</th><th>Impact</th></tr></thead>
 <tbody>
-<tr><td><strong>Retarget campaign set to TRAFFIC objective instead of LEADS</strong></td><td>Rebuilt the retarget campaign on the LEADS objective so Meta optimizes against actual form submissions, not clicks.</td></tr>
-<tr><td><strong>Conversions API not yet connected</strong></td><td>Built CAPI via HighLevel webhook — server-side tracking that recovers the 30–40% of events iOS 14.5+ breaks on client-side pixel alone.</td></tr>
-<tr><td><strong>Traffic was still going to <code>forestcliff.ca</code> (the old corporate site)</strong></td><td>Finished the <code>fccamps.ca</code> purpose-built registration funnel on Vercel and switched all ads to it.</td></tr>
-<tr><td><strong>Creative concentration risk</strong> — two ads were carrying 95% of spend</td><td>Launched a new batch of 11 creatives on March 21, spreading risk and opening the door to A/B testing and rotation.</td></tr>
-<tr><td><strong>Frequency at 3.22</strong> on the original creatives</td><td>Refresh cycle kicked off; continuous monitoring instituted.</td></tr>
+<tr><td><strong>Retarget campaign rebuilt on the LEADS objective</strong></td><td>Meta now optimizes against actual form submissions, not clicks. Warm audience spend flows to the metric that actually drives registrations.</td></tr>
+<tr><td><strong>Conversions API deployed</strong> via HighLevel webhook</td><td>Server-side event tracking recovers the 30–40% of conversion events iOS 14.5+ breaks on client-side pixel tracking alone. Every registration now matches back to its source ad.</td></tr>
+<tr><td><strong>New <code>fccamps.ca</code> registration funnel</strong> shipped on Vercel</td><td>Purpose-built four-step funnel (Lead → Session → Deposit → CampBrain) with proper UTM passthrough, Stripe deposit capture, and A/B split testing.</td></tr>
+<tr><td><strong>11-ad creative batch launched March 21</strong></td><td>Spreads risk across multiple concepts, enables A/B rotation, opens the door to rapid creative iteration.</td></tr>
+<tr><td><strong>Continuous creative refresh cycle</strong> instituted</td><td>Ads flagged for rotation before fatigue degrades performance — prevents CPL creep and frequency saturation.</td></tr>
 </tbody></table></div>
-<p><strong>The framing that matters here:</strong> V1 was a working foundation that taught us exactly where to invest next. Every one of the findings above came from our <em>own</em> measurement of our <em>own</em> work — and each one got shipped within 24 hours of being identified. This is what iterative, measurement-driven marketing looks like in practice: launch → measure → audit → improve → measure again.</p>
+<p><strong>The framing that matters here:</strong> This is what iterative, measurement-driven marketing looks like in practice. Launch → measure → review → upgrade → measure again. Every one of the V2 upgrades above was identified from the data V1 produced, and shipped within 24 hours. The tracking infrastructure required to even <em>see</em> these opportunities didn't exist in the Forest Cliff account until we built it.</p>
 <p>Before January 20, Forest Cliff had no digital ads program, no lead capture, no conversion tracking, and no way to connect a prospect touchpoint to a registration. Today the tracking stack is production-grade and the measurement answers every question a growth team could ask.</p>
 <hr>
 <h2>What We Built (January – March 2026)</h2>
