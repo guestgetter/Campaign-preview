@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#1b3c2a">
-<title>Forest Cliff Camps — Marketing Partnership Impact Report</title>
+<title>Report</title>
 <style>
   @page { size: letter; margin: 0.75in 0.75in; }
   :root {
@@ -149,7 +149,7 @@
   /* First heading is the document title */
   h1:first-child { margin-top: 0; }
 
-  /* Byline paragraph after h1 */
+  /* Byline paragraph after h1 (fallback when no .doc-header is used) */
   h1 + p {
     color: var(--ink-muted);
     font-size: 0.88rem;
@@ -162,39 +162,88 @@
   }
 
   /* ══════════════════════════════════════════════════════════════
-     HERO BLUF BLOCK (desktop/screen)
-     No internal grid borders. Clean rhythm. Tight hierarchy.
+     DOCUMENT HEADER (replaces h1 + byline when using :::raw header)
+     Title + subtitle + compact meta line — all one tight unit.
+     ══════════════════════════════════════════════════════════════ */
+  .doc-header {
+    margin: 0 0 2.5rem 0;
+    padding-bottom: 1.2rem;
+    border-bottom: 2px solid var(--accent);
+  }
+  .doc-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.028em;
+    color: var(--accent);
+    margin: 0 0 0.25rem 0;
+    line-height: 1.08;
+    border: none;
+    padding: 0;
+  }
+  .doc-subtitle {
+    font-size: 1.08rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin: 0 0 0.9rem 0;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+  }
+  .doc-meta {
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+  .doc-meta strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     HERO BLUF BLOCK — editorial layout, no box, no gradient.
+     Top + bottom rules frame the block. TLDR is the anchor.
      ══════════════════════════════════════════════════════════════ */
   .hero {
-    margin: 0 0 2.5rem 0;
-    padding: 1.8rem 1.9rem 1.6rem;
-    background: linear-gradient(160deg, #f1f6f1 0%, #fbfcfa 65%);
-    border-left: 5px solid var(--accent);
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(27, 60, 42, 0.07);
+    margin: 0 0 3rem 0;
+    padding: 1.7rem 0 1.4rem;
+    background: transparent;
+    border-top: 3px solid var(--accent);
+    border-left: none;
+    border-radius: 0;
+    box-shadow: none;
     page-break-inside: avoid;
   }
+  .hero-eyebrow {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    margin: 0 0 0.85rem 0;
+  }
   .hero-tldr {
-    font-size: 1.08rem;
+    font-size: 1.28rem;
     color: var(--ink);
-    font-weight: 550;
-    margin: 0 0 1.4rem 0;
-    line-height: 1.5;
-    letter-spacing: -0.005em;
+    font-weight: 500;
+    margin: 0 0 1.9rem 0;
+    line-height: 1.48;
+    letter-spacing: -0.008em;
+    max-width: 64ch;
   }
   .hero-tldr strong {
     color: var(--accent);
     font-weight: 750;
   }
-  /* Hide the filler tagline entirely — "THE NUMBERS, AT A GLANCE" was redundant */
+  /* "THE NUMBERS, AT A GLANCE" tagline — killed at source, belt-and-suspenders hide */
   .hero-tagline { display: none; }
 
   .hero-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1.2rem;
-    margin: 0 0 1.4rem 0;
-    padding-top: 1.3rem;
+    gap: 1.5rem;
+    margin: 0 0 1.5rem 0;
+    padding: 1.3rem 0 0;
     border-top: 1px solid rgba(27, 60, 42, 0.14);
   }
   .hero-metric {
@@ -203,25 +252,46 @@
     text-align: left;
   }
   .hero-num {
-    font-size: 2.1rem;
+    font-size: 2.25rem;
     font-weight: 800;
     color: var(--accent);
-    line-height: 1;
-    letter-spacing: -0.035em;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
     font-variant-numeric: tabular-nums;
     display: block;
-    margin-bottom: 0.45rem;
+    margin-bottom: 0.55rem;
   }
   .hero-lbl {
-    font-size: 0.64rem;
+    font-size: 0.66rem;
     color: var(--ink-muted);
     text-transform: uppercase;
     letter-spacing: 0.7px;
     font-weight: 700;
-    line-height: 1.3;
+    line-height: 1.35;
     display: block;
   }
 
+  /* Secondary stats — single-line editorial footnote with middot separators */
+  .hero-footnote {
+    font-size: 0.87rem;
+    color: var(--ink-muted);
+    line-height: 1.65;
+    margin: 0;
+    padding-top: 1.1rem;
+    border-top: 1px solid rgba(27, 60, 42, 0.14);
+    max-width: 72ch;
+  }
+  .hero-footnote strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .hero-footnote .sep {
+    color: rgba(27, 60, 42, 0.3);
+    margin: 0 0.55rem;
+    font-weight: 400;
+  }
+
+  /* Legacy classes kept for any older content that still uses them */
   .hero-secondary {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -229,15 +299,13 @@
     padding-top: 1.3rem;
     border-top: 1px solid rgba(27, 60, 42, 0.14);
   }
-  .hero-stat {
-    line-height: 1.4;
-  }
+  .hero-stat { line-height: 1.4; }
   .hero-stat-num {
     display: block;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 750;
     color: var(--accent);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.2rem;
     font-variant-numeric: tabular-nums;
     line-height: 1.2;
   }
@@ -264,7 +332,7 @@
       color: var(--ink);
     }
 
-    /* Title: compact, confident, no visual clutter */
+    /* Title: compact, confident, no visual clutter (fallback when no .doc-header) */
     h1 {
       font-size: 1.4rem;
       line-height: 1.2;
@@ -285,6 +353,27 @@
     h1 + p strong {
       color: var(--ink);
       font-weight: 600;
+    }
+
+    /* Document header override for mobile */
+    .doc-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+    }
+    .doc-title {
+      font-size: 1.55rem;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.2rem;
+      line-height: 1.1;
+    }
+    .doc-subtitle {
+      font-size: 0.92rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.35;
+    }
+    .doc-meta {
+      font-size: 0.72rem;
+      line-height: 1.55;
     }
 
     h2 {
@@ -310,41 +399,45 @@
     ul, ol { margin: 0 0 1rem 0; padding-left: 1.2rem; }
     li { margin: 0.3rem 0; }
 
-    /* ── Hero block ──
-       Rebuilt for mobile: no internal borders on the grid,
-       consistent 8dp rhythm, tighter TLDR, no filler tagline,
-       secondary stats as a clean stacked list. */
+    /* ── Hero block (mobile) ──
+       Editorial layout, no background, no shadow.
+       TLDR is the anchor. 2×2 grid. Footnote stays inline. */
     .hero {
-      padding: 1.15rem 1.1rem 1.15rem;
-      margin: 0 -0.25rem 2rem;
-      border-left-width: 4px;
-      border-radius: 8px;
-      background: linear-gradient(160deg, #f3f8f3 0%, #fbfcfa 65%);
-      box-shadow: 0 1px 3px rgba(27, 60, 42, 0.06);
+      padding: 1.3rem 0 1.1rem;
+      margin: 0 0 2.2rem;
+      background: transparent;
+      border-top: 3px solid var(--accent);
+      border-left: none;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.62rem;
+      letter-spacing: 1.2px;
+      margin-bottom: 0.75rem;
     }
 
     .hero-tldr {
-      font-size: 0.98rem;
-      line-height: 1.45;
+      font-size: 1.02rem;
+      line-height: 1.5;
       color: var(--ink);
-      margin: 0 0 1.1rem 0;
-      font-weight: 550;
+      margin: 0 0 1.4rem 0;
+      font-weight: 500;
+      letter-spacing: -0.005em;
     }
     .hero-tldr strong {
       color: var(--accent);
       font-weight: 750;
     }
 
-    /* Remove the "THE NUMBERS, AT A GLANCE" label on mobile — visual filler */
-    .hero-tagline { display: none; }
-
     /* 2×2 grid, no dividers, aligned left, clean rhythm */
     .hero-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1rem 1rem;
-      margin: 0 0 1.2rem 0;
-      padding-top: 1rem;
+      gap: 1.1rem 1rem;
+      margin: 0 0 1.3rem 0;
+      padding-top: 1.1rem;
       border-top: 1px solid rgba(27, 60, 42, 0.14);
     }
     .hero-metric {
@@ -353,16 +446,16 @@
       text-align: left;
     }
     .hero-num {
-      font-size: 1.7rem;
-      line-height: 1;
+      font-size: 1.72rem;
+      line-height: 0.95;
       letter-spacing: -1px;
       font-weight: 800;
       color: var(--accent);
       display: block;
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.4rem;
     }
     .hero-lbl {
-      font-size: 0.625rem;
+      font-size: 0.6rem;
       letter-spacing: 0.7px;
       line-height: 1.3;
       font-weight: 700;
@@ -371,7 +464,23 @@
       display: block;
     }
 
-    /* Secondary stats — clean list with subtle row separators */
+    /* Mobile: stack the inline footnote into a readable list */
+    .hero-footnote {
+      font-size: 0.82rem;
+      line-height: 1.55;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(27, 60, 42, 0.14);
+      margin: 0;
+    }
+    .hero-footnote .sep {
+      display: block;
+      height: 0.35rem;
+      overflow: hidden;
+      color: transparent;
+      margin: 0;
+    }
+
+    /* Legacy .hero-secondary (still in older docs) */
     .hero-secondary {
       display: block;
       grid-template-columns: none;
@@ -381,18 +490,15 @@
       border-top: 1px solid rgba(27, 60, 42, 0.14);
     }
     .hero-stat {
-      padding: 0.65rem 0;
+      padding: 0.6rem 0;
       border-bottom: 1px solid rgba(27, 60, 42, 0.06);
       line-height: 1.4;
     }
     .hero-stat:first-child { padding-top: 0; }
-    .hero-stat:last-child {
-      padding-bottom: 0;
-      border-bottom: none;
-    }
+    .hero-stat:last-child { padding-bottom: 0; border-bottom: none; }
     .hero-stat-num {
       display: block;
-      font-size: 1rem;
+      font-size: 0.98rem;
       font-weight: 700;
       color: var(--accent);
       line-height: 1.2;
@@ -400,7 +506,7 @@
       font-variant-numeric: tabular-nums;
     }
     .hero-stat-lbl {
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       line-height: 1.35;
       color: var(--ink-muted);
     }
@@ -468,14 +574,18 @@
     h2 { font-size: 1.12rem; }
     h3 { font-size: 0.98rem; }
 
-    .hero {
-      padding: 1rem 0.95rem;
-      margin: 0 -0.15rem 1.75rem;
-    }
-    .hero-tldr { font-size: 0.92rem; margin-bottom: 0.95rem; }
-    .hero-grid { gap: 0.85rem 0.85rem; padding-top: 0.9rem; }
-    .hero-num { font-size: 1.55rem; }
-    .hero-lbl { font-size: 0.6rem; }
+    .doc-title { font-size: 1.4rem; }
+    .doc-subtitle { font-size: 0.88rem; margin-bottom: 0.7rem; }
+    .doc-meta { font-size: 0.7rem; }
+
+    .hero { padding: 1.1rem 0 1rem; margin-bottom: 1.9rem; }
+    .hero-eyebrow { font-size: 0.6rem; margin-bottom: 0.65rem; }
+    .hero-tldr { font-size: 0.96rem; margin-bottom: 1.2rem; }
+    .hero-grid { gap: 0.95rem 0.9rem; padding-top: 0.95rem; }
+    .hero-num { font-size: 1.56rem; }
+    .hero-lbl { font-size: 0.58rem; }
+    .hero-footnote { font-size: 0.78rem; padding-top: 0.9rem; }
+
     .hero-secondary { padding-top: 0.9rem; }
     .hero-stat-num { font-size: 0.95rem; }
     .hero-stat-lbl { font-size: 0.76rem; }
@@ -518,15 +628,29 @@
     table, blockquote, pre, .hero { page-break-inside: avoid; }
     a { color: var(--ink); border-bottom: none; }
 
+    .doc-header {
+      margin-bottom: 1.6em;
+      padding-bottom: 0.6em;
+      border-bottom-width: 2pt;
+    }
+    .doc-title { font-size: 22pt; margin-bottom: 0.08em; }
+    .doc-subtitle { font-size: 13pt; margin-bottom: 0.5em; }
+    .doc-meta { font-size: 9pt; }
+
     .hero {
-      padding: 1.1em 1.3em;
+      padding: 1.1em 0 0.9em;
       margin-bottom: 1.6em;
       box-shadow: none;
+      background: transparent;
+      border-top: 2pt solid var(--accent);
+      border-left: none;
     }
-    .hero-tldr { font-size: 11.5pt; margin-bottom: 1em; }
-    .hero-grid { gap: 0.8em; padding-top: 0.9em; margin-bottom: 1em; }
-    .hero-num { font-size: 22pt; margin-bottom: 0.3em; }
+    .hero-eyebrow { font-size: 7.5pt; margin-bottom: 0.55em; }
+    .hero-tldr { font-size: 12pt; margin-bottom: 1.1em; line-height: 1.45; }
+    .hero-grid { gap: 0.8em; padding-top: 0.9em; margin-bottom: 0.9em; }
+    .hero-num { font-size: 22pt; margin-bottom: 0.35em; }
     .hero-lbl { font-size: 7.5pt; }
+    .hero-footnote { font-size: 9pt; padding-top: 0.8em; line-height: 1.5; }
     .hero-secondary { padding-top: 0.9em; gap: 1em; }
     .hero-stat-num { font-size: 11pt; }
     .hero-stat-lbl { font-size: 8.5pt; }
@@ -541,43 +665,37 @@
 </style>
 </head>
 <body>
-<h1>Forest Cliff Camps — Marketing Partnership Impact Report</h1>
-<p><strong>Prepared by:</strong> Guest Getter <strong>Date:</strong> April 10, 2026 <strong>Period covered:</strong> January 20 – April 10, 2026 (12 weeks) <strong>Data currency:</strong> Meta Ads API, HighLevel API, and CampBrain exports all pulled April 10, 2026</p>
-<div class="hero">
+<header class="doc-header">
+  <h1 class="doc-title">Forest Cliff Camps</h1>
+  <p class="doc-subtitle">Marketing Partnership Impact Report</p>
+  <p class="doc-meta">Prepared by <strong>Guest Getter</strong> &middot; <strong>April 10, 2026</strong> &middot; Covers Jan 20 – Apr 10, 2026 (12 weeks) &middot; Data pulled Apr 10 from Meta Ads, HighLevel, and CampBrain</p>
+</header>
+
+<section class="hero">
+  <span class="hero-eyebrow">12-Week Impact Summary</span>
   <p class="hero-tldr">In 12 weeks, $8,808 in Meta advertising put <strong>150 new campers</strong> in Forest Cliff seats — at <strong>$59 each</strong>, a return of <strong>9.4× on spend in Year 1 alone</strong> and a projected <strong>25–47× over the 5-year customer lifetime</strong>.</p>
   <div class="hero-grid">
     <div class="hero-metric">
-      <div class="hero-num">$8,808</div>
-      <div class="hero-lbl">Total Ad Spend</div>
+      <span class="hero-num">$8,808</span>
+      <span class="hero-lbl">Total Ad Spend</span>
     </div>
     <div class="hero-metric">
-      <div class="hero-num">150</div>
-      <div class="hero-lbl">New Campers Acquired</div>
+      <span class="hero-num">150</span>
+      <span class="hero-lbl">New Campers Acquired</span>
     </div>
     <div class="hero-metric">
-      <div class="hero-num">$59</div>
-      <div class="hero-lbl">Cost Per Camper</div>
+      <span class="hero-num">$59</span>
+      <span class="hero-lbl">Cost Per Camper</span>
     </div>
     <div class="hero-metric">
-      <div class="hero-num">9.4×</div>
-      <div class="hero-lbl">Year-1 ROAS</div>
+      <span class="hero-num">9.4×</span>
+      <span class="hero-lbl">Year-1 ROAS</span>
     </div>
   </div>
-  <div class="hero-secondary">
-    <div class="hero-stat">
-      <span class="hero-stat-num">$83,200</span>
-      <span class="hero-stat-lbl">Year-1 registration revenue attributed</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat-num">$223K–$416K</span>
-      <span class="hero-stat-lbl">Projected 5-year lifetime revenue (25–47× ROAS)</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat-num">3.4× better</span>
-      <span class="hero-stat-lbl">More efficient than the 2025 Facebook Ads industry benchmark</span>
-    </div>
-  </div>
-</div>
+  <p class="hero-footnote">
+    <strong>$83,200</strong> Year-1 revenue attributed<span class="sep">·</span><strong>$223K–$416K</strong> projected 5-year lifetime revenue<span class="sep">·</span><strong>3.4× better</strong> than the 2025 Facebook Ads industry benchmark
+  </p>
+</section>
 <hr>
 <h2>Executive Summary</h2>
 <p>In the twelve weeks since Guest Getter launched Forest Cliff Camps' 2026 Meta advertising program on January 20, three things happened:</p>
