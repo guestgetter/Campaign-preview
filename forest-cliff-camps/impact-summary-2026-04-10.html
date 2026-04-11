@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1b3c2a">
 <title>Forest Cliff Camps — Marketing Impact Summary</title>
 <style>
   @page { size: letter; margin: 0.75in 0.75in; }
@@ -218,6 +220,112 @@
     .hero-stat-num { font-size: 12pt; }
   }
 
+  /* ── Mobile / responsive overrides ─────────────────────────── */
+  @media screen and (max-width: 820px) {
+    body {
+      max-width: 100%;
+      padding: 1.25rem 1.1rem 3rem;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    h1 { font-size: 1.75rem; line-height: 1.2; }
+    h2 { font-size: 1.3rem; margin-top: 2em; }
+    h3 { font-size: 1.1rem; }
+    h4 { font-size: 0.85rem; }
+    h1 + p { font-size: 0.95rem; }
+
+    /* Hero block adapts: 4-col grid → 2-col grid → stacked secondary */
+    .hero {
+      padding: 1.1rem 1rem 1rem;
+      margin-bottom: 1.5rem;
+      border-left-width: 4px;
+    }
+    .hero-tldr { font-size: 1rem; line-height: 1.4; }
+    .hero-tagline { font-size: 0.7rem; margin-bottom: 1rem; }
+    .hero-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.7rem 0.4rem;
+      margin-bottom: 1rem;
+    }
+    .hero-metric {
+      padding: 0.6rem 0.25rem;
+      border-right: none;
+      border-bottom: 1px solid rgba(27, 60, 42, 0.18);
+    }
+    .hero-metric:nth-child(odd) {
+      border-right: 1px solid rgba(27, 60, 42, 0.18);
+    }
+    .hero-metric:nth-child(3),
+    .hero-metric:nth-child(4) {
+      border-bottom: none;
+    }
+    .hero-num {
+      font-size: 1.9rem;
+      letter-spacing: -0.5px;
+    }
+    .hero-lbl {
+      font-size: 0.65rem;
+      margin-top: 0.35rem;
+    }
+    .hero-secondary {
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+      padding-top: 0.85rem;
+    }
+    .hero-stat {
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid rgba(27, 60, 42, 0.12);
+    }
+    .hero-stat:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .hero-stat-num { font-size: 1.05rem; }
+    .hero-stat-lbl { font-size: 0.8rem; }
+
+    /* Tables: keep horizontal scroll, but make it usable */
+    .table-wrap {
+      margin: 0.8em -1.1rem 1.2em;
+      padding: 0 1.1rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+    .table-wrap::after {
+      content: "← swipe →";
+      display: block;
+      text-align: center;
+      font-size: 0.7rem;
+      color: var(--ink-muted);
+      padding: 0.4rem 0 0.2rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    table { font-size: 0.85rem; min-width: 520px; }
+    th, td { padding: 0.5em 0.6em; }
+
+    blockquote {
+      margin: 0.9em -0.3rem;
+      padding: 0.7em 0.9em;
+      font-size: 0.95rem;
+    }
+    pre {
+      font-size: 0.78rem;
+      padding: 0.7em 0.9em;
+      margin: 0.8em -0.3rem;
+    }
+    pre code { white-space: pre; }
+  }
+
+  /* Very small phones (iPhone SE / small Android) */
+  @media screen and (max-width: 400px) {
+    body { padding: 1rem 0.85rem 2.5rem; font-size: 15px; }
+    h1 { font-size: 1.55rem; }
+    .hero { padding: 0.95rem 0.85rem; }
+    .hero-num { font-size: 1.7rem; }
+    .hero-tldr { font-size: 0.95rem; }
+  }
+
   /* Print tuning */
   @media print {
     body { padding: 0; max-width: none; font-size: 10.5pt; }
@@ -306,14 +414,14 @@
 <p>Overnight programs are nearly sold out. <strong>Day Camp has 1,256 open spots representing roughly $345,000 in unbooked revenue.</strong> This is where the next several months of marketing should be focused — at the proven $48-per-camper-session acquisition cost, filling those open spots is a roughly <strong>5.7× immediate return</strong> on marginal ad spend.</p>
 <hr>
 <h2>Recommendation: Continue the Partnership</h2>
-<p>Tim and Kyle propose continuing the Forest Cliff marketing partnership at the structure below. The economics make this an obvious decision: we have proof the system works, the warm pipeline is already built, and the next several months of registration are the most valuable window of the year.</p>
+<p>Tim is proposing to continue leading Forest Cliff's marketing at the structure below, with Kyle's team at Guest Getter continuing to provide the underlying ad execution as part of the existing relationship. The economics make this an obvious decision: we have proof the system works, the warm pipeline is already built, and the next several months of registration are the most valuable window of the year.</p>
 <h3>Recommended Monthly Investment</h3>
 <div class="table-wrap"><table>
 <thead><tr><th>Component</th><th>Monthly</th><th>What it covers</th></tr></thead>
 <tbody>
-<tr><td><strong>Meta Ads media spend</strong></td><td><strong>$3,000</strong></td><td>Active campaign budget across Retarget Warm, Overnight Cold, and Day Camp Cold. At current efficiency, this acquires ~35–50 new households / 50–70 new campers per month.</td></tr>
-<tr><td><strong>Tim + Kyle ongoing management</strong></td><td><strong>$2,500</strong></td><td>Weekly monitor reports, kill/scale/refresh decisions, creative production and rotation, lead follow-up automation, audience expansion, monthly executive summary, ongoing tracking maintenance.</td></tr>
-<tr><td><strong>Total recommended investment</strong></td><td><strong>$5,500 / month</strong></td><td>All-in. No setup fees, no surprise charges.</td></tr>
+<tr><td><strong>Meta Ads media spend</strong> (managed by Tim)</td><td><strong>$3,000</strong></td><td>Active campaign budget across Retarget Warm, Overnight Cold, and Day Camp Cold. At current efficiency, this acquires ~35–50 new households / 50–70 new campers per month. Goes directly to Meta.</td></tr>
+<tr><td><strong>Tim's marketing leadership fee</strong></td><td><strong>$2,500</strong></td><td>Weekly monitor reports, kill/scale/refresh decisions, creative production and rotation, lead follow-up automation, audience expansion, monthly executive summary, ongoing tracking maintenance.</td></tr>
+<tr><td><strong>Total recommended investment</strong></td><td><strong>$5,500 / month</strong></td><td>All-in. Paid to Tim. No setup fees, no surprise charges.</td></tr>
 </tbody></table></div>
 <h3>What this monthly investment should produce</h3>
 <p>At Forest Cliff's proven unit economics ($59 per camper, $792 per household first-year revenue):</p>
@@ -329,7 +437,7 @@
 <p>If Forest Cliff wants to aggressively fill the 1,256 open Day Camp spots before camp starts in July, we recommend temporarily scaling to <strong>$8,500/month</strong> for May, June, and July only:</p>
 <ul>
 <li>$5,500 media spend (focused entirely on Day Camp satellite cold campaigns)</li>
-<li>$3,000 management (additional creative production and monitoring frequency)</li>
+<li>$3,000 leadership fee to Tim (additional creative production and monitoring frequency)</li>
 </ul>
 <p>At $48 per session acquisition cost, this would target an additional <strong>~340 Day Camp camper-sessions over 90 days, returning roughly $93,500 in incremental revenue against $25,500 in additional ad spend</strong> — a 3.7× immediate return on the marginal push.</p>
 <h3>What's included in either tier</h3>
@@ -340,7 +448,7 @@
 <li>Active management of all three campaigns and their audiences</li>
 <li>Lookalike audience deployment and expansion</li>
 <li>Lead follow-up sequence implementation (the 800+ unconverted leads)</li>
-<li>Direct access to Tim and Kyle for questions, data requests, and strategic decisions</li>
+<li>Direct access to Tim for questions, data requests, and strategic decisions</li>
 </ul>
 <h3>Minimum commitment</h3>
 <p>We recommend a <strong>6-month engagement</strong> to get through the most valuable pre-camp registration window. After that, the partnership renews monthly with no lock-in.</p>
