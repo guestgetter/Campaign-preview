@@ -321,6 +321,113 @@
   }
   .section ul li strong { color: var(--green-900); font-weight: 700; }
 
+  /* ═══════════════════════════════════════════════════════════
+     DATA GRIDS — platform metrics + audience assets
+     ═══════════════════════════════════════════════════════════ */
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin: 1.3rem 0 1.8rem;
+  }
+  .metric-item {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 1.15rem 1.2rem 1.1rem;
+    position: relative;
+  }
+  .metric-item-value {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--green-900);
+    letter-spacing: -0.025em;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.05;
+    margin-bottom: 0.35rem;
+  }
+  .metric-item-label {
+    font-size: 0.66rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--ink-muted);
+    line-height: 1.35;
+    margin-bottom: 0.5rem;
+  }
+  .metric-item-bench {
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .metric-item-bench strong { color: var(--green-800); font-weight: 700; }
+  .metric-item-bench .bench-good { color: var(--amber); font-weight: 700; }
+
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.85rem;
+    margin: 1.2rem 0 1.6rem;
+  }
+  .audience-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 1.4rem 1.3rem 1.3rem;
+    position: relative;
+  }
+  .audience-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 1.3rem;
+    right: 1.3rem;
+    height: 2px;
+    background: var(--green-700);
+    border-radius: 0 0 2px 2px;
+  }
+  .audience-card.cold::before { background: var(--green-600); }
+  .audience-card-size {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--green-900);
+    letter-spacing: -0.025em;
+    line-height: 1;
+    margin-bottom: 0.55rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .audience-card-tag {
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: var(--green-700);
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    padding: 0.18rem 0.5rem;
+    background: rgba(45, 90, 63, 0.08);
+    border-radius: 3px;
+  }
+  .audience-card.cold .audience-card-tag {
+    color: var(--amber);
+    background: rgba(204, 88, 31, 0.07);
+  }
+  .audience-card-name {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--green-900);
+    margin-bottom: 0.35rem;
+    line-height: 1.3;
+  }
+  .audience-card-desc {
+    font-size: 0.76rem;
+    color: var(--ink-muted);
+    line-height: 1.55;
+  }
+
   /* Callout */
   .callout {
     background: var(--white);
@@ -618,6 +725,23 @@
     thead th { padding: 0.75rem 0.9rem; font-size: 0.62rem; letter-spacing: 0.5px; }
     tbody td { padding: 0.7rem 0.9rem; }
 
+    .metric-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+    .metric-item { padding: 0.95rem 1rem 0.9rem; }
+    .metric-item-value { font-size: 1.25rem; }
+    .metric-item-label { font-size: 0.58rem; }
+    .metric-item-bench { font-size: 0.66rem; }
+
+    .audience-grid {
+      grid-template-columns: 1fr;
+      gap: 0.7rem;
+    }
+    .audience-card { padding: 1.15rem 1.2rem; }
+    .audience-card::before { left: 1.2rem; right: 1.2rem; }
+    .audience-card-size { font-size: 1.4rem; }
+
     .investment { padding: 1.9rem 1.5rem 1.7rem; border-radius: 12px; }
     .investment h3 { font-size: 1.2rem; margin-bottom: 1.3rem; }
     .investment-price .big { font-size: 2.3rem; }
@@ -712,13 +836,65 @@
       <div class="callout-body">The 2025 Facebook Ads benchmark for the Education industry is roughly <strong>$28 per lead</strong> and an implied <strong>$280 per customer acquired</strong>. Forest Cliff is running at <strong>$8 per lead</strong> and <strong>$59 per camper</strong> — about <strong>3.4× more efficient</strong> than the industry average.</div>
     </div>
 
-    <p>Beyond direct registrations, three durable audience assets have been built that belong to Forest Cliff and persist after this report:</p>
+    <h3>Platform performance</h3>
+    <p>Lifetime numbers from Meta Ads Manager (Jan 13 – Apr 10), compared against the 2025 Facebook Ads Education-category benchmark published by WordStream and LocaliQ:</p>
 
-    <ul>
-      <li>A <strong>902-person warm lead pipeline</strong> in HighLevel — families who raised their hand but haven't yet registered, ready for follow-up at zero additional ad cost.</li>
-      <li>A <strong>~20,000-person engaged video-viewer audience</strong> on Meta — parents who watched at least 25% of a Forest Cliff video ad in the last 90 days.</li>
-      <li>Two <strong>1% Lookalike audiences</strong> totaling ~540,000 Canadian parents, statistically modeled on the families already converting. Built, ready to deploy.</li>
-    </ul>
+    <div class="metric-grid">
+      <div class="metric-item">
+        <div class="metric-item-value">797,756</div>
+        <div class="metric-item-label">Impressions Delivered</div>
+        <div class="metric-item-bench">To local Southwestern Ontario parent audiences</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-item-value">18,957</div>
+        <div class="metric-item-label">Clicks Driven</div>
+        <div class="metric-item-bench">To `fccamps.ca` registration funnel</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-item-value">2.38%</div>
+        <div class="metric-item-label">Click-Through Rate</div>
+        <div class="metric-item-bench">vs <strong>1.86%</strong> industry avg <span class="bench-good">(+28%)</span></div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-item-value">$0.46</div>
+        <div class="metric-item-label">Cost Per Click</div>
+        <div class="metric-item-bench">vs <strong>$1.65</strong> industry avg <span class="bench-good">(−72%)</span></div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-item-value">$8.29</div>
+        <div class="metric-item-label">Cost Per Lead</div>
+        <div class="metric-item-bench">vs <strong>$28.22</strong> industry avg <span class="bench-good">(−71%)</span></div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-item-value">11.0%</div>
+        <div class="metric-item-label">Lead → Registration CVR</div>
+        <div class="metric-item-bench">vs <strong>10.08%</strong> industry avg <span class="bench-good">(+9%)</span></div>
+      </div>
+    </div>
+
+    <h3>Audience assets built</h3>
+    <p>Three durable audience pools now exist on the Forest Cliff ad account. These are owned assets that continue to compound in value as long as the program keeps feeding them:</p>
+
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="audience-card-tag">CRM Pipeline</div>
+        <div class="audience-card-size">902</div>
+        <div class="audience-card-name">Warm Lead Pipeline</div>
+        <div class="audience-card-desc">Families who submitted a Meta lead form or direct `fccamps.ca` landing page form. Email + phone captured. Roughly 800 haven't yet completed a CampBrain registration — the largest single follow-up opportunity in the account.</div>
+      </div>
+      <div class="audience-card">
+        <div class="audience-card-tag">Warm Retargeting</div>
+        <div class="audience-card-size">~20K</div>
+        <div class="audience-card-name">Engaged Video Viewers</div>
+        <div class="audience-card-desc">Parents who watched at least 25% of a Forest Cliff video ad in the last 90 days — the highest-intent retargeting pool in the account. This audience is what makes the retarget campaign run at 25–33× ROAS on good weeks.</div>
+      </div>
+      <div class="audience-card cold">
+        <div class="audience-card-tag">Cold Prospecting</div>
+        <div class="audience-card-size">~540K</div>
+        <div class="audience-card-name">1% Lookalike Audiences</div>
+        <div class="audience-card-desc">Two Lookalike pools modeled on converting families — one seeded from lead events, one from lead conversions. Together: ~540K Canadian parents statistically similar to customers already acquired. Built March 20, ready to deploy.</div>
+      </div>
+    </div>
   </section>
 
   <!-- 02 — Where Forest Cliff Stands -->
