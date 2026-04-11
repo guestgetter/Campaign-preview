@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f2418">
+<title>Forest Cliff Camps — Marketing Impact Summary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  :root {
+    --green-950: #081a10;
+    --green-900: #0f2418;
+    --green-800: #1b3c2a;
+    --green-700: #2d5a3f;
+    --green-600: #5a8a6a;
+    --cream: #faf8f4;
+    --cream-2: #f4f1ea;
+    --paper: #fcfcfa;
+    --amber: #cc581f;
+    --amber-soft: #e8a87c;
+    --ink: #161616;
+    --ink-2: #2a2a2a;
+    --ink-muted: #5a5a58;
+    --rule: #e8e4da;
+    --rule-soft: #f0ece2;
+    --white: #ffffff;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  body {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern", "liga", "calt", "ss01";
+  }
+
+  ::selection { background: var(--amber); color: var(--white); }
+
+  .container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     HEADER BAND — dark, confident, full-bleed
+     ═══════════════════════════════════════════════════════════ */
+  .masthead {
+    background: linear-gradient(180deg, var(--green-950) 0%, var(--green-900) 60%, var(--green-800) 100%);
+    color: var(--cream);
+    padding: 3.5rem 0 8rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .masthead::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--amber);
+  }
+  .masthead::after {
+    content: '';
+    position: absolute;
+    right: -200px;
+    top: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(204, 88, 31, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .masthead > .container { position: relative; z-index: 1; }
+
+  .brand-line {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 2.5rem;
+  }
+  .brand-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--amber);
+    box-shadow: 0 0 0 3px rgba(204, 88, 31, 0.18);
+  }
+  .brand-text {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.2px;
+    color: rgba(250, 248, 244, 0.75);
+  }
+  .brand-text span {
+    color: var(--amber-soft);
+    margin: 0 0.4rem;
+  }
+
+  .masthead h1 {
+    font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    margin: 0 0 0.5rem 0;
+    color: var(--white);
+  }
+  .masthead .subtitle {
+    font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+    font-weight: 500;
+    color: rgba(250, 248, 244, 0.8);
+    margin: 0 0 2rem 0;
+    line-height: 1.4;
+    max-width: 650px;
+  }
+  .masthead .meta {
+    font-size: 0.82rem;
+    color: rgba(250, 248, 244, 0.55);
+    font-weight: 500;
+    letter-spacing: 0.1px;
+  }
+  .masthead .meta strong {
+    color: rgba(250, 248, 244, 0.88);
+    font-weight: 600;
+  }
+  .masthead .meta .dot {
+    margin: 0 0.55rem;
+    color: rgba(250, 248, 244, 0.3);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     HERO METRICS — floating cards that straddle the boundary
+     ═══════════════════════════════════════════════════════════ */
+  .hero-cards-wrap {
+    background: var(--cream);
+    padding: 0 0 3rem;
+  }
+  .hero-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: -5.5rem;
+    margin-bottom: 1.8rem;
+  }
+  .card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 1.7rem 1.4rem 1.5rem;
+    box-shadow:
+      0 1px 3px rgba(15, 36, 24, 0.06),
+      0 8px 24px rgba(15, 36, 24, 0.08),
+      0 0 0 1px rgba(15, 36, 24, 0.04);
+    position: relative;
+    overflow: hidden;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 1.4rem;
+    right: 1.4rem;
+    height: 3px;
+    background: var(--green-800);
+    border-radius: 0 0 3px 3px;
+  }
+  .card.featured::before { background: var(--amber); }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 1px 3px rgba(15, 36, 24, 0.08),
+      0 14px 32px rgba(15, 36, 24, 0.12),
+      0 0 0 1px rgba(15, 36, 24, 0.05);
+  }
+  .card-num {
+    font-size: clamp(1.7rem, 3.8vw, 2.35rem);
+    font-weight: 800;
+    line-height: 0.95;
+    color: var(--green-900);
+    letter-spacing: -0.035em;
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 0.7rem;
+  }
+  .card.featured .card-num { color: var(--amber); }
+  .card-lbl {
+    font-size: 0.66rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.75px;
+    color: var(--ink-muted);
+    line-height: 1.35;
+  }
+
+  .supporting {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--ink-muted);
+    padding: 1.3rem 1.5rem;
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--rule);
+    max-width: 100%;
+  }
+  .supporting strong {
+    color: var(--green-900);
+    font-weight: 700;
+  }
+  .supporting .sep {
+    color: var(--rule);
+    margin: 0 0.6rem;
+    font-weight: 400;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     BODY SECTIONS
+     ═══════════════════════════════════════════════════════════ */
+  .section {
+    padding: 3.5rem 0 0.5rem;
+  }
+  .section-num {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--amber);
+    letter-spacing: 0.5px;
+    margin-bottom: 0.7rem;
+  }
+  .section-num::before {
+    content: '';
+    width: 18px;
+    height: 1px;
+    background: var(--amber);
+  }
+  .section h2 {
+    font-size: clamp(1.55rem, 3vw, 1.95rem);
+    font-weight: 800;
+    color: var(--green-900);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    margin: 0 0 1.6rem 0;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--green-800);
+    margin: 2.1rem 0 0.6rem 0;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+  .section p {
+    margin: 0 0 1.15rem 0;
+    font-size: 1rem;
+    line-height: 1.72;
+    color: var(--ink-2);
+  }
+  .section p strong {
+    color: var(--green-900);
+    font-weight: 700;
+  }
+  .section ul {
+    margin: 0 0 1.3rem 0;
+    padding: 0;
+    list-style: none;
+  }
+  .section ul li {
+    position: relative;
+    padding: 0.55rem 0 0.55rem 1.5rem;
+    line-height: 1.65;
+    color: var(--ink-2);
+  }
+  .section ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1.2rem;
+    width: 8px;
+    height: 1px;
+    background: var(--amber);
+  }
+  .section ul li strong { color: var(--green-900); font-weight: 700; }
+
+  /* Callout */
+  .callout {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--amber);
+    border-radius: 10px;
+    padding: 1.3rem 1.5rem;
+    margin: 1.6rem 0 1.8rem;
+    box-shadow: 0 1px 3px rgba(15, 36, 24, 0.04);
+  }
+  .callout-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--amber);
+    margin-bottom: 0.45rem;
+  }
+  .callout-body {
+    font-size: 0.97rem;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .callout-body strong { color: var(--green-900); font-weight: 700; }
+
+  /* Tables */
+  .table-wrap {
+    margin: 1.4rem 0 1.8rem;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    background: var(--white);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+  thead { background: var(--green-900); }
+  thead th {
+    padding: 0.95rem 1.1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: var(--cream);
+  }
+  thead th.right { text-align: right; }
+  tbody td {
+    padding: 0.85rem 1.1rem;
+    border-bottom: 1px solid var(--rule-soft);
+    line-height: 1.5;
+    vertical-align: top;
+    color: var(--ink-2);
+  }
+  tbody td.right { text-align: right; font-variant-numeric: tabular-nums; }
+  tbody tr:nth-child(even) { background: #fbfaf5; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody td strong { color: var(--green-900); font-weight: 700; }
+  tbody tr.total td {
+    background: var(--cream-2);
+    font-weight: 600;
+    color: var(--green-900);
+  }
+  tbody tr.total td strong { color: var(--green-900); }
+
+  /* ═══════════════════════════════════════════════════════════
+     INVESTMENT CARD — the ask
+     ═══════════════════════════════════════════════════════════ */
+  .investment {
+    background: linear-gradient(160deg, var(--green-950) 0%, var(--green-900) 55%, var(--green-800) 100%);
+    color: var(--cream);
+    padding: 2.8rem 2.5rem 2.5rem;
+    border-radius: 16px;
+    margin: 2.2rem 0 2.5rem;
+    position: relative;
+    box-shadow:
+      0 1px 3px rgba(15, 36, 24, 0.1),
+      0 16px 48px rgba(15, 36, 24, 0.2);
+    overflow: hidden;
+  }
+  .investment::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--amber);
+  }
+  .investment::after {
+    content: '';
+    position: absolute;
+    right: -140px;
+    bottom: -140px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(204, 88, 31, 0.15) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .investment > * { position: relative; z-index: 1; }
+
+  .investment-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--amber);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+  .investment-eyebrow::before {
+    content: '';
+    width: 18px;
+    height: 1px;
+    background: var(--amber);
+  }
+  .investment h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    margin: 0 0 1.8rem 0;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+  }
+  .investment-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+  }
+  .investment-price .big {
+    font-size: clamp(2.6rem, 6vw, 3.5rem);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.03em;
+  }
+  .investment-price .per {
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(250, 248, 244, 0.6);
+  }
+  .investment-price-sub {
+    font-size: 0.82rem;
+    color: rgba(250, 248, 244, 0.6);
+    margin-bottom: 2rem;
+    letter-spacing: 0.1px;
+  }
+  .investment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.4rem;
+    padding: 1.6rem 0;
+    border-top: 1px solid rgba(250, 248, 244, 0.14);
+    border-bottom: 1px solid rgba(250, 248, 244, 0.14);
+    margin-bottom: 1.8rem;
+  }
+  .inv-item-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: rgba(250, 248, 244, 0.55);
+    margin-bottom: 0.4rem;
+  }
+  .inv-item-value {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .inv-item-desc {
+    font-size: 0.85rem;
+    color: rgba(250, 248, 244, 0.72);
+    line-height: 1.55;
+  }
+  .investment-includes {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(250, 248, 244, 0.85);
+  }
+  .investment-includes strong { color: var(--white); font-weight: 700; }
+
+  /* Optional tier box — subdued below the main card */
+  .optional-tier {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 1.4rem 1.5rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .optional-tier-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: var(--amber);
+    margin-bottom: 0.5rem;
+  }
+  .optional-tier h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--green-900);
+    margin: 0 0 0.55rem 0;
+  }
+  .optional-tier p {
+    font-size: 0.9rem;
+    color: var(--ink-2);
+    line-height: 1.6;
+    margin: 0;
+  }
+  .optional-tier p strong { color: var(--green-900); font-weight: 700; }
+
+  /* Sign-off */
+  .signoff {
+    padding: 4rem 0 5rem;
+    text-align: center;
+  }
+  .signoff-rule {
+    width: 60px;
+    height: 2px;
+    background: var(--amber);
+    margin: 0 auto 1.5rem;
+  }
+  .signoff-line {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--green-900);
+    margin: 0 0 0.3rem 0;
+    letter-spacing: -0.015em;
+  }
+  .signoff-date {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    font-weight: 500;
+    letter-spacing: 0.2px;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     MOBILE / RESPONSIVE
+     ═══════════════════════════════════════════════════════════ */
+  @media (max-width: 720px) {
+    .container { padding: 0 1.25rem; }
+
+    .masthead { padding: 2.4rem 0 6rem; }
+    .brand-line { margin-bottom: 1.8rem; }
+    .brand-text { font-size: 0.65rem; letter-spacing: 1.8px; }
+    .masthead h1 { font-size: 1.95rem; letter-spacing: -0.028em; }
+    .masthead .subtitle { font-size: 0.98rem; margin-bottom: 1.4rem; }
+    .masthead .meta { font-size: 0.74rem; line-height: 1.8; }
+    .masthead .meta .dot { margin: 0 0.4rem; }
+
+    .hero-cards {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.7rem;
+      margin-top: -4.5rem;
+      margin-bottom: 1.2rem;
+    }
+    .card { padding: 1.2rem 1rem 1.05rem; border-radius: 12px; }
+    .card::before { left: 1rem; right: 1rem; }
+    .card-num { font-size: 1.55rem; margin-bottom: 0.5rem; }
+    .card-lbl { font-size: 0.58rem; letter-spacing: 0.6px; }
+
+    .supporting { padding: 1rem 1.1rem; font-size: 0.82rem; line-height: 1.65; }
+    .supporting .sep { display: block; height: 0.35rem; color: transparent; }
+
+    .section { padding: 2.5rem 0 0.25rem; }
+    .section h2 { font-size: 1.4rem; margin-bottom: 1.2rem; padding-bottom: 0.85rem; }
+    .section h3 { font-size: 1.02rem; margin-top: 1.7rem; }
+    .section p { font-size: 0.95rem; line-height: 1.65; }
+    .section ul li { padding: 0.5rem 0 0.5rem 1.25rem; font-size: 0.95rem; }
+
+    .callout { padding: 1.1rem 1.2rem; margin: 1.3rem 0; }
+    .callout-body { font-size: 0.9rem; }
+
+    .table-wrap {
+      margin-left: -1.25rem;
+      margin-right: -1.25rem;
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+      overflow-x: auto;
+    }
+    table { font-size: 0.82rem; }
+    thead th { padding: 0.75rem 0.9rem; font-size: 0.62rem; letter-spacing: 0.5px; }
+    tbody td { padding: 0.7rem 0.9rem; }
+
+    .investment { padding: 1.9rem 1.5rem 1.7rem; border-radius: 12px; }
+    .investment h3 { font-size: 1.2rem; margin-bottom: 1.3rem; }
+    .investment-price .big { font-size: 2.3rem; }
+    .investment-grid {
+      grid-template-columns: 1fr;
+      gap: 1.3rem;
+      padding: 1.3rem 0;
+      margin-bottom: 1.4rem;
+    }
+    .investment-includes { font-size: 0.85rem; }
+
+    .optional-tier { padding: 1.1rem 1.2rem; }
+
+    .signoff { padding: 3rem 0 3.5rem; }
+    .signoff-line { font-size: 1.15rem; }
+  }
+
+  @media (max-width: 420px) {
+    .container { padding: 0 1rem; }
+    .masthead { padding: 2rem 0 5.5rem; }
+    .masthead h1 { font-size: 1.7rem; }
+    .hero-cards { margin-top: -4rem; }
+    .card-num { font-size: 1.42rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ MASTHEAD ═══════════════ -->
+<div class="masthead">
+  <div class="container">
+    <div class="brand-line">
+      <div class="brand-dot"></div>
+      <div class="brand-text">Guest Getter<span>×</span>Forest Cliff Camps</div>
+    </div>
+    <h1>Marketing Impact Summary</h1>
+    <p class="subtitle">A 12-week performance review, with a recommendation for what comes next.</p>
+    <p class="meta">Prepared by <strong>Tim and Kyle</strong><span class="dot">·</span><strong>April 10, 2026</strong><span class="dot">·</span>Jan 20 – Apr 10, 2026</p>
+  </div>
+</div>
+
+<!-- ═══════════════ HERO METRICS (floating cards) ═══════════════ -->
+<div class="hero-cards-wrap">
+  <div class="container">
+    <div class="hero-cards">
+      <div class="card">
+        <div class="card-num">$8,808</div>
+        <div class="card-lbl">Total Ad Spend</div>
+      </div>
+      <div class="card">
+        <div class="card-num">150</div>
+        <div class="card-lbl">New Campers Acquired</div>
+      </div>
+      <div class="card">
+        <div class="card-num">$59</div>
+        <div class="card-lbl">Cost Per Camper</div>
+      </div>
+      <div class="card featured">
+        <div class="card-num">9.4×</div>
+        <div class="card-lbl">Year-1 ROAS</div>
+      </div>
+    </div>
+
+    <div class="supporting">
+      <strong>$83,200</strong> Year-1 revenue attributed<span class="sep">·</span><strong>$223K–$416K</strong> projected 5-year lifetime revenue<span class="sep">·</span><strong>3.4× better</strong> than the 2025 Facebook Ads industry benchmark
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ BODY ═══════════════ -->
+<div class="container">
+
+  <!-- 01 — The Story -->
+  <section class="section">
+    <div class="section-num">01 / THE STORY</div>
+    <h2>Twelve weeks of measurable, profitable growth</h2>
+
+    <p>Forest Cliff's 2026 Meta advertising program launched on <strong>January 20, 2026</strong>. Over the twelve weeks since, it has delivered measurable, traceable, profitable growth — and built audience assets that will continue to compound for years.</p>
+
+    <p><strong>$8,808 in ad spend</strong> has been directly traced to <strong>105 new households</strong> (<strong>~150 new campers</strong>) registering through CampBrain, generating roughly <strong>$83,200 in Year-1 revenue</strong> at an average cost of <strong>$59 per camper acquired</strong>. That's a <strong>9.4× return on ad spend in Year 1 alone</strong> — and because Forest Cliff's own data shows the average returning family attends for 3.56 years, the projected 5-year value of those 105 families is between <strong>$223,000 and $416,000</strong>.</p>
+
+    <div class="callout">
+      <div class="callout-eyebrow">Industry context</div>
+      <div class="callout-body">The 2025 Facebook Ads benchmark for the Education industry is roughly <strong>$28 per lead</strong> and an implied <strong>$280 per customer acquired</strong>. Forest Cliff is running at <strong>$8 per lead</strong> and <strong>$59 per camper</strong> — about <strong>3.4× more efficient</strong> than the industry average.</div>
+    </div>
+
+    <p>Beyond direct registrations, three durable audience assets have been built that belong to Forest Cliff and persist after this report:</p>
+
+    <ul>
+      <li>A <strong>902-person warm lead pipeline</strong> in HighLevel — families who raised their hand but haven't yet registered, ready for follow-up at zero additional ad cost.</li>
+      <li>A <strong>~20,000-person engaged video-viewer audience</strong> on Meta — parents who watched at least 25% of a Forest Cliff video ad in the last 90 days.</li>
+      <li>Two <strong>1% Lookalike audiences</strong> totaling ~540,000 Canadian parents, statistically modeled on the families already converting. Built, ready to deploy.</li>
+    </ul>
+  </section>
+
+  <!-- 02 — Where Forest Cliff Stands -->
+  <section class="section">
+    <div class="section-num">02 / WHERE FOREST CLIFF STANDS</div>
+    <h2>Session capacity as of April 10</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Program</th>
+            <th class="right">Registered</th>
+            <th class="right">Capacity</th>
+            <th class="right">% Filled</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Overnight Kids Camp</td><td class="right">716</td><td class="right">820</td><td class="right"><strong>87%</strong></td></tr>
+          <tr><td>Overnight Day Camp Activities</td><td class="right">280</td><td class="right">295</td><td class="right"><strong>95%</strong></td></tr>
+          <tr><td>Overnight Jr High</td><td class="right">262</td><td class="right">308</td><td class="right"><strong>85%</strong></td></tr>
+          <tr><td>Overnight Leadership / Launch</td><td class="right">141</td><td class="right">258</td><td class="right">55%</td></tr>
+          <tr><td><strong>Day Camp (satellite locations)</strong></td><td class="right"><strong>1,538</strong></td><td class="right"><strong>2,794</strong></td><td class="right"><strong>55%</strong></td></tr>
+          <tr class="total"><td><strong>Total</strong></td><td class="right"><strong>3,279</strong></td><td class="right"><strong>4,635</strong></td><td class="right"><strong>71%</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Overnight programs are nearly sold out. <strong>Day Camp has 1,256 open spots representing roughly $345,000 in unbooked revenue.</strong> At the proven acquisition cost of ~$48 per camper-session, filling those spots is a <strong>5.7× immediate return</strong> on marginal ad spend — and it's where the next several months of marketing should focus.</p>
+  </section>
+
+  <!-- 03 — Recommendation -->
+  <section class="section">
+    <div class="section-num">03 / RECOMMENDATION</div>
+    <h2>Continue the partnership</h2>
+
+    <p>The hardest part is already done. The infrastructure is built. The audiences are warmed. The data is flowing. The Lookalike audiences are ready to deploy. Continuing means the next $5,500 is <em>meaningfully more productive</em> than the first $5,500, because everything that took setup work the first time is already in place.</p>
+
+    <p>Tim is proposing to continue leading Forest Cliff's marketing, with Kyle's team at Guest Getter providing the underlying ad execution as part of the existing relationship. The economics make this an obvious decision: we have proof the system works, the warm pipeline is already built, and the next several months cover the most valuable registration window of the year.</p>
+
+    <div class="investment">
+      <div class="investment-eyebrow">Recommended Monthly Investment</div>
+      <h3>Forest Cliff × Tim &amp; Kyle — Ongoing Engagement</h3>
+
+      <div class="investment-price">
+        <span class="big">$5,500</span>
+        <span class="per">/ month</span>
+      </div>
+      <div class="investment-price-sub">All-in. Paid to Tim. No setup fees. Month-to-month after a 6-month minimum.</div>
+
+      <div class="investment-grid">
+        <div>
+          <div class="inv-item-label">Component 1 — Media</div>
+          <div class="inv-item-value">$3,000 ad spend</div>
+          <div class="inv-item-desc">Managed media across Retarget Warm, Overnight Cold, and Day Camp Cold campaigns. Acquires ~35–50 new households per month at current efficiency.</div>
+        </div>
+        <div>
+          <div class="inv-item-label">Component 2 — Leadership</div>
+          <div class="inv-item-value">$2,500 fee</div>
+          <div class="inv-item-desc">Weekly monitoring, kill/scale/refresh decisions, creative production, lead follow-up, audience expansion, monthly executive report.</div>
+        </div>
+      </div>
+
+      <div class="investment-includes">
+        <strong>Projected 6-month output:</strong> ~300 new campers acquired, ~$166,000 in Year-1 revenue, ongoing creative refresh, and the existing 902-lead warm pipeline actively converted. Projected 5-year cumulative revenue from just the cohort acquired during this window: <strong>$440,000 to $820,000</strong>.
+      </div>
+    </div>
+
+    <div class="optional-tier">
+      <div class="optional-tier-eyebrow">Optional — seasonal push</div>
+      <h4>Day Camp capacity push (May – July 2026)</h4>
+      <p>If Forest Cliff wants to aggressively fill the 1,256 open Day Camp spots before camp starts in July, we recommend temporarily scaling to <strong>$8,500/month for three months</strong> — $5,500 in ad spend plus a $3,000 leadership fee. At the proven $48-per-session acquisition cost, this targets roughly <strong>340 additional Day Camp sessions and $93,500 in incremental revenue</strong>.</p>
+    </div>
+
+    <p>We're confident in the work. We're confident in the data. We'd like to keep going.</p>
+  </section>
+
+  <!-- Sign-off -->
+  <div class="signoff">
+    <div class="signoff-rule"></div>
+    <p class="signoff-line">— Tim and Kyle</p>
+    <p class="signoff-date">April 10, 2026</p>
+  </div>
+
+</div>
+
+</body>
+</html>
