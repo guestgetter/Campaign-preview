@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f2418">
+<title>Forest Cliff Camps — Marketing Briefing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  :root {
+    --green-950: #081a10;
+    --green-900: #0f2418;
+    --green-800: #1b3c2a;
+    --green-700: #2d5a3f;
+    --green-600: #5a8a6a;
+    --cream: #faf8f4;
+    --cream-2: #f4f1ea;
+    --paper: #fcfcfa;
+    --amber: #cc581f;
+    --amber-soft: #e8a87c;
+    --ink: #161616;
+    --ink-2: #2a2a2a;
+    --ink-muted: #5a5a58;
+    --rule: #e8e4da;
+    --rule-soft: #f0ece2;
+    --white: #ffffff;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  body {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern", "liga", "calt", "ss01";
+  }
+
+  ::selection { background: var(--amber); color: var(--white); }
+
+  .container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     MASTHEAD
+     ═══════════════════════════════════════════════════════════ */
+  .masthead {
+    background: linear-gradient(180deg, var(--green-950) 0%, var(--green-900) 60%, var(--green-800) 100%);
+    color: var(--cream);
+    padding: 3.5rem 0 8rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .masthead::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--amber);
+  }
+  .masthead::after {
+    content: '';
+    position: absolute;
+    right: -200px;
+    top: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(204, 88, 31, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .masthead > .container { position: relative; z-index: 1; }
+
+  .brand-line {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 2.5rem;
+  }
+  .brand-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--amber);
+    box-shadow: 0 0 0 3px rgba(204, 88, 31, 0.18);
+  }
+  .brand-text {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.2px;
+    color: rgba(250, 248, 244, 0.75);
+  }
+  .brand-text span {
+    color: var(--amber-soft);
+    margin: 0 0.4rem;
+  }
+
+  .masthead h1 {
+    font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    margin: 0 0 0.5rem 0;
+    color: var(--white);
+  }
+  .masthead .subtitle {
+    font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+    font-weight: 500;
+    color: rgba(250, 248, 244, 0.8);
+    margin: 0 0 2rem 0;
+    line-height: 1.4;
+    max-width: 650px;
+  }
+  .masthead .meta {
+    font-size: 0.82rem;
+    color: rgba(250, 248, 244, 0.55);
+    font-weight: 500;
+    letter-spacing: 0.1px;
+  }
+  .masthead .meta strong {
+    color: rgba(250, 248, 244, 0.88);
+    font-weight: 600;
+  }
+  .masthead .meta .dot {
+    margin: 0 0.55rem;
+    color: rgba(250, 248, 244, 0.3);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     HERO METRIC CARDS
+     ═══════════════════════════════════════════════════════════ */
+  .hero-cards-wrap {
+    background: var(--cream);
+    padding: 0 0 3rem;
+  }
+  .hero-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: -5.5rem;
+    margin-bottom: 1.8rem;
+  }
+  .card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 1.7rem 1.4rem 1.5rem;
+    box-shadow:
+      0 1px 3px rgba(15, 36, 24, 0.06),
+      0 8px 24px rgba(15, 36, 24, 0.08),
+      0 0 0 1px rgba(15, 36, 24, 0.04);
+    position: relative;
+    overflow: hidden;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 1.4rem;
+    right: 1.4rem;
+    height: 3px;
+    background: var(--green-800);
+    border-radius: 0 0 3px 3px;
+  }
+  .card.featured::before { background: var(--amber); }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 1px 3px rgba(15, 36, 24, 0.08),
+      0 14px 32px rgba(15, 36, 24, 0.12),
+      0 0 0 1px rgba(15, 36, 24, 0.05);
+  }
+  .card-num {
+    font-size: clamp(1.7rem, 3.8vw, 2.35rem);
+    font-weight: 800;
+    line-height: 0.95;
+    color: var(--green-900);
+    letter-spacing: -0.035em;
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 0.7rem;
+  }
+  .card.featured .card-num { color: var(--amber); }
+  .card-lbl {
+    font-size: 0.66rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.75px;
+    color: var(--ink-muted);
+    line-height: 1.35;
+  }
+
+  .supporting {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--ink-muted);
+    padding: 1.3rem 1.5rem;
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--rule);
+  }
+  .supporting strong {
+    color: var(--green-900);
+    font-weight: 700;
+  }
+  .supporting .sep {
+    color: var(--rule);
+    margin: 0 0.6rem;
+    font-weight: 400;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     BODY SECTIONS
+     ═══════════════════════════════════════════════════════════ */
+  .section {
+    padding: 3.5rem 0 0.5rem;
+  }
+  .section-num {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--amber);
+    letter-spacing: 0.5px;
+    margin-bottom: 0.7rem;
+  }
+  .section-num::before {
+    content: '';
+    width: 18px;
+    height: 1px;
+    background: var(--amber);
+  }
+  .section h2 {
+    font-size: clamp(1.55rem, 3vw, 1.95rem);
+    font-weight: 800;
+    color: var(--green-900);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    margin: 0 0 1.6rem 0;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--green-800);
+    margin: 2.1rem 0 0.6rem 0;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+  .section p {
+    margin: 0 0 1.15rem 0;
+    font-size: 1rem;
+    line-height: 1.72;
+    color: var(--ink-2);
+  }
+  .section p strong {
+    color: var(--green-900);
+    font-weight: 700;
+  }
+  .section ul {
+    margin: 0 0 1.3rem 0;
+    padding: 0;
+    list-style: none;
+  }
+  .section ul li {
+    position: relative;
+    padding: 0.55rem 0 0.55rem 1.5rem;
+    line-height: 1.65;
+    color: var(--ink-2);
+  }
+  .section ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1.2rem;
+    width: 8px;
+    height: 1px;
+    background: var(--amber);
+  }
+  .section ul li strong { color: var(--green-900); font-weight: 700; }
+
+  /* Callout */
+  .callout {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--amber);
+    border-radius: 10px;
+    padding: 1.3rem 1.5rem;
+    margin: 1.6rem 0 1.8rem;
+    box-shadow: 0 1px 3px rgba(15, 36, 24, 0.04);
+  }
+  .callout-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--amber);
+    margin-bottom: 0.45rem;
+  }
+  .callout-body {
+    font-size: 0.97rem;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .callout-body strong { color: var(--green-900); font-weight: 700; }
+
+  /* Tables */
+  .table-wrap {
+    margin: 1.4rem 0 1.8rem;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    background: var(--white);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+  thead { background: var(--green-900); }
+  thead th {
+    padding: 0.95rem 1.1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: var(--cream);
+  }
+  thead th.right { text-align: right; }
+  tbody td {
+    padding: 0.85rem 1.1rem;
+    border-bottom: 1px solid var(--rule-soft);
+    line-height: 1.5;
+    vertical-align: top;
+    color: var(--ink-2);
+  }
+  tbody td.right { text-align: right; font-variant-numeric: tabular-nums; }
+  tbody tr:nth-child(even) { background: #fbfaf5; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody td strong { color: var(--green-900); font-weight: 700; }
+  tbody tr.total td {
+    background: var(--cream-2);
+    font-weight: 600;
+    color: var(--green-900);
+  }
+
+  /* Playbook item (for the tactical observations in section 03) */
+  .playbook-item {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 1.5rem 1.7rem 1.4rem;
+    margin: 1.2rem 0;
+    box-shadow: 0 1px 3px rgba(15, 36, 24, 0.04);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+  .playbook-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 1px 3px rgba(15, 36, 24, 0.06), 0 6px 18px rgba(15, 36, 24, 0.06);
+  }
+  .playbook-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.7rem;
+    flex-wrap: wrap;
+  }
+  .playbook-title {
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: var(--green-900);
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .playbook-tag {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: var(--amber);
+    padding: 0.2rem 0.55rem;
+    border: 1px solid rgba(204, 88, 31, 0.3);
+    border-radius: 3px;
+    background: rgba(204, 88, 31, 0.04);
+    white-space: nowrap;
+  }
+  .playbook-body {
+    font-size: 0.94rem;
+    line-height: 1.65;
+    color: var(--ink-2);
+    margin: 0;
+  }
+  .playbook-body strong { color: var(--green-900); font-weight: 700; }
+
+  /* Sign-off */
+  .signoff {
+    padding: 4rem 0 5rem;
+    text-align: center;
+  }
+  .signoff-rule {
+    width: 60px;
+    height: 2px;
+    background: var(--amber);
+    margin: 0 auto 1.5rem;
+  }
+  .signoff-line {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--green-900);
+    margin: 0 0 0.3rem 0;
+    letter-spacing: -0.015em;
+  }
+  .signoff-date {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    font-weight: 500;
+    letter-spacing: 0.2px;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     MOBILE / RESPONSIVE
+     ═══════════════════════════════════════════════════════════ */
+  @media (max-width: 720px) {
+    .container { padding: 0 1.25rem; }
+
+    .masthead { padding: 2.4rem 0 6rem; }
+    .brand-line { margin-bottom: 1.8rem; }
+    .brand-text { font-size: 0.65rem; letter-spacing: 1.8px; }
+    .masthead h1 { font-size: 1.95rem; letter-spacing: -0.028em; }
+    .masthead .subtitle { font-size: 0.98rem; margin-bottom: 1.4rem; }
+    .masthead .meta { font-size: 0.74rem; line-height: 1.8; }
+    .masthead .meta .dot { margin: 0 0.4rem; }
+
+    .hero-cards {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.7rem;
+      margin-top: -4.5rem;
+      margin-bottom: 1.2rem;
+    }
+    .card { padding: 1.2rem 1rem 1.05rem; border-radius: 12px; }
+    .card::before { left: 1rem; right: 1rem; }
+    .card-num { font-size: 1.55rem; margin-bottom: 0.5rem; }
+    .card-lbl { font-size: 0.58rem; letter-spacing: 0.6px; }
+
+    .supporting { padding: 1rem 1.1rem; font-size: 0.82rem; line-height: 1.65; }
+    .supporting .sep { display: block; height: 0.35rem; color: transparent; }
+
+    .section { padding: 2.5rem 0 0.25rem; }
+    .section h2 { font-size: 1.4rem; margin-bottom: 1.2rem; padding-bottom: 0.85rem; }
+    .section h3 { font-size: 1.02rem; margin-top: 1.7rem; }
+    .section p { font-size: 0.95rem; line-height: 1.65; }
+    .section ul li { padding: 0.5rem 0 0.5rem 1.25rem; font-size: 0.95rem; }
+
+    .callout { padding: 1.1rem 1.2rem; margin: 1.3rem 0; }
+    .callout-body { font-size: 0.9rem; }
+
+    .table-wrap {
+      margin-left: -1.25rem;
+      margin-right: -1.25rem;
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+      overflow-x: auto;
+    }
+    table { font-size: 0.82rem; }
+    thead th { padding: 0.75rem 0.9rem; font-size: 0.62rem; letter-spacing: 0.5px; }
+    tbody td { padding: 0.7rem 0.9rem; }
+
+    .playbook-item { padding: 1.15rem 1.2rem 1.1rem; }
+    .playbook-title { font-size: 0.98rem; }
+    .playbook-body { font-size: 0.88rem; }
+    .playbook-tag { font-size: 0.58rem; }
+
+    .signoff { padding: 3rem 0 3.5rem; }
+    .signoff-line { font-size: 1.15rem; }
+  }
+
+  @media (max-width: 420px) {
+    .container { padding: 0 1rem; }
+    .masthead { padding: 2rem 0 5.5rem; }
+    .masthead h1 { font-size: 1.7rem; }
+    .hero-cards { margin-top: -4rem; }
+    .card-num { font-size: 1.42rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ MASTHEAD ═══════════════ -->
+<div class="masthead">
+  <div class="container">
+    <div class="brand-line">
+      <div class="brand-dot"></div>
+      <div class="brand-text">Guest Getter<span>×</span>Forest Cliff Camps</div>
+    </div>
+    <h1>Marketing Briefing</h1>
+    <p class="subtitle">The current state of Forest Cliff's 2026 digital marketing operations — what's running, what it's producing, and what's queued up next.</p>
+    <p class="meta">Prepared by <strong>Tim and Kyle</strong><span class="dot">·</span><strong>April 10, 2026</strong><span class="dot">·</span>Jan 20 – Apr 10, 2026</p>
+  </div>
+</div>
+
+<!-- ═══════════════ HERO METRIC CARDS ═══════════════ -->
+<div class="hero-cards-wrap">
+  <div class="container">
+    <div class="hero-cards">
+      <div class="card">
+        <div class="card-num">$8,808</div>
+        <div class="card-lbl">Total Ad Spend</div>
+      </div>
+      <div class="card">
+        <div class="card-num">150</div>
+        <div class="card-lbl">New Campers Acquired</div>
+      </div>
+      <div class="card">
+        <div class="card-num">$59</div>
+        <div class="card-lbl">Cost Per Camper</div>
+      </div>
+      <div class="card featured">
+        <div class="card-num">9.4×</div>
+        <div class="card-lbl">Year-1 ROAS</div>
+      </div>
+    </div>
+
+    <div class="supporting">
+      <strong>$83,200</strong> Year-1 revenue attributed<span class="sep">·</span><strong>$223K–$416K</strong> projected 5-year lifetime revenue<span class="sep">·</span><strong>3.4× better</strong> than the 2025 Facebook Ads industry benchmark
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ BODY ═══════════════ -->
+<div class="container">
+
+  <!-- 01 — The Program at a Glance -->
+  <section class="section">
+    <div class="section-num">01 / THE PROGRAM AT A GLANCE</div>
+    <h2>Twelve weeks of measurable, traceable growth</h2>
+
+    <p>Forest Cliff's 2026 Meta advertising program launched on <strong>January 20, 2026</strong>. Over the twelve weeks since, it has operated as a fully-instrumented acquisition engine — every dollar of ad spend is traceable to a lead, every lead is traceable to a registration, and every registration is traceable to a specific campaign and audience.</p>
+
+    <p><strong>$8,808 in ad spend</strong> has been directly traced to <strong>105 new households</strong> (<strong>~150 new campers</strong>) registering through CampBrain, generating roughly <strong>$83,200 in Year-1 revenue</strong> at an average cost of <strong>$59 per camper acquired</strong>. That's a <strong>9.4× return on ad spend in Year 1 alone</strong> — and because Forest Cliff's own data shows the average returning family attends for 3.56 years, the projected 5-year value of those 105 families is between <strong>$223,000 and $416,000</strong>.</p>
+
+    <div class="callout">
+      <div class="callout-eyebrow">Industry context</div>
+      <div class="callout-body">The 2025 Facebook Ads benchmark for the Education industry is roughly <strong>$28 per lead</strong> and an implied <strong>$280 per customer acquired</strong>. Forest Cliff is currently running at <strong>$8 per lead</strong> and <strong>$59 per camper</strong> — about <strong>3.4× more efficient</strong> than the industry average.</div>
+    </div>
+
+    <h3>Infrastructure in place</h3>
+    <p>Before January 20, Forest Cliff had no digital ads program, no lead capture, and no conversion tracking. The following systems are now live and operating:</p>
+
+    <ul>
+      <li><strong>Meta Pixel and Conversions API</strong> — server-side tracking via HighLevel webhook, capturing the ~30–40% of events that iOS 14.5+ breaks on client-side tracking alone.</li>
+      <li><strong>`fccamps.ca` registration funnel</strong> — four-step purpose-built funnel (Lead → Session → Deposit → CampBrain) deployed on Vercel with full UTM passthrough and Stripe integration.</li>
+      <li><strong>Three active campaigns</strong> — Retarget Warm Audiences, Overnight Camp Cold, and Day Camp Cold, all running on the LEADS objective with proper attribution.</li>
+      <li><strong>GA4 and GTM</strong> (container `GTM-WDPCDKNL`, property 477599729) for second-layer analytics and source attribution.</li>
+      <li><strong>Weekly performance monitoring</strong> — kill/scale/refresh decisions documented with data-backed reasoning.</li>
+    </ul>
+
+    <h3>Audience assets built</h3>
+    <p>Beyond direct registrations, three durable audience assets have been built that belong to Forest Cliff's ad account and will continue to compound in value:</p>
+
+    <ul>
+      <li>A <strong>902-person warm lead pipeline</strong> in HighLevel — families who raised their hand through Meta lead forms or the `fccamps.ca` landing page. Roughly 800 haven't yet completed a CampBrain registration.</li>
+      <li>A <strong>~20,000-person engaged video-viewer audience</strong> on Meta — parents who watched at least 25% of a Forest Cliff video ad in the last 90 days. This is the highest-intent retargeting pool in the account.</li>
+      <li>Two <strong>1% Lookalike audiences</strong> totaling ~540,000 Canadian parents, modeled on converting families. Built March 20, not yet deployed in any ad set.</li>
+    </ul>
+  </section>
+
+  <!-- 02 — Where Forest Cliff Stands -->
+  <section class="section">
+    <div class="section-num">02 / SESSION CAPACITY</div>
+    <h2>Where Forest Cliff stands as of April 10</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Program</th>
+            <th class="right">Registered</th>
+            <th class="right">Capacity</th>
+            <th class="right">% Filled</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Overnight Kids Camp</td><td class="right">716</td><td class="right">820</td><td class="right"><strong>87%</strong></td></tr>
+          <tr><td>Overnight Day Camp Activities</td><td class="right">280</td><td class="right">295</td><td class="right"><strong>95%</strong></td></tr>
+          <tr><td>Overnight Jr High</td><td class="right">262</td><td class="right">308</td><td class="right"><strong>85%</strong></td></tr>
+          <tr><td>Overnight Leadership / Launch</td><td class="right">141</td><td class="right">258</td><td class="right">55%</td></tr>
+          <tr><td><strong>Day Camp (satellite locations)</strong></td><td class="right"><strong>1,538</strong></td><td class="right"><strong>2,794</strong></td><td class="right"><strong>55%</strong></td></tr>
+          <tr class="total"><td><strong>Total</strong></td><td class="right"><strong>3,279</strong></td><td class="right"><strong>4,635</strong></td><td class="right"><strong>71%</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Overnight programs are nearly sold out. <strong>Day Camp has 1,256 open spots representing roughly $345,000 in unbooked revenue.</strong> At the proven acquisition cost of ~$48 per camper-session, the economics of continuing to fill those spots are strong — it's the highest-leverage place for marketing attention in the weeks before camp starts.</p>
+  </section>
+
+  <!-- 03 — The Current Playbook -->
+  <section class="section">
+    <div class="section-num">03 / THE CURRENT PLAYBOOK</div>
+    <h2>What's in motion and what needs attention</h2>
+
+    <p>The marketing engine is running. What follows is an inventory of the specific initiatives currently in motion, the assets that exist but haven't yet been activated, and the operational items that require ongoing attention to keep the program compounding.</p>
+
+    <div class="playbook-item">
+      <div class="playbook-head">
+        <h3 class="playbook-title">Warm lead pipeline awaiting follow-up</h3>
+        <span class="playbook-tag">High Leverage</span>
+      </div>
+      <p class="playbook-body">Approximately <strong>800 families</strong> have submitted a Meta lead form or direct `fccamps.ca` form but have not yet completed a CampBrain registration. They have email addresses, phone numbers, and in most cases interest tags (day camp vs. overnight, grade level). A structured follow-up sequence — automated SMS + email touches over 2–4 weeks — would likely convert a meaningful share of this pool at <strong>zero additional ad spend</strong>. This is the single largest piece of unshipped work in the account.</p>
+    </div>
+
+    <div class="playbook-item">
+      <div class="playbook-head">
+        <h3 class="playbook-title">Lookalike audiences built, not yet deployed</h3>
+        <span class="playbook-tag">Ready to Activate</span>
+      </div>
+      <p class="playbook-body">Two 1% Lookalike audiences were built on March 20 — one seeded from lead events, one from lead conversions — together covering roughly <strong>540,000 Canadian parents</strong> who statistically resemble families already converting. Neither has been activated in an ad set yet. Deploying them in the cold campaigns is a short, high-leverage task that should meaningfully improve cold acquisition efficiency.</p>
+    </div>
+
+    <div class="playbook-item">
+      <div class="playbook-head">
+        <h3 class="playbook-title">Day Camp capacity is the open opportunity</h3>
+        <span class="playbook-tag">$345K Unbooked</span>
+      </div>
+      <p class="playbook-body">Of Forest Cliff's 1,256 remaining open spots, effectively all of them are in the Day Camp satellite programs (DC1–DC8, ACT add-ons, and a handful of Leadership / Launch seats). At the ~$48-per-camper-session acquisition cost demonstrated during the first twelve weeks, the economics of continuing to push Day Camp fill are favorable through the start of camp in early July.</p>
+    </div>
+
+    <div class="playbook-item">
+      <div class="playbook-head">
+        <h3 class="playbook-title">Creative refresh cycle needs ongoing attention</h3>
+        <span class="playbook-tag">Operational</span>
+      </div>
+      <p class="playbook-body">Meta ads lose effectiveness after roughly three weeks as audiences saturate. The current creative library was refreshed on <strong>March 21</strong> with 11 new ad variants and is beginning to show early fatigue signals in the retarget pool (cost per lead rising, click-through rate declining). A refresh of 3–5 new creatives every 2–3 weeks is the standard cadence to keep the program compounding. Without it, cost per lead can roughly double in 4–6 weeks.</p>
+    </div>
+
+    <div class="playbook-item">
+      <div class="playbook-head">
+        <h3 class="playbook-title">Retarget audience pool needs continuous replenishment</h3>
+        <span class="playbook-tag">Operational</span>
+      </div>
+      <p class="playbook-body">The retarget campaign is currently the highest-ROAS channel in the account (historically 25–33× on a good week). Its effectiveness depends on a steady flow of new cold traffic to replenish the warm audience pool. The <strong>video-viewer audience decays over 90 days</strong> as older viewers fall out of the window — if cold traffic stops flowing, the retarget engine loses fuel within roughly 60–90 days. Keeping a baseline of cold campaign spend is what keeps retarget profitable.</p>
+    </div>
+
+    <div class="playbook-item">
+      <div class="playbook-head">
+        <h3 class="playbook-title">Weekly monitoring cadence in place</h3>
+        <span class="playbook-tag">Running</span>
+      </div>
+      <p class="playbook-body">Between March 20 and April 10, seven formal performance reports were produced (<strong>Mar 23, 24, 27, 28, 30, Apr 1, Apr 10</strong>) — each documenting kill/scale/refresh decisions against Forest Cliff-specific thresholds with audience-layer comparison, frequency tracking, and prioritized action lists. All reports are archived and available for reference.</p>
+    </div>
+
+    <h3>Attribution confidence and caveats</h3>
+    <p>The 105-household figure comes from a three-layer sequential match between HighLevel contact data and CampBrain's household export, restricted to contacts whose source is a Meta lead form or the `fccamps.ca` landing page. It is deliberately conservative: the false-positive rate is estimated below 5%, and the figure excludes any ad-influenced registration that didn't go through a HighLevel-connected form (direct website visits, phone calls, word-of-mouth from ad-influenced families). The true count of ad-driven registrations is almost certainly higher than 105 — we simply can't prove the ones above that number with evidence a skeptic couldn't argue with.</p>
+
+    <p>GA4 data corroborates the undercounting: direct traffic to `fccamps.ca` jumped <strong>+34%</strong> the week ads launched, and that uplift has held for the full twelve-week window. Those are visitors who saw an ad, didn't click through, but navigated to the site directly — a known and real ad-driven path that doesn't leave a lead-form trail.</p>
+  </section>
+
+  <!-- Sign-off -->
+  <div class="signoff">
+    <div class="signoff-rule"></div>
+    <p class="signoff-line">— Tim and Kyle</p>
+    <p class="signoff-date">April 10, 2026</p>
+  </div>
+
+</div>
+
+</body>
+</html>
