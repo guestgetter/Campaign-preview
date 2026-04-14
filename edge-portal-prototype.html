@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edge Food Equipment - Ordering Portal</title>
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #1a2332;
+  --navy-light: #243044;
+  --navy-mid: #2a3a52;
+  --slate: #364152;
+  --slate-light: #4b5c72;
+  --orange: #e8832a;
+  --orange-light: #f09844;
+  --orange-glow: rgba(232, 131, 42, 0.15);
+  --amber: #f5a623;
+  --green: #22c55e;
+  --green-bg: rgba(34, 197, 94, 0.12);
+  --red: #ef4444;
+  --red-bg: rgba(239, 68, 68, 0.12);
+  --yellow: #eab308;
+  --yellow-bg: rgba(234, 179, 8, 0.12);
+  --blue: #3b82f6;
+  --blue-bg: rgba(59, 130, 246, 0.12);
+  --text: #f1f5f9;
+  --text-dim: #94a3b8;
+  --text-muted: #64748b;
+  --border: rgba(255,255,255,0.08);
+  --border-light: rgba(255,255,255,0.12);
+  --card: #1e2b3d;
+  --card-hover: #243347;
+  --sidebar-w: 260px;
+  --header-h: 64px;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.25);
+  --transition: 0.2s ease;
+}
+
+html { font-size: 15px; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: #111827;
+  color: var(--text);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+a { color: var(--orange); text-decoration: none; }
+a:hover { color: var(--orange-light); }
+
+/* ===== LAYOUT ===== */
+.app { display: flex; min-height: 100vh; }
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: var(--sidebar-w);
+  background: var(--navy);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-brand {
+  padding: 20px 22px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--orange), var(--amber));
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 18px; color: #fff;
+  flex-shrink: 0;
+}
+
+.brand-text h1 { font-size: 16px; font-weight: 700; color: #fff; line-height: 1.2; }
+.brand-text span { font-size: 11px; color: var(--text-dim); letter-spacing: 0.5px; text-transform: uppercase; }
+
+.sidebar-nav { flex: 1; padding: 16px 12px; display: flex; flex-direction: column; gap: 4px; }
+
+.nav-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text-dim);
+  font-size: 14px; font-weight: 500;
+  transition: all var(--transition);
+  position: relative;
+  user-select: none;
+}
+
+.nav-item:hover { background: var(--navy-light); color: var(--text); }
+.nav-item.active {
+  background: var(--orange-glow);
+  color: var(--orange);
+}
+.nav-item.active::before {
+  content: '';
+  position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 3px; height: 24px;
+  background: var(--orange);
+  border-radius: 0 3px 3px 0;
+}
+
+.nav-icon { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.nav-icon svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+.nav-badge {
+  margin-left: auto;
+  background: var(--red);
+  color: #fff;
+  font-size: 11px; font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 10px;
+}
+
+.sidebar-footer {
+  padding: 16px 18px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; gap: 10px;
+}
+
+.avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #dc2626, #f97316);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 13px; color: #fff;
+  flex-shrink: 0;
+}
+
+.sidebar-footer .user-info { flex: 1; min-width: 0; }
+.sidebar-footer .user-name { font-size: 13px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sidebar-footer .user-role { font-size: 11px; color: var(--text-muted); }
+
+/* ===== MAIN AREA ===== */
+.main { flex: 1; margin-left: var(--sidebar-w); }
+
+.header {
+  height: var(--header-h);
+  background: var(--navy);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 28px;
+  position: sticky; top: 0; z-index: 50;
+}
+
+.header-left { display: flex; align-items: center; gap: 16px; }
+
+.menu-toggle {
+  display: none;
+  background: none; border: none;
+  color: var(--text); cursor: pointer;
+  padding: 4px;
+}
+.menu-toggle svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+.header-store {
+  display: flex; align-items: center; gap: 10px;
+}
+
+.store-logo {
+  width: 32px; height: 32px;
+  background: #e31837;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 14px; color: #fff;
+}
+
+.store-info h2 { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.2; }
+.store-info span { font-size: 12px; color: var(--text-dim); }
+
+.header-right { display: flex; align-items: center; gap: 18px; }
+
+.header-btn {
+  background: none; border: none;
+  color: var(--text-dim); cursor: pointer;
+  position: relative; padding: 4px;
+  transition: color var(--transition);
+}
+.header-btn:hover { color: var(--text); }
+.header-btn svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+.header-btn .dot {
+  position: absolute; top: 2px; right: 2px;
+  width: 8px; height: 8px;
+  background: var(--red);
+  border-radius: 50%;
+  border: 2px solid var(--navy);
+}
+
+.cart-count {
+  position: absolute; top: -2px; right: -6px;
+  background: var(--orange);
+  color: #fff;
+  font-size: 10px; font-weight: 700;
+  padding: 0 5px;
+  border-radius: 8px;
+  min-width: 18px; text-align: center;
+  line-height: 18px;
+}
+
+/* ===== CONTENT ===== */
+.content { padding: 28px; }
+
+.page { display: none; animation: fadeIn 0.3s ease; }
+.page.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page-title { font-size: 22px; font-weight: 700; margin-bottom: 24px; }
+
+/* ===== CARDS GRID ===== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  transition: all var(--transition);
+}
+.stat-card:hover { border-color: var(--border-light); background: var(--card-hover); }
+
+.stat-card .label { font-size: 13px; color: var(--text-dim); margin-bottom: 6px; }
+.stat-card .value { font-size: 28px; font-weight: 700; line-height: 1.2; }
+.stat-card .sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+.stat-card .trend { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; margin-top: 6px; }
+.trend.up { color: var(--green); }
+.trend.down { color: var(--red); }
+
+/* ===== ASK EDGE (Dashboard) ===== */
+.ask-edge-bar {
+  background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ask-edge-bar::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange), var(--amber), var(--orange));
+}
+
+.ask-edge-bar h3 {
+  font-size: 16px; font-weight: 700; margin-bottom: 4px;
+  display: flex; align-items: center; gap: 8px;
+}
+.ask-edge-bar h3 .ai-badge {
+  background: linear-gradient(135deg, var(--orange), var(--amber));
+  color: #fff; font-size: 10px; font-weight: 700;
+  padding: 2px 8px; border-radius: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.ask-edge-bar p { font-size: 13px; color: var(--text-dim); margin-bottom: 14px; }
+
+.ask-input-wrap {
+  display: flex; gap: 10px;
+}
+
+.ask-input {
+  flex: 1;
+  background: var(--navy);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: border-color var(--transition);
+}
+.ask-input:focus { border-color: var(--orange); }
+.ask-input::placeholder { color: var(--text-muted); }
+
+.ask-btn {
+  background: linear-gradient(135deg, var(--orange), var(--orange-light));
+  border: none; color: #fff;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-weight: 600; font-size: 14px;
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.ask-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(232,131,42,0.35); }
+
+/* ===== ALERTS ===== */
+.alerts-section { margin-bottom: 28px; }
+.section-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 14px;
+}
+.section-header h3 { font-size: 16px; font-weight: 600; }
+.section-header a { font-size: 13px; }
+
+.alert-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 10px;
+  transition: all var(--transition);
+}
+.alert-card:hover { border-color: var(--border-light); }
+
+.alert-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.alert-dot.urgent { background: var(--red); box-shadow: 0 0 8px rgba(239,68,68,0.5); }
+.alert-dot.warning { background: var(--yellow); box-shadow: 0 0 8px rgba(234,179,8,0.4); }
+
+.alert-content { flex: 1; }
+.alert-content .alert-title { font-size: 14px; font-weight: 600; }
+.alert-content .alert-desc { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+
+.alert-action {
+  background: none; border: 1px solid var(--border-light);
+  color: var(--text-dim); padding: 6px 14px;
+  border-radius: 6px; font-size: 12px; font-weight: 500;
+  cursor: pointer; transition: all var(--transition);
+  white-space: nowrap;
+}
+.alert-action:hover { border-color: var(--orange); color: var(--orange); }
+
+/* ===== TABLES ===== */
+.table-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.table-card .table-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.table-card .table-header h3 { font-size: 16px; font-weight: 600; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px 20px; text-align: left; font-size: 13px; }
+th { color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+td { border-bottom: 1px solid var(--border); }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(255,255,255,0.02); }
+
+/* ===== BADGES ===== */
+.badge {
+  display: inline-flex; align-items: center;
+  padding: 3px 10px; border-radius: 12px;
+  font-size: 11px; font-weight: 600;
+}
+.badge.green { background: var(--green-bg); color: var(--green); }
+.badge.red { background: var(--red-bg); color: var(--red); }
+.badge.yellow { background: var(--yellow-bg); color: var(--yellow); }
+.badge.blue { background: var(--blue-bg); color: var(--blue); }
+.badge.orange { background: var(--orange-glow); color: var(--orange); }
+
+/* ===== EQUIPMENT GRID ===== */
+.equip-filters {
+  display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px; font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.filter-btn:hover { border-color: var(--text-muted); color: var(--text); }
+.filter-btn.active { background: var(--orange-glow); border-color: var(--orange); color: var(--orange); }
+
+.equip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.equip-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: all var(--transition);
+}
+.equip-card:hover { border-color: var(--border-light); transform: translateY(-2px); box-shadow: var(--shadow); }
+
+.equip-img {
+  height: 170px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  font-size: 40px;
+}
+
+.equip-img .stock-badge {
+  position: absolute; top: 10px; right: 10px;
+}
+
+.equip-img .quick-ship {
+  position: absolute; top: 10px; left: 10px;
+  background: linear-gradient(135deg, var(--orange), var(--amber));
+  color: #fff; font-size: 10px; font-weight: 700;
+  padding: 3px 8px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+
+.equip-body { padding: 16px; }
+.equip-body .equip-brand { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.equip-body .equip-name { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.equip-body .equip-model { font-size: 12px; color: var(--text-dim); margin-bottom: 12px; }
+
+.equip-pricing { display: flex; align-items: baseline; gap: 8px; margin-bottom: 14px; }
+.equip-pricing .price { font-size: 20px; font-weight: 700; color: var(--orange); }
+.equip-pricing .msrp { font-size: 13px; color: var(--text-muted); text-decoration: line-through; }
+.equip-pricing .save { font-size: 11px; color: var(--green); font-weight: 600; }
+
+.equip-footer { display: flex; gap: 8px; }
+
+.btn { border: none; border-radius: 6px; font-weight: 600; font-size: 13px; cursor: pointer; padding: 10px 16px; transition: all var(--transition); }
+.btn-primary { background: linear-gradient(135deg, var(--orange), var(--orange-light)); color: #fff; flex: 1; }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(232,131,42,0.3); }
+.btn-outline { background: none; border: 1px solid var(--border-light); color: var(--text-dim); }
+.btn-outline:hover { border-color: var(--orange); color: var(--orange); }
+.btn-sm { padding: 7px 14px; font-size: 12px; }
+.btn-lg { padding: 12px 24px; font-size: 14px; }
+
+/* ===== ASK EDGE CHAT ===== */
+.chat-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.chat-hero {
+  text-align: center;
+  padding: 40px 20px 30px;
+}
+.chat-hero .hero-icon {
+  width: 64px; height: 64px;
+  background: linear-gradient(135deg, var(--orange), var(--amber));
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 28px;
+}
+.chat-hero h2 { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
+.chat-hero p { font-size: 14px; color: var(--text-dim); max-width: 500px; margin: 0 auto; }
+
+.chat-suggestions {
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+  margin-bottom: 28px;
+}
+.chat-suggestion {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 13px; color: var(--text-dim);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.chat-suggestion:hover { border-color: var(--orange); color: var(--orange); }
+
+.chat-messages {
+  display: flex; flex-direction: column; gap: 20px;
+  margin-bottom: 24px;
+}
+
+.chat-msg {
+  display: flex; gap: 12px;
+  max-width: 90%;
+}
+.chat-msg.user { align-self: flex-end; flex-direction: row-reverse; }
+
+.chat-msg .msg-avatar {
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700;
+}
+.chat-msg.ai .msg-avatar { background: linear-gradient(135deg, var(--orange), var(--amber)); color: #fff; }
+.chat-msg.user .msg-avatar { background: var(--slate); color: var(--text-dim); }
+
+.chat-msg .msg-bubble {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.chat-msg.user .msg-bubble { background: var(--navy-mid); }
+
+.msg-bubble p { margin-bottom: 10px; }
+.msg-bubble p:last-child { margin-bottom: 0; }
+.msg-bubble ul { margin: 8px 0; padding-left: 18px; }
+.msg-bubble li { margin-bottom: 6px; font-size: 13px; }
+.msg-bubble strong { color: var(--orange); }
+
+.msg-actions { display: flex; gap: 8px; margin-top: 12px; }
+
+.chat-input-area {
+  display: flex; gap: 10px;
+  background: var(--card);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 8px;
+}
+
+.chat-input-area input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 14px;
+  padding: 8px 12px;
+  outline: none;
+}
+.chat-input-area input::placeholder { color: var(--text-muted); }
+
+.chat-input-area button {
+  background: linear-gradient(135deg, var(--orange), var(--orange-light));
+  border: none; color: #fff;
+  width: 40px; height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--transition);
+}
+.chat-input-area button:hover { transform: scale(1.05); }
+.chat-input-area button svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+/* ===== SERVICE PAGE ===== */
+.service-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.service-form-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.service-form-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 18px; }
+
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 12px; font-weight: 600; color: var(--text-dim); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%;
+  background: var(--navy);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 10px 14px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: border-color var(--transition);
+  font-family: inherit;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--orange); }
+.form-group select { cursor: pointer; }
+.form-group textarea { resize: vertical; min-height: 80px; }
+.form-group select option { background: var(--navy); }
+
+/* ===== ORDERS PAGE ===== */
+.orders-tabs {
+  display: flex; gap: 4px; margin-bottom: 20px;
+  background: var(--card);
+  border-radius: 8px;
+  padding: 4px;
+  width: fit-content;
+}
+.orders-tab {
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 13px; font-weight: 500;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all var(--transition);
+  border: none; background: none;
+}
+.orders-tab.active { background: var(--orange-glow); color: var(--orange); }
+.orders-tab:hover:not(.active) { color: var(--text); }
+
+/* ===== TOAST ===== */
+.toast {
+  position: fixed; bottom: 28px; right: 28px;
+  background: var(--navy-light);
+  border: 1px solid var(--green);
+  border-radius: 10px;
+  padding: 14px 22px;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14px; font-weight: 500;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 999;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast .toast-icon { color: var(--green); font-size: 18px; }
+
+/* ===== MOBILE ===== */
+.sidebar-overlay {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 99;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.sidebar-overlay.show { display: block; opacity: 1; }
+
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; }
+  .menu-toggle { display: block; }
+  .content { padding: 18px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .equip-grid { grid-template-columns: 1fr; }
+  .service-grid { grid-template-columns: 1fr; }
+  .ask-input-wrap { flex-direction: column; }
+  table { font-size: 12px; }
+  th, td { padding: 10px 12px; }
+}
+
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--slate-light); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none; align-items: center; justify-content: center;
+  z-index: 200;
+}
+.modal-overlay.show { display: flex; }
+.modal {
+  background: var(--navy-light);
+  border: 1px solid var(--border-light);
+  border-radius: 14px;
+  padding: 28px;
+  max-width: 420px; width: 90%;
+  animation: fadeIn 0.25s ease;
+}
+.modal h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.modal p { font-size: 14px; color: var(--text-dim); margin-bottom: 20px; }
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR OVERLAY (mobile) -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon">&#10003;</span>
+  <span id="toastMsg">Item added to cart</span>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <h3 id="modalTitle">Service Ticket Created</h3>
+    <p id="modalBody">Ticket #SRV-4892 has been created. A technician will be assigned within 2 hours.</p>
+    <div class="modal-actions">
+      <button class="btn btn-primary" onclick="closeModal()">Got it</button>
+    </div>
+  </div>
+</div>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">E</div>
+      <div class="brand-text">
+        <h1>Edge Food Equipment</h1>
+        <span>Ordering Portal</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-item active" data-page="dashboard">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
+        Dashboard
+      </div>
+      <div class="nav-item" data-page="equipment">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 19h16M4 15h16M7 11V4a1 1 0 011-1h8a1 1 0 011 1v7"/><circle cx="12" cy="15" r="1"/></svg></span>
+        Equipment
+      </div>
+      <div class="nav-item" data-page="parts">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></span>
+        Parts &amp; Supplies
+      </div>
+      <div class="nav-item" data-page="service">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></span>
+        Service
+        <span class="nav-badge">2</span>
+      </div>
+      <div class="nav-item" data-page="orders">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h6"/></svg></span>
+        Orders
+      </div>
+      <div class="nav-item" data-page="askedge">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></span>
+        Ask Edge
+        <span style="margin-left:auto;background:linear-gradient(135deg,var(--orange),var(--amber));color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:8px;text-transform:uppercase;letter-spacing:0.5px">AI</span>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="avatar">MR</div>
+      <div class="user-info">
+        <div class="user-name">Mike Rodriguez</div>
+        <div class="user-role">Franchise Manager</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-left">
+        <button class="menu-toggle" id="menuToggle">
+          <svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18" stroke-linecap="round"/></svg>
+        </button>
+        <div class="header-store">
+          <div class="store-logo">W</div>
+          <div class="store-info">
+            <h2>Wendy's - Store #1247</h2>
+            <span>Toronto, ON</span>
+          </div>
+        </div>
+      </div>
+      <div class="header-right">
+        <button class="header-btn" title="Notifications">
+          <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
+          <span class="dot"></span>
+        </button>
+        <button class="header-btn" title="Cart" id="cartBtn">
+          <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <!-- ==================== DASHBOARD ==================== -->
+      <div class="page active" id="page-dashboard">
+
+        <div class="ask-edge-bar">
+          <h3>Ask Edge <span class="ai-badge">AI-Powered</span></h3>
+          <p>Get instant answers about your equipment, troubleshoot issues, or find the right parts.</p>
+          <div class="ask-input-wrap">
+            <input type="text" class="ask-input" placeholder="e.g. &quot;My Rational oven is showing error code E04&quot; or &quot;I need filters for the Henny Penny fryer&quot;" id="dashAskInput">
+            <button class="ask-btn" onclick="navigateTo('askedge')">Ask Edge</button>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="label">Open Orders</div>
+            <div class="value">7</div>
+            <div class="sub">3 shipping this week</div>
+          </div>
+          <div class="stat-card">
+            <div class="label">Active Service Tickets</div>
+            <div class="value" style="color:var(--yellow)">2</div>
+            <div class="sub">1 urgent - Fryer #2</div>
+          </div>
+          <div class="stat-card">
+            <div class="label">YTD Spend</div>
+            <div class="value">$47,820</div>
+            <div class="trend up">&#9650; 12% vs last year</div>
+          </div>
+          <div class="stat-card">
+            <div class="label">Equipment Units</div>
+            <div class="value">23</div>
+            <div class="sub">All registered &amp; tracked</div>
+          </div>
+        </div>
+
+        <div class="alerts-section">
+          <div class="section-header">
+            <h3>Equipment Alerts</h3>
+            <a href="#" onclick="navigateTo('service');return false;">View All</a>
+          </div>
+          <div class="alert-card">
+            <div class="alert-dot urgent"></div>
+            <div class="alert-content">
+              <div class="alert-title">Henny Penny Fryer #2 - Temperature Sensor Failure</div>
+              <div class="alert-desc">Error code F-12 detected. Unit offline since April 12. Replacement sensor in stock.</div>
+            </div>
+            <button class="alert-action" onclick="navigateTo('service')">View Ticket</button>
+          </div>
+          <div class="alert-card">
+            <div class="alert-dot warning"></div>
+            <div class="alert-content">
+              <div class="alert-title">Rational iCombi - Scheduled Maintenance Due</div>
+              <div class="alert-desc">PM service due April 20. Last serviced Jan 15, 2026. Book now to avoid disruption.</div>
+            </div>
+            <button class="alert-action" onclick="navigateTo('service')">Schedule</button>
+          </div>
+        </div>
+
+        <div class="table-card">
+          <div class="table-header">
+            <h3>Recent Orders</h3>
+            <a href="#" onclick="navigateTo('orders');return false;" style="font-size:13px">View All</a>
+          </div>
+          <div style="overflow-x:auto">
+          <table>
+            <thead>
+              <tr>
+                <th>Order #</th>
+                <th>Date</th>
+                <th>Items</th>
+                <th>Total</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight:600">#EDG-28471</td>
+                <td>Apr 11, 2026</td>
+                <td>Fryer Oil Filters (24pk), Grill Scraper Blades</td>
+                <td>$487.50</td>
+                <td><span class="badge blue">Shipped</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:600">#EDG-28390</td>
+                <td>Apr 8, 2026</td>
+                <td>Rational Cleaning Tablets (100ct)</td>
+                <td>$312.00</td>
+                <td><span class="badge green">Delivered</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:600">#EDG-28215</td>
+                <td>Apr 2, 2026</td>
+                <td>Henny Penny Temperature Sensor, Gasket Kit</td>
+                <td>$1,245.00</td>
+                <td><span class="badge orange">Processing</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:600">#EDG-28104</td>
+                <td>Mar 28, 2026</td>
+                <td>Walk-in Cooler Compressor Unit</td>
+                <td>$4,890.00</td>
+                <td><span class="badge green">Delivered</span></td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ==================== EQUIPMENT ==================== -->
+      <div class="page" id="page-equipment">
+        <div class="page-title">Equipment Catalog</div>
+
+        <div class="equip-filters">
+          <button class="filter-btn active" onclick="filterEquip(this,'all')">All Equipment</button>
+          <button class="filter-btn" onclick="filterEquip(this,'fryers')">Fryers</button>
+          <button class="filter-btn" onclick="filterEquip(this,'grills')">Grills &amp; Griddles</button>
+          <button class="filter-btn" onclick="filterEquip(this,'refrigeration')">Refrigeration</button>
+          <button class="filter-btn" onclick="filterEquip(this,'ovens')">Ovens</button>
+          <button class="filter-btn" onclick="filterEquip(this,'smallwares')">Smallwares</button>
+        </div>
+
+        <div class="equip-grid" id="equipGrid">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+
+      <!-- ==================== PARTS & SUPPLIES ==================== -->
+      <div class="page" id="page-parts">
+        <div class="page-title">Parts &amp; Supplies</div>
+
+        <div class="equip-filters">
+          <button class="filter-btn active">All</button>
+          <button class="filter-btn">Replacement Parts</button>
+          <button class="filter-btn">Chemicals</button>
+          <button class="filter-btn">Filters &amp; Screens</button>
+          <button class="filter-btn">Smallwares</button>
+          <button class="filter-btn">Cleaning</button>
+        </div>
+
+        <div class="equip-grid" id="partsGrid">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+
+      <!-- ==================== SERVICE ==================== -->
+      <div class="page" id="page-service">
+        <div class="page-title">Service &amp; Maintenance</div>
+
+        <div class="stats-grid" style="margin-bottom:24px">
+          <div class="stat-card">
+            <div class="label">Active Tickets</div>
+            <div class="value" style="color:var(--yellow)">2</div>
+          </div>
+          <div class="stat-card">
+            <div class="label">Avg. Response Time</div>
+            <div class="value">1.4h</div>
+          </div>
+          <div class="stat-card">
+            <div class="label">Resolved This Month</div>
+            <div class="value" style="color:var(--green)">5</div>
+          </div>
+          <div class="stat-card">
+            <div class="label">Upcoming PM</div>
+            <div class="value">1</div>
+            <div class="sub">Apr 20 - Rational iCombi</div>
+          </div>
+        </div>
+
+        <div class="service-grid">
+          <div>
+            <div class="section-header"><h3>Active Tickets</h3></div>
+            <div class="alert-card" style="margin-bottom:12px">
+              <div class="alert-dot urgent"></div>
+              <div class="alert-content">
+                <div class="alert-title">SRV-4891 - Fryer #2 Temp Sensor Failure</div>
+                <div class="alert-desc">Assigned: Dave Chen &bull; ETA: Apr 15 &bull; Priority: Urgent</div>
+              </div>
+              <span class="badge red">Urgent</span>
+            </div>
+            <div class="alert-card" style="margin-bottom:12px">
+              <div class="alert-dot warning"></div>
+              <div class="alert-content">
+                <div class="alert-title">SRV-4887 - Rational iCombi PM Due</div>
+                <div class="alert-desc">Scheduled: Apr 20, 2026 &bull; Type: Preventive Maintenance</div>
+              </div>
+              <span class="badge yellow">Scheduled</span>
+            </div>
+
+            <div class="section-header" style="margin-top:28px"><h3>Recent History</h3></div>
+            <div class="table-card">
+              <div style="overflow-x:auto">
+              <table>
+                <thead>
+                  <tr><th>Ticket</th><th>Issue</th><th>Resolved</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>SRV-4872</td><td>Walk-in cooler compressor replacement</td><td>Apr 1</td><td><span class="badge green">Complete</span></td></tr>
+                  <tr><td>SRV-4856</td><td>Grill igniter not sparking</td><td>Mar 22</td><td><span class="badge green">Complete</span></td></tr>
+                  <tr><td>SRV-4841</td><td>Fryer oil pump maintenance</td><td>Mar 15</td><td><span class="badge green">Complete</span></td></tr>
+                  <tr><td>SRV-4829</td><td>Refrigeration unit door seal</td><td>Mar 8</td><td><span class="badge green">Complete</span></td></tr>
+                  <tr><td>SRV-4810</td><td>Rational annual calibration</td><td>Feb 28</td><td><span class="badge green">Complete</span></td></tr>
+                </tbody>
+              </table>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="service-form-card">
+              <h3>Create Service Ticket</h3>
+              <div class="form-group">
+                <label>Equipment</label>
+                <select>
+                  <option>Select equipment...</option>
+                  <option>Henny Penny OFG-341 Fryer #1</option>
+                  <option>Henny Penny OFG-341 Fryer #2</option>
+                  <option>Rational iCombi Pro 6-Full</option>
+                  <option>Garland MST47R Grill</option>
+                  <option>True T-49 Reach-In Refrigerator</option>
+                  <option>Kolpak Walk-In Cooler</option>
+                  <option>Manitowoc IYT0500A Ice Machine</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Priority</label>
+                <select>
+                  <option>Normal</option>
+                  <option>High</option>
+                  <option>Urgent - Equipment Down</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Issue Type</label>
+                <select>
+                  <option>Repair</option>
+                  <option>Preventive Maintenance</option>
+                  <option>Installation</option>
+                  <option>Inspection</option>
+                  <option>Warranty Claim</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Description</label>
+                <textarea placeholder="Describe the issue in detail..."></textarea>
+              </div>
+              <div class="form-group">
+                <label>Preferred Date</label>
+                <input type="date">
+              </div>
+              <button class="btn btn-primary btn-lg" style="width:100%" onclick="showModal('Service Ticket Created','Ticket #SRV-4892 has been created and routed to your Edge service team. A technician will be assigned within 2 hours. You\'ll receive SMS and email updates.')">Submit Ticket</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== ORDERS ==================== -->
+      <div class="page" id="page-orders">
+        <div class="page-title">Orders &amp; Invoices</div>
+
+        <div class="orders-tabs">
+          <button class="orders-tab active">All Orders</button>
+          <button class="orders-tab">In Progress</button>
+          <button class="orders-tab">Delivered</button>
+          <button class="orders-tab">Invoices</button>
+        </div>
+
+        <div class="table-card">
+          <div style="overflow-x:auto">
+          <table>
+            <thead>
+              <tr>
+                <th>Order #</th>
+                <th>Date</th>
+                <th>Items</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Invoice</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight:600">#EDG-28471</td>
+                <td>Apr 11, 2026</td>
+                <td>Fryer Oil Filters (24pk), Grill Scraper Blades</td>
+                <td>$487.50</td>
+                <td><span class="badge blue">Shipped</span></td>
+                <td><a href="#">INV-28471</a></td>
+              </tr>
+              <tr>
+                <td style="font-weight:600">#EDG-28390</td>
+                <td>Apr 8, 2026</td>
+                <td>Rational Cleaning Tablets (100ct)</td>
+                <td>$312.00</td>
+                <td><span class="badge green">Delivered</span></td>
+                <td><a href="#">INV-28390</a></td>
+              </tr>
+              <tr>
+                <td style="font-weight:600">#EDG-28215</td>
+                <td>Apr 2, 2026</td>
+                <td>Henny Penny Temperature Sensor, Gasket Kit</td>
+                <td>$1,245.00</td>
+                <td><span class="badge orange">Processing</span></td>
+                <td><a href="#">INV-28215</a></td>
+              </tr>
+              <tr>
+                <td style="font-weight:600">#EDG-28104</td>
+                <td>Mar 28, 2026</td>
+                <td>Walk-in Cooler Compressor Unit</td>
+                <td>$4,890.00</td>
+                <td><span class="badge green">Delivered</span></td>
+                <td><a href="#">INV-28104</a></td>
+              </tr>
+              <tr>
+                <td style="font-weight:600">#EDG-27988</td>
+                <td>Mar 20, 2026</td>
+                <td>Garland Grill Igniter Kit, Burner Assembly</td>
+                <td>$876.00</td>
+                <td><span class="badge green">Delivered</span></td>
+                <td><a href="#">INV-27988</a></td>
+              </tr>
+              <tr>
+                <td style="font-weight:600">#EDG-27845</td>
+                <td>Mar 14, 2026</td>
+                <td>True Refrigerator Door Gasket Set</td>
+                <td>$234.00</td>
+                <td><span class="badge green">Delivered</span></td>
+                <td><a href="#">INV-27845</a></td>
+              </tr>
+              <tr>
+                <td style="font-weight:600">#EDG-27712</td>
+                <td>Mar 7, 2026</td>
+                <td>Chemical Kit - Degreaser (4gal), Sanitizer (4gal)</td>
+                <td>$189.00</td>
+                <td><span class="badge green">Delivered</span></td>
+                <td><a href="#">INV-27712</a></td>
+              </tr>
+              <tr>
+                <td style="font-weight:600">#EDG-27601</td>
+                <td>Feb 28, 2026</td>
+                <td>Manitowoc Ice Machine Descaler (6pk)</td>
+                <td>$142.50</td>
+                <td><span class="badge green">Delivered</span></td>
+                <td><a href="#">INV-27601</a></td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== ASK EDGE ==================== -->
+      <div class="page" id="page-askedge">
+        <div class="chat-container">
+          <div class="chat-hero">
+            <div class="hero-icon">E</div>
+            <h2>Ask Edge</h2>
+            <p>Your AI-powered equipment assistant. Ask about troubleshooting, parts, maintenance schedules, or anything related to your kitchen equipment.</p>
+          </div>
+
+          <div class="chat-suggestions">
+            <div class="chat-suggestion" onclick="triggerChat('My Rational oven is showing error code E04')">Rational error code E04</div>
+            <div class="chat-suggestion" onclick="triggerChat('When is my next PM service due?')">Next PM due date</div>
+            <div class="chat-suggestion" onclick="triggerChat('I need oil filters for the Henny Penny fryer')">Order fryer filters</div>
+            <div class="chat-suggestion" onclick="triggerChat('What chemicals should I use for the grill?')">Grill cleaning chemicals</div>
+          </div>
+
+          <div class="chat-messages" id="chatMessages">
+            <div class="chat-msg user">
+              <div class="msg-avatar">MR</div>
+              <div class="msg-bubble">
+                <p>My Henny Penny fryer #2 is throwing error code F-12 and the oil isn't getting hot enough. What should I do?</p>
+              </div>
+            </div>
+
+            <div class="chat-msg ai">
+              <div class="msg-avatar">E</div>
+              <div class="msg-bubble">
+                <p><strong>Error Code F-12</strong> on your Henny Penny OFG-341 indicates a <strong>temperature sensor failure</strong>. Here's what's happening and what to do:</p>
+                <p><strong>Immediate Steps:</strong></p>
+                <ul>
+                  <li><strong>Power down</strong> the fryer immediately to prevent further damage</li>
+                  <li><strong>Do not attempt</strong> to bypass the sensor - this is a safety-critical component</li>
+                  <li>Check that the sensor probe connection at the back of the control board is secure</li>
+                </ul>
+                <p><strong>Likely Cause:</strong> The RTD temperature sensor has degraded. This is common after 18-24 months of heavy use. Your unit has been in service since March 2024.</p>
+                <p><strong>Good news:</strong> The replacement sensor (<strong>Part #HP-60828</strong>) is <strong>in stock</strong> at our Toronto warehouse and available for next-day delivery at your negotiated price of <strong>$289.00</strong> (MSRP $345.00).</p>
+                <div class="msg-actions">
+                  <button class="btn btn-primary btn-sm" onclick="showToast('Temperature Sensor added to cart')">Add Sensor to Cart - $289</button>
+                  <button class="btn btn-outline btn-sm" onclick="showModal('Service Ticket Created','Ticket #SRV-4891 has been created for Fryer #2 temperature sensor replacement. Technician Dave Chen has been assigned with an ETA of April 15.')">Create Service Ticket</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="chat-msg user">
+              <div class="msg-avatar">MR</div>
+              <div class="msg-bubble">
+                <p>Can a tech install it? I don't want my team messing with it.</p>
+              </div>
+            </div>
+
+            <div class="chat-msg ai">
+              <div class="msg-avatar">E</div>
+              <div class="msg-bubble">
+                <p>Absolutely - that's the smart call. This involves working near high-voltage components.</p>
+                <p>I've checked <strong>Dave Chen's</strong> schedule (your regular Edge technician) and he has availability:</p>
+                <ul>
+                  <li><strong>Tomorrow (Apr 15)</strong> - 9:00 AM to 11:00 AM</li>
+                  <li><strong>Wednesday (Apr 16)</strong> - 2:00 PM to 4:00 PM</li>
+                </ul>
+                <p>The install takes about <strong>45 minutes</strong>. Total cost with labor: <strong>$289 (part) + $175 (service call) = $464.00</strong></p>
+                <p>Want me to book Dave for tomorrow morning so you can get Fryer #2 back online ASAP?</p>
+                <div class="msg-actions">
+                  <button class="btn btn-primary btn-sm" onclick="showModal('Appointment Booked','Dave Chen confirmed for tomorrow, April 15 at 9:00 AM. Part #HP-60828 will ship today for morning delivery. You\'ll receive a confirmation email shortly.')">Book Tomorrow 9 AM</button>
+                  <button class="btn btn-outline btn-sm" onclick="showToast('Wednesday slot selected')">Book Wednesday 2 PM</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-input-area">
+            <input type="text" placeholder="Ask Edge anything about your equipment..." id="chatInput">
+            <button onclick="sendChat()">
+              <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== DATA =====
+const equipment = [
+  { name: 'OFG-341 Open Fryer', brand: 'Henny Penny', model: 'OFG-341', price: 8495, msrp: 9850, stock: 'In Stock', quickShip: true, cat: 'fryers', color: '#b45309', icon: '&#9832;' },
+  { name: 'OFE-322 Electric Fryer', brand: 'Henny Penny', model: 'OFE-322', price: 7250, msrp: 8400, stock: 'In Stock', quickShip: true, cat: 'fryers', color: '#92400e', icon: '&#9832;' },
+  { name: 'iCombi Pro 6-Full', brand: 'Rational', model: 'LM200GG', price: 24800, msrp: 28500, stock: 'In Stock', quickShip: false, cat: 'ovens', color: '#1e40af', icon: '&#9641;' },
+  { name: 'iVario Pro 2-S', brand: 'Rational', model: 'VA212', price: 32500, msrp: 37900, stock: '2 Available', quickShip: false, cat: 'ovens', color: '#1e3a8a', icon: '&#9641;' },
+  { name: 'MST47R Griddle', brand: 'Garland', model: 'MST47R', price: 4890, msrp: 5650, stock: 'In Stock', quickShip: true, cat: 'grills', color: '#dc2626', icon: '&#9644;' },
+  { name: 'ED-42B Broiler', brand: 'Garland', model: 'ED-42B', price: 3975, msrp: 4600, stock: 'In Stock', quickShip: true, cat: 'grills', color: '#b91c1c', icon: '&#9644;' },
+  { name: 'T-49 Reach-In Refrigerator', brand: 'True', model: 'T-49-HC', price: 4250, msrp: 4950, stock: 'In Stock', quickShip: true, cat: 'refrigeration', color: '#0e7490', icon: '&#10052;' },
+  { name: 'Walk-In Cooler 8x10', brand: 'Kolpak', model: 'P7-810-CT', price: 12800, msrp: 14900, stock: 'Lead Time: 3 wks', quickShip: false, cat: 'refrigeration', color: '#155e75', icon: '&#10052;' },
+  { name: 'IYT0500A Ice Machine', brand: 'Manitowoc', model: 'IYT0500A', price: 3650, msrp: 4200, stock: 'In Stock', quickShip: true, cat: 'refrigeration', color: '#0369a1', icon: '&#10052;' },
+  { name: 'T-23 Reach-In Refrigerator', brand: 'True', model: 'T-23-HC', price: 2890, msrp: 3350, stock: 'In Stock', quickShip: true, cat: 'refrigeration', color: '#0891b2', icon: '&#10052;' },
+  { name: 'Prep Table 48"', brand: 'True', model: 'TSSU-48-12', price: 3190, msrp: 3700, stock: 'In Stock', quickShip: false, cat: 'refrigeration', color: '#06b6d4', icon: '&#10052;' },
+  { name: '12" Stainless Steel Tongs', brand: 'Vollrath', model: '4781210', price: 8.50, msrp: 12.00, stock: 'In Stock', quickShip: true, cat: 'smallwares', color: '#6b7280', icon: '&#9874;' },
+];
+
+const parts = [
+  { name: 'Temperature Sensor RTD', brand: 'Henny Penny', model: 'HP-60828', price: 289, msrp: 345, stock: 'In Stock', quickShip: true, cat: 'parts', color: '#b45309', icon: '&#9881;' },
+  { name: 'Fryer Oil Filter Screens (24pk)', brand: 'Henny Penny', model: 'HP-12102', price: 124.50, msrp: 155, stock: 'In Stock', quickShip: true, cat: 'parts', color: '#92400e', icon: '&#9881;' },
+  { name: 'Door Gasket Set', brand: 'True', model: 'TR-810859', price: 78, msrp: 95, stock: 'In Stock', quickShip: true, cat: 'parts', color: '#0e7490', icon: '&#9881;' },
+  { name: 'Grill Igniter Kit', brand: 'Garland', model: 'GL-CK4527246', price: 156, msrp: 189, stock: 'In Stock', quickShip: true, cat: 'parts', color: '#dc2626', icon: '&#9881;' },
+  { name: 'Cleaning Tablets (100ct)', brand: 'Rational', model: 'RAT-56.00.210', price: 312, msrp: 375, stock: 'In Stock', quickShip: true, cat: 'chemicals', color: '#1e40af', icon: '&#9883;' },
+  { name: 'Commercial Degreaser (4 gal)', brand: 'Ecolab', model: 'ECO-14205', price: 68.50, msrp: 85, stock: 'In Stock', quickShip: true, cat: 'chemicals', color: '#059669', icon: '&#9883;' },
+  { name: 'Sanitizer Concentrate (4 gal)', brand: 'Ecolab', model: 'ECO-14310', price: 54, msrp: 67, stock: 'In Stock', quickShip: true, cat: 'chemicals', color: '#10b981', icon: '&#9883;' },
+  { name: 'Grill Scraper Blades (12pk)', brand: 'Garland', model: 'GL-SS200', price: 42, msrp: 52, stock: 'In Stock', quickShip: true, cat: 'parts', color: '#b91c1c', icon: '&#9881;' },
+  { name: 'Ice Machine Descaler (6pk)', brand: 'Manitowoc', model: 'MAN-000005163', price: 142.50, msrp: 168, stock: 'In Stock', quickShip: true, cat: 'chemicals', color: '#0369a1', icon: '&#9883;' },
+  { name: 'Fryer Basket Handle', brand: 'Henny Penny', model: 'HP-65584', price: 32, msrp: 42, stock: 'In Stock', quickShip: true, cat: 'parts', color: '#b45309', icon: '&#9881;' },
+];
+
+// ===== RENDERING =====
+function renderGrid(containerId, items) {
+  const grid = document.getElementById(containerId);
+  grid.innerHTML = items.map(item => {
+    const save = Math.round((1 - item.price / item.msrp) * 100);
+    const stockClass = item.stock === 'In Stock' || item.stock === '2 Available' ? 'green' : item.stock.includes('Lead') ? 'yellow' : 'red';
+    return `
+      <div class="equip-card" data-cat="${item.cat}">
+        <div class="equip-img" style="background:linear-gradient(135deg, ${item.color}22, ${item.color}44)">
+          <span style="font-size:54px;opacity:0.7;color:${item.color}">${item.icon}</span>
+          <span class="stock-badge badge ${stockClass}">${item.stock}</span>
+          ${item.quickShip ? '<span class="quick-ship">Quick Ship</span>' : ''}
+        </div>
+        <div class="equip-body">
+          <div class="equip-brand">${item.brand}</div>
+          <div class="equip-name">${item.name}</div>
+          <div class="equip-model">Model: ${item.model}</div>
+          <div class="equip-pricing">
+            <span class="price">$${item.price.toLocaleString('en-US', {minimumFractionDigits: item.price % 1 ? 2 : 0})}</span>
+            <span class="msrp">$${item.msrp.toLocaleString('en-US', {minimumFractionDigits: item.msrp % 1 ? 2 : 0})}</span>
+            <span class="save">Save ${save}%</span>
+          </div>
+          <div class="equip-footer">
+            <button class="btn btn-primary" onclick="addToCart('${item.name}')">Add to Cart</button>
+            <button class="btn btn-outline">Details</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+renderGrid('equipGrid', equipment);
+renderGrid('partsGrid', parts);
+
+// ===== NAVIGATION =====
+function navigateTo(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  document.querySelector(`.nav-item[data-page="${page}"]`).classList.add('active');
+  // Close mobile sidebar
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('show');
+  window.scrollTo(0, 0);
+}
+
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', () => navigateTo(item.dataset.page));
+});
+
+// ===== MOBILE MENU =====
+document.getElementById('menuToggle').addEventListener('click', () => {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+});
+document.getElementById('sidebarOverlay').addEventListener('click', () => {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('show');
+});
+
+// ===== CART =====
+let cartItems = 0;
+function addToCart(name) {
+  cartItems++;
+  document.getElementById('cartCount').textContent = cartItems;
+  showToast(name + ' added to cart');
+}
+
+// ===== TOAST =====
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+// ===== MODAL =====
+function showModal(title, body) {
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalBody').textContent = body;
+  document.getElementById('modal').classList.add('show');
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('show');
+}
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// ===== EQUIPMENT FILTER =====
+function filterEquip(btn, cat) {
+  btn.parentElement.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#equipGrid .equip-card').forEach(card => {
+    card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+  });
+}
+
+// ===== ORDERS TABS =====
+document.querySelectorAll('.orders-tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    this.parentElement.querySelectorAll('.orders-tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// ===== CHAT =====
+function triggerChat(text) {
+  document.getElementById('chatInput').value = text;
+  sendChat();
+}
+
+function sendChat() {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+
+  const msgs = document.getElementById('chatMessages');
+  // User message
+  const userMsg = document.createElement('div');
+  userMsg.className = 'chat-msg user';
+  userMsg.innerHTML = `<div class="msg-avatar">MR</div><div class="msg-bubble"><p>${escapeHtml(text)}</p></div>`;
+  msgs.appendChild(userMsg);
+
+  // Typing indicator
+  const typing = document.createElement('div');
+  typing.className = 'chat-msg ai';
+  typing.innerHTML = `<div class="msg-avatar">E</div><div class="msg-bubble"><p style="color:var(--text-muted)">Thinking...</p></div>`;
+  msgs.appendChild(typing);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  setTimeout(() => {
+    typing.querySelector('.msg-bubble').innerHTML = `<p>I'd be happy to help with that. Based on your equipment profile for <strong>Wendy's Store #1247</strong>, let me look into this for you.</p><p>I'm pulling up relevant information from your equipment records, maintenance history, and our parts catalog. In a live environment, I'd have a complete answer here in seconds.</p><p style="color:var(--text-muted);font-size:12px;font-style:italic">This is a prototype demo. In production, Ask Edge connects to your full equipment database, service history, parts inventory, and manufacturer documentation.</p>`;
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 1500);
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// ===== DASHBOARD ASK INPUT =====
+document.getElementById('dashAskInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') navigateTo('askedge');
+});
+document.getElementById('chatInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') sendChat();
+});
+</script>
+
+</body>
+</html>
