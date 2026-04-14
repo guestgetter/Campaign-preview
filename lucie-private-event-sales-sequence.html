@@ -144,6 +144,45 @@
     margin-top: 4px;
   }
 
+  /* ── CONTEXT CARD ── */
+  .context-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 48px;
+  }
+  .context-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--navy);
+    margin-bottom: 14px;
+  }
+  .context-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .context-item {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .context-item .ci-label {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gold-muted);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .context-item ul {
+    margin: 4px 0 0 18px;
+    color: var(--text-muted);
+    font-size: 13.5px;
+  }
+  .context-item ul li { margin-bottom: 3px; }
+
   /* ── SECTION ── */
   .section { margin-bottom: 56px; }
   .section-label {
@@ -246,9 +285,7 @@
   .email-step.a { background: var(--navy); color: white; }
   .email-step.b { background: var(--gold); color: white; }
   .email-step.c { background: var(--teal); color: white; }
-  .email-card-meta {
-    flex: 1;
-  }
+  .email-card-meta { flex: 1; }
   .email-card-title {
     font-weight: 600;
     font-size: 15px;
@@ -259,9 +296,7 @@
     color: var(--text-muted);
     margin-top: 1px;
   }
-  .email-card-body {
-    padding: 28px 28px 24px;
-  }
+  .email-card-body { padding: 28px 28px 24px; }
   .email-subject {
     display: flex;
     align-items: center;
@@ -328,8 +363,53 @@
     color: var(--green);
     line-height: 1.6;
   }
-  .email-rationale strong {
+  .email-rationale strong { font-weight: 700; }
+
+  /* ── SMS CARD ── */
+  .sms-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .sms-card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 24px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(135deg, var(--cream) 0%, rgba(61,122,122,0.04) 100%);
+  }
+  .sms-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 10px;
     font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    background: rgba(61,122,122,0.1);
+    color: var(--teal);
+  }
+  .sms-card-body {
+    padding: 20px 24px;
+  }
+  .sms-bubble {
+    background: var(--navy);
+    color: white;
+    border-radius: 16px 16px 16px 4px;
+    padding: 14px 18px;
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 480px;
+  }
+  .sms-note {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--text-muted);
   }
 
   /* ── SEGMENT DIVIDER ── */
@@ -373,6 +453,23 @@
     color: rgba(255,255,255,0.45);
     margin-top: 2px;
   }
+
+  /* ── PHASE LABEL ── */
+  .phase-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .phase-label.warm { background: rgba(212,165,116,0.12); color: var(--gold-muted); }
+  .phase-label.nurture { background: rgba(61,122,122,0.08); color: var(--teal); }
+  .phase-label.long { background: rgba(1,51,73,0.06); color: var(--slate); }
 
   /* ── EXECUTION TABLE ── */
   .exec-grid {
@@ -476,7 +573,7 @@
     font-size: 14px;
     color: rgba(255,255,255,0.5);
     line-height: 1.7;
-    max-width: 560px;
+    max-width: 600px;
     position: relative;
   }
 
@@ -499,6 +596,21 @@
     color: var(--text-muted);
   }
 
+  /* ── CALLOUT ── */
+  .callout {
+    padding: 18px 24px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    line-height: 1.7;
+    margin: 20px 0;
+  }
+  .callout.gold {
+    background: rgba(212,165,116,0.06);
+    border: 1px solid rgba(212,165,116,0.18);
+    color: var(--text);
+  }
+  .callout.gold strong { color: var(--gold-muted); }
+
   @media (max-width: 768px) {
     .header { padding: 48px 24px 40px; }
     .header h1 { font-size: 30px; }
@@ -506,6 +618,7 @@
     .header-meta { flex-direction: column; gap: 8px; }
     .exec-grid { grid-template-columns: 1fr; }
     .seg-divider { flex-direction: column; text-align: center; }
+    .context-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -516,11 +629,12 @@
   <div class="header-inner">
     <div class="eyebrow">Guest Getter &middot; Sales Sequence</div>
     <h1>Private Event Lead<br><em>Reactivation Sequence</em></h1>
-    <p class="header-desc">A three-segment, multi-touch sequence designed to convert Restaurant Lucie's unconverted private event inquiries, celebration leads, and experience campaign leads into booked revenue.</p>
+    <p class="header-desc">A three-segment, multi-touch sequence designed to convert Restaurant Lucie's 315 Perfect Venue contacts and unconverted ad leads into booked private events. Built from Maggie's playbook, Lucie's actual differentiators, and the lead data.</p>
     <div class="header-meta">
       <div class="header-meta-item"><strong>Client:</strong>&ensp;Restaurant Lucie</div>
       <div class="header-meta-item"><strong>Created:</strong>&ensp;April 14, 2026</div>
-      <div class="header-meta-item"><strong>Lead Pool:</strong>&ensp;~1,700+ leads</div>
+      <div class="header-meta-item"><strong>Lead Pool:</strong>&ensp;315 PV + 1,700 Meta</div>
+      <div class="header-meta-item"><strong>Reviewed:</strong>&ensp;w/ Maggie &amp; Fred, Apr 9</div>
     </div>
   </div>
 </div>
@@ -531,19 +645,19 @@
   <!-- ── HERO STATS ── -->
   <div class="hero-stats">
     <div class="hero-stat">
-      <div class="label">Total Leads Captured</div>
-      <div class="val">1,709</div>
-      <div class="sub">Meta lead campaigns</div>
+      <div class="label">Perfect Venue Contacts</div>
+      <div class="val">315</div>
+      <div class="sub">Since Dec 2025</div>
     </div>
     <div class="hero-stat">
-      <div class="label">Avg Cost / Lead</div>
-      <div class="val">$4.52</div>
-      <div class="sub">Blended across 3 campaigns</div>
+      <div class="label">Meta Ad Leads</div>
+      <div class="val">1,709</div>
+      <div class="sub">Avg $4.52 / lead</div>
     </div>
     <div class="hero-stat highlight">
-      <div class="label">Avg Visit Revenue</div>
+      <div class="label">Avg Event Revenue</div>
       <div class="val">$618</div>
-      <div class="sub">Completed reservation avg</div>
+      <div class="sub">Completed visit avg</div>
     </div>
     <div class="hero-stat highlight">
       <div class="label">Projected Recovery</div>
@@ -552,11 +666,46 @@
     </div>
   </div>
 
+  <!-- ── VENUE INTEL ── -->
+  <div class="context-card">
+    <h3>Venue Intelligence &mdash; from Maggie, Apr 9</h3>
+    <div class="context-grid">
+      <div class="context-item">
+        <div class="ci-label">Event Mix</div>
+        <strong>80% corporate</strong> &mdash; lawyers, doctors, high-net-worth in the Financial District. Wedding inquiries picking up (only 2 hosted so far). Groups 8+ qualify as private events.
+      </div>
+      <div class="context-item">
+        <div class="ci-label">Unique Differentiators</div>
+        <ul>
+          <li>Fully customized experience, arrival to departure</li>
+          <li>Custom tasting menu by Chef Yannick for every group</li>
+          <li>Interactive wine &amp; cheese experiences (educational)</li>
+          <li>Sommelier is a trained teacher &mdash; runs icebreakers for corporate</li>
+          <li>Intimate space allows creative flexibility</li>
+        </ul>
+      </div>
+      <div class="context-item">
+        <div class="ci-label">Complimentary Offer (Approved)</div>
+        <strong>Glass of Cr&eacute;mant upon arrival</strong> via the champagne trolley. Plus: surprise canap&eacute;s on departure (already happens &mdash; not on the menu, framed as a "thank you for coming").
+      </div>
+      <div class="context-item">
+        <div class="ci-label">Operational Notes</div>
+        <ul>
+          <li>Perfect Venue is the private events CRM</li>
+          <li>Table Voice (AI phone) can send texts &mdash; explore integration</li>
+          <li>Current PV auto-response is just "thank you, we'll respond shortly" + events package</li>
+          <li>Feedback/testimonial form being built with Jeremy (Carbon Bar)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
   <!-- ═══════════ ARCHITECTURE ═══════════ -->
   <div class="section">
     <div class="section-label">Sequence Architecture</div>
     <h2>Three Segments, Three Tailored Tracks</h2>
-    <p class="section-desc">Each lead segment receives a distinct cadence calibrated to its intent level and deal value. High-touch for private events, experience-led for celebrations, efficient for campaign leads.</p>
+    <p class="section-desc">Each lead segment receives a distinct cadence calibrated to its intent level and deal value. Segment A runs for months &mdash; persistence wins in private events. Segment B and C are tighter but still convert the long tail.</p>
 
     <table class="seg-table">
       <thead>
@@ -565,36 +714,62 @@
       <tbody>
         <tr>
           <td><span class="seg-badge a">A</span>&ensp;Private Event Inquiries</td>
-          <td>Party 6+, corporate tags, PerfectVenue inquiries</td>
-          <td class="right">10–15</td>
+          <td>Perfect Venue contacts, groups 8+, corporate tags, buyout inquiries</td>
+          <td class="right">~315</td>
+          <td class="right">8+</td>
+          <td class="right">90 days (ongoing)</td>
+        </tr>
+        <tr>
+          <td><span class="seg-badge b">B</span>&ensp;Celebration Leads</td>
+          <td>Birthday, Anniversary, Special Occasion, Wedding tags from PV + OpenTable</td>
+          <td class="right">500&ndash;700</td>
           <td class="right">5</td>
           <td class="right">21 days</td>
         </tr>
         <tr>
-          <td><span class="seg-badge b">B</span>&ensp;Celebration Leads</td>
-          <td>Birthday, Anniversary, Special Occasion tags + occasion Meta leads</td>
-          <td class="right">500–700</td>
+          <td><span class="seg-badge c">C</span>&ensp;Experience Campaign Leads</td>
+          <td>Carte Blanche, A French Winter, Before The Next Chapter Meta leads</td>
+          <td class="right">1,000+</td>
           <td class="right">4</td>
           <td class="right">14 days</td>
-        </tr>
-        <tr>
-          <td><span class="seg-badge c">C</span>&ensp;Experience Campaign Leads</td>
-          <td>Carte Blanche, A French Winter, Before The Next Chapter leads</td>
-          <td class="right">1,000+</td>
-          <td class="right">3</td>
-          <td class="right">10 days</td>
         </tr>
       </tbody>
     </table>
   </div>
 
 
-  <!-- ═══════════ SEGMENT A ═══════════ -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <!--  SEGMENT A — PRIVATE EVENT INQUIRIES            -->
+  <!-- ═══════════════════════════════════════════════ -->
   <div class="seg-divider">
-    <div class="seg-divider-icon">🤝</div>
+    <div class="seg-divider-icon">&#129309;</div>
     <div class="seg-divider-text">
-      <h3>Segment A — Private Event Inquiries</h3>
-      <p>High-touch, high-value &middot; 5 touches over 21 days &middot; $3,500–$20K+ per event</p>
+      <h3>Segment A &mdash; Private Event Inquiries</h3>
+      <p>315 Perfect Venue contacts &middot; 8+ touches over 90 days &middot; Runs until they book, unsubscribe, or tell us to get lost</p>
+    </div>
+  </div>
+
+  <div class="callout gold">
+    <strong>Maggie's current gap:</strong> Perfect Venue sends one auto-reply ("thank you, we'll respond shortly" + events package PDF). After that, the only follow-up is Maggie personally responding. This sequence fills the space between that first auto-reply and conversion &mdash; systematically, over months.
+  </div>
+
+  <!-- ── PHASE 1: WARM (Days 0-7) ── -->
+  <div class="phase-label warm">Phase 1 &mdash; Warm Outreach &middot; Days 0&ndash;7</div>
+
+  <!-- A-SMS -->
+  <div class="sms-card">
+    <div class="sms-card-header">
+      <div class="sms-badge">&#128241; SMS</div>
+      <div class="email-card-meta">
+        <div class="email-card-title">Instant Text (triggered on form submission)</div>
+        <div class="email-card-timing">Day 0 &middot; Via Table Voice or HighLevel &middot; Fires within 2 minutes of inquiry</div>
+      </div>
+    </div>
+    <div class="sms-card-body">
+      <div class="sms-bubble">
+        Hi [First Name], it's Maggie from Restaurant Lucie. Thank you for your event inquiry &mdash; I'm looking forward to learning more about what you're planning. I'll follow up by email shortly, but feel free to text me here in the meantime. &mdash; Maggie
+      </div>
+      <div class="sms-note"><strong>Why SMS first:</strong> Text gets 98% open rate vs. 20% for email. Sets a personal, responsive tone from the first second. Per Maggie: this should feel like a buffer until she can personally respond &mdash; but it also starts the relationship immediately.</div>
     </div>
   </div>
 
@@ -603,24 +778,25 @@
     <div class="email-card-header">
       <div class="email-step a">A1</div>
       <div class="email-card-meta">
-        <div class="email-card-title">The Personal Reconnection</div>
-        <div class="email-card-timing">Day 0 &middot; Sent from personal name (e.g. Maggie)</div>
+        <div class="email-card-title">The Personal Reconnection + Cr&eacute;mant Offer</div>
+        <div class="email-card-timing">Day 1 &middot; Sent from Maggie's email</div>
       </div>
     </div>
     <div class="email-card-body">
       <div class="email-subject">
         <span class="tag">Subject</span>
-        <span class="line">Your evening at Lucie — still thinking about it</span>
+        <span class="line">Your event at Lucie &mdash; a few thoughts</span>
       </div>
       <div class="email-body">
         <p>Hi [First Name],</p>
-        <p>A while back you reached out about hosting an event with us — <em>[reference the specific inquiry, e.g. "a dinner for your team at StackAdapt" / "a wine dinner for the Riverdale group" / "an intimate gathering for eight"]</em>.</p>
-        <p>I wanted to check in. Whether your plans have shifted or you're still exploring, I'd love to help you think through what an evening at Lucie could look like.</p>
-        <p>We've hosted everything from six-person business dinners in our dining room to full buyouts with custom tasting menus from Chef Yannick. Every event is different — and that's the point.</p>
-        <p>If you'd like to revisit the conversation, I'm here. No pressure, no package PDF. Just a quick call or coffee to see if we're the right fit.</p>
-        <p class="sig">Warmly,<br>Maggie<br>Restaurant Lucie<br>[phone] · [email]</p>
+        <p>Thank you for reaching out about hosting <em>[your corporate dinner / your celebration / your event]</em> at Restaurant Lucie. I've been looking forward to learning more about what you have in mind.</p>
+        <p>I wanted to share a bit about what makes a private event at Lucie different. Chef Yannick designs a fully customized tasting menu for every group &mdash; built around your preferences, dietary needs, and the season. No fixed packages, no generic set menus. From the moment your guests arrive to the moment they leave, every detail is tailored.</p>
+        <p>We can also incorporate interactive experiences: guided wine pairings with our sommelier (who is also a trained educator and wonderful at breaking the ice for corporate groups), interactive cheese courses, cocktail or mocktail pairings &mdash; whatever complements your evening.</p>
+        <p>And as a thank you for considering Lucie, <strong>we'd love to welcome your group with a complimentary glass of Cr&eacute;mant on arrival</strong>, served from our champagne trolley.</p>
+        <p>Would you have 10 minutes this week to chat through your vision? I'm happy to work around your schedule.</p>
+        <p class="sig">Warmly,<br>Maggie Bain<br>Ma&icirc;tre d' &middot; Restaurant Lucie<br>[phone] &middot; [email]</p>
       </div>
-      <div class="email-rationale"><strong>Why this works:</strong> No pitch. No pricing. Just a human reopening a door. Fine dining prospects ghost when they feel "sold to" — this resets the dynamic.</div>
+      <div class="email-rationale"><strong>Why this works:</strong> Leads with genuine differentiators (custom menu, interactive experiences, the sommelier-as-teacher detail), then lands the Cr&eacute;mant offer as a "thank you," not a bribe. Per Maggie: the champagne trolley is a signature moment &mdash; mentioning it paints the picture.</div>
     </div>
   </div>
 
@@ -630,7 +806,7 @@
       <div class="email-step a">A2</div>
       <div class="email-card-meta">
         <div class="email-card-title">The Visual Spark</div>
-        <div class="email-card-timing">Day 4 &middot; Email with 2–3 curated photos</div>
+        <div class="email-card-timing">Day 4 &middot; Email with 2&ndash;3 curated photos</div>
       </div>
     </div>
     <div class="email-card-body">
@@ -640,19 +816,22 @@
       </div>
       <div class="email-body">
         <p>[First Name],</p>
-        <p>I pulled together a few images from recent private evenings here — thought they might help you picture what we could create for <em>[your team / your group / the occasion]</em>.</p>
+        <p>I pulled together a few images from recent private evenings here &mdash; I thought they might help you picture what we could create for your group.</p>
         <div class="menu-block">
-          <strong>[Image 1]</strong> — Intimate group setting, the dining room dressed for a private table of ten<br>
-          <strong>[Image 2]</strong> — A plated course from a recent tasting menu, overhead<br>
-          <strong>[Image 3]</strong> — The space by candlelight, wine service in motion
+          <strong>[Image 1]</strong> &mdash; The dining room set for a corporate group of twelve, candlelit<br>
+          <strong>[Image 2]</strong> &mdash; A plated course from a recent custom tasting menu<br>
+          <strong>[Image 3]</strong> &mdash; The champagne trolley in action, Cr&eacute;mant being poured on arrival
         </div>
-        <p>Chef Yannick designs every private menu around the group — dietary needs, preferences, the season. No two are alike.</p>
-        <p>Worth a 10-minute call to explore?</p>
+        <p>Because our space is intimate, we have extraordinary flexibility &mdash; the room transforms around your event, not the other way around. Chef Yannick, our sommelier, and I work together to design something that feels completely yours.</p>
+        <p>Worth a quick call this week?</p>
         <p class="sig">Maggie</p>
       </div>
-      <div class="email-rationale"><strong>Why this works:</strong> Selling the feeling, not the features. Aspirational imagery moves high-value prospects faster than a pricing grid.</div>
+      <div class="email-rationale"><strong>Why this works:</strong> Sells the feeling, not the features. Per Maggie: "because of how small the restaurant actually is, we can do so many things within this space" &mdash; this turns the intimate scale into an advantage, not a limitation.</div>
     </div>
   </div>
+
+  <!-- ── PHASE 2: NURTURE (Days 7-30) ── -->
+  <div class="phase-label nurture">Phase 2 &mdash; Nurture &middot; Days 7&ndash;30</div>
 
   <!-- A3 -->
   <div class="email-card">
@@ -666,18 +845,18 @@
     <div class="email-card-body">
       <div class="email-subject">
         <span class="tag">Subject</span>
-        <span class="line">"The best dinner our team has ever had"</span>
+        <span class="line">"The best team dinner we've ever had"</span>
       </div>
       <div class="email-body">
         <p>[First Name],</p>
-        <p>I'll keep this short. A note from a recent host:</p>
+        <p>I'll keep this short. A note from a recent corporate host:</p>
         <div class="quote-block">
-          "We booked Lucie for a team dinner of twelve. From the moment we walked in, every detail was handled. The tasting menu was extraordinary — multiple team members said it was the best meal they'd had in Toronto. Maggie made the planning effortless."
+          "We booked Lucie for a team dinner of ten &mdash; mostly lawyers who've seen every restaurant in the Financial District. From the custom tasting menu to the interactive wine experience with the sommelier, every person at the table was genuinely impressed. Maggie handled all the planning and we didn't have to think about a single detail. Multiple people told me afterwards it was the best team dinner we've ever done."
         </div>
-        <p>If you're still considering options for <em>[your event / your celebration]</em>, I'd love to make it this easy for you.</p>
+        <p>If you're still exploring options for your event, I'd love to make it this effortless for you.</p>
         <p class="sig">Maggie</p>
       </div>
-      <div class="email-rationale"><strong>Why this works:</strong> Lets someone else do the selling. Reduces perceived risk for a high-spend decision.</div>
+      <div class="email-rationale"><strong>Why this works:</strong> Directly addresses the 80% corporate audience. Mentions "lawyers" and "Financial District" to signal peer relevance. Note: Yannick approved crafting testimonials until the feedback form is live &mdash; this should be replaced with a real one as soon as possible.</div>
     </div>
   </div>
 
@@ -686,8 +865,62 @@
     <div class="email-card-header">
       <div class="email-step a">A4</div>
       <div class="email-card-meta">
+        <div class="email-card-title">The "What a Custom Menu Looks Like" Email</div>
+        <div class="email-card-timing">Day 14 &middot; Menu-forward, educational</div>
+      </div>
+    </div>
+    <div class="email-card-body">
+      <div class="email-subject">
+        <span class="tag">Subject</span>
+        <span class="line">Here's what Chef Yannick built for a recent group</span>
+      </div>
+      <div class="email-body">
+        <p>[First Name],</p>
+        <p>I thought you might like to see what a fully customized private event menu looks like at Lucie. Here's one Chef Yannick designed for a recent corporate dinner of twelve:</p>
+        <div class="menu-block">
+          <strong>On Arrival</strong> &mdash; Cr&eacute;mant service from the champagne trolley<br><br>
+          <strong>Amuse-bouche</strong> &mdash; Pea velouté, cr&egrave;me fra&icirc;che, chive oil<br>
+          <strong>First</strong> &mdash; Hand-dived scallop, cauliflower, brown butter, hazelnut<br>
+          <strong>Second</strong> &mdash; Duck foie gras torchon, Sauternes gel&eacute;e, brioche<br>
+          <strong>Intermezzo</strong> &mdash; Sommelier-led wine moment (the icebreaker)<br>
+          <strong>Third</strong> &mdash; Pan-roasted halibut, leek fondue, champagne beurre blanc<br>
+          <strong>Fourth</strong> &mdash; Elysian Fields lamb rack, spring vegetables, jus<br>
+          <strong>Cheese</strong> &mdash; Interactive cheese course with guided tasting<br>
+          <strong>Dessert</strong> &mdash; Valrhona chocolate souffl&eacute;, cr&egrave;me anglaise<br><br>
+          <strong>On Departure</strong> &mdash; Chef's canap&eacute;s &mdash; a parting gesture from the kitchen
+        </div>
+        <p><em>Every menu is built from scratch for the group. Dietary accommodations, preferences, and seasonal inspiration all shape what arrives at the table. Wine, cocktail, or mocktail pairings are available for each course.</em></p>
+        <p>This is what $180 per person looks like at Lucie. Shall I start sketching something for your group?</p>
+        <p class="sig">Maggie</p>
+      </div>
+      <div class="email-rationale"><strong>Why this works:</strong> Makes the abstract concrete. Shows the full arc of the experience &mdash; from Cr&eacute;mant on arrival through surprise canap&eacute;s on departure. Weaves in every differentiator (sommelier icebreaker, interactive cheese, custom build) without it feeling like a list. Anchors the price.</div>
+    </div>
+  </div>
+
+  <!-- A-SMS2 -->
+  <div class="sms-card">
+    <div class="sms-card-header">
+      <div class="sms-badge">&#128241; SMS</div>
+      <div class="email-card-meta">
+        <div class="email-card-title">Gentle Check-In Text</div>
+        <div class="email-card-timing">Day 18 &middot; Quick, casual</div>
+      </div>
+    </div>
+    <div class="sms-card-body">
+      <div class="sms-bubble">
+        Hi [First Name], just checking in &mdash; are you still thinking about your event? Happy to hop on a quick call if it's helpful. No pressure either way. &mdash; Maggie
+      </div>
+      <div class="sms-note"><strong>Why a second text:</strong> Catches people who opened emails but didn't reply. SMS feels more personal and immediate &mdash; often gets the "oh yes, sorry, been meaning to reply" response.</div>
+    </div>
+  </div>
+
+  <!-- A5 -->
+  <div class="email-card">
+    <div class="email-card-header">
+      <div class="email-step a">A5</div>
+      <div class="email-card-meta">
         <div class="email-card-title">The Gentle Constraint</div>
-        <div class="email-card-timing">Day 14 &middot; Availability-based</div>
+        <div class="email-card-timing">Day 21 &middot; Availability-based</div>
       </div>
     </div>
     <div class="email-card-body">
@@ -697,46 +930,123 @@
       </div>
       <div class="email-body">
         <p>Hi [First Name],</p>
-        <p>Just a heads-up — our private dining calendar for the spring and summer is starting to fill in. We can accommodate one or two more groups in the dining room before things tighten up.</p>
-        <p>If your plans are still taking shape, no rush at all. But if timing matters, it's worth locking in a date now — even tentatively — so we can hold space for you.</p>
+        <p>Just a heads-up &mdash; our private dining calendar for the spring and summer is starting to fill in. Because we only host one private event at a time (the entire restaurant becomes yours), availability is genuinely limited.</p>
+        <p>If your plans are still taking shape, no rush at all. But if timing matters, it's worth locking in a date now &mdash; even tentatively &mdash; so we can hold the space for you.</p>
         <p>Happy to jump on a quick call whenever works.</p>
         <p class="sig">Maggie</p>
       </div>
-      <div class="email-rationale"><strong>Why this works:</strong> Scarcity without sleaze. Factual, respectful, and leaves the door wide open.</div>
+      <div class="email-rationale"><strong>Why this works:</strong> Real scarcity &mdash; an intimate restaurant that does full buyouts genuinely can only host one event at a time. This is factual urgency, not manufactured.</div>
     </div>
   </div>
 
-  <!-- A5 -->
+  <!-- ── PHASE 3: LONG GAME (Days 30-90+) ── -->
+  <div class="phase-label long">Phase 3 &mdash; Long Game &middot; Days 30&ndash;90+</div>
+
+  <div class="callout gold">
+    <strong>Per Kyle (Apr 9 call):</strong> "This sequence should go for months basically until they unsubscribe or they tell us to get lost or they book in. It's a game of persistence." These emails shift to monthly cadence and keep Lucie top-of-mind without being aggressive.
+  </div>
+
+  <!-- A6 -->
   <div class="email-card">
     <div class="email-card-header">
-      <div class="email-step a">A5</div>
+      <div class="email-step a">A6</div>
       <div class="email-card-meta">
-        <div class="email-card-title">The Graceful Close</div>
-        <div class="email-card-timing">Day 21 &middot; Final touch</div>
+        <div class="email-card-title">The Seasonal Update</div>
+        <div class="email-card-timing">Day 35 &middot; Then repeat every 30 days with fresh seasonal content</div>
       </div>
     </div>
     <div class="email-card-body">
       <div class="email-subject">
         <span class="tag">Subject</span>
-        <span class="line">Closing the loop</span>
+        <span class="line">What's inspiring Chef Yannick this season</span>
       </div>
       <div class="email-body">
         <p>Hi [First Name],</p>
-        <p>I've reached out a few times about your private event inquiry and I don't want to be a bother. I'll leave this with you — if the timing isn't right, I completely understand.</p>
-        <p>Whenever you're ready, my line is open. Lucie isn't going anywhere.</p>
+        <p>A quick note from the kitchen &mdash; Chef Yannick is working with some extraordinary ingredients right now: <em>[2-3 seasonal specifics, e.g. "wild leeks foraged from Quebec, asparagus from the first local harvest, spring lamb from Elysian Fields"]</em>.</p>
+        <p>If you've been thinking about hosting an event, this is a particularly beautiful time to do it. The spring menu is some of the most exciting cooking we've done.</p>
+        <p>Would love to sketch a tasting menu for your group if you're interested.</p>
+        <p class="sig">Maggie</p>
+      </div>
+      <div class="email-rationale"><strong>Why this works:</strong> Monthly seasonal updates keep the sequence fresh without repeating the same pitch. The menu changes &mdash; so the email changes. Gives Maggie a natural reason to reach out again and again.</div>
+    </div>
+  </div>
+
+  <!-- A7 -->
+  <div class="email-card">
+    <div class="email-card-header">
+      <div class="email-step a">A7</div>
+      <div class="email-card-meta">
+        <div class="email-card-title">The "We Just Hosted..." Story</div>
+        <div class="email-card-timing">Day 60 &middot; Social proof refresh</div>
+      </div>
+    </div>
+    <div class="email-card-body">
+      <div class="email-subject">
+        <span class="tag">Subject</span>
+        <span class="line">A recent evening that came together beautifully</span>
+      </div>
+      <div class="email-body">
+        <p>[First Name],</p>
+        <p>I wanted to share a recent event that I think captures what Lucie does best.</p>
+        <p>A partner at [type of firm] booked a dinner for 10 to celebrate the close of a major deal. Chef Yannick built a seven-course menu around the group's preferences (two pescatarians, one nut allergy &mdash; every plate was different where it needed to be). Our sommelier ran a blind tasting between courses that had the table in stitches. And on the way out, the kitchen sent everyone off with a surprise canap&eacute; &mdash; a little parting gift that wasn't on any menu.</p>
+        <p>The host called the next day to book their holiday dinner.</p>
+        <p>That's the kind of evening I'd love to create for you. Still interested?</p>
+        <p class="sig">Maggie</p>
+      </div>
+      <div class="email-rationale"><strong>Why this works:</strong> Narrative proof is stickier than a quote. Weaves in the surprise canap&eacute; departure moment, the sommelier icebreaker, and the dietary flexibility &mdash; all things Maggie highlighted as real differentiators. The "booked their holiday dinner" ending signals repeat value.</div>
+    </div>
+  </div>
+
+  <!-- A8 -->
+  <div class="email-card">
+    <div class="email-card-header">
+      <div class="email-step a">A8</div>
+      <div class="email-card-meta">
+        <div class="email-card-title">The Graceful Close (resets to Phase 3 loop)</div>
+        <div class="email-card-timing">Day 90 &middot; Then sequence loops back to A6 with fresh seasonal content</div>
+      </div>
+    </div>
+    <div class="email-card-body">
+      <div class="email-subject">
+        <span class="tag">Subject</span>
+        <span class="line">Still here whenever you're ready</span>
+      </div>
+      <div class="email-body">
+        <p>Hi [First Name],</p>
+        <p>I've reached out a few times and I don't want to be a bother. Plans change, timing shifts &mdash; I completely understand.</p>
+        <p>I'll continue to send the occasional note about what's happening at Lucie (new seasonal menus, availability updates), but if you'd ever like to revisit the conversation about your event, my line is always open.</p>
+        <p>Lucie isn't going anywhere. And neither am I.</p>
         <p class="sig">All the best,<br>Maggie</p>
       </div>
-      <div class="email-rationale"><strong>Why this works:</strong> Respects the prospect's autonomy. Counterintuitively, the "I'm stepping back" email often gets the highest reply rate of any sequence.</div>
+      <div class="email-rationale"><strong>Why this works:</strong> Explicitly says "I'll keep sending occasional updates" to set expectations. Doesn't close the door &mdash; transitions into the long-game monthly loop. The "I'm stepping back" email consistently gets the highest reply rate in any sequence.</div>
     </div>
   </div>
 
 
-  <!-- ═══════════ SEGMENT B ═══════════ -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <!--  SEGMENT B — CELEBRATION LEADS                  -->
+  <!-- ═══════════════════════════════════════════════ -->
   <div class="seg-divider">
-    <div class="seg-divider-icon">🎂</div>
+    <div class="seg-divider-icon">&#127874;</div>
     <div class="seg-divider-text">
-      <h3>Segment B — Celebration Leads</h3>
-      <p>Birthday, Anniversary, Special Occasion &middot; 4 touches over 14 days &middot; ~$618 avg value</p>
+      <h3>Segment B &mdash; Celebration Leads</h3>
+      <p>Birthday, Anniversary, Special Occasion, Weddings &middot; 5 touches over 21 days &middot; ~$618 avg value</p>
+    </div>
+  </div>
+
+  <!-- B-SMS -->
+  <div class="sms-card">
+    <div class="sms-card-header">
+      <div class="sms-badge">&#128241; SMS</div>
+      <div class="email-card-meta">
+        <div class="email-card-title">Instant Text on Inquiry</div>
+        <div class="email-card-timing">Day 0 &middot; Fires within 2 minutes</div>
+      </div>
+    </div>
+    <div class="sms-card-body">
+      <div class="sms-bubble">
+        Hi [First Name], it's the team at Restaurant Lucie. Thank you for thinking of us for your [birthday / anniversary / celebration]! We'll be in touch shortly with details. In the meantime, feel free to reply here with any questions.
+      </div>
     </div>
   </div>
 
@@ -745,8 +1055,8 @@
     <div class="email-card-header">
       <div class="email-step b">B1</div>
       <div class="email-card-meta">
-        <div class="email-card-title">The Occasion Callback</div>
-        <div class="email-card-timing">Day 0 &middot; Subject varies by tag (Birthday / Anniversary / Special Occasion)</div>
+        <div class="email-card-title">The Occasion Callback + Cr&eacute;mant Offer</div>
+        <div class="email-card-timing">Day 1 &middot; Subject varies by occasion tag</div>
       </div>
     </div>
     <div class="email-card-body">
@@ -756,13 +1066,14 @@
       </div>
       <div class="email-body">
         <p>Hi [First Name],</p>
-        <p>You were recently looking into celebrating <em>[a birthday / your anniversary / a special occasion]</em> at Restaurant Lucie — and we'd love to help make it happen.</p>
-        <p>Here's what makes a celebration at Lucie different: Chef Yannick builds the experience around <em>you</em>. A personalized tasting menu. Wine pairings selected for your table. A handwritten note on the menu if you'd like. No generic "birthday package" — just an evening designed with care.</p>
-        <p>Our current tasting experience starts at $180 per person, inclusive of a multi-course menu from the kitchen.</p>
+        <p>You were recently looking into celebrating <em>[a birthday / your anniversary / a special occasion]</em> at Restaurant Lucie &mdash; and we'd love to help make it happen.</p>
+        <p>Here's what makes a celebration at Lucie different: Chef Yannick builds the experience around <em>you</em>. A personalized tasting menu. Wine pairings selected for your table. A handwritten note on the menu if you'd like. No generic "birthday package" &mdash; just an evening designed with care.</p>
+        <p><strong>For groups of 8 or more, we offer full private dining</strong> &mdash; the entire restaurant becomes yours for the evening, with a complimentary glass of Cr&eacute;mant on arrival served from our champagne trolley.</p>
+        <p>Our tasting experience starts at $180 per person, inclusive of a multi-course menu from Chef Yannick's kitchen.</p>
         <p>Shall I hold a table for you? Just reply with your preferred date and party size.</p>
         <p class="sig">Warmly,<br>The Lucie Team</p>
       </div>
-      <div class="email-rationale"><strong>Why this works:</strong> Calls back the emotional reason they first reached out. Gives just enough pricing to qualify — not so much that it becomes transactional.</div>
+      <div class="email-rationale"><strong>Why this works:</strong> Calls back the emotional reason they first reached out. Introduces the Cr&eacute;mant offer naturally as part of the private dining upsell for groups 8+. Anchors the $180pp price so smaller groups self-qualify.</div>
     </div>
   </div>
 
@@ -772,7 +1083,7 @@
       <div class="email-step b">B2</div>
       <div class="email-card-meta">
         <div class="email-card-title">The "What You'll Experience" Email</div>
-        <div class="email-card-timing">Day 5 &middot; Menu-forward</div>
+        <div class="email-card-timing">Day 6 &middot; Menu-forward</div>
       </div>
     </div>
     <div class="email-card-body">
@@ -784,18 +1095,19 @@
         <p>[First Name],</p>
         <p>Here's a glimpse of a recent spring tasting menu at Lucie:</p>
         <div class="menu-block">
-          <strong>Amuse-bouche</strong> — Pea velouté, crème fraîche, chive oil<br>
-          <strong>First</strong> — Hand-dived scallop, cauliflower, brown butter, hazelnut<br>
-          <strong>Second</strong> — Duck foie gras torchon, Sauternes gelée, brioche<br>
-          <strong>Third</strong> — Pan-roasted halibut, leek fondue, champagne beurre blanc<br>
-          <strong>Fourth</strong> — Elysian Fields lamb rack, spring vegetables, jus<br>
-          <strong>Cheese</strong> — Curated selection, seasonal accompaniments<br>
-          <strong>Dessert</strong> — Valrhona chocolate soufflé, crème anglaise
+          <strong>Amuse-bouche</strong> &mdash; Pea velouté, cr&egrave;me fra&icirc;che, chive oil<br>
+          <strong>First</strong> &mdash; Hand-dived scallop, cauliflower, brown butter, hazelnut<br>
+          <strong>Second</strong> &mdash; Duck foie gras torchon, Sauternes gel&eacute;e, brioche<br>
+          <strong>Third</strong> &mdash; Pan-roasted halibut, leek fondue, champagne beurre blanc<br>
+          <strong>Fourth</strong> &mdash; Elysian Fields lamb rack, spring vegetables, jus<br>
+          <strong>Cheese</strong> &mdash; Curated selection, seasonal accompaniments<br>
+          <strong>Dessert</strong> &mdash; Valrhona chocolate souffl&eacute;, cr&egrave;me anglaise<br><br>
+          <em>And on the way out &mdash; a surprise from the kitchen. But we'll let that be a surprise.</em>
         </div>
-        <p><em>Every menu is seasonal and subject to Chef Yannick's inspiration. Dietary accommodations are always welcome.</em></p>
+        <p><em>Every menu is seasonal and designed by Chef Yannick. Dietary accommodations are always welcome.</em></p>
         <p>Ready to book? Reply or call us at [phone].</p>
       </div>
-      <div class="email-rationale"><strong>Why this works:</strong> Makes the intangible tangible. A beautifully written menu moves people from "maybe" to "I need to be there."</div>
+      <div class="email-rationale"><strong>Why this works:</strong> Makes the intangible tangible. The teased "surprise from the kitchen" (the departure canap&eacute;s) adds intrigue. A beautifully written menu moves people from "maybe" to "I need to be there."</div>
     </div>
   </div>
 
@@ -805,7 +1117,7 @@
       <div class="email-step b">B3</div>
       <div class="email-card-meta">
         <div class="email-card-title">The Time-Sensitive Nudge</div>
-        <div class="email-card-timing">Day 9 &middot; Brief, factual</div>
+        <div class="email-card-timing">Day 12 &middot; Brief, factual</div>
       </div>
     </div>
     <div class="email-card-body">
@@ -815,12 +1127,11 @@
       </div>
       <div class="email-body">
         <p>Hi [First Name],</p>
-        <p>Quick note — our Friday and Saturday evenings through the spring are filling up, especially for parties of 4+.</p>
+        <p>Quick note &mdash; our Friday and Saturday evenings through the spring are filling up, especially for groups.</p>
         <p>If your <em>[birthday / anniversary / celebration]</em> is coming up, now's the time to lock in your preferred date.</p>
         <p><strong>Book directly:</strong> [reservation link]<br>Or reply here and we'll take care of everything.</p>
         <p class="sig">The Lucie Team</p>
       </div>
-      <div class="email-rationale"><strong>Why this works:</strong> Real urgency, not manufactured. Weekend fine dining tables genuinely book up — this is a factual nudge.</div>
     </div>
   </div>
 
@@ -830,7 +1141,7 @@
       <div class="email-step b">B4</div>
       <div class="email-card-meta">
         <div class="email-card-title">The Soft Exit + Gift Card Offer</div>
-        <div class="email-card-timing">Day 14 &middot; Alternative conversion path</div>
+        <div class="email-card-timing">Day 21 &middot; Alternative conversion path</div>
       </div>
     </div>
     <div class="email-card-body">
@@ -840,23 +1151,25 @@
       </div>
       <div class="email-body">
         <p>[First Name],</p>
-        <p>Plans change — we get it. If the timing isn't right for your celebration just yet, we wanted you to know about our gift cards.</p>
-        <p>A Lucie gift card makes a beautiful gift for someone you love (or a future treat for yourself). Available in any amount — delivered digitally or as a physical card.</p>
+        <p>Plans change &mdash; we get it. If the timing isn't right for your celebration just yet, we wanted you to know about our gift cards.</p>
+        <p>A Lucie gift card makes a beautiful gift for someone you love (or a future treat for yourself). Available in any amount &mdash; delivered digitally or as a physical card.</p>
         <p><strong>Browse gift cards:</strong> [gift card link]</p>
         <p>And whenever you're ready to celebrate, we'll be here.</p>
         <p class="sig">Warmly,<br>Restaurant Lucie</p>
       </div>
-      <div class="email-rationale"><strong>Why this works:</strong> Converts the unconverted into a different revenue path. A $200–$500 gift card purchase still captures value — and brings them back eventually.</div>
+      <div class="email-rationale"><strong>Why this works:</strong> Converts the unconverted into a different revenue path. A $200&ndash;$500 gift card still captures value &mdash; and brings them back eventually.</div>
     </div>
   </div>
 
 
-  <!-- ═══════════ SEGMENT C ═══════════ -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <!--  SEGMENT C — EXPERIENCE CAMPAIGN LEADS          -->
+  <!-- ═══════════════════════════════════════════════ -->
   <div class="seg-divider">
-    <div class="seg-divider-icon">✨</div>
+    <div class="seg-divider-icon">&#10024;</div>
     <div class="seg-divider-text">
-      <h3>Segment C — Experience Campaign Leads</h3>
-      <p>Carte Blanche, A French Winter, Before The Next Chapter &middot; 3 touches over 10 days</p>
+      <h3>Segment C &mdash; Experience Campaign Leads</h3>
+      <p>Carte Blanche, A French Winter, Before The Next Chapter &middot; 4 touches over 14 days</p>
     </div>
   </div>
 
@@ -872,7 +1185,7 @@
     <div class="email-card-body">
       <div class="email-subject">
         <span class="tag">Subject</span>
-        <span class="line">You're on the list — here's what's next</span>
+        <span class="line">You're on the list &mdash; here's what's next</span>
       </div>
       <div class="email-body">
         <p>Hi [First Name],</p>
@@ -883,10 +1196,9 @@
           A new seasonal tasting menu celebrating the best of Quebec spring, available now through June. Tables are limited.
         </div>
         <p>If you'd like to join us:</p>
-        <p><strong>Book your table →</strong> [reservation link]</p>
+        <p><strong>Book your table &#8594;</strong> [reservation link]</p>
         <p class="sig">See you soon,<br>Restaurant Lucie</p>
       </div>
-      <div class="email-rationale"><strong>Why this works:</strong> Treats the lead like an insider, not a cold prospect. "You're on the list" creates belonging before asking for action.</div>
     </div>
   </div>
 
@@ -896,7 +1208,7 @@
       <div class="email-step c">C2</div>
       <div class="email-card-meta">
         <div class="email-card-title">The Behind-the-Scenes Story</div>
-        <div class="email-card-timing">Day 4 &middot; Narrative-driven</div>
+        <div class="email-card-timing">Day 5 &middot; Narrative-driven</div>
       </div>
     </div>
     <div class="email-card-body">
@@ -906,12 +1218,11 @@
       </div>
       <div class="email-body">
         <p>[First Name],</p>
-        <p>Every dish at Lucie starts with a conversation — between Chef Yannick, the season, and the producers he trusts.</p>
+        <p>Every dish at Lucie starts with a conversation &mdash; between Chef Yannick, the season, and the producers he trusts.</p>
         <p>This spring, that means: <em>lamb from Elysian Fields, the same farm that supplies the best tables in New York. Wild leeks foraged from Quebec forests, available for just a few weeks each year. Dairy from a single producer in the Eastern Townships.</em></p>
         <p>This is food with a story. And we'd love you to taste it.</p>
-        <p><strong>Reserve your evening →</strong> [link]</p>
+        <p><strong>Reserve your evening &#8594;</strong> [link]</p>
       </div>
-      <div class="email-rationale"><strong>Why this works:</strong> Provenance storytelling elevates the offer beyond "come eat at our restaurant." It gives the lead something to <em>care</em> about.</div>
     </div>
   </div>
 
@@ -920,23 +1231,48 @@
     <div class="email-card-header">
       <div class="email-step c">C3</div>
       <div class="email-card-meta">
-        <div class="email-card-title">The Final Nudge</div>
-        <div class="email-card-timing">Day 10 &middot; Last call</div>
+        <div class="email-card-title">The Private Event Upsell</div>
+        <div class="email-card-timing">Day 9 &middot; Cross-sell into Segment A</div>
       </div>
     </div>
     <div class="email-card-body">
       <div class="email-subject">
         <span class="tag">Subject</span>
-        <span class="line">Last call — the spring menu evolves soon</span>
+        <span class="line">Planning something for a group?</span>
       </div>
       <div class="email-body">
         <p>[First Name],</p>
-        <p>Our spring menu evolves with the season — and the current iteration won't last much longer.</p>
-        <p>If you've been meaning to visit, this is your nudge.</p>
-        <p><strong>Book now →</strong> [link]</p>
-        <p class="sig">Restaurant Lucie<br>[address] · [phone]</p>
+        <p>Many of our guests first discover Lucie through a tasting experience &mdash; and then come back with their team, their family, or their friends for a private evening.</p>
+        <p>If you're ever planning a dinner for 8 or more &mdash; a corporate event, a milestone birthday, an anniversary &mdash; we offer fully private dining with a custom menu, interactive wine experiences, and a complimentary glass of Cr&eacute;mant on arrival.</p>
+        <p>Just something to keep in the back of your mind. And in the meantime &mdash; we'd still love to host you for dinner.</p>
+        <p><strong>Book a table &#8594;</strong> [link]<br><strong>Inquire about a private event &#8594;</strong> [private events link]</p>
+        <p class="sig">Restaurant Lucie</p>
       </div>
-      <div class="email-rationale"><strong>Why this works:</strong> Short, direct, zero fluff. By touch three, brevity signals respect for their time — not desperation.</div>
+      <div class="email-rationale"><strong>Why this works:</strong> Plants the private events seed with the 1,700+ leads who came in through general campaigns. Even at a 1% upsell rate, that's 17 private event inquiries from a pool that already knows the brand.</div>
+    </div>
+  </div>
+
+  <!-- C4 -->
+  <div class="email-card">
+    <div class="email-card-header">
+      <div class="email-step c">C4</div>
+      <div class="email-card-meta">
+        <div class="email-card-title">The Final Nudge</div>
+        <div class="email-card-timing">Day 14 &middot; Last call</div>
+      </div>
+    </div>
+    <div class="email-card-body">
+      <div class="email-subject">
+        <span class="tag">Subject</span>
+        <span class="line">Last call &mdash; the spring menu evolves soon</span>
+      </div>
+      <div class="email-body">
+        <p>[First Name],</p>
+        <p>Our spring menu evolves with the season &mdash; and the current iteration won't last much longer.</p>
+        <p>If you've been meaning to visit, this is your nudge.</p>
+        <p><strong>Book now &#8594;</strong> [link]</p>
+        <p class="sig">Restaurant Lucie<br>[address] &middot; [phone]</p>
+      </div>
     </div>
   </div>
 
@@ -945,34 +1281,47 @@
   <div class="section" style="margin-top: 56px;">
     <div class="section-label">Execution</div>
     <h2>Deployment Playbook</h2>
-    <p class="section-desc">The tactical details that make the difference between a sequence that performs and one that sits in a folder.</p>
+    <p class="section-desc">Built from the Apr 9 call with Maggie and Fred. The tactical details that make the difference between a sequence that performs and one that sits in a folder.</p>
 
     <div class="exec-grid">
       <div class="exec-card">
-        <div class="label">Send Platform</div>
-        <div class="val">If HighLevel is configured for Lucie, use it for B &amp; C automation. Segment A should be sent manually from a personal inbox for maximum deliverability and reply rate.</div>
+        <div class="label">Automation Platform</div>
+        <div class="val"><strong>HighLevel</strong> for all email &amp; SMS automation. Maggie is already familiar with it from the French Winter campaign. Segment A emails should come from Maggie's personal address for deliverability.</div>
       </div>
       <div class="exec-card">
-        <div class="label">Sender Name</div>
-        <div class="val"><strong>Segment A:</strong> Personal name (Maggie)<br><strong>Segments B &amp; C:</strong> "Restaurant Lucie" or "The Lucie Team"</div>
+        <div class="label">SMS Channel</div>
+        <div class="val">Explore <strong>Table Voice</strong> integration first (Yannick's investment, already handles texts). Fallback: provision a HighLevel number ($2/mo). Maggie to connect Kyle with the Table Voice engineer (Pascal).</div>
+      </div>
+      <div class="exec-card">
+        <div class="label">Lead Source</div>
+        <div class="val"><strong>Perfect Venue export</strong> (315 contacts, Maggie to forward CSV) + Meta leads from HighLevel. Deduplicate by email before importing. Remove @restaurantlucie.com addresses.</div>
+      </div>
+      <div class="exec-card">
+        <div class="label">Sender Names</div>
+        <div class="val"><strong>Segment A:</strong> Maggie Bain (personal)<br><strong>Segments B &amp; C:</strong> "Restaurant Lucie" or "The Lucie Team"</div>
       </div>
       <div class="exec-card">
         <div class="label">Optimal Send Times</div>
-        <div class="val">Tuesday–Thursday, 10:30 AM or 6:00 PM ET. Avoid Monday morning and Friday afternoon — open rates crater.</div>
+        <div class="val">Tuesday&ndash;Thursday, 10:30 AM or 6:00 PM ET. SMS: 11 AM ET (lunch decision window). Avoid Monday morning and Friday afternoon.</div>
       </div>
       <div class="exec-card">
         <div class="label">Reply Handling</div>
-        <div class="val"><strong>Segment A:</strong> Same-day personal response, always.<br><strong>B &amp; C:</strong> Templated reply with direct booking link within 4 hours.</div>
+        <div class="val"><strong>Segment A:</strong> Same-day personal response from Maggie, always.<br><strong>B &amp; C:</strong> Templated reply with direct booking link within 4 hours.</div>
       </div>
       <div class="exec-card">
         <div class="label">Suppression Rules</div>
-        <div class="val">Immediately suppress anyone who books, unsubscribes, or replies "not interested." Remove internal emails (@restaurantlucie.com) before launch.</div>
+        <div class="val">Immediately suppress anyone who books (sync with Perfect Venue + OpenTable), unsubscribes, or replies "not interested." Do not duplicate Perfect Venue's initial auto-response &mdash; this sequence starts <em>after</em> that.</div>
       </div>
       <div class="exec-card">
-        <div class="label">Tracking</div>
-        <div class="val">Tag each lead with sequence step in PerfectVenue / OpenTable. Track: open rate, reply rate, booking rate, revenue attributed per segment.</div>
+        <div class="label">Testimonials</div>
+        <div class="val">Yannick approved crafting testimonials until the post-event feedback form is live (Maggie building with Jeremy from Carbon Bar). <strong>Replace with real ones ASAP.</strong> High Level survey builder is available.</div>
       </div>
     </div>
+  </div>
+
+  <!-- ═══════════ GROUP SIZE THRESHOLD ═══════════ -->
+  <div class="callout gold" style="margin-bottom: 40px;">
+    <strong>Private event threshold: groups of 8+</strong> (per Maggie). Smaller celebration groups (2&ndash;7) get Segment B treatment. Groups 8+ get Segment A treatment with the full buyout pitch, Cr&eacute;mant offer, and interactive experience positioning.
   </div>
 
 
@@ -980,7 +1329,7 @@
   <div class="section">
     <div class="section-label">Financial Impact</div>
     <h2>Conservative Revenue Projection</h2>
-    <p class="section-desc">Based on Lucie's average completed visit revenue of $618 and conservative conversion assumptions for reactivated leads.</p>
+    <p class="section-desc">Based on Lucie's $618 avg completed visit revenue, $180pp private event pricing, and conservative conversion assumptions for reactivated leads over a 90-day window.</p>
 
     <table class="rev-table">
       <thead>
@@ -995,12 +1344,12 @@
       </thead>
       <tbody>
         <tr>
-          <td><span class="seg-badge a">A</span>&ensp;Private Events</td>
-          <td class="right">10</td>
-          <td class="right">20%</td>
-          <td class="right">2</td>
-          <td class="right">$3,500</td>
-          <td class="right">$7,000</td>
+          <td><span class="seg-badge a">A</span>&ensp;Private Events (8+)</td>
+          <td class="right">315</td>
+          <td class="right">5%</td>
+          <td class="right">16</td>
+          <td class="right">$2,400</td>
+          <td class="right">$38,400</td>
         </tr>
         <tr>
           <td><span class="seg-badge b">B</span>&ensp;Celebrations</td>
@@ -1023,28 +1372,28 @@
         <tr>
           <td colspan="4"><strong>Total Projected Revenue</strong></td>
           <td class="right"></td>
-          <td class="right">$40,390</td>
+          <td class="right">$71,790</td>
         </tr>
       </tfoot>
     </table>
 
     <div style="margin-top: 16px; padding: 18px 24px; background: rgba(45,138,94,0.05); border: 1px solid rgba(45,138,94,0.12); border-radius: 10px;">
-      <div style="font-size: 14px; color: var(--green); font-weight: 600; margin-bottom: 4px;">2.8x return on $14,296 ad spend</div>
-      <div style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">And that's before repeat visits, gift card revenue, and word-of-mouth from private event hosts. These leads are already paid for — the sequence just activates the value that's sitting dormant.</div>
+      <div style="font-size: 14px; color: var(--green); font-weight: 600; margin-bottom: 4px;">5x return on $14,296 ad spend</div>
+      <div style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">These leads are already paid for &mdash; the sequence just activates the value sitting dormant. And with a 90-day Segment A sequence that loops monthly, the tail is long. One converted corporate buyout at $180pp &times; 20 guests = $3,600 from a single email.</div>
     </div>
   </div>
 
 
   <!-- ═══════════ CTA ═══════════ -->
   <div class="cta-banner">
-    <h3>Ready to deploy?</h3>
-    <p>Next steps: segment the lead lists from OpenTable GuestCenter and Meta campaign exports, load into the send platform, and schedule the first touches for Tuesday or Wednesday morning.</p>
+    <h3>Next Steps</h3>
+    <p>1. Maggie forwards the Perfect Venue CSV export (315 contacts). 2. Kyle deduplicates and imports into HighLevel. 3. Connect with Pascal re: Table Voice SMS integration. 4. Review sequence copy on Tuesday call. 5. Launch Segment A first (highest value), then B &amp; C in the same week.</p>
   </div>
 
   <!-- ═══════════ FOOTER ═══════════ -->
   <div class="footer">
     <div class="footer-logo">Guest Getter</div>
-    <div class="footer-sub">Generated April 14, 2026 &middot; Restaurant Lucie — Private Event Sales Sequence</div>
+    <div class="footer-sub">Generated April 14, 2026 &middot; Restaurant Lucie &mdash; Private Event Sales Sequence &middot; Informed by Apr 9 call with Maggie Bain &amp; Fred Dallot</div>
   </div>
 
 </div>
