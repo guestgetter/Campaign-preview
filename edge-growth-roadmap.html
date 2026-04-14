@@ -3,31 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Edge Food Equipment | 12-Month Growth Roadmap</title>
+<title>Edge Food Equipment | 12-Month Growth Partnership</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+  /* ═══════════════════════════════════════════
+     LOOKBOOK — Edge Food Equipment
+     Kinfolk / Cereal magazine aesthetic
+     ═══════════════════════════════════════════ */
 
   :root {
-    --navy: #1a2332;
-    --navy-light: #243044;
-    --navy-mid: #1e2a3a;
-    --white: #ffffff;
-    --off-white: #f8f9fa;
-    --gray-100: #f1f3f5;
-    --gray-200: #e9ecef;
-    --gray-300: #dee2e6;
-    --gray-400: #ced4da;
-    --gray-500: #adb5bd;
-    --gray-600: #6c757d;
-    --gray-700: #495057;
-    --amber: #f59e0b;
-    --amber-light: #fbbf24;
-    --amber-glow: rgba(245, 158, 11, 0.15);
-    --amber-dark: #d97706;
-    --green: #10b981;
-    --green-light: rgba(16, 185, 129, 0.1);
-    --blue: #3b82f6;
-    --blue-light: rgba(59, 130, 246, 0.1);
+    --charcoal: #1a1a2e;
+    --charcoal-deep: #12121f;
+    --charcoal-mid: #1e1e35;
+    --warm-white: #faf9f6;
+    --cream: #f5f3ee;
+    --copper: #c47f17;
+    --copper-light: #d4952e;
+    --copper-glow: rgba(196, 127, 23, 0.12);
+    --copper-faint: rgba(196, 127, 23, 0.06);
+    --text-dark: #1a1a2e;
+    --text-dark-secondary: #4a4a5e;
+    --text-dark-muted: #7a7a8e;
+    --text-light: #faf9f6;
+    --text-light-secondary: rgba(250, 249, 246, 0.7);
+    --text-light-muted: rgba(250, 249, 246, 0.4);
+    --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,1254 +38,1481 @@
   html {
     scroll-behavior: smooth;
     font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--navy);
-    color: var(--white);
+    font-family: var(--sans);
+    background: var(--warm-white);
+    color: var(--text-dark);
     line-height: 1.6;
     overflow-x: hidden;
   }
 
   /* Scrollbar */
-  ::-webkit-scrollbar { width: 8px; }
-  ::-webkit-scrollbar-track { background: var(--navy); }
-  ::-webkit-scrollbar-thumb { background: var(--navy-light); border-radius: 4px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--amber); }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--warm-white); }
+  ::-webkit-scrollbar-thumb { background: #c4c0b8; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--copper); }
 
-  /* Floating brand mark */
-  .brand-mark {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gray-500);
-    opacity: 0.5;
-    z-index: 100;
+  /* ── Grain texture overlay for dark sections ── */
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.035;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    z-index: 1;
   }
 
-  /* Navigation dots */
+  /* ── Fade-up animation ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.2s; }
+  .reveal-d3 { transition-delay: 0.3s; }
+  .reveal-d4 { transition-delay: 0.4s; }
+  .reveal-d5 { transition-delay: 0.5s; }
+  .reveal-d6 { transition-delay: 0.6s; }
+
+  /* ── Navigation dots ── */
   .nav-dots {
     position: fixed;
-    right: 24px;
+    right: 28px;
     top: 50%;
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    z-index: 100;
+    gap: 14px;
+    z-index: 1000;
   }
   .nav-dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(250, 249, 246, 0.25);
+    border: 1px solid rgba(250, 249, 246, 0.3);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
   }
   .nav-dot:hover, .nav-dot.active {
-    background: var(--amber);
-    border-color: var(--amber);
-    transform: scale(1.3);
+    background: var(--copper);
+    border-color: var(--copper);
+    transform: scale(1.5);
+  }
+  .nav-dot.on-light {
+    background: rgba(26, 26, 46, 0.15);
+    border-color: rgba(26, 26, 46, 0.25);
+  }
+  .nav-dot.on-light:hover, .nav-dot.on-light.active {
+    background: var(--copper);
+    border-color: var(--copper);
   }
 
-  /* Hero */
-  .hero {
+  /* ══════════════════════════════════════════════
+     SPREAD 1 — COVER
+     ══════════════════════════════════════════════ */
+  .cover {
     min-height: 100vh;
+    background: var(--charcoal);
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
-    padding: 40px;
+    padding: 60px 40px;
   }
-  .hero::before {
+  .cover::before {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at 30% 40%, rgba(245, 158, 11, 0.06) 0%, transparent 50%),
-                radial-gradient(circle at 70% 60%, rgba(59, 130, 246, 0.04) 0%, transparent 50%);
-    animation: heroGlow 20s ease-in-out infinite alternate;
+    top: -30%;
+    right: -20%;
+    width: 70%;
+    height: 70%;
+    background: radial-gradient(circle, rgba(196, 127, 23, 0.06) 0%, transparent 70%);
+    pointer-events: none;
   }
-  @keyframes heroGlow {
-    0% { transform: translate(0, 0) rotate(0deg); }
-    100% { transform: translate(-2%, -2%) rotate(3deg); }
-  }
-
-  .hero-content {
+  .cover-content {
     position: relative;
+    z-index: 2;
     text-align: center;
-    max-width: 900px;
+    max-width: 800px;
   }
-  .hero-date {
+  .cover-rule {
+    width: 60px;
+    height: 1px;
+    background: var(--copper);
+    margin: 0 auto 40px;
+  }
+  .cover-company {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+    color: var(--text-light);
+    margin-bottom: 8px;
+  }
+  .cover-company span {
+    display: block;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 0.4em;
+    letter-spacing: 0.06em;
+    color: var(--copper);
+    margin-top: 8px;
+  }
+  .cover-subtitle {
+    font-family: var(--sans);
     font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 3px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: var(--amber);
-    margin-bottom: 24px;
+    color: var(--text-light-muted);
+    margin-top: 48px;
+    margin-bottom: 8px;
   }
-  .hero-prepared {
+  .cover-for {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-light-secondary);
+    margin-bottom: 6px;
+  }
+  .cover-date {
+    font-family: var(--sans);
     font-size: 0.75rem;
     font-weight: 400;
-    letter-spacing: 2px;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--gray-500);
-    margin-bottom: 40px;
-  }
-  .hero-title {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 12px;
-    background: linear-gradient(135deg, var(--white) 0%, var(--gray-300) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .hero-title span {
-    background: linear-gradient(135deg, var(--amber) 0%, var(--amber-light) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .hero-subtitle {
-    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-    font-weight: 300;
-    color: var(--gray-400);
-    margin-bottom: 48px;
-    max-width: 650px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .hero-meta {
-    display: flex;
-    gap: 48px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .hero-meta-item {
-    text-align: center;
-  }
-  .hero-meta-value {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--amber);
-  }
-  .hero-meta-label {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--gray-500);
+    color: var(--text-light-muted);
     margin-top: 4px;
   }
-
-  .scroll-hint {
+  .cover-presenter {
     position: absolute;
     bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-light-muted);
+    z-index: 2;
+  }
+  .cover-scroll {
+    position: absolute;
+    bottom: 80px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    color: var(--gray-500);
-    font-size: 0.7rem;
-    letter-spacing: 2px;
+    gap: 10px;
+    color: var(--text-light-muted);
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    animation: bounce 2s ease-in-out infinite;
+    z-index: 2;
+    animation: gentleBounce 3s ease-in-out infinite;
   }
-  .scroll-hint svg {
-    width: 20px;
-    height: 20px;
-    stroke: var(--gray-500);
+  .cover-scroll svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--text-light-muted);
+    stroke-width: 1.5;
   }
-  @keyframes bounce {
+  @keyframes gentleBounce {
     0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(8px); }
+    50% { transform: translateX(-50%) translateY(6px); }
   }
 
-  /* Sections */
-  .section {
-    padding: 100px 40px;
-    max-width: 1200px;
-    margin: 0 auto;
+  /* ══════════════════════════════════════════════
+     SPREAD 2 — THE EDGE STORY
+     ══════════════════════════════════════════════ */
+  .story-spread {
+    background: var(--warm-white);
+    padding: 120px 40px;
     position: relative;
   }
-
-  .section-label {
+  .story-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .story-label {
     font-size: 0.7rem;
     font-weight: 600;
-    letter-spacing: 3px;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--amber);
-    margin-bottom: 16px;
+    color: var(--copper);
+    margin-bottom: 40px;
   }
-
-  .section-title {
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 16px;
-  }
-
-  .section-desc {
-    font-size: 1.05rem;
-    color: var(--gray-400);
-    max-width: 680px;
-    margin-bottom: 48px;
-    line-height: 1.7;
-  }
-
-  /* Divider */
-  .divider {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 40px;
-  }
-  .divider-line {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.3), transparent);
-  }
-
-  /* Landscape section */
-  .landscape {
-    background: linear-gradient(180deg, var(--navy) 0%, var(--navy-mid) 100%);
-    padding-bottom: 60px;
-  }
-
-  .revenue-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
-    margin-bottom: 48px;
-  }
-
-  .revenue-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 16px;
-    padding: 32px;
+  .pull-quote {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--text-dark);
+    max-width: 800px;
+    margin-bottom: 12px;
     position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
+    padding-left: 32px;
   }
-  .revenue-card:hover {
-    border-color: rgba(245, 158, 11, 0.3);
-    background: rgba(255,255,255,0.05);
-    transform: translateY(-2px);
+  .pull-quote::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 3px;
+    background: var(--copper);
   }
-  .revenue-card::before {
+  .pull-quote-attr {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-dark-muted);
+    padding-left: 32px;
+    margin-bottom: 80px;
+  }
+  .story-narrative {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--text-dark-secondary);
+    max-width: 680px;
+    margin-bottom: 64px;
+  }
+  .story-narrative strong {
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+
+  /* Revenue line cards */
+  .revenue-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+  .rev-col {
+    position: relative;
+    padding-top: 32px;
+  }
+  .rev-col::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--amber), var(--amber-light));
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    width: 40px;
+    height: 1px;
+    background: var(--copper);
   }
-  .revenue-card:hover::before { opacity: 1; }
-
-  .rc-number {
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: var(--amber);
-    letter-spacing: 2px;
+  .rev-col-num {
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--copper);
     margin-bottom: 12px;
   }
-  .rc-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 8px;
+  .rev-col h3 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-dark);
   }
-  .rc-detail {
+  .rev-col p {
     font-size: 0.9rem;
-    color: var(--gray-400);
-    margin-bottom: 16px;
-    line-height: 1.6;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--text-dark-secondary);
   }
-  .rc-tag {
+  .rev-col .rev-tag {
     display: inline-block;
-    padding: 4px 12px;
+    margin-top: 16px;
+    padding: 4px 14px;
     border-radius: 20px;
     font-size: 0.7rem;
     font-weight: 600;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
   }
-  .rc-tag.high { background: rgba(16, 185, 129, 0.15); color: #34d399; }
-  .rc-tag.med { background: rgba(245, 158, 11, 0.15); color: var(--amber-light); }
-  .rc-tag.low { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+  .rev-tag.best { background: rgba(16, 185, 129, 0.1); color: #0d9668; }
+  .rev-tag.volume { background: var(--copper-glow); color: var(--copper); }
+  .rev-tag.needs-work { background: rgba(239, 68, 68, 0.08); color: #dc2626; }
 
-  .challenges {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
-  }
-  .challenge-item {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    padding: 20px;
-    background: rgba(239, 68, 68, 0.04);
-    border: 1px solid rgba(239, 68, 68, 0.1);
-    border-radius: 12px;
-  }
-  .challenge-icon {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    border-radius: 8px;
-    background: rgba(239, 68, 68, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-  }
-  .challenge-text {
-    font-size: 0.9rem;
-    color: var(--gray-300);
-    line-height: 1.5;
-  }
-  .challenge-text strong {
-    color: var(--white);
-    font-weight: 600;
-  }
-
-  /* Phase sections */
-  .phase {
+  /* ══════════════════════════════════════════════
+     SPREAD 3 — THE OPPORTUNITY
+     ══════════════════════════════════════════════ */
+  .opportunity-spread {
+    background: var(--charcoal);
+    color: var(--text-light);
+    padding: 120px 40px;
     position: relative;
+    overflow: hidden;
   }
-
-  .phase-header {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+  .opportunity-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .opp-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--copper);
     margin-bottom: 40px;
   }
-  .phase-badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    min-width: 60px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, var(--amber), var(--amber-dark));
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: var(--navy);
-  }
-  .phase-header-text h2 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
+  .opp-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.2rem);
     font-weight: 700;
-    margin-bottom: 4px;
+    line-height: 1.2;
+    margin-bottom: 48px;
+    max-width: 700px;
   }
-  .phase-header-text .phase-timeline {
+
+  .stat-row {
+    display: flex;
+    gap: 60px;
+    margin-bottom: 64px;
+    flex-wrap: wrap;
+  }
+  .stat-item {
+    flex: 1;
+    min-width: 200px;
+  }
+  .stat-value {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--copper);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--text-light-secondary);
+    line-height: 1.5;
+  }
+
+  .thesis-block {
+    border-top: 1px solid rgba(250, 249, 246, 0.1);
+    padding-top: 48px;
+    max-width: 700px;
+  }
+  .thesis-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-light-muted);
+    margin-bottom: 20px;
+  }
+  .thesis-text {
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--text-light);
+  }
+  .thesis-text em {
+    color: var(--copper);
+    font-style: italic;
+  }
+
+  .friction-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 64px;
+  }
+  .friction-item {
+    padding: 28px;
+    background: rgba(250, 249, 246, 0.03);
+    border: 1px solid rgba(250, 249, 246, 0.06);
+    border-radius: 8px;
+  }
+  .friction-item h4 {
+    font-family: var(--sans);
     font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--amber);
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 8px;
   }
+  .friction-item p {
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--text-light-secondary);
+    line-height: 1.6;
+  }
+
+  /* ══════════════════════════════════════════════
+     PHASE SPREADS — shared styles
+     ══════════════════════════════════════════════ */
+  .phase-spread {
+    padding: 120px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .phase-spread.light {
+    background: var(--warm-white);
+    color: var(--text-dark);
+  }
+  .phase-spread.dark {
+    background: var(--charcoal);
+    color: var(--text-light);
+  }
+  .phase-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Giant background number */
+  .phase-bg-number {
+    position: absolute;
+    top: -40px;
+    right: -20px;
+    font-family: var(--serif);
+    font-size: clamp(15rem, 28vw, 26rem);
+    font-weight: 900;
+    line-height: 1;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .phase-spread.light .phase-bg-number {
+    color: rgba(26, 26, 46, 0.03);
+  }
+  .phase-spread.dark .phase-bg-number {
+    color: rgba(250, 249, 246, 0.02);
+  }
+
+  .phase-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 12px;
+  }
+  .phase-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .phase-timeline {
+    font-size: 0.85rem;
+    font-weight: 400;
+    margin-bottom: 56px;
+  }
+  .phase-spread.light .phase-timeline { color: var(--text-dark-muted); }
+  .phase-spread.dark .phase-timeline { color: var(--text-light-muted); }
 
   .phase-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  .phase-grid.three-col {
+    grid-template-columns: repeat(3, 1fr);
   }
 
-  .work-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 16px;
-    padding: 28px;
-    transition: all 0.3s ease;
+  .phase-card {
+    padding: 36px;
+    border-radius: 8px;
     position: relative;
+    transition: transform 0.3s ease;
   }
-  .work-card:hover {
-    border-color: rgba(245, 158, 11, 0.2);
-    background: rgba(255,255,255,0.05);
-    transform: translateY(-2px);
+  .phase-card:hover {
+    transform: translateY(-3px);
   }
-  .work-card-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    margin-bottom: 16px;
+  .phase-spread.light .phase-card {
+    background: white;
+    border: 1px solid rgba(26, 26, 46, 0.06);
+    box-shadow: 0 2px 20px rgba(26, 26, 46, 0.04);
   }
-  .work-card-icon.brand { background: rgba(245, 158, 11, 0.12); }
-  .work-card-icon.tech { background: rgba(59, 130, 246, 0.12); }
-  .work-card-icon.content { background: rgba(16, 185, 129, 0.12); }
-  .work-card-icon.ai { background: rgba(168, 85, 247, 0.12); }
-  .work-card-icon.portal { background: rgba(236, 72, 153, 0.12); }
-  .work-card-icon.ads { background: rgba(239, 68, 68, 0.12); }
+  .phase-spread.dark .phase-card {
+    background: rgba(250, 249, 246, 0.03);
+    border: 1px solid rgba(250, 249, 246, 0.06);
+  }
 
-  .work-card h3 {
-    font-size: 1.05rem;
-    font-weight: 700;
-    margin-bottom: 10px;
+  .phase-card-rule {
+    width: 28px;
+    height: 2px;
+    background: var(--copper);
+    margin-bottom: 20px;
   }
-  .work-card p {
+  .phase-card h3 {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .phase-spread.light .phase-card h3 { color: var(--text-dark); }
+  .phase-spread.dark .phase-card h3 { color: var(--text-light); }
+
+  .phase-card p {
     font-size: 0.88rem;
-    color: var(--gray-400);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .phase-spread.light .phase-card p { color: var(--text-dark-secondary); }
+  .phase-spread.dark .phase-card p { color: var(--text-light-secondary); }
+
+  .phase-card ul {
+    list-style: none;
+    margin-top: 14px;
+  }
+  .phase-card ul li {
+    font-size: 0.82rem;
+    font-weight: 300;
+    padding: 3px 0 3px 16px;
+    position: relative;
     line-height: 1.6;
   }
-  .work-card ul {
-    list-style: none;
-    margin-top: 12px;
-  }
-  .work-card ul li {
-    font-size: 0.85rem;
-    color: var(--gray-400);
-    padding: 4px 0;
-    padding-left: 18px;
-    position: relative;
-  }
-  .work-card ul li::before {
+  .phase-spread.light .phase-card ul li { color: var(--text-dark-muted); }
+  .phase-spread.dark .phase-card ul li { color: var(--text-light-secondary); }
+  .phase-card ul li::before {
     content: '';
     position: absolute;
     left: 0;
-    top: 12px;
-    width: 6px;
-    height: 6px;
+    top: 10px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
-    background: var(--amber);
-    opacity: 0.6;
+    background: var(--copper);
+    opacity: 0.5;
   }
 
-  /* Timeline visual */
-  .timeline-visual {
-    display: flex;
-    align-items: stretch;
-    gap: 0;
-    margin: 60px 0;
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.06);
-  }
-  .timeline-block {
-    flex: 1;
-    padding: 28px 24px;
+  /* ══════════════════════════════════════════════
+     SPREAD 7 — THE NUMBERS
+     ══════════════════════════════════════════════ */
+  .numbers-spread {
+    background: var(--warm-white);
+    padding: 120px 40px;
     position: relative;
-    text-align: center;
-    transition: all 0.3s ease;
-    cursor: default;
   }
-  .timeline-block:hover {
-    transform: scale(1.02);
+  .numbers-inner {
+    max-width: 1100px;
+    margin: 0 auto;
   }
-  .timeline-block.p1 { background: rgba(245, 158, 11, 0.08); }
-  .timeline-block.p2 { background: rgba(59, 130, 246, 0.08); }
-  .timeline-block.p3 { background: rgba(16, 185, 129, 0.08); }
-  .tb-phase {
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--amber);
-    margin-bottom: 6px;
-  }
-  .timeline-block.p2 .tb-phase { color: var(--blue); }
-  .timeline-block.p3 .tb-phase { color: var(--green); }
-  .tb-name {
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-  .tb-months {
-    font-size: 0.8rem;
-    color: var(--gray-500);
-  }
-
-  /* ROI Section */
-  .roi-section {
-    background: linear-gradient(180deg, var(--navy-mid) 0%, var(--navy) 100%);
-  }
-
-  .roi-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
-    margin-bottom: 40px;
-  }
-
-  .roi-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 16px;
-    padding: 32px;
-    text-align: center;
-    transition: all 0.3s ease;
-  }
-  .roi-card:hover {
-    border-color: rgba(16, 185, 129, 0.3);
-    transform: translateY(-2px);
-  }
-  .roi-card-label {
+  .numbers-label {
     font-size: 0.7rem;
     font-weight: 600;
-    letter-spacing: 2px;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--gray-500);
+    color: var(--copper);
+    margin-bottom: 40px;
+  }
+  .numbers-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--text-dark);
     margin-bottom: 12px;
   }
-  .roi-card-value {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 8px;
-  }
-  .roi-card-value.green { color: #34d399; }
-  .roi-card-value.amber { color: var(--amber); }
-  .roi-card-value.blue { color: #60a5fa; }
-  .roi-card-desc {
-    font-size: 0.85rem;
-    color: var(--gray-400);
-    line-height: 1.5;
+  .numbers-subtitle {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--text-dark-muted);
+    max-width: 600px;
+    margin-bottom: 64px;
+    line-height: 1.7;
   }
 
-  .roi-assumptions {
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 12px;
-    padding: 24px 28px;
-    margin-top: 32px;
-  }
-  .roi-assumptions h4 {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gray-500);
-    margin-bottom: 12px;
-  }
-  .roi-assumptions ul {
-    list-style: none;
+  .numbers-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 8px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    margin-bottom: 48px;
   }
-  .roi-assumptions li {
-    font-size: 0.85rem;
-    color: var(--gray-400);
-    padding-left: 18px;
+  .number-item {
+    text-align: left;
+    padding-top: 28px;
     position: relative;
   }
-  .roi-assumptions li::before {
+  .number-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 1px;
+    background: var(--copper);
+  }
+  .number-value {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .number-value.copper { color: var(--copper); }
+  .number-label {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+  }
+  .number-desc {
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--text-dark-muted);
+    line-height: 1.6;
+  }
+
+  .assumptions-block {
+    margin-top: 64px;
+    padding: 32px;
+    background: var(--cream);
+    border-radius: 8px;
+  }
+  .assumptions-block h4 {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-dark-muted);
+    margin-bottom: 16px;
+  }
+  .assumptions-block ul {
+    list-style: none;
+    columns: 2;
+    gap: 24px;
+  }
+  .assumptions-block li {
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--text-dark-muted);
+    padding: 3px 0 3px 16px;
+    position: relative;
+    break-inside: avoid;
+    line-height: 1.6;
+  }
+  .assumptions-block li::before {
     content: '';
     position: absolute;
     left: 0;
-    top: 9px;
-    width: 6px;
-    height: 6px;
+    top: 10px;
+    width: 4px;
+    height: 4px;
     border-radius: 50%;
-    background: var(--gray-500);
+    background: var(--text-dark-muted);
+    opacity: 0.4;
   }
 
-  /* Why GG */
-  .why-section {
-    background: linear-gradient(180deg, var(--navy) 0%, var(--navy-mid) 100%);
+  /* ══════════════════════════════════════════════
+     SPREAD 8 — WHY GUEST GETTER
+     ══════════════════════════════════════════════ */
+  .why-spread {
+    background: var(--charcoal);
+    color: var(--text-light);
+    padding: 120px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .why-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .why-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 40px;
+  }
+  .why-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 12px;
+    max-width: 600px;
+  }
+  .why-subtitle {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--text-light-secondary);
+    max-width: 600px;
+    margin-bottom: 64px;
+    line-height: 1.7;
   }
 
   .capability-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    margin-bottom: 48px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 28px;
+    margin-bottom: 64px;
   }
-
-  .cap-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 16px;
-    padding: 28px;
-    text-align: center;
+  .cap-item {
+    padding: 32px 24px;
+    background: rgba(250, 249, 246, 0.03);
+    border: 1px solid rgba(250, 249, 246, 0.06);
+    border-radius: 8px;
     transition: all 0.3s ease;
   }
-  .cap-card:hover {
-    border-color: rgba(245, 158, 11, 0.3);
-    transform: translateY(-4px);
-    background: rgba(255,255,255,0.05);
+  .cap-item:hover {
+    border-color: rgba(196, 127, 23, 0.3);
+    transform: translateY(-3px);
   }
-  .cap-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    background: var(--amber-glow);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    margin: 0 auto 16px;
+  .cap-rule {
+    width: 24px;
+    height: 2px;
+    background: var(--copper);
+    margin-bottom: 20px;
   }
-  .cap-card h3 {
-    font-size: 0.95rem;
-    font-weight: 700;
-    margin-bottom: 8px;
+  .cap-item h3 {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 10px;
+    line-height: 1.3;
   }
-  .cap-card p {
-    font-size: 0.82rem;
-    color: var(--gray-400);
-    line-height: 1.5;
-  }
-
-  .team-callout {
-    background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(245, 158, 11, 0.02));
-    border: 1px solid rgba(245, 158, 11, 0.15);
-    border-radius: 16px;
-    padding: 36px;
-    display: flex;
-    gap: 24px;
-    align-items: center;
-  }
-  .team-callout-icon {
-    font-size: 2.5rem;
-    min-width: 60px;
-    text-align: center;
-  }
-  .team-callout h3 {
-    font-size: 1.15rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: var(--amber);
-  }
-  .team-callout p {
-    font-size: 0.92rem;
-    color: var(--gray-300);
+  .cap-item p {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--text-light-secondary);
     line-height: 1.6;
   }
 
-  /* CTA / Close */
-  .cta-section {
-    min-height: 60vh;
+  .callout-block {
+    background: rgba(196, 127, 23, 0.06);
+    border: 1px solid rgba(196, 127, 23, 0.15);
+    border-radius: 8px;
+    padding: 48px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  .callout-marker {
+    font-family: var(--serif);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--copper);
+    line-height: 1;
+    margin-top: -4px;
+  }
+  .callout-block h3 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--copper);
+    margin-bottom: 12px;
+  }
+  .callout-block p {
+    font-size: 0.92rem;
+    font-weight: 300;
+    color: var(--text-light-secondary);
+    line-height: 1.8;
+  }
+
+  /* ══════════════════════════════════════════════
+     SPREAD 9 — CLOSING
+     ══════════════════════════════════════════════ */
+  .closing-spread {
+    min-height: 80vh;
+    background: var(--warm-white);
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 100px 40px;
+    padding: 120px 40px;
     position: relative;
   }
-  .cta-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.06) 0%, transparent 60%);
-  }
-  .cta-content {
-    position: relative;
+  .closing-inner {
     max-width: 700px;
   }
-  .cta-title {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 800;
+  .closing-rule {
+    width: 60px;
+    height: 1px;
+    background: var(--copper);
+    margin: 0 auto 48px;
+  }
+  .closing-title {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+    font-weight: 700;
     line-height: 1.2;
-    margin-bottom: 16px;
+    color: var(--text-dark);
+    margin-bottom: 24px;
   }
-  .cta-title span {
-    background: linear-gradient(135deg, var(--amber), var(--amber-light));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .closing-title em {
+    font-style: italic;
+    color: var(--copper);
   }
-  .cta-subtitle {
-    font-size: 1.1rem;
-    color: var(--gray-400);
-    margin-bottom: 40px;
+  .closing-body {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--text-dark-muted);
+    line-height: 1.8;
+    margin-bottom: 48px;
+  }
+  .closing-urgency {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--text-dark-secondary);
+    margin-bottom: 48px;
     line-height: 1.6;
   }
-  .cta-contact {
-    display: inline-flex;
+  .closing-contact {
+    display: flex;
     flex-direction: column;
     gap: 4px;
-    font-size: 0.9rem;
-    color: var(--gray-500);
   }
-  .cta-contact strong {
-    color: var(--white);
+  .closing-contact-name {
+    font-family: var(--serif);
+    font-size: 1.15rem;
     font-weight: 600;
-    font-size: 1rem;
+    color: var(--text-dark);
+  }
+  .closing-contact-co {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--copper);
   }
 
-  /* Animations */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+  .closing-footer {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(26, 26, 46, 0.08);
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dark-muted);
   }
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .fade-in-delay-1 { transition-delay: 0.1s; }
-  .fade-in-delay-2 { transition-delay: 0.2s; }
-  .fade-in-delay-3 { transition-delay: 0.3s; }
-  .fade-in-delay-4 { transition-delay: 0.4s; }
-  .fade-in-delay-5 { transition-delay: 0.5s; }
 
-  /* Responsive */
-  @media (max-width: 768px) {
-    .hero { padding: 40px 24px; }
-    .section { padding: 60px 24px; }
-    .hero-meta { gap: 24px; }
-    .phase-header { flex-direction: column; text-align: center; }
-    .timeline-visual { flex-direction: column; }
-    .team-callout { flex-direction: column; text-align: center; }
+  /* ══════════════════════════════════════════════
+     RESPONSIVE
+     ══════════════════════════════════════════════ */
+  @media (max-width: 900px) {
+    .revenue-columns { grid-template-columns: 1fr; gap: 32px; }
+    .friction-grid { grid-template-columns: 1fr; }
+    .phase-grid, .phase-grid.three-col { grid-template-columns: 1fr; }
+    .numbers-grid { grid-template-columns: 1fr; gap: 36px; }
+    .capability-grid { grid-template-columns: repeat(2, 1fr); }
+    .callout-block { grid-template-columns: 1fr; }
+    .stat-row { gap: 36px; }
+    .assumptions-block ul { columns: 1; }
     .nav-dots { display: none; }
-    .revenue-grid, .phase-grid, .roi-grid, .capability-grid {
-      grid-template-columns: 1fr;
-    }
+    .phase-bg-number { font-size: 12rem; top: -20px; right: -10px; }
   }
 
-  /* Print */
+  @media (max-width: 600px) {
+    .cover { padding: 40px 24px; }
+    .story-spread,
+    .opportunity-spread,
+    .phase-spread,
+    .numbers-spread,
+    .why-spread,
+    .closing-spread { padding: 80px 24px; }
+    .capability-grid { grid-template-columns: 1fr; }
+    .callout-block { padding: 32px 24px; }
+    .stat-row { flex-direction: column; gap: 32px; }
+  }
+
+  /* ══════════════════════════════════════════════
+     PRINT STYLES
+     ══════════════════════════════════════════════ */
   @media print {
-    body { background: white; color: #1a2332; }
-    .nav-dots, .brand-mark, .scroll-hint { display: none; }
-    .section { page-break-inside: avoid; }
+    body { background: white; }
+    .nav-dots, .cover-scroll { display: none !important; }
+    .grain::after { display: none; }
+    .cover { min-height: auto; padding: 80px 40px; page-break-after: always; }
+    .story-spread,
+    .opportunity-spread,
+    .phase-spread,
+    .numbers-spread,
+    .why-spread { page-break-inside: avoid; page-break-after: always; padding: 60px 40px; }
+    .closing-spread { min-height: auto; page-break-inside: avoid; }
+    .phase-bg-number { display: none; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .phase-card, .cap-item { break-inside: avoid; }
+    .charcoal-print, .opportunity-spread, .why-spread, .cover {
+      background: #f0f0f0 !important;
+      color: #1a1a2e !important;
+    }
+    .opportunity-spread *, .why-spread *, .cover * {
+      color: #1a1a2e !important;
+    }
+    .copper-print, .cover-company span, .stat-value, .number-value.copper {
+      color: #8b5e14 !important;
+    }
   }
 </style>
 </head>
 <body>
 
-<!-- Brand Mark -->
-<div class="brand-mark">Guest Getter</div>
-
-<!-- Navigation Dots -->
+<!-- ── Navigation Dots ── -->
 <nav class="nav-dots" id="navDots">
-  <div class="nav-dot active" data-section="hero" title="Overview"></div>
-  <div class="nav-dot" data-section="landscape" title="Current Landscape"></div>
-  <div class="nav-dot" data-section="timeline" title="Timeline"></div>
+  <div class="nav-dot active" data-section="cover" title="Cover"></div>
+  <div class="nav-dot" data-section="story" title="The Edge Story"></div>
+  <div class="nav-dot" data-section="opportunity" title="The Opportunity"></div>
   <div class="nav-dot" data-section="phase1" title="Phase 1"></div>
   <div class="nav-dot" data-section="phase2" title="Phase 2"></div>
   <div class="nav-dot" data-section="phase3" title="Phase 3"></div>
-  <div class="nav-dot" data-section="roi" title="ROI"></div>
+  <div class="nav-dot" data-section="numbers" title="The Numbers"></div>
   <div class="nav-dot" data-section="why" title="Why Guest Getter"></div>
-  <div class="nav-dot" data-section="cta" title="Next Steps"></div>
+  <div class="nav-dot" data-section="closing" title="Next Steps"></div>
 </nav>
 
-<!-- ==================== HERO ==================== -->
-<section class="hero" id="hero">
-  <div class="hero-content">
-    <div class="hero-date fade-in">April 14, 2026</div>
-    <div class="hero-prepared fade-in fade-in-delay-1">Prepared for JP Cesario &amp; the Edge Food Equipment Team</div>
-    <h1 class="hero-title fade-in fade-in-delay-2">
-      12-Month<br><span>Growth Roadmap</span>
+
+<!-- ═══════════════════════════════════════════════════
+     SPREAD 1 — COVER
+     ═══════════════════════════════════════════════════ -->
+<section class="cover grain" id="cover">
+  <div class="cover-content">
+    <div class="cover-rule reveal"></div>
+    <h1 class="cover-company reveal reveal-d1">
+      EDGE
+      <span>Food Equipment</span>
     </h1>
-    <p class="hero-subtitle fade-in fade-in-delay-3">
-      A strategic plan to transform Edge Food Equipment's digital infrastructure, unlock portal-driven revenue, and build a scalable competitive moat.
-    </p>
-    <div class="hero-meta fade-in fade-in-delay-4">
-      <div class="hero-meta-item">
-        <div class="hero-meta-value">3</div>
-        <div class="hero-meta-label">Phases</div>
-      </div>
-      <div class="hero-meta-item">
-        <div class="hero-meta-value">12</div>
-        <div class="hero-meta-label">Months</div>
-      </div>
-      <div class="hero-meta-item">
-        <div class="hero-meta-value">3</div>
-        <div class="hero-meta-label">Revenue Lines</div>
-      </div>
-    </div>
+    <div class="cover-subtitle reveal reveal-d2">12-Month Growth Partnership</div>
+    <div class="cover-for reveal reveal-d3">Prepared for JP Cesario</div>
+    <div class="cover-date reveal reveal-d4">April 2026</div>
   </div>
-  <div class="scroll-hint">
-    <span>Scroll to explore</span>
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+  <div class="cover-scroll">
+    <span>Scroll</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
       <path d="M12 5v14M5 12l7 7 7-7"/>
     </svg>
   </div>
+  <div class="cover-presenter reveal reveal-d5">Presented by Guest Getter</div>
 </section>
 
-<!-- ==================== LANDSCAPE ==================== -->
-<section class="landscape" id="landscape">
-  <div class="section">
-    <div class="section-label fade-in">Current Landscape</div>
-    <h2 class="section-title fade-in fade-in-delay-1">Three revenue engines,<br>one digital gap.</h2>
-    <p class="section-desc fade-in fade-in-delay-2">
-      Edge Food Equipment has built a dominant position through relationships, expertise, and execution. The opportunity is to digitize that advantage before competitors do.
+
+<!-- ═══════════════════════════════════════════════════
+     SPREAD 2 — THE EDGE STORY
+     ═══════════════════════════════════════════════════ -->
+<section class="story-spread" id="story">
+  <div class="story-inner">
+    <div class="story-label reveal">The Edge Story</div>
+
+    <blockquote class="pull-quote reveal reveal-d1">
+      "The restaurant world needs a revamp and that's what I'm trying to provide."
+    </blockquote>
+    <div class="pull-quote-attr reveal reveal-d2">&mdash; JP Cesario, Owner, Edge Food Equipment</div>
+
+    <p class="story-narrative reveal reveal-d3">
+      Edge Food Equipment is not a typical dealer. Under JP's leadership, the company has built a <strong>consultative, relationship-first business</strong> spanning showroom sales, full-service restaurant buildouts, and national chain programs. Three distinct revenue engines, each requiring different expertise, different buyer journeys, and different operational infrastructure. The foundation is strong. The opportunity is to <strong>digitize that advantage</strong> before competitors do.
     </p>
 
-    <div class="revenue-grid">
-      <div class="revenue-card fade-in fade-in-delay-1">
-        <div class="rc-number">01</div>
-        <div class="rc-title">Showroom + E-Commerce</div>
-        <div class="rc-detail">Shopify Plus with 18K SKUs. Public buyers cherry-picking mispriced items. $3K/mo platform cost with broken catalog economics.</div>
-        <span class="rc-tag low">Underperforming</span>
+    <div class="revenue-columns">
+      <div class="rev-col reveal reveal-d1">
+        <div class="rev-col-num">01</div>
+        <h3>Showroom &amp; E-Commerce</h3>
+        <p>Shopify Plus with 18K SKUs. Public buyers cherry-picking mispriced items. $3K/mo platform cost with broken catalog economics.</p>
+        <span class="rev-tag needs-work">Needs Revamp</span>
       </div>
-      <div class="revenue-card fade-in fade-in-delay-2">
-        <div class="rc-number">02</div>
-        <div class="rc-title">Design-Build Projects</div>
-        <div class="rc-detail">Full restaurant buildouts at $500K-$1M each. Best margins, highest expertise required. Word-of-mouth driven, ~8-10 projects per year.</div>
-        <span class="rc-tag high">Best Margins</span>
+      <div class="rev-col reveal reveal-d2">
+        <div class="rev-col-num">02</div>
+        <h3>Design-Build Projects</h3>
+        <p>Full restaurant buildouts at $500K&ndash;$1M each. Best margins, highest expertise. Word-of-mouth driven, ~8&ndash;10 projects per year.</p>
+        <span class="rev-tag best">Best Margins</span>
       </div>
-      <div class="revenue-card fade-in fade-in-delay-3">
-        <div class="rc-number">03</div>
-        <div class="rc-title">QSR / Chain Programs</div>
-        <div class="rc-detail">Wendy's, Swiss Chalet, Harvey's, and more. High volume, thin margins. Massive account management overhead with manual ordering.</div>
-        <span class="rc-tag med">High Volume</span>
-      </div>
-    </div>
-
-    <h3 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 20px; color: var(--gray-300);" class="fade-in">Key Friction Points</h3>
-    <div class="challenges">
-      <div class="challenge-item fade-in fade-in-delay-1">
-        <div class="challenge-icon">&#9888;</div>
-        <div class="challenge-text"><strong>Broken Shopify catalog</strong> &mdash; 18K SKUs with pricing exposure. Public access to negotiated rates is bleeding margin.</div>
-      </div>
-      <div class="challenge-item fade-in fade-in-delay-2">
-        <div class="challenge-icon">&#9888;</div>
-        <div class="challenge-text"><strong>Manual order processing</strong> &mdash; QSR chain orders handled by account managers via email/phone. High labor cost, high error rate.</div>
-      </div>
-      <div class="challenge-item fade-in fade-in-delay-3">
-        <div class="challenge-icon">&#9888;</div>
-        <div class="challenge-text"><strong>No digital lead engine</strong> &mdash; 50-100 new customers/month, zero paid acquisition. Whales come via word of mouth only.</div>
-      </div>
-      <div class="challenge-item fade-in fade-in-delay-4">
-        <div class="challenge-icon">&#9888;</div>
-        <div class="challenge-text"><strong>ERP migration in flight</strong> &mdash; Sage 300 to Business Central. Open API unlocks automation, but needs integration strategy.</div>
+      <div class="rev-col reveal reveal-d3">
+        <div class="rev-col-num">03</div>
+        <h3>QSR Chain Programs</h3>
+        <p>Wendy's, Swiss Chalet, Harvey's, and more. High volume, thin margins. Massive account management overhead with manual ordering.</p>
+        <span class="rev-tag volume">High Volume</span>
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider"><div class="divider-line"></div></div>
 
-<!-- ==================== TIMELINE ==================== -->
-<section class="section" id="timeline">
-  <div class="section-label fade-in">The Plan</div>
-  <h2 class="section-title fade-in fade-in-delay-1">Three phases. Twelve months.<br>Compounding returns.</h2>
-  <p class="section-desc fade-in fade-in-delay-2">
-    Each phase builds on the last. Phase 1 lays the foundation so Phase 2 can launch revenue-generating systems. Phase 3 scales what works.
-  </p>
+<!-- ═══════════════════════════════════════════════════
+     SPREAD 3 — THE OPPORTUNITY
+     ═══════════════════════════════════════════════════ -->
+<section class="opportunity-spread grain" id="opportunity">
+  <div class="opportunity-inner">
+    <div class="opp-label reveal">The Opportunity</div>
+    <h2 class="opp-title reveal reveal-d1">The market is massive.<br>The competition is analog.</h2>
 
-  <div class="timeline-visual fade-in fade-in-delay-3">
-    <div class="timeline-block p1">
-      <div class="tb-phase">Phase 1</div>
-      <div class="tb-name">Foundation</div>
-      <div class="tb-months">Months 1&ndash;3</div>
-    </div>
-    <div class="timeline-block p2">
-      <div class="tb-phase">Phase 2</div>
-      <div class="tb-name">Build &amp; Launch</div>
-      <div class="tb-months">Months 4&ndash;8</div>
-    </div>
-    <div class="timeline-block p3">
-      <div class="tb-phase">Phase 3</div>
-      <div class="tb-name">Scale &amp; Optimize</div>
-      <div class="tb-months">Months 9&ndash;12</div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"><div class="divider-line"></div></div>
-
-<!-- ==================== PHASE 1 ==================== -->
-<section class="section phase" id="phase1">
-  <div class="phase-header fade-in">
-    <div class="phase-badge">1</div>
-    <div class="phase-header-text">
-      <h2>Foundation</h2>
-      <div class="phase-timeline">Months 1&ndash;3 &middot; Strategy, Messaging &amp; Infrastructure</div>
-    </div>
-  </div>
-
-  <div class="phase-grid">
-    <div class="work-card fade-in fade-in-delay-1">
-      <div class="work-card-icon brand">&#9733;</div>
-      <h3>StoryBrand Messaging + Website Redesign</h3>
-      <p>Rebuild the Edge website with a clear, conversion-focused narrative. Three distinct entry paths for three buyer types.</p>
-      <ul>
-        <li>Corporate Portfolio path for design-build prospects</li>
-        <li>Shop Now path for curated e-commerce buyers</li>
-        <li>Portal Login for chain/program accounts</li>
-      </ul>
+    <div class="stat-row">
+      <div class="stat-item reveal reveal-d1">
+        <div class="stat-value">$45&ndash;50B</div>
+        <div class="stat-label">US commercial foodservice<br>equipment market</div>
+      </div>
+      <div class="stat-item reveal reveal-d2">
+        <div class="stat-value">5&ndash;7%</div>
+        <div class="stat-label">Compound annual<br>growth rate</div>
+      </div>
+      <div class="stat-item reveal reveal-d3">
+        <div class="stat-value">~0</div>
+        <div class="stat-label">Dealers with integrated digital<br>portals + AI infrastructure</div>
+      </div>
     </div>
 
-    <div class="work-card fade-in fade-in-delay-2">
-      <div class="work-card-icon tech">&#9881;</div>
-      <h3>Technical SEO Audit + Fixes</h3>
-      <p>Comprehensive technical audit to fix crawl issues, site speed, schema markup, and indexation problems. Build the foundation for organic growth.</p>
-      <ul>
-        <li>Core Web Vitals optimization</li>
-        <li>Structured data for product catalog</li>
-        <li>Category architecture overhaul</li>
-      </ul>
+    <div class="thesis-block reveal reveal-d2">
+      <div class="thesis-label">The Thesis</div>
+      <p class="thesis-text">Become the <em>digitally-enabled consultative dealer</em> &mdash; own the relationship, not the commodity. Every portal deployed, every AI interaction, every integrated workflow becomes a moat competitors cannot replicate.</p>
     </div>
 
-    <div class="work-card fade-in fade-in-delay-3">
-      <div class="work-card-icon tech">&#8644;</div>
-      <h3>Business Central API Integration Planning</h3>
-      <p>Work alongside MMP consultants to map the data architecture. Define endpoints, sync logic, and inventory flow between BC, Shopify, and future portals.</p>
-      <ul>
-        <li>API endpoint mapping with MMP team</li>
-        <li>Data flow diagrams for inventory + pricing</li>
-        <li>Webhook and sync architecture design</li>
-      </ul>
-    </div>
-
-    <div class="work-card fade-in fade-in-delay-4">
-      <div class="work-card-icon brand">&#9830;</div>
-      <h3>Edge Essentials Brand Strategy</h3>
-      <p>Define the private-label brand positioning. Curate the core SKU catalog to replace the broken 18K-item Shopify store with a tight, margin-protected selection.</p>
-      <ul>
-        <li>Private-label brand identity and packaging</li>
-        <li>Core SKU selection (high-turn, high-margin)</li>
-        <li>Container-buy pricing model</li>
-      </ul>
-    </div>
-
-    <div class="work-card fade-in fade-in-delay-5">
-      <div class="work-card-icon content">&#9998;</div>
-      <h3>Content Strategy</h3>
-      <p>Build the editorial engine that will fuel SEO and sales enablement across all three revenue lines.</p>
-      <ul>
-        <li>Equipment buying guides for top categories</li>
-        <li>Success story revamps (design-build showcase)</li>
-        <li>Lookbook digitization for project portfolios</li>
-      </ul>
-    </div>
-
-    <div class="work-card fade-in fade-in-delay-5">
-      <div class="work-card-icon ai">&#9672;</div>
-      <h3>Brain Setup &mdash; AI Foundation</h3>
-      <p>Ingest Edge's operational data, product catalogs, and institutional knowledge into Guest Getter's AI brain infrastructure. The foundation for "Ask Edge."</p>
-      <ul>
-        <li>Product specs, manuals, and catalogs ingested</li>
-        <li>Historical order patterns mapped</li>
-        <li>Troubleshooting knowledge base built</li>
-      </ul>
+    <div class="friction-grid">
+      <div class="friction-item reveal reveal-d1">
+        <h4>Broken Shopify Catalog</h4>
+        <p>18K SKUs with pricing exposure. Public access to negotiated rates is bleeding margin on every transaction.</p>
+      </div>
+      <div class="friction-item reveal reveal-d2">
+        <h4>Manual Order Processing</h4>
+        <p>QSR chain orders handled by account managers via email and phone. High labor cost, high error rate, zero scalability.</p>
+      </div>
+      <div class="friction-item reveal reveal-d3">
+        <h4>No Digital Lead Engine</h4>
+        <p>50&ndash;100 new customers per month, zero paid acquisition. Design-build whales come only via word of mouth.</p>
+      </div>
+      <div class="friction-item reveal reveal-d4">
+        <h4>ERP Migration in Flight</h4>
+        <p>Sage 300 to Business Central. The open API unlocks automation &mdash; but it needs an integration strategy now.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="divider"><div class="divider-line"></div></div>
 
-<!-- ==================== PHASE 2 ==================== -->
-<section class="section phase" id="phase2">
-  <div class="phase-header fade-in">
-    <div class="phase-badge">2</div>
-    <div class="phase-header-text">
-      <h2>Build &amp; Launch</h2>
-      <div class="phase-timeline">Months 4&ndash;8 &middot; Portals, AI &amp; E-Commerce</div>
+<!-- ═══════════════════════════════════════════════════
+     SPREAD 4 — PHASE 1: FOUNDATION
+     ═══════════════════════════════════════════════════ -->
+<section class="phase-spread light" id="phase1">
+  <div class="phase-bg-number">01</div>
+  <div class="phase-inner">
+    <div class="phase-label reveal">Phase One</div>
+    <h2 class="phase-title reveal reveal-d1">Foundation</h2>
+    <div class="phase-timeline reveal reveal-d2">Months 1&ndash;3 &nbsp;/&nbsp; Strategy, Messaging &amp; Infrastructure</div>
+
+    <div class="phase-grid three-col">
+      <div class="phase-card reveal reveal-d1">
+        <div class="phase-card-rule"></div>
+        <h3>StoryBrand Messaging &amp; Website Redesign</h3>
+        <p>Rebuild the Edge website with a clear, conversion-focused narrative. Three distinct entry paths for three buyer types.</p>
+        <ul>
+          <li>Corporate portfolio path for design-build</li>
+          <li>Shop Now path for curated e-commerce</li>
+          <li>Portal login for chain program accounts</li>
+        </ul>
+      </div>
+
+      <div class="phase-card reveal reveal-d2">
+        <div class="phase-card-rule"></div>
+        <h3>Technical SEO Audit &amp; Fixes</h3>
+        <p>Comprehensive audit to fix crawl issues, site speed, schema markup, and indexation. Build the foundation for organic growth.</p>
+        <ul>
+          <li>Core Web Vitals optimization</li>
+          <li>Structured data for product catalog</li>
+          <li>Category architecture overhaul</li>
+        </ul>
+      </div>
+
+      <div class="phase-card reveal reveal-d3">
+        <div class="phase-card-rule"></div>
+        <h3>Business Central API Planning</h3>
+        <p>Work alongside MMP consultants to map the data architecture. Define endpoints, sync logic, and inventory flow.</p>
+        <ul>
+          <li>API endpoint mapping with MMP team</li>
+          <li>Data flow diagrams for inventory + pricing</li>
+          <li>Webhook and sync architecture design</li>
+        </ul>
+      </div>
+
+      <div class="phase-card reveal reveal-d4">
+        <div class="phase-card-rule"></div>
+        <h3>Edge Essentials Brand Strategy</h3>
+        <p>Define private-label positioning. Curate the core SKU catalog to replace the broken 18K-item store with a tight, margin-protected selection.</p>
+        <ul>
+          <li>Private-label brand identity and packaging</li>
+          <li>Core SKU selection (high-turn, high-margin)</li>
+          <li>Container-buy pricing model</li>
+        </ul>
+      </div>
+
+      <div class="phase-card reveal reveal-d5">
+        <div class="phase-card-rule"></div>
+        <h3>Content Strategy</h3>
+        <p>Build the editorial engine that will fuel SEO and sales enablement across all three revenue lines.</p>
+        <ul>
+          <li>Equipment buying guides for top categories</li>
+          <li>Lookbook digitization for project portfolios</li>
+          <li>Success story revamps (design-build showcase)</li>
+        </ul>
+      </div>
+
+      <div class="phase-card reveal reveal-d6">
+        <div class="phase-card-rule"></div>
+        <h3>Brain / AI Data Foundation</h3>
+        <p>Ingest Edge's operational data, product catalogs, and institutional knowledge into the AI brain infrastructure.</p>
+        <ul>
+          <li>Product specs, manuals, and catalogs ingested</li>
+          <li>Historical order patterns mapped</li>
+          <li>Troubleshooting knowledge base built</li>
+        </ul>
+      </div>
     </div>
   </div>
+</section>
 
-  <div class="phase-grid">
-    <div class="work-card fade-in fade-in-delay-1">
-      <div class="work-card-icon portal">&#9776;</div>
-      <h3>Brand-Specific Ordering Portal v1</h3>
-      <p>Launch the Wendy's pilot portal &mdash; a logged-in, brand-specific ordering experience that eliminates manual order processing.</p>
-      <ul>
-        <li>Negotiated pricing per account, hidden from public</li>
-        <li>Live inventory via Business Central API</li>
-        <li>Service ticket system + parts ordering</li>
-        <li>Equipment history per location</li>
-        <li>Business Central &harr; Shopify sync via API</li>
-      </ul>
+
+<!-- ═══════════════════════════════════════════════════
+     SPREAD 5 — PHASE 2: BUILD & LAUNCH
+     ═══════════════════════════════════════════════════ -->
+<section class="phase-spread dark grain" id="phase2">
+  <div class="phase-bg-number">02</div>
+  <div class="phase-inner">
+    <div class="phase-label reveal">Phase Two</div>
+    <h2 class="phase-title reveal reveal-d1">Build &amp; Launch</h2>
+    <div class="phase-timeline reveal reveal-d2">Months 4&ndash;8 &nbsp;/&nbsp; Portals, AI &amp; E-Commerce</div>
+
+    <div class="phase-grid">
+      <div class="phase-card reveal reveal-d1" style="grid-column: span 2;">
+        <div class="phase-card-rule"></div>
+        <h3>Wendy's Portal Pilot</h3>
+        <p>Launch the first brand-specific ordering portal &mdash; a logged-in experience that eliminates manual order processing and becomes the blueprint for every chain account.</p>
+        <ul>
+          <li>Negotiated pricing per account, hidden from public</li>
+          <li>Live inventory via Business Central API</li>
+          <li>Service ticket system + parts ordering</li>
+          <li>Equipment history per location</li>
+          <li>Business Central &harr; Shopify sync via API</li>
+        </ul>
+      </div>
+
+      <div class="phase-card reveal reveal-d2">
+        <div class="phase-card-rule"></div>
+        <h3>"Ask Edge" AI Assistant MVP</h3>
+        <p>Deploy an AI-powered assistant for chain operators and internal staff to query equipment specs, troubleshooting guides, and parts compatibility.</p>
+        <ul>
+          <li>Natural language equipment spec queries</li>
+          <li>Troubleshooting flowcharts via chat</li>
+          <li>Parts lookup and cross-reference</li>
+          <li>Embedded in portal + public site</li>
+        </ul>
+      </div>
+
+      <div class="phase-card reveal reveal-d3">
+        <div class="phase-card-rule"></div>
+        <h3>Edge Essentials E-Commerce Launch</h3>
+        <p>Replace the broken 18K-SKU catalog with a curated, margin-protected storefront. Private-label positioning with container-buy economics.</p>
+        <ul>
+          <li>Curated catalog of core, high-turn SKUs</li>
+          <li>Container-buy margins passed to customers</li>
+          <li>24&ndash;48 hour fulfillment commitment</li>
+          <li>Subscription/auto-reorder for consumables</li>
+        </ul>
+      </div>
+
+      <div class="phase-card reveal reveal-d4">
+        <div class="phase-card-rule"></div>
+        <h3>SEO Content Engine</h3>
+        <p>Scale the content program to dominate high-intent commercial equipment searches and build Edge's authority online.</p>
+        <ul>
+          <li>Equipment buying guides (category-level)</li>
+          <li>Head-to-head equipment comparisons</li>
+          <li>ROI calculators for upgrade decisions</li>
+        </ul>
+      </div>
+
+      <div class="phase-card reveal reveal-d5">
+        <div class="phase-card-rule"></div>
+        <h3>CRM &amp; Lifecycle Marketing</h3>
+        <p>Implement CRM infrastructure to capture, score, and nurture the 50&ndash;100 monthly leads plus design-build prospects.</p>
+        <ul>
+          <li>Lead routing by postal code to regional reps</li>
+          <li>Automated nurture sequences by segment</li>
+          <li>Design-build pipeline tracking</li>
+          <li>Lifecycle email campaigns</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SPREAD 6 — PHASE 3: SCALE & OPTIMIZE
+     ═══════════════════════════════════════════════════ -->
+<section class="phase-spread light" id="phase3">
+  <div class="phase-bg-number">03</div>
+  <div class="phase-inner">
+    <div class="phase-label reveal">Phase Three</div>
+    <h2 class="phase-title reveal reveal-d1">Scale &amp; Optimize</h2>
+    <div class="phase-timeline reveal reveal-d2">Months 9&ndash;12 &nbsp;/&nbsp; Expansion, Ads &amp; Intelligence</div>
+
+    <div class="phase-grid three-col">
+      <div class="phase-card reveal reveal-d1">
+        <div class="phase-card-rule"></div>
+        <h3>Portal Rollout to Additional Chains</h3>
+        <p>Take the proven Wendy's model and deploy it to every major chain account. Each portal is a lock-in competitors can't replicate.</p>
+        <ul>
+          <li>Swiss Chalet portal launch</li>
+          <li>Harvey's portal launch</li>
+          <li>Pure Simple + Chef on Call onboarding</li>
+          <li>Self-serve portal provisioning workflow</li>
+        </ul>
+      </div>
+
+      <div class="phase-card reveal reveal-d2">
+        <div class="phase-card-rule"></div>
+        <h3>Advanced Predictive AI</h3>
+        <p>Evolve "Ask Edge" from reactive queries to proactive intelligence. Predict failures before they happen. Suggest reorders before they're needed.</p>
+        <ul>
+          <li>Predictive maintenance alerts by equipment age</li>
+          <li>Automatic reorder suggestions based on usage</li>
+          <li>Warranty tracking and expiration notices</li>
+          <li>Cross-sell recommendations via AI</li>
+        </ul>
+      </div>
+
+      <div class="phase-card reveal reveal-d3">
+        <div class="phase-card-rule"></div>
+        <h3>Paid Advertising Launch</h3>
+        <p>Layer paid acquisition on top of the organic foundation. Targeted, high-intent campaigns with measurable ROI.</p>
+        <ul>
+          <li>Google Ads for high-intent equipment searches</li>
+          <li>Retargeting campaigns for site visitors</li>
+          <li>LinkedIn for design-build decision makers</li>
+          <li>Performance Max for Edge Essentials</li>
+        </ul>
+      </div>
+
+      <div class="phase-card reveal reveal-d4">
+        <div class="phase-card-rule"></div>
+        <h3>Lookbook &amp; Case Study Program</h3>
+        <p>Build the visual proof library that closes design-build deals. Professional case studies, before/afters, and project showcases.</p>
+        <ul>
+          <li>Professional project photography</li>
+          <li>Interactive digital lookbooks</li>
+          <li>Video testimonials from operators</li>
+          <li>Trade show collateral package</li>
+        </ul>
+      </div>
+
+      <div class="phase-card reveal reveal-d5">
+        <div class="phase-card-rule"></div>
+        <h3>Trade Show &amp; Activation Support</h3>
+        <p>Equip the Edge team with digital tools that amplify in-person presence at industry events.</p>
+        <ul>
+          <li>Interactive booth displays</li>
+          <li>Lead capture integration with CRM</li>
+          <li>"Ask Edge" live demo station</li>
+          <li>Post-event nurture automation</li>
+        </ul>
+      </div>
+
+      <div class="phase-card reveal reveal-d6">
+        <div class="phase-card-rule"></div>
+        <h3>Reporting Dashboard</h3>
+        <p>Full-stack visibility into every metric that matters. Real-time data, not spreadsheets. The whole picture in one view.</p>
+        <ul>
+          <li>Customer acquisition cost by channel</li>
+          <li>Lifetime value by segment</li>
+          <li>Portal adoption rates per chain</li>
+          <li>Revenue per portal and per account</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SPREAD 7 — THE NUMBERS
+     ═══════════════════════════════════════════════════ -->
+<section class="numbers-spread" id="numbers">
+  <div class="numbers-inner">
+    <div class="numbers-label reveal">The Numbers</div>
+    <h2 class="numbers-title reveal reveal-d1">Conservative ROI projection.</h2>
+    <p class="numbers-subtitle reveal reveal-d2">These numbers are intentionally conservative. They model just two primary improvements: portal automation on QSR orders and improved e-commerce conversion.</p>
+
+    <div class="numbers-grid">
+      <div class="number-item reveal reveal-d1">
+        <div class="number-value copper">$180K+</div>
+        <div class="number-label">Portal Labor Savings</div>
+        <div class="number-desc">Annual savings from reducing account manager time on QSR order processing by 50%. That's 2&ndash;3 FTEs of manual work redirected to growth.</div>
+      </div>
+      <div class="number-item reveal reveal-d2">
+        <div class="number-value copper">2x</div>
+        <div class="number-label">E-Commerce Conversion Lift</div>
+        <div class="number-desc">Doubling Shopify conversion through curated catalog, proper pricing controls, and SEO-driven traffic. Edge Essentials margins are 3&ndash;5x better.</div>
+      </div>
+      <div class="number-item reveal reveal-d3">
+        <div class="number-value copper">$2M+</div>
+        <div class="number-label">Portal Revenue Lock-In</div>
+        <div class="number-desc">Protected annual revenue per chain account through portal stickiness. Every portal is a moat competitors cannot match.</div>
+      </div>
     </div>
 
-    <div class="work-card fade-in fade-in-delay-2">
-      <div class="work-card-icon ai">&#9672;</div>
-      <h3>"Ask Edge" AI Assistant &mdash; MVP</h3>
-      <p>Deploy an AI-powered assistant that lets chain operators and internal staff instantly query equipment specs, troubleshooting guides, and parts compatibility.</p>
-      <ul>
-        <li>Natural language equipment spec queries</li>
-        <li>Troubleshooting flowcharts via chat</li>
-        <li>Parts lookup and cross-reference</li>
-        <li>Embedded in portal + public site</li>
-      </ul>
+    <div class="numbers-grid">
+      <div class="number-item reveal reveal-d1">
+        <div class="number-value">40%</div>
+        <div class="number-label">Support Cost Reduction</div>
+        <div class="number-desc">Reduction in internal support inquiries through AI-powered self-service. Faster response times, fewer calls, higher satisfaction.</div>
+      </div>
+      <div class="number-item reveal reveal-d2">
+        <div class="number-value">+3&ndash;5</div>
+        <div class="number-label">Additional Design-Build Projects</div>
+        <div class="number-desc">Per year, driven by SEO, case studies, and digital lead nurture. At $500K&ndash;$1M per project, this is $1.5M&ndash;$5M in new pipeline.</div>
+      </div>
+      <div class="number-item reveal reveal-d3">
+        <div class="number-value copper">$500K&ndash;$1M+</div>
+        <div class="number-label">Combined Year-1 Impact</div>
+        <div class="number-desc">Net new value created through labor savings, revenue lift, pipeline growth, and customer retention. Conservative estimate.</div>
+      </div>
     </div>
 
-    <div class="work-card fade-in fade-in-delay-3">
-      <div class="work-card-icon brand">&#9830;</div>
-      <h3>Edge Essentials E-Commerce Launch</h3>
-      <p>Replace the broken 18K-SKU catalog with a curated, margin-protected storefront. Private-label positioning with container-buy economics.</p>
+    <div class="assumptions-block reveal">
+      <h4>Conservative Assumptions</h4>
       <ul>
-        <li>Curated catalog of core, high-turn SKUs</li>
-        <li>Container-buy margins passed to customers</li>
-        <li>24-48 hour fulfillment commitment</li>
-        <li>Subscription/auto-reorder for consumables</li>
-      </ul>
-    </div>
-
-    <div class="work-card fade-in fade-in-delay-4">
-      <div class="work-card-icon content">&#9998;</div>
-      <h3>SEO Content Engine</h3>
-      <p>Scale the content program to dominate high-intent commercial equipment searches and build Edge's authority online.</p>
-      <ul>
-        <li>Equipment buying guides (category-level)</li>
-        <li>Head-to-head equipment comparisons</li>
-        <li>ROI calculators for upgrade decisions</li>
-        <li>Video content integration</li>
-      </ul>
-    </div>
-
-    <div class="work-card fade-in fade-in-delay-5">
-      <div class="work-card-icon tech">&#8644;</div>
-      <h3>CRM + Lifecycle Marketing</h3>
-      <p>Implement CRM infrastructure to capture, score, and nurture the 50-100 monthly leads plus design-build prospects.</p>
-      <ul>
-        <li>Lead routing by postal code to regional reps</li>
-        <li>Automated nurture sequences by segment</li>
-        <li>Design-build pipeline tracking</li>
-        <li>Lifecycle email campaigns</li>
+        <li>3&ndash;4 account managers currently spending 60%+ time on manual QSR order processing</li>
+        <li>Average fully loaded AM cost of $75K&ndash;$90K annually</li>
+        <li>Current Shopify conversion rate well below industry average of 1.5&ndash;2.5%</li>
+        <li>Each chain portal locks in $2M+ in annual recurring program revenue</li>
+        <li>Design-build projects average $500K&ndash;$1M per engagement</li>
+        <li>Current organic traffic is negligible relative to market search volume</li>
       </ul>
     </div>
   </div>
 </section>
 
-<div class="divider"><div class="divider-line"></div></div>
 
-<!-- ==================== PHASE 3 ==================== -->
-<section class="section phase" id="phase3">
-  <div class="phase-header fade-in">
-    <div class="phase-badge">3</div>
-    <div class="phase-header-text">
-      <h2>Scale &amp; Optimize</h2>
-      <div class="phase-timeline">Months 9&ndash;12 &middot; Expansion, Ads &amp; Intelligence</div>
-    </div>
-  </div>
+<!-- ═══════════════════════════════════════════════════
+     SPREAD 8 — WHY GUEST GETTER
+     ═══════════════════════════════════════════════════ -->
+<section class="why-spread grain" id="why">
+  <div class="why-inner">
+    <div class="why-label reveal">Why Guest Getter</div>
+    <h2 class="why-title reveal reveal-d1">A team, not a freelancer.<br>A partner, not a vendor.</h2>
+    <p class="why-subtitle reveal reveal-d2">This roadmap requires five distinct disciplines working in lockstep. That's not something you hire one person to do &mdash; it's exactly what we've built Guest Getter to deliver.</p>
 
-  <div class="phase-grid">
-    <div class="work-card fade-in fade-in-delay-1">
-      <div class="work-card-icon portal">&#9776;</div>
-      <h3>Portal Rollout &mdash; Additional Chains</h3>
-      <p>Take the proven Wendy's portal model and deploy it to every major chain account. Each portal is a lock-in that competitors can't easily replicate.</p>
-      <ul>
-        <li>Swiss Chalet portal launch</li>
-        <li>Harvey's portal launch</li>
-        <li>Pure Simple + Chef on Call onboarding</li>
-        <li>Self-serve portal provisioning workflow</li>
-      </ul>
-    </div>
-
-    <div class="work-card fade-in fade-in-delay-2">
-      <div class="work-card-icon ai">&#9672;</div>
-      <h3>Advanced "Ask Edge" &mdash; Predictive Intelligence</h3>
-      <p>Evolve the AI assistant from reactive queries to proactive intelligence. Predict failures before they happen. Suggest reorders before they're needed.</p>
-      <ul>
-        <li>Predictive maintenance alerts by equipment age</li>
-        <li>Automatic reorder suggestions based on usage</li>
-        <li>Warranty tracking and expiration notices</li>
-        <li>Cross-sell recommendations via AI</li>
-      </ul>
-    </div>
-
-    <div class="work-card fade-in fade-in-delay-3">
-      <div class="work-card-icon ads">&#9733;</div>
-      <h3>Paid Advertising Launch</h3>
-      <p>Layer paid acquisition on top of the organic foundation built in Phases 1-2. Targeted, high-intent campaigns with measurable ROI.</p>
-      <ul>
-        <li>Google Ads for high-intent equipment searches</li>
-        <li>Retargeting campaigns for site visitors</li>
-        <li>LinkedIn for design-build decision makers</li>
-        <li>Performance Max for Edge Essentials</li>
-      </ul>
+    <div class="capability-grid">
+      <div class="cap-item reveal reveal-d1">
+        <div class="cap-rule"></div>
+        <h3>Web Development</h3>
+        <p>Shopify Plus, custom portal development, responsive design, and performance optimization.</p>
+      </div>
+      <div class="cap-item reveal reveal-d2">
+        <div class="cap-rule"></div>
+        <h3>AI / Brain Infrastructure</h3>
+        <p>Vector databases, LLM integration, retrieval-augmented generation. "Ask Edge" is architecture we've already built.</p>
+      </div>
+      <div class="cap-item reveal reveal-d3">
+        <div class="cap-rule"></div>
+        <h3>API / ERP Integration</h3>
+        <p>Business Central, Shopify API, webhook orchestration, real-time inventory sync.</p>
+      </div>
+      <div class="cap-item reveal reveal-d4">
+        <div class="cap-rule"></div>
+        <h3>Marketing Strategy</h3>
+        <p>StoryBrand certified, SEO, content strategy, paid acquisition, lifecycle marketing.</p>
+      </div>
+      <div class="cap-item reveal reveal-d5">
+        <div class="cap-rule"></div>
+        <h3>Portal Systems</h3>
+        <p>Authenticated ordering, role-based access, negotiated pricing engines, service ticket systems.</p>
+      </div>
     </div>
 
-    <div class="work-card fade-in fade-in-delay-4">
-      <div class="work-card-icon content">&#9998;</div>
-      <h3>Lookbook + Case Study Program</h3>
-      <p>Build the visual proof library that closes design-build deals. Professional case studies, before/afters, and project showcases.</p>
-      <ul>
-        <li>Professional project photography</li>
-        <li>Interactive digital lookbooks</li>
-        <li>Video testimonials from operators</li>
-        <li>Trade show collateral package</li>
-      </ul>
-    </div>
-
-    <div class="work-card fade-in fade-in-delay-5">
-      <div class="work-card-icon tech">&#8644;</div>
-      <h3>Trade Show + Activation Support</h3>
-      <p>Equip the Edge team with digital tools that amplify in-person presence at trade shows and industry events.</p>
-      <ul>
-        <li>Interactive booth displays</li>
-        <li>Lead capture integration with CRM</li>
-        <li>"Ask Edge" live demo station</li>
-        <li>Post-event nurture automation</li>
-      </ul>
-    </div>
-
-    <div class="work-card fade-in fade-in-delay-5">
-      <div class="work-card-icon tech">&#9881;</div>
-      <h3>Reporting Dashboard</h3>
-      <p>Full-stack visibility into every metric that matters. Real-time data, not spreadsheets. JP sees the whole picture in one view.</p>
-      <ul>
-        <li>Customer acquisition cost (CAC) by channel</li>
-        <li>Lifetime value (LTV) by segment</li>
-        <li>Portal adoption rates per chain</li>
-        <li>Revenue per portal &amp; per account</li>
-      </ul>
+    <div class="callout-block reveal">
+      <div class="callout-marker">&ldquo;</div>
+      <div>
+        <h3>You Asked: Hire In-House or Go With a Team?</h3>
+        <p>Hiring one in-house web person gives you one skill set, one perspective, and a single point of failure. This roadmap spans five disciplines &mdash; development, AI, integrations, strategy, and content &mdash; each of which would require a separate senior hire. Guest Getter gives you a dedicated team across all five, with the infrastructure, tools, and process already built. You get depth without the overhead, speed without the ramp-up, and a partner who's accountable to results &mdash; not just hours clocked.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="divider"><div class="divider-line"></div></div>
 
-<!-- ==================== ROI ==================== -->
-<section class="section roi-section" id="roi">
-  <div class="section-label fade-in">Financial Impact</div>
-  <h2 class="section-title fade-in fade-in-delay-1">Conservative ROI projection.</h2>
-  <p class="section-desc fade-in fade-in-delay-2">
-    These numbers are intentionally conservative. They model just two improvements: portal automation on QSR orders and improved Shopify conversion.
-  </p>
-
-  <div class="roi-grid">
-    <div class="roi-card fade-in fade-in-delay-1">
-      <div class="roi-card-label">Portal Labor Savings</div>
-      <div class="roi-card-value green">$180K+</div>
-      <div class="roi-card-desc">Annual savings from reducing account manager time on QSR order processing by 50%. That's 2-3 FTEs worth of manual work redirected to growth activities.</div>
+<!-- ═══════════════════════════════════════════════════
+     SPREAD 9 — CLOSING
+     ═══════════════════════════════════════════════════ -->
+<section class="closing-spread" id="closing">
+  <div class="closing-inner">
+    <div class="closing-rule reveal"></div>
+    <h2 class="closing-title reveal reveal-d1">Let's build the future<br>of <em>Edge</em> together.</h2>
+    <p class="closing-body reveal reveal-d2">Three phases. Twelve months. A compounding digital advantage that turns Edge Food Equipment from a great dealer into an unassailable platform.</p>
+    <p class="closing-urgency reveal reveal-d3">The ERP migration opens a window. The competitors are still analog.<br>The chain accounts need portals yesterday. The time is now.</p>
+    <div class="closing-contact reveal reveal-d4">
+      <div class="closing-contact-name">Kyle Guilfoyle</div>
+      <div class="closing-contact-co">Guest Getter</div>
     </div>
-    <div class="roi-card fade-in fade-in-delay-2">
-      <div class="roi-card-label">E-Commerce Revenue Lift</div>
-      <div class="roi-card-value amber">2x</div>
-      <div class="roi-card-desc">Doubling Shopify conversion through curated catalog, proper pricing controls, and SEO-driven traffic. Edge Essentials margins are 3-5x better than the current catalog bleed.</div>
-    </div>
-    <div class="roi-card fade-in fade-in-delay-3">
-      <div class="roi-card-label">Portal Revenue Lock-In</div>
-      <div class="roi-card-value blue">$2M+</div>
-      <div class="roi-card-desc">Protected annual revenue per chain account through portal stickiness. Every portal deployed is a moat that competitors cannot match with a phone call.</div>
-    </div>
-  </div>
-
-  <div class="roi-grid" style="margin-top: 20px;">
-    <div class="roi-card fade-in fade-in-delay-2">
-      <div class="roi-card-label">Design-Build Pipeline</div>
-      <div class="roi-card-value amber">+3&ndash;5</div>
-      <div class="roi-card-desc">Additional design-build projects per year driven by SEO, case studies, and digital lead nurture. At $500K-$1M per project, this is $1.5M-$5M in new pipeline.</div>
-    </div>
-    <div class="roi-card fade-in fade-in-delay-3">
-      <div class="roi-card-label">"Ask Edge" Efficiency</div>
-      <div class="roi-card-value green">40%</div>
-      <div class="roi-card-desc">Reduction in internal support inquiries through AI-powered self-service. Faster response times, fewer calls, higher customer satisfaction.</div>
-    </div>
-    <div class="roi-card fade-in fade-in-delay-4">
-      <div class="roi-card-label">Combined Year-1 Impact</div>
-      <div class="roi-card-value green">$500K&ndash;$1M+</div>
-      <div class="roi-card-desc">Net new value created through labor savings, revenue lift, pipeline growth, and customer retention improvement. Conservative estimate.</div>
-    </div>
-  </div>
-
-  <div class="roi-assumptions fade-in fade-in-delay-4">
-    <h4>Assumptions</h4>
-    <ul>
-      <li>3-4 account managers currently spending 60%+ time on manual QSR order processing</li>
-      <li>Average fully loaded AM cost of $75K-$90K annually</li>
-      <li>Current Shopify conversion rate well below industry average of 1.5-2.5%</li>
-      <li>Each chain portal locks in $2M+ in annual recurring program revenue</li>
-      <li>Design-build projects average $500K-$1M per engagement</li>
-      <li>Current organic traffic is negligible relative to market search volume</li>
-    </ul>
+    <div class="closing-footer reveal reveal-d5">April 2026</div>
   </div>
 </section>
 
-<div class="divider"><div class="divider-line"></div></div>
 
-<!-- ==================== WHY GUEST GETTER ==================== -->
-<section class="section why-section" id="why">
-  <div class="section-label fade-in">Why Guest Getter</div>
-  <h2 class="section-title fade-in fade-in-delay-1">A team, not a freelancer.<br>A partner, not a vendor.</h2>
-  <p class="section-desc fade-in fade-in-delay-2">
-    This roadmap requires five distinct disciplines working in lockstep. That's not something you can hire one person to do &mdash; and it's exactly what we've built Guest Getter to deliver.
-  </p>
-
-  <div class="capability-grid">
-    <div class="cap-card fade-in fade-in-delay-1">
-      <div class="cap-icon">&#60;/&#62;</div>
-      <h3>Web Development</h3>
-      <p>Shopify Plus, custom portal development, responsive design, and performance optimization. We've built commerce at scale.</p>
-    </div>
-    <div class="cap-card fade-in fade-in-delay-2">
-      <div class="cap-icon">&#9672;</div>
-      <h3>AI / Brain Infrastructure</h3>
-      <p>Vector databases, LLM integration, retrieval-augmented generation. "Ask Edge" isn't a buzzword &mdash; it's architecture we've already built.</p>
-    </div>
-    <div class="cap-card fade-in fade-in-delay-3">
-      <div class="cap-icon">&#8644;</div>
-      <h3>API / ERP Integration</h3>
-      <p>Business Central, Shopify API, webhook orchestration, real-time inventory sync. We speak the language MMP speaks.</p>
-    </div>
-    <div class="cap-card fade-in fade-in-delay-4">
-      <div class="cap-icon">&#9733;</div>
-      <h3>Marketing Strategy</h3>
-      <p>StoryBrand certified, SEO, content strategy, paid acquisition, lifecycle marketing. Strategy and execution under one roof.</p>
-    </div>
-    <div class="cap-card fade-in fade-in-delay-5">
-      <div class="cap-icon">&#9776;</div>
-      <h3>Portal Systems</h3>
-      <p>Authenticated ordering experiences, role-based access, negotiated pricing engines, service ticket systems. Built for B2B complexity.</p>
-    </div>
-  </div>
-
-  <div class="team-callout fade-in">
-    <div class="team-callout-icon">&#9889;</div>
-    <div>
-      <h3>The In-House Question</h3>
-      <p>Hiring one in-house web person gives you one skill set, one perspective, and a single point of failure. This roadmap spans five disciplines &mdash; development, AI, integrations, strategy, and content &mdash; each of which would require a separate senior hire. Guest Getter gives you a dedicated team across all five, with the infrastructure, tools, and process already built. You get depth without the overhead, speed without the ramp-up, and a partner who's accountable to results &mdash; not just hours clocked.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== CTA ==================== -->
-<section class="cta-section" id="cta">
-  <div class="cta-content">
-    <h2 class="cta-title fade-in">
-      Let's build<br><span>Edge's digital moat.</span>
-    </h2>
-    <p class="cta-subtitle fade-in fade-in-delay-1">
-      The ERP migration opens a window. The competitors are still analog. The chain accounts need portals yesterday. The best time to start was last year &mdash; the second best time is now.
-    </p>
-    <div class="cta-contact fade-in fade-in-delay-2">
-      <strong>Kyle Guilfoyle</strong>
-      <span>Guest Getter</span>
-    </div>
-  </div>
-</section>
-
+<!-- ═══════════════════════════════════════════════════
+     SCRIPTS
+     ═══════════════════════════════════════════════════ -->
 <script>
 (function() {
-  // Intersection Observer for fade-in animations
-  const observer = new IntersectionObserver((entries) => {
+  // ── Scroll-triggered fade-up animations ──
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  // Nav dots
-  const sections = ['hero','landscape','timeline','phase1','phase2','phase3','roi','why','cta'];
+  // ── Navigation dots ──
+  const sectionIds = ['cover','story','opportunity','phase1','phase2','phase3','numbers','why','closing'];
   const dots = document.querySelectorAll('.nav-dot');
+  const darkSections = new Set(['cover','opportunity','phase2','why']);
 
   const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const id = entry.target.id;
-        dots.forEach(d => d.classList.remove('active'));
+        dots.forEach(d => {
+          d.classList.remove('active');
+          // Toggle dot color based on section background
+          if (darkSections.has(id)) {
+            d.classList.remove('on-light');
+          } else {
+            d.classList.add('on-light');
+          }
+        });
         const activeDot = document.querySelector(`.nav-dot[data-section="${id}"]`);
         if (activeDot) activeDot.classList.add('active');
       }
     });
   }, { threshold: 0.3 });
 
-  sections.forEach(id => {
+  sectionIds.forEach(id => {
     const el = document.getElementById(id);
     if (el) sectionObserver.observe(el);
   });
@@ -1294,10 +1524,10 @@
     });
   });
 
-  // Trigger hero animations immediately
+  // ── Trigger cover animations immediately ──
   setTimeout(() => {
-    document.querySelectorAll('.hero .fade-in').forEach(el => el.classList.add('visible'));
-  }, 200);
+    document.querySelectorAll('.cover .reveal').forEach(el => el.classList.add('visible'));
+  }, 300);
 })();
 </script>
 
