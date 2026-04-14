@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurant Lucie — Private Event Lead Reactivation Sequence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap">
+<style>
+  :root {
+    --navy:        #013349;
+    --navy-deep:   #01283A;
+    --navy-light:  #01435E;
+    --gold:        #D4A574;
+    --gold-light:  #E8C9A8;
+    --gold-muted:  #B8956A;
+    --warm-white:  #FAF8F5;
+    --cream:       #F5F0E8;
+    --cream-dark:  #EDE5D8;
+    --slate:       #5A6E7A;
+    --text:        #1A2A35;
+    --text-muted:  #6B7D89;
+    --border:      #E2DDD4;
+    --teal:        #3D7A7A;
+    --green:       #2D8A5E;
+    --green-bg:    rgba(45,138,94,0.06);
+    --amber:       #C8873E;
+    --amber-bg:    rgba(200,135,62,0.06);
+    --red-soft:    #C45A5A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--warm-white);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--navy);
+    padding: 72px 60px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -100px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,165,116,0.06) 0%, transparent 70%);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(212,165,116,0.4), transparent);
+  }
+  .header-inner { max-width: 960px; margin: 0 auto; position: relative; }
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    color: white;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .header h1 em { color: var(--gold); font-style: italic; }
+  .header-desc {
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+    max-width: 540px;
+    line-height: 1.75;
+  }
+  .header-meta {
+    display: flex;
+    gap: 32px;
+    margin-top: 28px;
+  }
+  .header-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+  }
+  .header-meta-item strong {
+    color: rgba(255,255,255,0.7);
+    font-weight: 600;
+  }
+
+  /* ── MAIN ── */
+  .main { max-width: 960px; margin: 0 auto; padding: 48px 24px 80px; }
+
+  /* ── HERO STATS ── */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .hero-stat {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+  .hero-stat.highlight {
+    border-color: var(--gold-muted);
+    background: linear-gradient(135deg, white 0%, rgba(212,165,116,0.06) 100%);
+  }
+  .hero-stat .label {
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .hero-stat .val {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.1;
+  }
+  .hero-stat .sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 56px; }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold-muted);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--navy);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .section-desc {
+    font-size: 15px;
+    color: var(--text-muted);
+    max-width: 640px;
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
+  /* ── SEGMENT TABLE ── */
+  .seg-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .seg-table thead th {
+    text-align: left;
+    padding: 14px 20px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+  }
+  .seg-table thead th.right { text-align: right; }
+  .seg-table tbody td {
+    padding: 14px 20px;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    vertical-align: top;
+  }
+  .seg-table tbody td.right {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+  }
+  .seg-table tbody tr:last-child td { border-bottom: none; }
+  .seg-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .seg-badge.a { background: rgba(1,51,73,0.08); color: var(--navy); }
+  .seg-badge.b { background: rgba(212,165,116,0.15); color: var(--gold-muted); }
+  .seg-badge.c { background: rgba(61,122,122,0.1); color: var(--teal); }
+
+  /* ── EMAIL CARD ── */
+  .email-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .email-card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--cream);
+  }
+  .email-step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .email-step.a { background: var(--navy); color: white; }
+  .email-step.b { background: var(--gold); color: white; }
+  .email-step.c { background: var(--teal); color: white; }
+  .email-card-meta {
+    flex: 1;
+  }
+  .email-card-title {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--navy);
+  }
+  .email-card-timing {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 1px;
+  }
+  .email-card-body {
+    padding: 28px 28px 24px;
+  }
+  .email-subject {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+  }
+  .email-subject .tag {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .email-subject .line {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: var(--navy);
+  }
+  .email-body {
+    font-size: 14.5px;
+    line-height: 1.85;
+    color: var(--text);
+  }
+  .email-body p { margin-bottom: 14px; }
+  .email-body .sig {
+    margin-top: 20px;
+    color: var(--text-muted);
+    font-size: 13.5px;
+  }
+  .email-body .menu-block {
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 18px 0;
+    font-size: 13.5px;
+    line-height: 1.85;
+    color: var(--navy);
+  }
+  .email-body .menu-block strong {
+    color: var(--gold-muted);
+    font-weight: 600;
+  }
+  .email-body .quote-block {
+    border-left: 3px solid var(--gold);
+    padding: 16px 20px;
+    margin: 18px 0;
+    background: rgba(212,165,116,0.04);
+    border-radius: 0 10px 10px 0;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--navy-light);
+    line-height: 1.8;
+  }
+  .email-rationale {
+    margin-top: 16px;
+    padding: 14px 20px;
+    background: var(--green-bg);
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--green);
+    line-height: 1.6;
+  }
+  .email-rationale strong {
+    font-weight: 700;
+  }
+
+  /* ── SEGMENT DIVIDER ── */
+  .seg-divider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 52px 0 36px;
+    padding: 28px 32px;
+    background: var(--navy);
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .seg-divider::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 200px; height: 100%;
+    background: linear-gradient(135deg, transparent 0%, rgba(212,165,116,0.06) 100%);
+  }
+  .seg-divider-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .seg-divider-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: white;
+    font-weight: 600;
+  }
+  .seg-divider-text p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 2px;
+  }
+
+  /* ── EXECUTION TABLE ── */
+  .exec-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .exec-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+  }
+  .exec-card .label {
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .exec-card .val {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.6;
+  }
+
+  /* ── REVENUE PROJECTION ── */
+  .rev-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .rev-table thead th {
+    text-align: left;
+    padding: 14px 20px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+  }
+  .rev-table thead th.right { text-align: right; }
+  .rev-table tbody td {
+    padding: 14px 20px;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+  }
+  .rev-table tbody td.right {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .rev-table tbody tr:last-child td { border-bottom: none; }
+  .rev-table tfoot td {
+    padding: 16px 20px;
+    font-weight: 700;
+    font-size: 14px;
+    border-top: 2px solid var(--border);
+    background: var(--cream);
+  }
+  .rev-table tfoot td.right {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    color: var(--navy);
+    font-size: 18px;
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* ── CTA BANNER ── */
+  .cta-banner {
+    background: var(--navy);
+    border-radius: 16px;
+    padding: 40px 44px;
+    margin-top: 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-banner::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -40px;
+    width: 250px; height: 250px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,165,116,0.08) 0%, transparent 70%);
+  }
+  .cta-banner h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: white;
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .cta-banner p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+    max-width: 560px;
+    position: relative;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 40px 0 24px;
+    border-top: 1px solid var(--border);
+    margin-top: 56px;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: var(--navy);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .footer-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .header { padding: 48px 24px 40px; }
+    .header h1 { font-size: 30px; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .header-meta { flex-direction: column; gap: 8px; }
+    .exec-grid { grid-template-columns: 1fr; }
+    .seg-divider { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<div class="header">
+  <div class="header-inner">
+    <div class="eyebrow">Guest Getter &middot; Sales Sequence</div>
+    <h1>Private Event Lead<br><em>Reactivation Sequence</em></h1>
+    <p class="header-desc">A three-segment, multi-touch sequence designed to convert Restaurant Lucie's unconverted private event inquiries, celebration leads, and experience campaign leads into booked revenue.</p>
+    <div class="header-meta">
+      <div class="header-meta-item"><strong>Client:</strong>&ensp;Restaurant Lucie</div>
+      <div class="header-meta-item"><strong>Created:</strong>&ensp;April 14, 2026</div>
+      <div class="header-meta-item"><strong>Lead Pool:</strong>&ensp;~1,700+ leads</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ MAIN ═══════════ -->
+<div class="main">
+
+  <!-- ── HERO STATS ── -->
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="label">Total Leads Captured</div>
+      <div class="val">1,709</div>
+      <div class="sub">Meta lead campaigns</div>
+    </div>
+    <div class="hero-stat">
+      <div class="label">Avg Cost / Lead</div>
+      <div class="val">$4.52</div>
+      <div class="sub">Blended across 3 campaigns</div>
+    </div>
+    <div class="hero-stat highlight">
+      <div class="label">Avg Visit Revenue</div>
+      <div class="val">$618</div>
+      <div class="sub">Completed reservation avg</div>
+    </div>
+    <div class="hero-stat highlight">
+      <div class="label">Projected Recovery</div>
+      <div class="val">$40K+</div>
+      <div class="sub">Conservative estimate</div>
+    </div>
+  </div>
+
+  <!-- ═══════════ ARCHITECTURE ═══════════ -->
+  <div class="section">
+    <div class="section-label">Sequence Architecture</div>
+    <h2>Three Segments, Three Tailored Tracks</h2>
+    <p class="section-desc">Each lead segment receives a distinct cadence calibrated to its intent level and deal value. High-touch for private events, experience-led for celebrations, efficient for campaign leads.</p>
+
+    <table class="seg-table">
+      <thead>
+        <tr><th>Segment</th><th>Definition</th><th class="right">Est. Volume</th><th class="right">Touches</th><th class="right">Duration</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="seg-badge a">A</span>&ensp;Private Event Inquiries</td>
+          <td>Party 6+, corporate tags, PerfectVenue inquiries</td>
+          <td class="right">10–15</td>
+          <td class="right">5</td>
+          <td class="right">21 days</td>
+        </tr>
+        <tr>
+          <td><span class="seg-badge b">B</span>&ensp;Celebration Leads</td>
+          <td>Birthday, Anniversary, Special Occasion tags + occasion Meta leads</td>
+          <td class="right">500–700</td>
+          <td class="right">4</td>
+          <td class="right">14 days</td>
+        </tr>
+        <tr>
+          <td><span class="seg-badge c">C</span>&ensp;Experience Campaign Leads</td>
+          <td>Carte Blanche, A French Winter, Before The Next Chapter leads</td>
+          <td class="right">1,000+</td>
+          <td class="right">3</td>
+          <td class="right">10 days</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- ═══════════ SEGMENT A ═══════════ -->
+  <div class="seg-divider">
+    <div class="seg-divider-icon">🤝</div>
+    <div class="seg-divider-text">
+      <h3>Segment A — Private Event Inquiries</h3>
+      <p>High-touch, high-value &middot; 5 touches over 21 days &middot; $3,500–$20K+ per event</p>
+    </div>
+  </div>
+
+  <!-- A1 -->
+  <div class="email-card">
+    <div class="email-card-header">
+      <div class="email-step a">A1</div>
+      <div class="email-card-meta">
+        <div class="email-card-title">The Personal Reconnection</div>
+        <div class="email-card-timing">Day 0 &middot; Sent from personal name (e.g. Maggie)</div>
+      </div>
+    </div>
+    <div class="email-card-body">
+      <div class="email-subject">
+        <span class="tag">Subject</span>
+        <span class="line">Your evening at Lucie — still thinking about it</span>
+      </div>
+      <div class="email-body">
+        <p>Hi [First Name],</p>
+        <p>A while back you reached out about hosting an event with us — <em>[reference the specific inquiry, e.g. "a dinner for your team at StackAdapt" / "a wine dinner for the Riverdale group" / "an intimate gathering for eight"]</em>.</p>
+        <p>I wanted to check in. Whether your plans have shifted or you're still exploring, I'd love to help you think through what an evening at Lucie could look like.</p>
+        <p>We've hosted everything from six-person business dinners in our dining room to full buyouts with custom tasting menus from Chef Yannick. Every event is different — and that's the point.</p>
+        <p>If you'd like to revisit the conversation, I'm here. No pressure, no package PDF. Just a quick call or coffee to see if we're the right fit.</p>
+        <p class="sig">Warmly,<br>Maggie<br>Restaurant Lucie<br>[phone] · [email]</p>
+      </div>
+      <div class="email-rationale"><strong>Why this works:</strong> No pitch. No pricing. Just a human reopening a door. Fine dining prospects ghost when they feel "sold to" — this resets the dynamic.</div>
+    </div>
+  </div>
+
+  <!-- A2 -->
+  <div class="email-card">
+    <div class="email-card-header">
+      <div class="email-step a">A2</div>
+      <div class="email-card-meta">
+        <div class="email-card-title">The Visual Spark</div>
+        <div class="email-card-timing">Day 4 &middot; Email with 2–3 curated photos</div>
+      </div>
+    </div>
+    <div class="email-card-body">
+      <div class="email-subject">
+        <span class="tag">Subject</span>
+        <span class="line">What your evening could feel like</span>
+      </div>
+      <div class="email-body">
+        <p>[First Name],</p>
+        <p>I pulled together a few images from recent private evenings here — thought they might help you picture what we could create for <em>[your team / your group / the occasion]</em>.</p>
+        <div class="menu-block">
+          <strong>[Image 1]</strong> — Intimate group setting, the dining room dressed for a private table of ten<br>
+          <strong>[Image 2]</strong> — A plated course from a recent tasting menu, overhead<br>
+          <strong>[Image 3]</strong> — The space by candlelight, wine service in motion
+        </div>
+        <p>Chef Yannick designs every private menu around the group — dietary needs, preferences, the season. No two are alike.</p>
+        <p>Worth a 10-minute call to explore?</p>
+        <p class="sig">Maggie</p>
+      </div>
+      <div class="email-rationale"><strong>Why this works:</strong> Selling the feeling, not the features. Aspirational imagery moves high-value prospects faster than a pricing grid.</div>
+    </div>
+  </div>
+
+  <!-- A3 -->
+  <div class="email-card">
+    <div class="email-card-header">
+      <div class="email-step a">A3</div>
+      <div class="email-card-meta">
+        <div class="email-card-title">The Social Proof Drop</div>
+        <div class="email-card-timing">Day 9 &middot; Testimonial-driven</div>
+      </div>
+    </div>
+    <div class="email-card-body">
+      <div class="email-subject">
+        <span class="tag">Subject</span>
+        <span class="line">"The best dinner our team has ever had"</span>
+      </div>
+      <div class="email-body">
+        <p>[First Name],</p>
+        <p>I'll keep this short. A note from a recent host:</p>
+        <div class="quote-block">
+          "We booked Lucie for a team dinner of twelve. From the moment we walked in, every detail was handled. The tasting menu was extraordinary — multiple team members said it was the best meal they'd had in Toronto. Maggie made the planning effortless."
+        </div>
+        <p>If you're still considering options for <em>[your event / your celebration]</em>, I'd love to make it this easy for you.</p>
+        <p class="sig">Maggie</p>
+      </div>
+      <div class="email-rationale"><strong>Why this works:</strong> Lets someone else do the selling. Reduces perceived risk for a high-spend decision.</div>
+    </div>
+  </div>
+
+  <!-- A4 -->
+  <div class="email-card">
+    <div class="email-card-header">
+      <div class="email-step a">A4</div>
+      <div class="email-card-meta">
+        <div class="email-card-title">The Gentle Constraint</div>
+        <div class="email-card-timing">Day 14 &middot; Availability-based</div>
+      </div>
+    </div>
+    <div class="email-card-body">
+      <div class="email-subject">
+        <span class="tag">Subject</span>
+        <span class="line">Quick note on spring &amp; summer availability</span>
+      </div>
+      <div class="email-body">
+        <p>Hi [First Name],</p>
+        <p>Just a heads-up — our private dining calendar for the spring and summer is starting to fill in. We can accommodate one or two more groups in the dining room before things tighten up.</p>
+        <p>If your plans are still taking shape, no rush at all. But if timing matters, it's worth locking in a date now — even tentatively — so we can hold space for you.</p>
+        <p>Happy to jump on a quick call whenever works.</p>
+        <p class="sig">Maggie</p>
+      </div>
+      <div class="email-rationale"><strong>Why this works:</strong> Scarcity without sleaze. Factual, respectful, and leaves the door wide open.</div>
+    </div>
+  </div>
+
+  <!-- A5 -->
+  <div class="email-card">
+    <div class="email-card-header">
+      <div class="email-step a">A5</div>
+      <div class="email-card-meta">
+        <div class="email-card-title">The Graceful Close</div>
+        <div class="email-card-timing">Day 21 &middot; Final touch</div>
+      </div>
+    </div>
+    <div class="email-card-body">
+      <div class="email-subject">
+        <span class="tag">Subject</span>
+        <span class="line">Closing the loop</span>
+      </div>
+      <div class="email-body">
+        <p>Hi [First Name],</p>
+        <p>I've reached out a few times about your private event inquiry and I don't want to be a bother. I'll leave this with you — if the timing isn't right, I completely understand.</p>
+        <p>Whenever you're ready, my line is open. Lucie isn't going anywhere.</p>
+        <p class="sig">All the best,<br>Maggie</p>
+      </div>
+      <div class="email-rationale"><strong>Why this works:</strong> Respects the prospect's autonomy. Counterintuitively, the "I'm stepping back" email often gets the highest reply rate of any sequence.</div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════ SEGMENT B ═══════════ -->
+  <div class="seg-divider">
+    <div class="seg-divider-icon">🎂</div>
+    <div class="seg-divider-text">
+      <h3>Segment B — Celebration Leads</h3>
+      <p>Birthday, Anniversary, Special Occasion &middot; 4 touches over 14 days &middot; ~$618 avg value</p>
+    </div>
+  </div>
+
+  <!-- B1 -->
+  <div class="email-card">
+    <div class="email-card-header">
+      <div class="email-step b">B1</div>
+      <div class="email-card-meta">
+        <div class="email-card-title">The Occasion Callback</div>
+        <div class="email-card-timing">Day 0 &middot; Subject varies by tag (Birthday / Anniversary / Special Occasion)</div>
+      </div>
+    </div>
+    <div class="email-card-body">
+      <div class="email-subject">
+        <span class="tag">Subject</span>
+        <span class="line">Still planning something special?</span>
+      </div>
+      <div class="email-body">
+        <p>Hi [First Name],</p>
+        <p>You were recently looking into celebrating <em>[a birthday / your anniversary / a special occasion]</em> at Restaurant Lucie — and we'd love to help make it happen.</p>
+        <p>Here's what makes a celebration at Lucie different: Chef Yannick builds the experience around <em>you</em>. A personalized tasting menu. Wine pairings selected for your table. A handwritten note on the menu if you'd like. No generic "birthday package" — just an evening designed with care.</p>
+        <p>Our current tasting experience starts at $180 per person, inclusive of a multi-course menu from the kitchen.</p>
+        <p>Shall I hold a table for you? Just reply with your preferred date and party size.</p>
+        <p class="sig">Warmly,<br>The Lucie Team</p>
+      </div>
+      <div class="email-rationale"><strong>Why this works:</strong> Calls back the emotional reason they first reached out. Gives just enough pricing to qualify — not so much that it becomes transactional.</div>
+    </div>
+  </div>
+
+  <!-- B2 -->
+  <div class="email-card">
+    <div class="email-card-header">
+      <div class="email-step b">B2</div>
+      <div class="email-card-meta">
+        <div class="email-card-title">The "What You'll Experience" Email</div>
+        <div class="email-card-timing">Day 5 &middot; Menu-forward</div>
+      </div>
+    </div>
+    <div class="email-card-body">
+      <div class="email-subject">
+        <span class="tag">Subject</span>
+        <span class="line">A taste of what's to come</span>
+      </div>
+      <div class="email-body">
+        <p>[First Name],</p>
+        <p>Here's a glimpse of a recent spring tasting menu at Lucie:</p>
+        <div class="menu-block">
+          <strong>Amuse-bouche</strong> — Pea velouté, crème fraîche, chive oil<br>
+          <strong>First</strong> — Hand-dived scallop, cauliflower, brown butter, hazelnut<br>
+          <strong>Second</strong> — Duck foie gras torchon, Sauternes gelée, brioche<br>
+          <strong>Third</strong> — Pan-roasted halibut, leek fondue, champagne beurre blanc<br>
+          <strong>Fourth</strong> — Elysian Fields lamb rack, spring vegetables, jus<br>
+          <strong>Cheese</strong> — Curated selection, seasonal accompaniments<br>
+          <strong>Dessert</strong> — Valrhona chocolate soufflé, crème anglaise
+        </div>
+        <p><em>Every menu is seasonal and subject to Chef Yannick's inspiration. Dietary accommodations are always welcome.</em></p>
+        <p>Ready to book? Reply or call us at [phone].</p>
+      </div>
+      <div class="email-rationale"><strong>Why this works:</strong> Makes the intangible tangible. A beautifully written menu moves people from "maybe" to "I need to be there."</div>
+    </div>
+  </div>
+
+  <!-- B3 -->
+  <div class="email-card">
+    <div class="email-card-header">
+      <div class="email-step b">B3</div>
+      <div class="email-card-meta">
+        <div class="email-card-title">The Time-Sensitive Nudge</div>
+        <div class="email-card-timing">Day 9 &middot; Brief, factual</div>
+      </div>
+    </div>
+    <div class="email-card-body">
+      <div class="email-subject">
+        <span class="tag">Subject</span>
+        <span class="line">Weekend tables are going fast</span>
+      </div>
+      <div class="email-body">
+        <p>Hi [First Name],</p>
+        <p>Quick note — our Friday and Saturday evenings through the spring are filling up, especially for parties of 4+.</p>
+        <p>If your <em>[birthday / anniversary / celebration]</em> is coming up, now's the time to lock in your preferred date.</p>
+        <p><strong>Book directly:</strong> [reservation link]<br>Or reply here and we'll take care of everything.</p>
+        <p class="sig">The Lucie Team</p>
+      </div>
+      <div class="email-rationale"><strong>Why this works:</strong> Real urgency, not manufactured. Weekend fine dining tables genuinely book up — this is a factual nudge.</div>
+    </div>
+  </div>
+
+  <!-- B4 -->
+  <div class="email-card">
+    <div class="email-card-header">
+      <div class="email-step b">B4</div>
+      <div class="email-card-meta">
+        <div class="email-card-title">The Soft Exit + Gift Card Offer</div>
+        <div class="email-card-timing">Day 14 &middot; Alternative conversion path</div>
+      </div>
+    </div>
+    <div class="email-card-body">
+      <div class="email-subject">
+        <span class="tag">Subject</span>
+        <span class="line">A little something, whenever you're ready</span>
+      </div>
+      <div class="email-body">
+        <p>[First Name],</p>
+        <p>Plans change — we get it. If the timing isn't right for your celebration just yet, we wanted you to know about our gift cards.</p>
+        <p>A Lucie gift card makes a beautiful gift for someone you love (or a future treat for yourself). Available in any amount — delivered digitally or as a physical card.</p>
+        <p><strong>Browse gift cards:</strong> [gift card link]</p>
+        <p>And whenever you're ready to celebrate, we'll be here.</p>
+        <p class="sig">Warmly,<br>Restaurant Lucie</p>
+      </div>
+      <div class="email-rationale"><strong>Why this works:</strong> Converts the unconverted into a different revenue path. A $200–$500 gift card purchase still captures value — and brings them back eventually.</div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════ SEGMENT C ═══════════ -->
+  <div class="seg-divider">
+    <div class="seg-divider-icon">✨</div>
+    <div class="seg-divider-text">
+      <h3>Segment C — Experience Campaign Leads</h3>
+      <p>Carte Blanche, A French Winter, Before The Next Chapter &middot; 3 touches over 10 days</p>
+    </div>
+  </div>
+
+  <!-- C1 -->
+  <div class="email-card">
+    <div class="email-card-header">
+      <div class="email-step c">C1</div>
+      <div class="email-card-meta">
+        <div class="email-card-title">The "You're In" Welcome</div>
+        <div class="email-card-timing">Day 0 &middot; Re-engagement opener</div>
+      </div>
+    </div>
+    <div class="email-card-body">
+      <div class="email-subject">
+        <span class="tag">Subject</span>
+        <span class="line">You're on the list — here's what's next</span>
+      </div>
+      <div class="email-body">
+        <p>Hi [First Name],</p>
+        <p>Thank you for your interest in <em>[Carte Blanche / the French Winter experience / Before The Next Chapter]</em> at Restaurant Lucie.</p>
+        <p>We wanted to make sure you didn't miss what's coming:</p>
+        <div class="menu-block">
+          <strong>[Current/upcoming experience name]</strong><br>
+          A new seasonal tasting menu celebrating the best of Quebec spring, available now through June. Tables are limited.
+        </div>
+        <p>If you'd like to join us:</p>
+        <p><strong>Book your table →</strong> [reservation link]</p>
+        <p class="sig">See you soon,<br>Restaurant Lucie</p>
+      </div>
+      <div class="email-rationale"><strong>Why this works:</strong> Treats the lead like an insider, not a cold prospect. "You're on the list" creates belonging before asking for action.</div>
+    </div>
+  </div>
+
+  <!-- C2 -->
+  <div class="email-card">
+    <div class="email-card-header">
+      <div class="email-step c">C2</div>
+      <div class="email-card-meta">
+        <div class="email-card-title">The Behind-the-Scenes Story</div>
+        <div class="email-card-timing">Day 4 &middot; Narrative-driven</div>
+      </div>
+    </div>
+    <div class="email-card-body">
+      <div class="email-subject">
+        <span class="tag">Subject</span>
+        <span class="line">The story behind the menu</span>
+      </div>
+      <div class="email-body">
+        <p>[First Name],</p>
+        <p>Every dish at Lucie starts with a conversation — between Chef Yannick, the season, and the producers he trusts.</p>
+        <p>This spring, that means: <em>lamb from Elysian Fields, the same farm that supplies the best tables in New York. Wild leeks foraged from Quebec forests, available for just a few weeks each year. Dairy from a single producer in the Eastern Townships.</em></p>
+        <p>This is food with a story. And we'd love you to taste it.</p>
+        <p><strong>Reserve your evening →</strong> [link]</p>
+      </div>
+      <div class="email-rationale"><strong>Why this works:</strong> Provenance storytelling elevates the offer beyond "come eat at our restaurant." It gives the lead something to <em>care</em> about.</div>
+    </div>
+  </div>
+
+  <!-- C3 -->
+  <div class="email-card">
+    <div class="email-card-header">
+      <div class="email-step c">C3</div>
+      <div class="email-card-meta">
+        <div class="email-card-title">The Final Nudge</div>
+        <div class="email-card-timing">Day 10 &middot; Last call</div>
+      </div>
+    </div>
+    <div class="email-card-body">
+      <div class="email-subject">
+        <span class="tag">Subject</span>
+        <span class="line">Last call — the spring menu evolves soon</span>
+      </div>
+      <div class="email-body">
+        <p>[First Name],</p>
+        <p>Our spring menu evolves with the season — and the current iteration won't last much longer.</p>
+        <p>If you've been meaning to visit, this is your nudge.</p>
+        <p><strong>Book now →</strong> [link]</p>
+        <p class="sig">Restaurant Lucie<br>[address] · [phone]</p>
+      </div>
+      <div class="email-rationale"><strong>Why this works:</strong> Short, direct, zero fluff. By touch three, brevity signals respect for their time — not desperation.</div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════ EXECUTION NOTES ═══════════ -->
+  <div class="section" style="margin-top: 56px;">
+    <div class="section-label">Execution</div>
+    <h2>Deployment Playbook</h2>
+    <p class="section-desc">The tactical details that make the difference between a sequence that performs and one that sits in a folder.</p>
+
+    <div class="exec-grid">
+      <div class="exec-card">
+        <div class="label">Send Platform</div>
+        <div class="val">If HighLevel is configured for Lucie, use it for B &amp; C automation. Segment A should be sent manually from a personal inbox for maximum deliverability and reply rate.</div>
+      </div>
+      <div class="exec-card">
+        <div class="label">Sender Name</div>
+        <div class="val"><strong>Segment A:</strong> Personal name (Maggie)<br><strong>Segments B &amp; C:</strong> "Restaurant Lucie" or "The Lucie Team"</div>
+      </div>
+      <div class="exec-card">
+        <div class="label">Optimal Send Times</div>
+        <div class="val">Tuesday–Thursday, 10:30 AM or 6:00 PM ET. Avoid Monday morning and Friday afternoon — open rates crater.</div>
+      </div>
+      <div class="exec-card">
+        <div class="label">Reply Handling</div>
+        <div class="val"><strong>Segment A:</strong> Same-day personal response, always.<br><strong>B &amp; C:</strong> Templated reply with direct booking link within 4 hours.</div>
+      </div>
+      <div class="exec-card">
+        <div class="label">Suppression Rules</div>
+        <div class="val">Immediately suppress anyone who books, unsubscribes, or replies "not interested." Remove internal emails (@restaurantlucie.com) before launch.</div>
+      </div>
+      <div class="exec-card">
+        <div class="label">Tracking</div>
+        <div class="val">Tag each lead with sequence step in PerfectVenue / OpenTable. Track: open rate, reply rate, booking rate, revenue attributed per segment.</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════ REVENUE PROJECTION ═══════════ -->
+  <div class="section">
+    <div class="section-label">Financial Impact</div>
+    <h2>Conservative Revenue Projection</h2>
+    <p class="section-desc">Based on Lucie's average completed visit revenue of $618 and conservative conversion assumptions for reactivated leads.</p>
+
+    <table class="rev-table">
+      <thead>
+        <tr>
+          <th>Segment</th>
+          <th class="right">Leads</th>
+          <th class="right">Conv. Rate</th>
+          <th class="right">Bookings</th>
+          <th class="right">Avg Value</th>
+          <th class="right">Revenue</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="seg-badge a">A</span>&ensp;Private Events</td>
+          <td class="right">10</td>
+          <td class="right">20%</td>
+          <td class="right">2</td>
+          <td class="right">$3,500</td>
+          <td class="right">$7,000</td>
+        </tr>
+        <tr>
+          <td><span class="seg-badge b">B</span>&ensp;Celebrations</td>
+          <td class="right">600</td>
+          <td class="right">5%</td>
+          <td class="right">30</td>
+          <td class="right">$618</td>
+          <td class="right">$18,540</td>
+        </tr>
+        <tr>
+          <td><span class="seg-badge c">C</span>&ensp;Experience Leads</td>
+          <td class="right">1,100</td>
+          <td class="right">3%</td>
+          <td class="right">33</td>
+          <td class="right">$450</td>
+          <td class="right">$14,850</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4"><strong>Total Projected Revenue</strong></td>
+          <td class="right"></td>
+          <td class="right">$40,390</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div style="margin-top: 16px; padding: 18px 24px; background: rgba(45,138,94,0.05); border: 1px solid rgba(45,138,94,0.12); border-radius: 10px;">
+      <div style="font-size: 14px; color: var(--green); font-weight: 600; margin-bottom: 4px;">2.8x return on $14,296 ad spend</div>
+      <div style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">And that's before repeat visits, gift card revenue, and word-of-mouth from private event hosts. These leads are already paid for — the sequence just activates the value that's sitting dormant.</div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════ CTA ═══════════ -->
+  <div class="cta-banner">
+    <h3>Ready to deploy?</h3>
+    <p>Next steps: segment the lead lists from OpenTable GuestCenter and Meta campaign exports, load into the send platform, and schedule the first touches for Tuesday or Wednesday morning.</p>
+  </div>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <div class="footer">
+    <div class="footer-logo">Guest Getter</div>
+    <div class="footer-sub">Generated April 14, 2026 &middot; Restaurant Lucie — Private Event Sales Sequence</div>
+  </div>
+
+</div>
+</body>
+</html>
