@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Carbon Bar — Performance Dashboard</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d27;
+    --card-border: #2a2d3a;
+    --text: #e4e4e7;
+    --text-dim: #9ca3af;
+    --accent: #6366f1;
+    --accent-light: #818cf8;
+    --green: #22c55e;
+    --green-bg: rgba(34,197,94,0.1);
+    --amber: #f59e0b;
+    --amber-bg: rgba(245,158,11,0.1);
+    --red: #ef4444;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding: 0;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  .header .period {
+    color: var(--text-dim);
+    font-size: 14px;
+  }
+  .header .badge {
+    background: var(--accent);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* Hero metrics */
+  .hero {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .hero-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 20px 24px;
+  }
+  .hero-card .label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+  .hero-card .value {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.1;
+  }
+  .hero-card .sub {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+  .hero-card.highlight {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, var(--card) 0%, rgba(99,102,241,0.08) 100%);
+  }
+
+  /* Sections */
+  .section {
+    margin-bottom: 40px;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+  .meta-icon { background: rgba(59,130,246,0.15); }
+  .google-icon { background: rgba(234,179,8,0.15); }
+  .ot-icon { background: rgba(34,197,94,0.15); }
+  .rec-icon { background: rgba(239,68,68,0.15); }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+  }
+  thead th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--card-border);
+    background: rgba(255,255,255,0.02);
+    white-space: nowrap;
+  }
+  thead th.right { text-align: right; }
+  tbody td {
+    padding: 10px 16px;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    white-space: nowrap;
+  }
+  tbody td.right { text-align: right; font-variant-numeric: tabular-nums; }
+  tbody td.name { white-space: normal; max-width: 300px; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: rgba(255,255,255,0.02); }
+  tfoot td {
+    padding: 12px 16px;
+    font-weight: 700;
+    font-size: 14px;
+    border-top: 2px solid var(--card-border);
+    background: rgba(255,255,255,0.02);
+  }
+  tfoot td.right { text-align: right; font-variant-numeric: tabular-nums; }
+
+  /* Recommendation cards */
+  .rec-grid {
+    display: grid;
+    gap: 16px;
+  }
+  .rec-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    border-left: 4px solid var(--accent);
+  }
+  .rec-card .rec-num {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .rec-card .rec-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .rec-card .rec-body {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* Search term bars */
+  .term-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .term-bar {
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--card-border);
+    position: relative;
+    overflow: hidden;
+  }
+  .term-bar .fill {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    border-radius: 3px;
+    background: var(--accent);
+  }
+
+  /* Two-col layout */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 768px) {
+    .two-col { grid-template-columns: 1fr; }
+    .hero { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* Mini stat cards */
+  .mini-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .mini-stat {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .mini-stat .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-dim); }
+  .mini-stat .val { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; margin-top: 2px; }
+
+  .footer {
+    text-align: center;
+    padding: 40px 0 20px;
+    color: var(--text-dim);
+    font-size: 12px;
+    border-top: 1px solid var(--card-border);
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1>The Carbon Bar</h1>
+      <div class="period">Jan 1 – Apr 14, 2026</div>
+    </div>
+    <div>
+      <span class="badge">GUEST GETTER</span>
+    </div>
+  </div>
+  <div class="hero">
+    <div class="hero-card">
+      <div class="label">Total Ad Spend</div>
+      <div class="value">$13,141.70</div>
+      <div class="sub">Meta $5,960.07 + Google $7,181.63</div>
+    </div>
+    <div class="hero-card highlight">
+      <div class="label">Total Conversions</div>
+      <div class="value">10,998</div>
+      <div class="sub">1,286 leads + 9,712 actions</div>
+    </div>
+    <div class="hero-card">
+      <div class="label">Cost / Conversion</div>
+      <div class="value">$1.19</div>
+      <div class="sub">Blended across all channels</div>
+    </div>
+    <div class="hero-card">
+      <div class="label">Total Reach</div>
+      <div class="value">459,026</div>
+      <div class="sub">Meta reach 429,306</div>
+    </div>
+    <div class="hero-card">
+      <div class="label">Upcoming Bookings</div>
+      <div class="value">123</div>
+      <div class="sub">Currently on the books</div>
+    </div>
+    <div class="hero-card">
+      <div class="label">Meta Leads Captured</div>
+      <div class="value">1,282</div>
+      <div class="sub">All paid lead form submissions</div>
+    </div>
+  </div>
+
+
+  <div class="section">
+  <div class="section-title"><span class="icon meta-icon">📘</span> Meta Ads Performance</div>
+  <table>
+    <thead><tr><th>Campaign</th><th class="right">Spend</th><th class="right">Impressions</th><th class="right">Clicks</th><th class="right">CTR</th><th class="right">Leads</th><th class="right">Cost/Lead</th></tr></thead>
+    <tbody>
+    <tr><td class="name">[Lead] Discover The Carbon Bar</td><td class="right">$1,746.61</td><td class="right">211,248</td><td class="right">13,312</td><td class="right">630.16%</td><td class="right">934</td><td class="right">$1.87</td></tr>
+    <tr><td class="name">[Lead] Private Event / Group Booking</td><td class="right">$1,407.49</td><td class="right">62,586</td><td class="right">2,171</td><td class="right">346.88%</td><td class="right">147</td><td class="right">$9.57</td></tr>
+    <tr><td class="name">[Awareness] Happy Hour</td><td class="right">$940.56</td><td class="right">207,142</td><td class="right">13,422</td><td class="right">647.96%</td><td class="right">0</td><td class="right">—</td></tr>
+    <tr><td class="name">[Lead] Coast to Coals</td><td class="right">$716.36</td><td class="right">55,017</td><td class="right">2,734</td><td class="right">496.94%</td><td class="right">176</td><td class="right">$4.07</td></tr>
+    <tr><td class="name">[Traffic] Discover The Carbon Bar</td><td class="right">$458.80</td><td class="right">127,498</td><td class="right">5,850</td><td class="right">458.83%</td><td class="right">0</td><td class="right">—</td></tr>
+    <tr><td class="name">[Traffic] Winterlicious</td><td class="right">$216.70</td><td class="right">43,774</td><td class="right">1,916</td><td class="right">437.70%</td><td class="right">0</td><td class="right">—</td></tr>
+    <tr><td class="name">[Traffic] Superbowl 2026</td><td class="right">$185.74</td><td class="right">48,504</td><td class="right">941</td><td class="right">194.00%</td><td class="right">0</td><td class="right">—</td></tr>
+    <tr><td class="name">[Traffic] Coast to Coals</td><td class="right">$148.79</td><td class="right">42,162</td><td class="right">2,431</td><td class="right">576.59%</td><td class="right">0</td><td class="right">—</td></tr>
+    <tr><td class="name">[Awareness] 12 Year Anniversary</td><td class="right">$59.65</td><td class="right">47,819</td><td class="right">81</td><td class="right">16.94%</td><td class="right">0</td><td class="right">—</td></tr>
+    <tr><td class="name">[Lead] 12 Year Anniversary</td><td class="right">$41.57</td><td class="right">2,019</td><td class="right">181</td><td class="right">896.48%</td><td class="right">12</td><td class="right">$3.46</td></tr>
+    <tr><td class="name">[Lead] Mother&#x27;s Day Brunch</td><td class="right">$37.80</td><td class="right">2,769</td><td class="right">172</td><td class="right">621.16%</td><td class="right">17</td><td class="right">$2.22</td></tr>
+    </tbody>
+    <tfoot><tr><td>Total</td><td class="right">$5,960.07</td><td class="right">850,538</td><td class="right">43,211</td><td class="right">—</td><td class="right">1,286</td><td class="right">$4.63</td></tr></tfoot>
+  </table>
+  </div>
+
+  <div class="section">
+  <div class="section-title"><span class="icon google-icon">🔍</span> Google Ads Performance</div>
+  <table>
+    <thead><tr><th>Campaign</th><th class="right">Spend</th><th class="right">Clicks</th><th class="right">CPC</th><th class="right">Conversions</th><th class="right">Cost/Conv</th></tr></thead>
+    <tbody>
+    <tr><td class="name">GG | PMAX - Reservations | Remarketing</td><td class="right">$2,222.23</td><td class="right">17,692</td><td class="right">$0.13</td><td class="right">5,058</td><td class="right">$0.44</td></tr>
+    <tr><td class="name">GG | Search - Generic BBQ</td><td class="right">$1,544.41</td><td class="right">2,577</td><td class="right">$0.60</td><td class="right">784</td><td class="right">$1.97</td></tr>
+    <tr><td class="name">GG | Search - Private Events</td><td class="right">$1,431.44</td><td class="right">2,625</td><td class="right">$0.55</td><td class="right">675</td><td class="right">$2.12</td></tr>
+    <tr><td class="name">Carbon Bar - Generic Restaurants - AOK</td><td class="right">$805.45</td><td class="right">1,893</td><td class="right">$0.43</td><td class="right">596</td><td class="right">$1.35</td></tr>
+    <tr><td class="name">GG | Search - Brand</td><td class="right">$785.00</td><td class="right">2,222</td><td class="right">$0.35</td><td class="right">1,905</td><td class="right">$0.41</td></tr>
+    <tr><td class="name">GG | PMAX - Reservations | Prospecting</td><td class="right">$393.10</td><td class="right">2,711</td><td class="right">$0.15</td><td class="right">691</td><td class="right">$0.57</td></tr>
+    </tbody>
+    <tfoot><tr><td>Total</td><td class="right">$7,181.63</td><td class="right">29,720</td><td class="right">$0.24</td><td class="right">9,712</td><td class="right">$0.74</td></tr></tfoot>
+  </table>
+
+  <div style="margin-top: 24px;">
+    <div class="section-title" style="font-size:15px; margin-bottom:12px;">Top Search Terms Driving Conversions</div>
+    <table>
+      <thead><tr><th>Search Term</th><th class="right">Conversions</th><th class="right">Clicks</th><th class="right">Spend</th><th class="right">Cost/Conv</th><th style="width:120px"></th></tr></thead>
+      <tbody>
+      <tr><td class="name">"carbon bar"</td><td class="right">594</td><td class="right">917</td><td class="right">$186.32</td><td class="right">$0.31</td><td><div class="term-bar"><div class="fill" style="width:100%"></div></div></td></tr>
+      <tr><td class="name">"the carbon bar"</td><td class="right">351</td><td class="right">424</td><td class="right">$208.87</td><td class="right">$0.59</td><td><div class="term-bar"><div class="fill" style="width:59%"></div></div></td></tr>
+      <tr><td class="name">"carbon bar toronto"</td><td class="right">345</td><td class="right">424</td><td class="right">$108.82</td><td class="right">$0.32</td><td><div class="term-bar"><div class="fill" style="width:58%"></div></div></td></tr>
+      <tr><td class="name">"the carbon bar menu"</td><td class="right">88</td><td class="right">97</td><td class="right">$27.99</td><td class="right">$0.32</td><td><div class="term-bar"><div class="fill" style="width:15%"></div></div></td></tr>
+      <tr><td class="name">"bbq near me"</td><td class="right">75</td><td class="right">276</td><td class="right">$180.80</td><td class="right">$2.41</td><td><div class="term-bar"><div class="fill" style="width:13%"></div></div></td></tr>
+      <tr><td class="name">"restaurants near me"</td><td class="right">62</td><td class="right">369</td><td class="right">$113.56</td><td class="right">$1.80</td><td><div class="term-bar"><div class="fill" style="width:11%"></div></div></td></tr>
+      <tr><td class="name">"carbon bar menu"</td><td class="right">39</td><td class="right">52</td><td class="right">$3.33</td><td class="right">$0.09</td><td><div class="term-bar"><div class="fill" style="width:7%"></div></div></td></tr>
+      <tr><td class="name">"steakhouse toronto"</td><td class="right">28</td><td class="right">76</td><td class="right">$47.08</td><td class="right">$1.68</td><td><div class="term-bar"><div class="fill" style="width:5%"></div></div></td></tr>
+      <tr><td class="name">"the carbon bar toronto"</td><td class="right">24</td><td class="right">36</td><td class="right">$18.28</td><td class="right">$0.75</td><td><div class="term-bar"><div class="fill" style="width:4%"></div></div></td></tr>
+      <tr><td class="name">"carbon bar reservations"</td><td class="right">23</td><td class="right">10</td><td class="right">$0.34</td><td class="right">$0.01</td><td><div class="term-bar"><div class="fill" style="width:4%"></div></div></td></tr>
+      <tr><td class="name">"bbq toronto"</td><td class="right">14</td><td class="right">44</td><td class="right">$31.99</td><td class="right">$2.28</td><td><div class="term-bar"><div class="fill" style="width:2%"></div></div></td></tr>
+      <tr><td class="name">"bar near me"</td><td class="right">11</td><td class="right">116</td><td class="right">$29.34</td><td class="right">$2.55</td><td><div class="term-bar"><div class="fill" style="width:2%"></div></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+
+  <div class="section">
+  <div class="section-title"><span class="icon ot-icon">📊</span> Reservation & Guest Data</div>
+  <div class="mini-stats">
+    <div class="mini-stat"><div class="label">Guests in System</div><div class="val">158,777</div></div>
+    <div class="mini-stat"><div class="label">Completed Visits</div><div class="val">57,936</div></div>
+    <div class="mini-stat"><div class="label">Lifetime Spend</div><div class="val">$6,433,438.15</div></div>
+    <div class="mini-stat"><div class="label">Avg Spend / Cover</div><div class="val">$83.06</div></div>
+    <div class="mini-stat"><div class="label">Repeat Guests</div><div class="val">6,144</div></div>
+    <div class="mini-stat"><div class="label">Upcoming Bookings</div><div class="val">123</div></div>
+  </div>
+
+  <div style="margin-top: 20px;">
+    <div class="section-title" style="font-size:14px; margin-bottom:10px;">Lead Form Performance</div>
+    <table>
+      <thead><tr><th>Form / Campaign</th><th class="right">Leads</th><th class="right">% of Total</th></tr></thead>
+      <tbody>
+      <tr><td>Discover The Carbon Bar | NEW</td><td class="right">483</td><td class="right">38%</td></tr>
+      <tr><td>Discover The Carbon Bar</td><td class="right">450</td><td class="right">35%</td></tr>
+      <tr><td>Private Events Inquiry - FINAL - PV</td><td class="right">146</td><td class="right">11%</td></tr>
+      <tr><td>Coast to Coals [April]</td><td class="right">95</td><td class="right">7%</td></tr>
+      <tr><td>Coast to Coals</td><td class="right">81</td><td class="right">6%</td></tr>
+      <tr><td>Mother&#x27;s Day</td><td class="right">15</td><td class="right">1%</td></tr>
+      <tr><td>12 Year Anniv</td><td class="right">12</td><td class="right">1%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+
+  <div class="section">
+  <div class="section-title"><span class="icon rec-icon">🎯</span> Highest-Impact Next Actions</div>
+  <div class="rec-grid">
+    <div class="rec-card">
+      <div class="rec-num">Action 1</div>
+      <div class="rec-title">Scale &#x27;[Lead] Discover The Carbon Bar&#x27; — your lowest-cost lead source</div>
+      <div class="rec-body">At $1.87 per lead with 934 leads captured, this campaign is your most efficient acquisition channel. Increase daily budget by 20-30% and monitor CPL for 7 days. If CPL holds, push further.</div>
+    </div>
+    <div class="rec-card">
+      <div class="rec-num">Action 2</div>
+      <div class="rec-title">Double down on Google PMAX Remarketing</div>
+      <div class="rec-body">PMAX Remarketing is delivering conversions at $0.44 each — that&#x27;s extraordinary. With 5,058 conversions this period, increasing budget here is the highest-leverage move on Google Ads.</div>
+    </div>
+    <div class="rec-card">
+      <div class="rec-num">Action 3</div>
+      <div class="rec-title">Build a private events follow-up sequence</div>
+      <div class="rec-body">147 private event leads captured at $9.57 each. These are high-value — a single booking can be $2K-$10K+. An automated email/SMS nurture sequence within 24 hours of submission would significantly improve close rate.</div>
+    </div>
+  </div>
+  </div>
+
+  <div class="footer">
+    Generated April 14, 2026 at 11:32 AM &middot; Guest Getter &middot; Data from Meta Ads API, Google Ads API, OpenTable GuestCenter
+  </div>
+</div>
+</body>
+</html>

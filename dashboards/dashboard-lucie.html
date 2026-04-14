@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurant Lucie — Performance Dashboard</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d27;
+    --card-border: #2a2d3a;
+    --text: #e4e4e7;
+    --text-dim: #9ca3af;
+    --accent: #6366f1;
+    --accent-light: #818cf8;
+    --green: #22c55e;
+    --green-bg: rgba(34,197,94,0.1);
+    --amber: #f59e0b;
+    --amber-bg: rgba(245,158,11,0.1);
+    --red: #ef4444;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding: 0;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  .header .period {
+    color: var(--text-dim);
+    font-size: 14px;
+  }
+  .header .badge {
+    background: var(--accent);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* Hero metrics */
+  .hero {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .hero-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 20px 24px;
+  }
+  .hero-card .label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+  .hero-card .value {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.1;
+  }
+  .hero-card .sub {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+  .hero-card.highlight {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, var(--card) 0%, rgba(99,102,241,0.08) 100%);
+  }
+
+  /* Sections */
+  .section {
+    margin-bottom: 40px;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+  .meta-icon { background: rgba(59,130,246,0.15); }
+  .google-icon { background: rgba(234,179,8,0.15); }
+  .ot-icon { background: rgba(34,197,94,0.15); }
+  .rec-icon { background: rgba(239,68,68,0.15); }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+  }
+  thead th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--card-border);
+    background: rgba(255,255,255,0.02);
+    white-space: nowrap;
+  }
+  thead th.right { text-align: right; }
+  tbody td {
+    padding: 10px 16px;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    white-space: nowrap;
+  }
+  tbody td.right { text-align: right; font-variant-numeric: tabular-nums; }
+  tbody td.name { white-space: normal; max-width: 300px; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: rgba(255,255,255,0.02); }
+  tfoot td {
+    padding: 12px 16px;
+    font-weight: 700;
+    font-size: 14px;
+    border-top: 2px solid var(--card-border);
+    background: rgba(255,255,255,0.02);
+  }
+  tfoot td.right { text-align: right; font-variant-numeric: tabular-nums; }
+
+  /* Recommendation cards */
+  .rec-grid {
+    display: grid;
+    gap: 16px;
+  }
+  .rec-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    border-left: 4px solid var(--accent);
+  }
+  .rec-card .rec-num {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .rec-card .rec-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .rec-card .rec-body {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* Search term bars */
+  .term-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .term-bar {
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--card-border);
+    position: relative;
+    overflow: hidden;
+  }
+  .term-bar .fill {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    border-radius: 3px;
+    background: var(--accent);
+  }
+
+  /* Two-col layout */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 768px) {
+    .two-col { grid-template-columns: 1fr; }
+    .hero { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* Mini stat cards */
+  .mini-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .mini-stat {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .mini-stat .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-dim); }
+  .mini-stat .val { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; margin-top: 2px; }
+
+  .footer {
+    text-align: center;
+    padding: 40px 0 20px;
+    color: var(--text-dim);
+    font-size: 12px;
+    border-top: 1px solid var(--card-border);
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1>Restaurant Lucie</h1>
+      <div class="period">Jan 1 – Apr 14, 2026</div>
+    </div>
+    <div>
+      <span class="badge">GUEST GETTER</span>
+    </div>
+  </div>
+  <div class="hero">
+    <div class="hero-card">
+      <div class="label">Total Ad Spend</div>
+      <div class="value">$14,295.72</div>
+      <div class="sub">Meta $7,721.49 + Google $6,574.23</div>
+    </div>
+    <div class="hero-card highlight">
+      <div class="label">Total Conversions</div>
+      <div class="value">5,441</div>
+      <div class="sub">1,709 leads + 3,732 actions</div>
+    </div>
+    <div class="hero-card">
+      <div class="label">Cost / Conversion</div>
+      <div class="value">$2.63</div>
+      <div class="sub">Blended across all channels</div>
+    </div>
+    <div class="hero-card">
+      <div class="label">Total Reach</div>
+      <div class="value">353,921</div>
+      <div class="sub">Meta reach 316,689</div>
+    </div>
+    <div class="hero-card">
+      <div class="label">Reservations</div>
+      <div class="value">160</div>
+      <div class="sub">407 guests, avg party 2.5</div>
+    </div>
+    <div class="hero-card highlight">
+      <div class="label">Cost / Guest</div>
+      <div class="value">$35.12</div>
+      <div class="sub">Ad spend ÷ total guests booked</div>
+    </div>
+  </div>
+
+
+  <div class="section">
+  <div class="section-title"><span class="icon meta-icon">📘</span> Meta Ads Performance</div>
+  <table>
+    <thead><tr><th>Campaign</th><th class="right">Spend</th><th class="right">Impressions</th><th class="right">Clicks</th><th class="right">CTR</th><th class="right">Leads</th><th class="right">Cost/Lead</th></tr></thead>
+    <tbody>
+    <tr><td class="name">[Leads] Before The Next Chapter</td><td class="right">$3,448.14</td><td class="right">178,108</td><td class="right">8,835</td><td class="right">496.05%</td><td class="right">475</td><td class="right">$7.26</td></tr>
+    <tr><td class="name">[Lead] Carte Blanche</td><td class="right">$1,422.36</td><td class="right">97,589</td><td class="right">3,468</td><td class="right">355.37%</td><td class="right">701</td><td class="right">$2.03</td></tr>
+    <tr><td class="name">Awareness / Traffic Campaign</td><td class="right">$1,411.03</td><td class="right">227,073</td><td class="right">15,889</td><td class="right">699.73%</td><td class="right">2</td><td class="right">$705.51</td></tr>
+    <tr><td class="name">A French Winter</td><td class="right">$799.15</td><td class="right">82,391</td><td class="right">4,284</td><td class="right">519.96%</td><td class="right">531</td><td class="right">$1.50</td></tr>
+    <tr><td class="name">[Traffic] Carte Blanche</td><td class="right">$519.45</td><td class="right">96,812</td><td class="right">3,577</td><td class="right">369.48%</td><td class="right">0</td><td class="right">—</td></tr>
+    <tr><td class="name">Retargeting - Urgency</td><td class="right">$121.36</td><td class="right">10,970</td><td class="right">717</td><td class="right">653.60%</td><td class="right">0</td><td class="right">—</td></tr>
+    </tbody>
+    <tfoot><tr><td>Total</td><td class="right">$7,721.49</td><td class="right">692,943</td><td class="right">36,770</td><td class="right">—</td><td class="right">1,709</td><td class="right">$4.52</td></tr></tfoot>
+  </table>
+  </div>
+
+  <div class="section">
+  <div class="section-title"><span class="icon google-icon">🔍</span> Google Ads Performance</div>
+  <table>
+    <thead><tr><th>Campaign</th><th class="right">Spend</th><th class="right">Clicks</th><th class="right">CPC</th><th class="right">Conversions</th><th class="right">Cost/Conv</th></tr></thead>
+    <tbody>
+    <tr><td class="name">GG | PMAX - Reservations | Remarketing</td><td class="right">$3,405.29</td><td class="right">30,706</td><td class="right">$0.11</td><td class="right">2,811</td><td class="right">$1.21</td></tr>
+    <tr><td class="name">GG | Search - Table Reservation | Hotels</td><td class="right">$1,419.28</td><td class="right">3,206</td><td class="right">$0.44</td><td class="right">602</td><td class="right">$2.35</td></tr>
+    <tr><td class="name">GG | Search - Brand</td><td class="right">$577.08</td><td class="right">508</td><td class="right">$1.14</td><td class="right">118</td><td class="right">$4.86</td></tr>
+    <tr><td class="name">GG | PMAX - Table Reservation | Montreal</td><td class="right">$472.50</td><td class="right">616</td><td class="right">$0.77</td><td class="right">74</td><td class="right">$6.39</td></tr>
+    <tr><td class="name">GG | Search - Table Reservation | Montreal</td><td class="right">$306.79</td><td class="right">82</td><td class="right">$3.74</td><td class="right">9</td><td class="right">$34.09</td></tr>
+    <tr><td class="name">GG | Demand Gen - Images</td><td class="right">$185.56</td><td class="right">478</td><td class="right">$0.39</td><td class="right">2</td><td class="right">$92.78</td></tr>
+    <tr><td class="name">GG | PMAX - Reservations | Prospecting</td><td class="right">$148.65</td><td class="right">1,400</td><td class="right">$0.11</td><td class="right">88</td><td class="right">$1.69</td></tr>
+    <tr><td class="name">GG | Search - Table Reservation</td><td class="right">$59.08</td><td class="right">236</td><td class="right">$0.25</td><td class="right">27</td><td class="right">$2.19</td></tr>
+    </tbody>
+    <tfoot><tr><td>Total</td><td class="right">$6,574.23</td><td class="right">37,232</td><td class="right">$0.18</td><td class="right">3,732</td><td class="right">$1.76</td></tr></tfoot>
+  </table>
+
+  <div style="margin-top: 24px;">
+    <div class="section-title" style="font-size:15px; margin-bottom:12px;">Top Search Terms Driving Conversions</div>
+    <table>
+      <thead><tr><th>Search Term</th><th class="right">Conversions</th><th class="right">Clicks</th><th class="right">Spend</th><th class="right">Cost/Conv</th><th style="width:120px"></th></tr></thead>
+      <tbody>
+      <tr><td class="name">"lucie toronto"</td><td class="right">55</td><td class="right">231</td><td class="right">$313.49</td><td class="right">$5.61</td><td><div class="term-bar"><div class="fill" style="width:100%"></div></div></td></tr>
+      <tr><td class="name">"lucie restaurant toronto"</td><td class="right">20</td><td class="right">70</td><td class="right">$75.78</td><td class="right">$3.67</td><td><div class="term-bar"><div class="fill" style="width:37%"></div></div></td></tr>
+      <tr><td class="name">"best restaurants toronto"</td><td class="right">20</td><td class="right">161</td><td class="right">$58.69</td><td class="right">$2.86</td><td><div class="term-bar"><div class="fill" style="width:37%"></div></div></td></tr>
+      <tr><td class="name">"lucy restaurant toronto"</td><td class="right">20</td><td class="right">90</td><td class="right">$52.18</td><td class="right">$2.61</td><td><div class="term-bar"><div class="fill" style="width:36%"></div></div></td></tr>
+      <tr><td class="name">"lucie"</td><td class="right">17</td><td class="right">111</td><td class="right">$131.87</td><td class="right">$7.54</td><td><div class="term-bar"><div class="fill" style="width:31%"></div></div></td></tr>
+      <tr><td class="name">"michelin star restaurants toronto"</td><td class="right">15</td><td class="right">101</td><td class="right">$36.30</td><td class="right">$2.42</td><td><div class="term-bar"><div class="fill" style="width:27%"></div></div></td></tr>
+      <tr><td class="name">"french restaurant toronto"</td><td class="right">14</td><td class="right">126</td><td class="right">$44.29</td><td class="right">$3.16</td><td><div class="term-bar"><div class="fill" style="width:25%"></div></div></td></tr>
+      <tr><td class="name">"oretta downtown 160 front st w toronto on m5j 2l7 canada"</td><td class="right">10</td><td class="right">9</td><td class="right">$15.35</td><td class="right">$1.53</td><td><div class="term-bar"><div class="fill" style="width:18%"></div></div></td></tr>
+      <tr><td class="name">"fine dining toronto"</td><td class="right">8</td><td class="right">33</td><td class="right">$7.92</td><td class="right">$0.99</td><td><div class="term-bar"><div class="fill" style="width:14%"></div></div></td></tr>
+      <tr><td class="name">"best restaurants in toronto"</td><td class="right">6</td><td class="right">58</td><td class="right">$26.71</td><td class="right">$4.45</td><td><div class="term-bar"><div class="fill" style="width:11%"></div></div></td></tr>
+      <tr><td class="name">"restaurants toronto"</td><td class="right">5</td><td class="right">80</td><td class="right">$38.02</td><td class="right">$7.60</td><td><div class="term-bar"><div class="fill" style="width:9%"></div></div></td></tr>
+      <tr><td class="name">"lucie restaurant"</td><td class="right">5</td><td class="right">27</td><td class="right">$28.84</td><td class="right">$5.77</td><td><div class="term-bar"><div class="fill" style="width:9%"></div></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+
+  <div class="section">
+  <div class="section-title"><span class="icon ot-icon">📊</span> Reservation & Guest Data</div>
+  <div class="two-col">
+    <div>
+      <div class="section-title" style="font-size:14px; margin-bottom:10px;">Reservation Sources</div>
+      <table>
+        <thead><tr><th>Source</th><th class="right">Count</th><th class="right">%</th></tr></thead>
+        <tbody>
+        <tr><td>OpenTable Network</td><td class="right">88</td><td class="right">55%</td></tr>
+        <tr><td>Your Network</td><td class="right">40</td><td class="right">25%</td></tr>
+        <tr><td>Phone/In-house</td><td class="right">23</td><td class="right">14%</td></tr>
+        <tr><td>Walk-in</td><td class="right">9</td><td class="right">6%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <div class="section-title" style="font-size:14px; margin-bottom:10px;">OpenTable Booking Type</div>
+      <table>
+        <thead><tr><th>Type</th><th class="right">Count</th><th class="right">%</th></tr></thead>
+        <tbody>
+        <tr><td>OpenTable Direct</td><td class="right">67</td><td class="right">78%</td></tr>
+        <tr><td>OpenTable Discovery</td><td class="right">19</td><td class="right">22%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="mini-stats" style="margin-top: 16px;">
+    <div class="mini-stat"><div class="label">Total Reservations</div><div class="val">160</div></div>
+    <div class="mini-stat"><div class="label">Total Guests</div><div class="val">407</div></div>
+    <div class="mini-stat"><div class="label">Avg Party Size</div><div class="val">2.5</div></div>
+    <div class="mini-stat"><div class="label">Cost / Reservation</div><div class="val">$89.35</div></div>
+    <div class="mini-stat"><div class="label">Cost / Guest</div><div class="val">$35.12</div></div>
+    <div class="mini-stat"><div class="label">Cancelled</div><div class="val">23</div></div>
+  </div>
+  </div>
+
+  <div class="section">
+  <div class="section-title"><span class="icon rec-icon">🎯</span> Highest-Impact Next Actions</div>
+  <div class="rec-grid">
+    <div class="rec-card">
+      <div class="rec-num">Action 1</div>
+      <div class="rec-title">Scale &#x27;A French Winter&#x27; — best lead magnet</div>
+      <div class="rec-body">Generating leads at $1.50 each. This is an exceptional CPL for fine dining. Increase budget and consider creating a similar offer to run alongside it for audience diversification.</div>
+    </div>
+    <div class="rec-card">
+      <div class="rec-num">Action 2</div>
+      <div class="rec-title">Expand hotel guest targeting on Google Ads</div>
+      <div class="rec-body">The hotel keyword campaign has driven 602 conversions at $2.35 each. Hotel guests searching for nearby dining are high-intent. Add more hotel-related keywords and consider geo-targeting around major Toronto hotels.</div>
+    </div>
+    <div class="rec-card">
+      <div class="rec-num">Action 3</div>
+      <div class="rec-title">Shift more reservations to direct channels (lower commission)</div>
+      <div class="rec-body">88 of 160 reservations (55%) come via OpenTable Network, which charges higher fees than Your Network/direct. Push the Reserve button on your website and Google profile to capture more direct bookings at lower cost.</div>
+    </div>
+  </div>
+  </div>
+
+  <div class="footer">
+    Generated April 14, 2026 at 11:32 AM &middot; Guest Getter &middot; Data from Meta Ads API, Google Ads API, OpenTable GuestCenter
+  </div>
+</div>
+</body>
+</html>
