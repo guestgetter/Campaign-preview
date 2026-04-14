@@ -133,6 +133,20 @@
     overflow: hidden;
     padding: 60px 40px;
   }
+  .cover-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+  .cover-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(18, 18, 31, 0.82) 0%, rgba(26, 26, 46, 0.88) 50%, rgba(18, 18, 31, 0.92) 100%);
+  }
   .cover::before {
     content: '';
     position: absolute;
@@ -142,6 +156,7 @@
     height: 70%;
     background: radial-gradient(circle, rgba(196, 127, 23, 0.06) 0%, transparent 70%);
     pointer-events: none;
+    z-index: 1;
   }
   .cover-content {
     position: relative;
@@ -246,10 +261,27 @@
     background: var(--warm-white);
     padding: 120px 40px;
     position: relative;
+    overflow: hidden;
+  }
+  .story-spread-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 35%;
+    height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?w=800&q=80');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.08;
+    mask-image: linear-gradient(to left, rgba(0,0,0,0.6) 0%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.6) 0%, transparent 100%);
+    pointer-events: none;
   }
   .story-inner {
     max-width: 1100px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
   }
   .story-label {
     font-size: 0.7rem;
@@ -486,6 +518,30 @@
     position: relative;
     z-index: 2;
   }
+
+  /* Section accent images */
+  .phase-accent-img {
+    position: absolute;
+    top: 0;
+    width: 30%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .phase-accent-img.left {
+    left: 0;
+    mask-image: linear-gradient(to right, rgba(0,0,0,0.5) 0%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.5) 0%, transparent 100%);
+  }
+  .phase-accent-img.right {
+    right: 0;
+    mask-image: linear-gradient(to left, rgba(0,0,0,0.5) 0%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.5) 0%, transparent 100%);
+  }
+  .phase-spread.light .phase-accent-img { opacity: 0.06; }
+  .phase-spread.dark .phase-accent-img { opacity: 0.10; }
 
   /* Giant background number */
   .phase-bg-number {
@@ -725,22 +781,22 @@
   }
 
   /* ══════════════════════════════════════════════
-     SPREAD 8 — WHY GUEST GETTER
+     SPREAD — INVESTMENT / PRICING
      ══════════════════════════════════════════════ */
-  .why-spread {
+  .investment-spread {
     background: var(--charcoal);
     color: var(--text-light);
     padding: 120px 40px;
     position: relative;
     overflow: hidden;
   }
-  .why-inner {
+  .investment-inner {
     max-width: 1100px;
     margin: 0 auto;
     position: relative;
     z-index: 2;
   }
-  .why-label {
+  .invest-label {
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.3em;
@@ -748,108 +804,323 @@
     color: var(--copper);
     margin-bottom: 40px;
   }
-  .why-title {
+  .invest-title {
     font-family: var(--serif);
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 700;
     color: var(--text-light);
     margin-bottom: 12px;
-    max-width: 600px;
   }
-  .why-subtitle {
-    font-size: 1rem;
+  .invest-price {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--copper);
+    margin-bottom: 64px;
+  }
+
+  .compare-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 80px;
+  }
+  .compare-card {
+    padding: 36px;
+    border-radius: 8px;
+    background: rgba(250, 249, 246, 0.03);
+    border: 1px solid rgba(250, 249, 246, 0.06);
+  }
+  .compare-card.featured {
+    background: rgba(196, 127, 23, 0.08);
+    border: 1px solid rgba(196, 127, 23, 0.25);
+    position: relative;
+  }
+  .compare-card.featured::before {
+    content: 'RECOMMENDED';
+    position: absolute;
+    top: -10px;
+    left: 36px;
+    background: var(--copper);
+    color: var(--charcoal);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 4px 12px;
+    border-radius: 3px;
+  }
+  .compare-card-rule {
+    width: 28px;
+    height: 2px;
+    background: var(--copper);
+    margin-bottom: 20px;
+  }
+  .compare-card h3 {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 16px;
+  }
+  .compare-card p, .compare-card li {
+    font-size: 0.85rem;
     font-weight: 300;
     color: var(--text-light-secondary);
+    line-height: 1.7;
+  }
+  .compare-card ul {
+    list-style: none;
+    margin-top: 12px;
+  }
+  .compare-card ul li {
+    padding: 4px 0 4px 16px;
+    position: relative;
+  }
+  .compare-card ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--copper);
+    opacity: 0.5;
+  }
+  .compare-card .cost-total {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--copper);
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(250, 249, 246, 0.08);
+  }
+  .compare-card .jp-quote {
+    margin-top: 16px;
+    font-style: italic;
+    font-size: 0.82rem;
+    color: var(--text-light-muted);
+    line-height: 1.6;
+  }
+
+  /* Conservative returns */
+  .returns-section {
+    border-top: 1px solid rgba(250, 249, 246, 0.08);
+    padding-top: 64px;
+  }
+  .returns-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-light-muted);
+    margin-bottom: 32px;
+  }
+  .returns-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+  .return-item {
+    padding: 28px;
+    background: rgba(250, 249, 246, 0.03);
+    border: 1px solid rgba(250, 249, 246, 0.06);
+    border-radius: 8px;
+  }
+  .return-item h4 {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--copper);
+    margin-bottom: 8px;
+  }
+  .return-item p {
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--text-light-secondary);
+    line-height: 1.6;
+  }
+  .invest-note {
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--text-light-muted);
+    line-height: 1.7;
+    max-width: 700px;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(250, 249, 246, 0.06);
+    font-style: italic;
+  }
+  .invest-math-note {
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: var(--text-light-secondary);
+    max-width: 700px;
+    margin-top: 32px;
+    line-height: 1.8;
+  }
+
+  /* ══════════════════════════════════════════════
+     SPREAD — WHO YOU'RE WORKING WITH
+     ══════════════════════════════════════════════ */
+  .team-spread {
+    background: var(--warm-white);
+    padding: 120px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .team-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .team-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 40px;
+  }
+  .team-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+    max-width: 600px;
+  }
+  .team-intro {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--text-dark-muted);
     max-width: 600px;
     margin-bottom: 64px;
     line-height: 1.7;
   }
 
-  .capability-grid {
+  .team-cards {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 28px;
-    margin-bottom: 64px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    margin-bottom: 48px;
   }
-  .cap-item {
-    padding: 32px 24px;
-    background: rgba(250, 249, 246, 0.03);
-    border: 1px solid rgba(250, 249, 246, 0.06);
+  .team-card {
+    padding: 40px;
+    background: white;
+    border: 1px solid rgba(26, 26, 46, 0.06);
+    box-shadow: 0 2px 20px rgba(26, 26, 46, 0.04);
     border-radius: 8px;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
   }
-  .cap-item:hover {
-    border-color: rgba(196, 127, 23, 0.3);
+  .team-card:hover {
     transform: translateY(-3px);
   }
-  .cap-rule {
-    width: 24px;
+  .team-card-rule {
+    width: 28px;
     height: 2px;
     background: var(--copper);
     margin-bottom: 20px;
   }
-  .cap-item h3 {
-    font-family: var(--serif);
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-light);
-    margin-bottom: 10px;
-    line-height: 1.3;
-  }
-  .cap-item p {
-    font-size: 0.8rem;
-    font-weight: 300;
-    color: var(--text-light-secondary);
-    line-height: 1.6;
-  }
-
-  .callout-block {
-    background: rgba(196, 127, 23, 0.06);
-    border: 1px solid rgba(196, 127, 23, 0.15);
-    border-radius: 8px;
-    padding: 48px;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 32px;
-    align-items: start;
-  }
-  .callout-marker {
-    font-family: var(--serif);
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--copper);
-    line-height: 1;
-    margin-top: -4px;
-  }
-  .callout-block h3 {
+  .team-card h3 {
     font-family: var(--serif);
     font-size: 1.3rem;
     font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+  }
+  .team-card .team-role {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
     color: var(--copper);
+    margin-bottom: 16px;
+  }
+  .team-card p {
+    font-size: 0.88rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--text-dark-secondary);
+  }
+
+  .team-backing {
+    padding: 40px;
+    background: var(--cream);
+    border-radius: 8px;
+    margin-bottom: 48px;
+  }
+  .team-backing-rule {
+    width: 28px;
+    height: 2px;
+    background: var(--copper);
+    margin-bottom: 20px;
+  }
+  .team-backing h3 {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-dark);
     margin-bottom: 12px;
   }
-  .callout-block p {
-    font-size: 0.92rem;
+  .team-backing p {
+    font-size: 0.88rem;
     font-weight: 300;
-    color: var(--text-light-secondary);
     line-height: 1.8;
+    color: var(--text-dark-secondary);
+    max-width: 700px;
+  }
+
+  .team-credo {
+    padding: 40px 48px;
+    background: rgba(196, 127, 23, 0.04);
+    border: 1px solid rgba(196, 127, 23, 0.12);
+    border-radius: 8px;
+  }
+  .team-credo p {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--text-dark);
+  }
+  .team-credo p em {
+    color: var(--copper);
+    font-style: italic;
   }
 
   /* ══════════════════════════════════════════════
-     SPREAD 9 — CLOSING
+     SPREAD — CLOSING
      ══════════════════════════════════════════════ */
   .closing-spread {
     min-height: 80vh;
-    background: var(--warm-white);
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding: 120px 40px;
     position: relative;
+    overflow: hidden;
+    background: var(--warm-white);
+  }
+  .closing-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1577412647305-991150c7d163?w=1200&q=80');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.04;
+    pointer-events: none;
   }
   .closing-inner {
     max-width: 700px;
+    position: relative;
+    z-index: 1;
   }
   .closing-rule {
     width: 60px;
@@ -922,12 +1193,15 @@
     .friction-grid { grid-template-columns: 1fr; }
     .phase-grid, .phase-grid.three-col { grid-template-columns: 1fr; }
     .numbers-grid { grid-template-columns: 1fr; gap: 36px; }
-    .capability-grid { grid-template-columns: repeat(2, 1fr); }
-    .callout-block { grid-template-columns: 1fr; }
+    .team-cards { grid-template-columns: 1fr; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .returns-grid { grid-template-columns: 1fr; }
     .stat-row { gap: 36px; }
     .assumptions-block ul { columns: 1; }
     .nav-dots { display: none; }
     .phase-bg-number { font-size: 12rem; top: -20px; right: -10px; }
+    .story-spread-image { display: none; }
+    .phase-accent-img { display: none; }
   }
 
   @media (max-width: 600px) {
@@ -936,10 +1210,12 @@
     .opportunity-spread,
     .phase-spread,
     .numbers-spread,
-    .why-spread,
+    .team-spread,
+    .investment-spread,
     .closing-spread { padding: 80px 24px; }
-    .capability-grid { grid-template-columns: 1fr; }
-    .callout-block { padding: 32px 24px; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .returns-grid { grid-template-columns: 1fr; }
+    .team-cards { grid-template-columns: 1fr; }
     .stat-row { flex-direction: column; gap: 32px; }
   }
 
@@ -950,21 +1226,23 @@
     body { background: white; }
     .nav-dots, .cover-scroll { display: none !important; }
     .grain::after { display: none; }
+    .cover-bg, .closing-bg, .story-spread-image, .phase-accent-img { display: none !important; }
     .cover { min-height: auto; padding: 80px 40px; page-break-after: always; }
     .story-spread,
     .opportunity-spread,
     .phase-spread,
     .numbers-spread,
-    .why-spread { page-break-inside: avoid; page-break-after: always; padding: 60px 40px; }
+    .team-spread,
+    .investment-spread { page-break-inside: avoid; page-break-after: always; padding: 60px 40px; }
     .closing-spread { min-height: auto; page-break-inside: avoid; }
     .phase-bg-number { display: none; }
     .reveal { opacity: 1 !important; transform: none !important; }
-    .phase-card, .cap-item { break-inside: avoid; }
-    .charcoal-print, .opportunity-spread, .why-spread, .cover {
+    .phase-card, .team-card, .compare-card, .return-item { break-inside: avoid; }
+    .charcoal-print, .opportunity-spread, .investment-spread, .cover {
       background: #f0f0f0 !important;
       color: #1a1a2e !important;
     }
-    .opportunity-spread *, .why-spread *, .cover * {
+    .opportunity-spread *, .investment-spread *, .cover * {
       color: #1a1a2e !important;
     }
     .copper-print, .cover-company span, .stat-value, .number-value.copper {
@@ -984,7 +1262,8 @@
   <div class="nav-dot" data-section="phase2" title="Phase 2"></div>
   <div class="nav-dot" data-section="phase3" title="Phase 3"></div>
   <div class="nav-dot" data-section="numbers" title="The Numbers"></div>
-  <div class="nav-dot" data-section="why" title="Why Guest Getter"></div>
+  <div class="nav-dot" data-section="investment" title="The Investment"></div>
+  <div class="nav-dot" data-section="team" title="Who You're Working With"></div>
   <div class="nav-dot" data-section="closing" title="Next Steps"></div>
 </nav>
 
@@ -993,6 +1272,7 @@
      SPREAD 1 — COVER
      ═══════════════════════════════════════════════════ -->
 <section class="cover grain" id="cover">
+  <div class="cover-bg"></div>
   <div class="cover-content">
     <div class="cover-rule reveal"></div>
     <h1 class="cover-company reveal reveal-d1">
@@ -1009,7 +1289,7 @@
       <path d="M12 5v14M5 12l7 7 7-7"/>
     </svg>
   </div>
-  <div class="cover-presenter reveal reveal-d5">Presented by Guest Getter</div>
+  <div class="cover-presenter reveal reveal-d5">Presented by Kyle Guilfoyle &amp; Gabriel Malbogat</div>
 </section>
 
 
@@ -1017,6 +1297,7 @@
      SPREAD 2 — THE EDGE STORY
      ═══════════════════════════════════════════════════ -->
 <section class="story-spread" id="story">
+  <div class="story-spread-image"></div>
   <div class="story-inner">
     <div class="story-label reveal">The Edge Story</div>
 
@@ -1107,6 +1388,7 @@
      SPREAD 4 — PHASE 1: FOUNDATION
      ═══════════════════════════════════════════════════ -->
 <section class="phase-spread light" id="phase1">
+  <div class="phase-accent-img right" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80');"></div>
   <div class="phase-bg-number">01</div>
   <div class="phase-inner">
     <div class="phase-label reveal">Phase One</div>
@@ -1188,6 +1470,7 @@
      SPREAD 5 — PHASE 2: BUILD & LAUNCH
      ═══════════════════════════════════════════════════ -->
 <section class="phase-spread dark grain" id="phase2">
+  <div class="phase-accent-img left" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80');"></div>
   <div class="phase-bg-number">02</div>
   <div class="phase-inner">
     <div class="phase-label reveal">Phase Two</div>
@@ -1198,7 +1481,7 @@
       <div class="phase-card reveal reveal-d1" style="grid-column: span 2;">
         <div class="phase-card-rule"></div>
         <h3>Wendy's Portal Pilot</h3>
-        <p>Launch the first brand-specific ordering portal &mdash; a logged-in experience that eliminates manual order processing and becomes the blueprint for every chain account.</p>
+        <p>Launch the first brand-specific ordering portal &mdash; a logged-in experience that eliminates manual order processing and becomes the blueprint for every chain account. We've already built a working prototype of the Wendy's portal concept. Ask us to show you.</p>
         <ul>
           <li>Negotiated pricing per account, hidden from public</li>
           <li>Live inventory via Business Central API</li>
@@ -1211,7 +1494,7 @@
       <div class="phase-card reveal reveal-d2">
         <div class="phase-card-rule"></div>
         <h3>"Ask Edge" AI Assistant MVP</h3>
-        <p>Deploy an AI-powered assistant for chain operators and internal staff to query equipment specs, troubleshooting guides, and parts compatibility.</p>
+        <p>Deploy an AI-powered assistant for chain operators and internal staff to query equipment specs, troubleshooting guides, and parts compatibility. This is architecture we've already built and deployed for other clients &mdash; not a concept on a whiteboard.</p>
         <ul>
           <li>Natural language equipment spec queries</li>
           <li>Troubleshooting flowcharts via chat</li>
@@ -1263,6 +1546,7 @@
      SPREAD 6 — PHASE 3: SCALE & OPTIMIZE
      ═══════════════════════════════════════════════════ -->
 <section class="phase-spread light" id="phase3">
+  <div class="phase-accent-img right" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80');"></div>
   <div class="phase-bg-number">03</div>
   <div class="phase-inner">
     <div class="phase-label reveal">Phase Three</div>
@@ -1273,7 +1557,7 @@
       <div class="phase-card reveal reveal-d1">
         <div class="phase-card-rule"></div>
         <h3>Portal Rollout to Additional Chains</h3>
-        <p>Take the proven Wendy's model and deploy it to every major chain account. Each portal is a lock-in competitors can't replicate.</p>
+        <p>Take the proven Wendy's model and deploy it to every major chain account. Each portal creates switching costs that lock in the relationship long-term.</p>
         <ul>
           <li>Swiss Chalet portal launch</li>
           <li>Harvey's portal launch</li>
@@ -1369,7 +1653,7 @@
       <div class="number-item reveal reveal-d3">
         <div class="number-value copper">$2M+</div>
         <div class="number-label">Portal Revenue Lock-In</div>
-        <div class="number-desc">Protected annual revenue per chain account through portal stickiness. Every portal is a moat competitors cannot match.</div>
+        <div class="number-desc">Protected annual revenue per chain account through portal stickiness. Every portal creates switching costs competitors cannot match.</div>
       </div>
     </div>
 
@@ -1407,64 +1691,135 @@
 
 
 <!-- ═══════════════════════════════════════════════════
-     SPREAD 8 — WHY GUEST GETTER
+     SPREAD 8 — THE INVESTMENT
      ═══════════════════════════════════════════════════ -->
-<section class="why-spread grain" id="why">
-  <div class="why-inner">
-    <div class="why-label reveal">Why Guest Getter</div>
-    <h2 class="why-title reveal reveal-d1">A team, not a freelancer.<br>A partner, not a vendor.</h2>
-    <p class="why-subtitle reveal reveal-d2">This roadmap requires five distinct disciplines working in lockstep. That's not something you hire one person to do &mdash; it's exactly what we've built Guest Getter to deliver.</p>
+<section class="investment-spread grain" id="investment">
+  <div class="investment-inner">
+    <div class="invest-label reveal">The Investment</div>
+    <h2 class="invest-title reveal reveal-d1">The Investment</h2>
+    <p class="invest-price reveal reveal-d2">$8,500 / month &mdash; 12-Month Growth Partnership</p>
 
-    <div class="capability-grid">
-      <div class="cap-item reveal reveal-d1">
-        <div class="cap-rule"></div>
-        <h3>Web Development</h3>
-        <p>Shopify Plus, custom portal development, responsive design, and performance optimization.</p>
+    <div class="compare-grid">
+      <!-- Column 1: Current Spend -->
+      <div class="compare-card reveal reveal-d1">
+        <div class="compare-card-rule"></div>
+        <h3>What You're Spending Now</h3>
+        <ul>
+          <li>Shopify Plus: $3,000/mo</li>
+          <li>Current web resource: ~$5,000/mo</li>
+        </ul>
+        <div class="cost-total">~$8,000/mo</div>
+        <p style="margin-top: 8px; font-size: 0.82rem; color: var(--text-light-muted);">On tools and resources that aren't delivering.</p>
+        <p class="jp-quote">"It's not making the ROI. It's just very slow with a lot of overhead."</p>
       </div>
-      <div class="cap-item reveal reveal-d2">
-        <div class="cap-rule"></div>
-        <h3>AI / Brain Infrastructure</h3>
-        <p>Vector databases, LLM integration, retrieval-augmented generation. "Ask Edge" is architecture we've already built.</p>
+
+      <!-- Column 2: In-House Alternative -->
+      <div class="compare-card reveal reveal-d2">
+        <div class="compare-card-rule"></div>
+        <h3>The In-House Alternative</h3>
+        <ul>
+          <li>Senior web developer (GTA): $90&ndash;110K/yr</li>
+          <li>But one person can't cover: portal development + AI/LLM + ERP integration + SEO + content + marketing strategy</li>
+          <li>Realistically need 2&ndash;3 hires</li>
+        </ul>
+        <div class="cost-total">$200&ndash;350K/yr</div>
+        <p style="margin-top: 8px; font-size: 0.82rem; color: var(--text-light-muted);">Plus: management overhead, benefits, and ramp-up time before anyone delivers a single result.</p>
       </div>
-      <div class="cap-item reveal reveal-d3">
-        <div class="cap-rule"></div>
-        <h3>API / ERP Integration</h3>
-        <p>Business Central, Shopify API, webhook orchestration, real-time inventory sync.</p>
-      </div>
-      <div class="cap-item reveal reveal-d4">
-        <div class="cap-rule"></div>
-        <h3>Marketing Strategy</h3>
-        <p>StoryBrand certified, SEO, content strategy, paid acquisition, lifecycle marketing.</p>
-      </div>
-      <div class="cap-item reveal reveal-d5">
-        <div class="cap-rule"></div>
-        <h3>Portal Systems</h3>
-        <p>Authenticated ordering, role-based access, negotiated pricing engines, service ticket systems.</p>
+
+      <!-- Column 3: Growth Partnership (featured) -->
+      <div class="compare-card featured reveal reveal-d3">
+        <div class="compare-card-rule"></div>
+        <h3>Growth Partnership</h3>
+        <ul>
+          <li>$8,500/mo &mdash; full team from day one</li>
+          <li>Web development + portal architecture</li>
+          <li>AI/Brain infrastructure ("Ask Edge")</li>
+          <li>Business Central API integration</li>
+          <li>SEO + content engine</li>
+          <li>Marketing strategy + execution</li>
+        </ul>
+        <div class="cost-total">Year 1: $102,000</div>
       </div>
     </div>
 
-    <div class="callout-block reveal">
-      <div class="callout-marker">&ldquo;</div>
-      <div>
-        <h3>You Asked: Hire In-House or Go With a Team?</h3>
-        <p>Hiring one in-house web person gives you one skill set, one perspective, and a single point of failure. This roadmap spans five disciplines &mdash; development, AI, integrations, strategy, and content &mdash; each of which would require a separate senior hire. Guest Getter gives you a dedicated team across all five, with the infrastructure, tools, and process already built. You get depth without the overhead, speed without the ramp-up, and a partner who's accountable to results &mdash; not just hours clocked.</p>
+    <!-- Conservative Returns -->
+    <div class="returns-section">
+      <div class="returns-label reveal">Conservative Returns</div>
+      <div class="returns-grid">
+        <div class="return-item reveal reveal-d1">
+          <h4>Portal Automation: $150&ndash;200K in reduced labor costs</h4>
+          <p>Your account managers are currently doing manual order entry for hundreds of QSR builds. Portals eliminate that overhead and free your team to focus on relationships, not data entry.</p>
+        </div>
+        <div class="return-item reveal reveal-d2">
+          <h4>E-Commerce Fix: Turn a cost center into a revenue driver</h4>
+          <p>Even a modest improvement on the broken Shopify store turns that $3K/mo from a line item you're questioning into a channel that pays for itself and then some.</p>
+        </div>
+        <div class="return-item reveal reveal-d3">
+          <h4>Portal Lock-In: $200&ndash;500K per chain in annual recurring revenue</h4>
+          <p>Each chain portal creates switching costs. Once a Wendy's or Swiss Chalet ops team is running through your portal, they don't leave. That's revenue you keep, year after year.</p>
+        </div>
+        <div class="return-item reveal reveal-d4">
+          <h4>The Math Speaks for Itself</h4>
+          <p>We're not promising the moon. These are the math-based outcomes of building what you described on our last call. The infrastructure pays for itself within the first year.</p>
+        </div>
       </div>
+    </div>
+
+    <p class="invest-note reveal">Month 1 includes the StoryBrand strategy workshop, technical audit, and architecture planning at no additional setup fee.</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SPREAD 9 — WHO YOU'RE WORKING WITH
+     ═══════════════════════════════════════════════════ -->
+<section class="team-spread" id="team">
+  <div class="team-inner">
+    <div class="team-label reveal">Who You're Working With</div>
+    <h2 class="team-title reveal reveal-d1">We don't hand you off<br>to a junior account manager.</h2>
+    <p class="team-intro reveal reveal-d2">Here's who's actually doing the work.</p>
+
+    <div class="team-cards">
+      <div class="team-card reveal reveal-d1">
+        <div class="team-card-rule"></div>
+        <h3>Kyle Guilfoyle</h3>
+        <div class="team-role">Strategy &amp; Technical Architecture</div>
+        <p>Kyle lives in the restaurant world. He does bar trainings, walks the floor at NRA shows, and has spent years understanding how operators actually think about equipment, technology, and growth. On the technical side, he built the Brain infrastructure that powers AI assistants for Guest Getter's clients &mdash; the same architecture behind "Ask Edge." He leads the StoryBrand messaging process, growth roadmapping, and makes sure every piece of the strategy connects back to real business outcomes.</p>
+      </div>
+
+      <div class="team-card reveal reveal-d2">
+        <div class="team-card-rule"></div>
+        <h3>Gabriel Malbogat</h3>
+        <div class="team-role">Business Development &amp; Client Success</div>
+        <p>Gabe has deep relationships in the food and restaurant equipment space. He knows JP, Cedric, Pashant, Kumar &mdash; the whole network. He's the one making sure the work we do actually moves the needle, not just checks boxes. Gabe handles business development, client success, and is the person keeping the 12-month roadmap on track. When you have a question or need something adjusted, Gabe picks up the phone.</p>
+      </div>
+    </div>
+
+    <div class="team-backing reveal reveal-d3">
+      <div class="team-backing-rule"></div>
+      <h3>The Team Behind Us</h3>
+      <p>Behind Kyle and Gabe is a team of developers, designers, and strategists who execute the roadmap. Not a freelancer. Not a one-person shop. A team built to handle exactly this kind of engagement &mdash; portal development, AI infrastructure, ERP integrations, SEO, content, and ongoing marketing execution. When we commit to a timeline, we have the people to deliver it.</p>
+    </div>
+
+    <div class="team-credo reveal reveal-d4">
+      <p>We sit on the same side of the table. We succeed when <em>Edge succeeds</em>. That's why we tie our work to measurable outcomes &mdash; not billable hours.</p>
     </div>
   </div>
 </section>
 
 
 <!-- ═══════════════════════════════════════════════════
-     SPREAD 9 — CLOSING
+     SPREAD 10 — CLOSING
      ═══════════════════════════════════════════════════ -->
 <section class="closing-spread" id="closing">
+  <div class="closing-bg"></div>
   <div class="closing-inner">
     <div class="closing-rule reveal"></div>
     <h2 class="closing-title reveal reveal-d1">Let's build the future<br>of <em>Edge</em> together.</h2>
-    <p class="closing-body reveal reveal-d2">Three phases. Twelve months. A compounding digital advantage that turns Edge Food Equipment from a great dealer into an unassailable platform.</p>
+    <p class="closing-body reveal reveal-d2">Three phases. Twelve months. A compounding digital advantage that turns Edge Food Equipment from a great dealer into an unassailable platform. We've already started &mdash; the prototype portal, the AI architecture, the strategy thinking. Now it's about executing, together.</p>
     <p class="closing-urgency reveal reveal-d3">The ERP migration opens a window. The competitors are still analog.<br>The chain accounts need portals yesterday. The time is now.</p>
     <div class="closing-contact reveal reveal-d4">
-      <div class="closing-contact-name">Kyle Guilfoyle</div>
+      <div class="closing-contact-name">Kyle Guilfoyle &amp; Gabriel Malbogat</div>
       <div class="closing-contact-co">Guest Getter</div>
     </div>
     <div class="closing-footer reveal reveal-d5">April 2026</div>
@@ -1489,9 +1844,9 @@
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
   // ── Navigation dots ──
-  const sectionIds = ['cover','story','opportunity','phase1','phase2','phase3','numbers','why','closing'];
+  const sectionIds = ['cover','story','opportunity','phase1','phase2','phase3','numbers','investment','team','closing'];
   const dots = document.querySelectorAll('.nav-dot');
-  const darkSections = new Set(['cover','opportunity','phase2','why']);
+  const darkSections = new Set(['cover','opportunity','phase2','investment']);
 
   const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
