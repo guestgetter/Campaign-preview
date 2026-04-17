@@ -394,6 +394,27 @@
     background: rgba(61,122,122,0.1);
     color: var(--teal);
   }
+  .phase2-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    background: rgba(200,135,62,0.12);
+    color: var(--amber);
+    margin-left: 8px;
+  }
+  .sms-card.gated .sms-bubble {
+    opacity: 0.6;
+    background: var(--navy-light);
+  }
+  .sms-card.gated {
+    border-style: dashed;
+    border-color: var(--gold-muted);
+  }
   .sms-card-body {
     padding: 20px 24px;
   }
@@ -629,7 +650,7 @@
   <div class="header-inner">
     <div class="eyebrow">Guest Getter &middot; Sales Sequence</div>
     <h1>Private Event Lead<br><em>Reactivation Sequence</em></h1>
-    <p class="header-desc">A three-segment, multi-touch sequence designed to convert Restaurant Lucie's 315 Perfect Venue contacts and unconverted ad leads into booked private events. Built from Maggie's playbook, Lucie's actual differentiators, and the lead data.</p>
+    <p class="header-desc">A three-segment, email-first sequence designed to convert Restaurant Lucie's 315 Perfect Venue contacts and unconverted ad leads into booked private events. Built from Maggie's playbook, Lucie's actual differentiators, and the lead data. SMS layer planned as Phase 2 once A2P 10DLC clears.</p>
     <div class="header-meta">
       <div class="header-meta-item"><strong>Client:</strong>&ensp;Restaurant Lucie</div>
       <div class="header-meta-item"><strong>Created:</strong>&ensp;April 14, 2026</div>
@@ -692,7 +713,8 @@
         <div class="ci-label">Operational Notes</div>
         <ul>
           <li>Perfect Venue is the private events CRM</li>
-          <li>Table Voice (AI phone) can send texts &mdash; explore integration</li>
+          <li>A2P 10DLC SMS not yet verified &mdash; email-only at launch</li>
+          <li>Table Voice (AI phone, Yannick investor) can send texts &mdash; explore for Phase 2</li>
           <li>Current PV auto-response is just "thank you, we'll respond shortly" + events package</li>
           <li>Feedback/testimonial form being built with Jeremy (Carbon Bar)</li>
         </ul>
@@ -738,6 +760,17 @@
   </div>
 
 
+  <!-- ═══════════ A2P / SMS ROLLOUT NOTE ═══════════ -->
+  <div class="section">
+    <div class="section-label">Deployment Note</div>
+    <h2>Two-Phase Rollout: Email First, SMS When A2P Clears</h2>
+    <p class="section-desc">A2P 10DLC verification for outbound SMS is not yet complete for Restaurant Lucie. The email sequence below is designed to stand on its own &mdash; fully effective without any SMS touches. When A2P clears, the planned SMS touches (shown throughout as dashed cards) activate and layer in for a lift in open and response rates.</p>
+    <div class="callout gold" style="margin-top: 8px;">
+      <strong>What this means practically:</strong> Phase 1 (launch now) is the email-only sequence. Phase 2 (post-A2P) adds the two SMS touches in Segment A and the instant-text openers in Segments B &amp; C. Nothing in the email cadence depends on SMS firing &mdash; each email does its job alone.
+    </div>
+  </div>
+
+
   <!-- ═══════════════════════════════════════════════ -->
   <!--  SEGMENT A — PRIVATE EVENT INQUIRIES            -->
   <!-- ═══════════════════════════════════════════════ -->
@@ -757,9 +790,9 @@
   <div class="phase-label warm">Phase 1 &mdash; Warm Outreach &middot; Days 0&ndash;7</div>
 
   <!-- A-SMS -->
-  <div class="sms-card">
+  <div class="sms-card gated">
     <div class="sms-card-header">
-      <div class="sms-badge">&#128241; SMS</div>
+      <div class="sms-badge">&#128241; SMS</div><span class="phase2-badge">Phase 2 &middot; Pending A2P</span>
       <div class="email-card-meta">
         <div class="email-card-title">Instant Text (triggered on form submission)</div>
         <div class="email-card-timing">Day 0 &middot; Via Table Voice or HighLevel &middot; Fires within 2 minutes of inquiry</div>
@@ -898,9 +931,9 @@
   </div>
 
   <!-- A-SMS2 -->
-  <div class="sms-card">
+  <div class="sms-card gated">
     <div class="sms-card-header">
-      <div class="sms-badge">&#128241; SMS</div>
+      <div class="sms-badge">&#128241; SMS</div><span class="phase2-badge">Phase 2 &middot; Pending A2P</span>
       <div class="email-card-meta">
         <div class="email-card-title">Gentle Check-In Text</div>
         <div class="email-card-timing">Day 18 &middot; Quick, casual</div>
@@ -1035,9 +1068,9 @@
   </div>
 
   <!-- B-SMS -->
-  <div class="sms-card">
+  <div class="sms-card gated">
     <div class="sms-card-header">
-      <div class="sms-badge">&#128241; SMS</div>
+      <div class="sms-badge">&#128241; SMS</div><span class="phase2-badge">Phase 2 &middot; Pending A2P</span>
       <div class="email-card-meta">
         <div class="email-card-title">Instant Text on Inquiry</div>
         <div class="email-card-timing">Day 0 &middot; Fires within 2 minutes</div>
@@ -1289,8 +1322,8 @@
         <div class="val"><strong>HighLevel</strong> for all email &amp; SMS automation. Maggie is already familiar with it from the French Winter campaign. Segment A emails should come from Maggie's personal address for deliverability.</div>
       </div>
       <div class="exec-card">
-        <div class="label">SMS Channel</div>
-        <div class="val">Explore <strong>Table Voice</strong> integration first (Yannick's investment, already handles texts). Fallback: provision a HighLevel number ($2/mo). Maggie to connect Kyle with the Table Voice engineer (Pascal).</div>
+        <div class="label">SMS Channel &mdash; Phase 2</div>
+        <div class="val"><strong>A2P 10DLC verification pending.</strong> SMS touches are drafted and ready but do not launch with Phase 1. Parallel workstream: complete A2P registration via HighLevel (business name, EIN/BN, use-case docs) and explore <strong>Table Voice</strong> integration (Yannick's investment, already handles texts). Maggie to connect Kyle with Pascal. Activate SMS once approved.</div>
       </div>
       <div class="exec-card">
         <div class="label">Lead Source</div>
@@ -1387,7 +1420,7 @@
   <!-- ═══════════ CTA ═══════════ -->
   <div class="cta-banner">
     <h3>Next Steps</h3>
-    <p>1. Maggie forwards the Perfect Venue CSV export (315 contacts). 2. Kyle deduplicates and imports into HighLevel. 3. Connect with Pascal re: Table Voice SMS integration. 4. Review sequence copy on Tuesday call. 5. Launch Segment A first (highest value), then B &amp; C in the same week.</p>
+    <p><strong>Phase 1 (now):</strong> 1. Maggie forwards the Perfect Venue CSV export (315 contacts). 2. Kyle deduplicates and imports into HighLevel. 3. Review sequence copy on Tuesday call. 4. Launch Segment A email sequence first (highest value), then B &amp; C in the same week. &nbsp;&nbsp;<strong>Phase 2 (once A2P clears):</strong> 5. Complete A2P 10DLC verification. 6. Connect with Pascal re: Table Voice integration. 7. Activate SMS touches across all three segments.</p>
   </div>
 
   <!-- ═══════════ FOOTER ═══════════ -->

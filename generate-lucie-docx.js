@@ -282,6 +282,11 @@ children.push(new Paragraph({
   alignment: AlignmentType.CENTER,
   children: [new TextRun({ text: "Informed by Apr 9 call with Maggie Bain & Fred Dallot", font: "Inter", size: 20, color: SLATE, italics: true })]
 }));
+children.push(new Paragraph({
+  spacing: { before: 200, after: 0 },
+  alignment: AlignmentType.CENTER,
+  children: [new TextRun({ text: "Email-first launch \u00B7 SMS layer activates once A2P 10DLC clears (Phase 2)", font: "Inter", size: 18, color: GOLD, italics: true })]
+}));
 
 children.push(new Paragraph({ children: [new PageBreak()] }));
 
@@ -372,7 +377,8 @@ children.push(new Table({
     ]),
     viRow("Operations", [
       "Perfect Venue is the private events CRM (since Dec 2025).",
-      "Table Voice (AI phone, Yannick investor) can send texts \u2014 explore integration.",
+      "A2P 10DLC SMS not yet verified \u2014 email-only at launch.",
+      "Table Voice (AI phone, Yannick investor) can send texts \u2014 explore for Phase 2.",
       "Current PV auto-response: \u201cthank you, we\u2019ll respond shortly\u201d + events package.",
       "Feedback/testimonial form being built with Jeremy (Carbon Bar)."
     ]),
@@ -403,6 +409,9 @@ function archCell(text, w, bold = false) {
     children: [new Paragraph({ spacing: { after: 0 }, children: [new TextRun({ text, font: "Inter", size: 19, color: "1A2A35", bold })] })]
   });
 }
+
+children.push(callout("Two-phase rollout:", "The email sequence stands on its own and launches now. SMS touches (shown as dashed cards throughout) are drafted but gated on A2P 10DLC verification. Email cadence has no dependency on SMS firing \u2014 each email does its job alone. Phase 2 activates SMS once A2P clears."));
+children.push(spacer(240));
 
 children.push(new Table({
   width: { size: CONTENT_W, type: WidthType.DXA },
@@ -444,7 +453,7 @@ children.push(spacer(200));
 
 // SMS Day 0
 children.push(emailCard(
-  "SMS", GOLD, "Instant Text on Inquiry", "Day 0 \u00B7 Fires within 2 minutes of form submission",
+  "SMS", GOLD, "Instant Text on Inquiry", "Day 0 \u00B7 Fires within 2 minutes of form submission \u00B7 PHASE 2 \u2014 PENDING A2P",
   "N/A \u2014 SMS",
   [{ type: "sms", text: "Hi [First Name], it\u2019s Maggie from Restaurant Lucie. Thank you for your event inquiry \u2014 I\u2019m looking forward to learning more about what you\u2019re planning. I\u2019ll follow up by email shortly, but feel free to text me here in the meantime. \u2014 Maggie" }],
   "Text gets 98% open rate vs. 20% for email. Sets a personal, responsive tone from the first second."
@@ -534,7 +543,7 @@ children.push(spacer(200));
 
 // SMS Day 18
 children.push(emailCard(
-  "SMS", GOLD, "Gentle Check-In Text", "Day 18 \u00B7 Quick, casual",
+  "SMS", GOLD, "Gentle Check-In Text", "Day 18 \u00B7 Quick, casual \u00B7 PHASE 2 \u2014 PENDING A2P",
   "N/A \u2014 SMS",
   [{ type: "sms", text: "Hi [First Name], just checking in \u2014 are you still thinking about your event? Happy to hop on a quick call if it\u2019s helpful. No pressure either way. \u2014 Maggie" }],
   "Catches people who opened emails but didn\u2019t reply. SMS feels more personal and immediate."
@@ -615,7 +624,7 @@ children.push(spacer(200));
 
 // B-SMS
 children.push(emailCard(
-  "SMS", GOLD, "Instant Text on Inquiry", "Day 0 \u00B7 Fires within 2 minutes",
+  "SMS", GOLD, "Instant Text on Inquiry", "Day 0 \u00B7 Fires within 2 minutes \u00B7 PHASE 2 \u2014 PENDING A2P",
   "N/A \u2014 SMS",
   [{ type: "sms", text: "Hi [First Name], it\u2019s the team at Restaurant Lucie. Thank you for thinking of us for your [birthday / anniversary / celebration]! We\u2019ll be in touch shortly with details. In the meantime, feel free to reply here with any questions." }],
   null
@@ -786,7 +795,7 @@ children.push(new Table({
   columnWidths: [dpW1, dpW2],
   rows: [
     dpRow("Automation Platform", "HighLevel for all email & SMS automation. Maggie is already familiar from the French Winter campaign. Segment A emails from Maggie\u2019s personal address."),
-    dpRow("SMS Channel", "Explore Table Voice integration first (Yannick\u2019s investment, already handles texts). Fallback: provision a HighLevel number ($2/mo). Maggie to connect Kyle with Pascal."),
+    dpRow("SMS Channel \u2014 Phase 2", "A2P 10DLC verification pending. SMS touches are drafted and ready but do not launch with Phase 1. Parallel workstream: complete A2P registration via HighLevel (business name, EIN/BN, use-case docs) and explore Table Voice integration (Yannick\u2019s investment, already handles texts). Maggie to connect Kyle with Pascal. Activate SMS once approved."),
     dpRow("Lead Source", "Perfect Venue export (315 contacts) + Meta leads from HighLevel. Deduplicate by email before importing. Remove @restaurantlucie.com addresses."),
     dpRow("Sender Names", "Segment A: Maggie Bain (personal). Segments B & C: \u201CRestaurant Lucie\u201D or \u201CThe Lucie Team.\u201D"),
     dpRow("Optimal Send Times", "Tuesday\u2013Thursday, 10:30 AM or 6:00 PM ET. SMS: 11 AM ET. Avoid Monday morning and Friday afternoon."),
@@ -878,11 +887,13 @@ children.push(new Paragraph({ children: [new PageBreak()] }));
 children.push(...sectionHead("Section 9", "Next Steps"));
 
 const steps = [
-  "Maggie forwards the Perfect Venue CSV export (315 contacts)",
-  "Kyle deduplicates and imports into HighLevel",
-  "Connect with Pascal re: Table Voice SMS integration",
-  "Review sequence copy on Tuesday call",
-  "Launch Segment A first (highest value), then B & C in the same week",
+  "PHASE 1 \u2014 Maggie forwards the Perfect Venue CSV export (315 contacts)",
+  "PHASE 1 \u2014 Kyle deduplicates and imports into HighLevel",
+  "PHASE 1 \u2014 Review sequence copy on Tuesday call",
+  "PHASE 1 \u2014 Launch Segment A email sequence first (highest value), then B & C in the same week",
+  "PHASE 2 \u2014 Complete A2P 10DLC verification via HighLevel (in parallel with Phase 1 launch)",
+  "PHASE 2 \u2014 Connect with Pascal re: Table Voice integration",
+  "PHASE 2 \u2014 Activate SMS touches across all three segments once A2P approved",
 ];
 
 const doc = new Document({
