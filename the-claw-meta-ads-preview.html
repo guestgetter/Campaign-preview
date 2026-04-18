@@ -28,8 +28,7 @@
   }
   .wrap { max-width: 1400px; margin: 0 auto; padding: 3rem 2rem; }
 
-  /* ── Header ───────────────── */
-  header { margin-bottom: 4rem; }
+  header { margin-bottom: 3rem; }
   .kicker {
     font-size: 0.8rem;
     letter-spacing: 0.15em;
@@ -48,7 +47,7 @@
   .sub {
     font-size: 1.05rem;
     color: var(--ink-dim);
-    max-width: 65ch;
+    max-width: 68ch;
     margin-bottom: 2rem;
   }
   .meta-grid {
@@ -71,24 +70,53 @@
   }
   .meta-grid > div span { font-size: 0.95rem; color: var(--ink); }
 
-  /* ── Section dividers ──────── */
+  .strategy-box {
+    margin-top: 1.5rem;
+    padding: 1.4rem 1.6rem;
+    background: linear-gradient(135deg, #1a1a1f, #0e0e10);
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+  }
+  .strategy-box h3 {
+    color: var(--accent);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+  }
+  .strategy-box p {
+    color: var(--ink);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .strategy-box p + p { margin-top: 0.5rem; color: var(--ink-dim); }
+
   .section-head {
     margin: 4rem 0 1.8rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid #2a2a2e;
   }
+  .section-head .angle-label {
+    display: inline-block;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
   .section-head h2 {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     letter-spacing: -0.01em;
     margin-bottom: 0.4rem;
   }
   .section-head p {
     color: var(--ink-dim);
     font-size: 0.95rem;
-    max-width: 70ch;
+    max-width: 68ch;
   }
 
-  /* ── Ad grid ───────────────── */
   .ads {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
@@ -109,10 +137,7 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }
-  .ad-label .num {
-    color: var(--accent);
-    font-weight: 600;
-  }
+  .ad-label .num { color: var(--accent); font-weight: 600; }
   .ad-label .tag {
     padding: 0.2rem 0.55rem;
     background: var(--bg-up);
@@ -124,7 +149,6 @@
     color: var(--ink-dim);
   }
 
-  /* ── Facebook Ad Mock ──────── */
   .fb-ad {
     background: var(--fb-card);
     color: var(--fb-ink);
@@ -238,7 +262,6 @@
     font-weight: 600;
   }
 
-  /* ── Angle note ────────────── */
   .angle-note {
     font-size: 0.85rem;
     color: var(--ink-dim);
@@ -250,7 +273,6 @@
   }
   .angle-note strong { color: var(--ink); font-weight: 600; }
 
-  /* ── Appendices ────────────── */
   .box {
     padding: 2rem;
     background: var(--bg-up);
@@ -258,16 +280,13 @@
     border: 1px solid #2a2a2e;
     margin-bottom: 1.5rem;
   }
-  .box h3 {
-    font-size: 1.15rem;
-    margin-bottom: 0.8rem;
-  }
+  .box h3 { font-size: 1.15rem; margin-bottom: 0.8rem; }
   .box p, .box li {
     color: var(--ink-dim);
     font-size: 0.95rem;
   }
   .box ul { padding-left: 1.2rem; margin-top: 0.6rem; }
-  .box li { margin-bottom: 0.4rem; }
+  .box li { margin-bottom: 0.5rem; }
   .box code {
     background: #000;
     padding: 0.15rem 0.4rem;
@@ -275,6 +294,7 @@
     font-size: 0.85rem;
     color: var(--accent);
   }
+  .box strong { color: var(--ink); }
 
   table {
     width: 100%;
@@ -290,10 +310,26 @@
   th { color: var(--ink-dim); font-weight: 500; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; }
   td { color: var(--ink); }
   td.dim { color: var(--ink-dim); }
-  .check { color: #4ade80; font-weight: 700; }
-  .dash { color: var(--ink-dim); }
 
-  /* ── Go command ──────────── */
+  .lp-edit {
+    padding: 1rem 1.2rem;
+    background: #1a1410;
+    border-left: 3px solid #f87171;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 0.8rem;
+  }
+  .lp-edit .label {
+    display: inline-block;
+    font-size: 0.68rem;
+    color: #f87171;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+  .lp-edit p { color: var(--ink); font-size: 0.9rem; margin-bottom: 0.3rem; }
+  .lp-edit .loc { color: var(--ink-dim); font-size: 0.78rem; font-family: monospace; }
+
   .go-box {
     margin-top: 4rem;
     padding: 2.2rem 2rem;
@@ -302,14 +338,11 @@
     border-radius: 14px;
     text-align: center;
   }
-  .go-box h2 {
-    font-size: 1.6rem;
-    margin-bottom: 0.5rem;
-  }
+  .go-box h2 { font-size: 1.6rem; margin-bottom: 0.5rem; }
   .go-box p { color: var(--ink-dim); margin-bottom: 1.4rem; }
   .go-cmd {
     font-family: "SF Mono", Menlo, Consolas, monospace;
-    font-size: 0.92rem;
+    font-size: 0.88rem;
     background: #000;
     padding: 1rem 1.2rem;
     border-radius: 8px;
@@ -317,6 +350,7 @@
     display: inline-block;
     user-select: all;
     border: 1px solid #2a2a2e;
+    word-break: break-all;
   }
 
   footer {
@@ -338,38 +372,44 @@
 <div class="wrap">
 
   <header>
-    <div class="kicker">Meta Ads · Campaign Preview</div>
+    <div class="kicker">Meta Ads · Campaign Preview · v3 Strategist Cut</div>
     <h1>The Claw — Meta Ads Preview</h1>
     <p class="sub">
-      Eight ads. One photo each. Written to not feel like ads. Built to drive qualified 30-minute diagnostic calls with restaurant owners. All previews render exactly as they will appear in the Facebook/Instagram feed — same image, same copy, same CTA button.
+      Three angles, two creatives each. Each ad earns the click on its own. The offer is a free 30-minute diagnostic — three leaks and three levers in your restaurant. The $100 guarantee is the trust mechanism. The tech is the implementation, revealed on the call.
     </p>
 
     <div class="meta-grid">
+      <div><strong>KPI</strong><span>Qualified diagnostic calls</span></div>
       <div><strong>Objective</strong><span>Outcome · Leads</span></div>
-      <div><strong>Ad Account</strong><span>Guest Getter</span></div>
       <div><strong>Budget</strong><span>$50/day · $1,400 total</span></div>
       <div><strong>Flight</strong><span>28 days</span></div>
       <div><strong>Geo</strong><span>Canada + United States</span></div>
       <div><strong>Age</strong><span>28–60</span></div>
       <div><strong>Ad Sets</strong><span>Cold · Warm · Retarget</span></div>
-      <div><strong>Ads</strong><span>19 (across 8 angles)</span></div>
-      <div><strong>Destination</strong><span>guestgetter.co/the-claw</span></div>
+      <div><strong>Ads</strong><span>6 (3 angles × 2)</span></div>
+      <div><strong>Destination</strong><span>guestgetter.co/the-claw-v2</span></div>
       <div><strong>Status at Deploy</strong><span>PAUSED</span></div>
+    </div>
+
+    <div class="strategy-box">
+      <h3>North Star Math</h3>
+      <p>$26,381 MRR → $100K MRR at $2,000/mo retainer means ~37 new clients over 9 months. That's 4–5 closes/month. At 25% close and 70% show, that's 20–24 diagnostic bookings/month — about 5–6/week. Every creative decision is measured against that number.</p>
     </div>
   </header>
 
-  <!-- ═══════ ADS ═══════ -->
+  <!-- ═══════ ANGLE 1 — THE LEAKS ═══════ -->
   <section class="section-head">
-    <h2>The 8 Angles</h2>
-    <p>Each ad stands alone. Each earns its click without a hook. Each assumes the restaurant owner has already scrolled past 200 ads before seeing this one.</p>
+    <div class="angle-label">Angle 1 · The Leaks</div>
+    <h2>"There's money I don't know about."</h2>
+    <p>Direct offer, for cold. Leads with a specific pain most owners recognize but can't name. Promises a specific discovery (3 leaks in 30 min). Closes with the $100 guarantee.</p>
   </section>
 
   <div class="ads">
 
-    <!-- ═══ AD 1 ═══ -->
+    <!-- ═══ AD 1A ═══ -->
     <div class="ad-cell">
       <div class="ad-label">
-        <span><span class="num">01</span> · Claw + Corona</span>
+        <span><span class="num">1A</span> · Six Out of Ten</span>
         <span class="tag">Cold · Warm · Retarget</span>
       </div>
       <div class="fb-ad">
@@ -381,19 +421,19 @@
           </div>
           <div style="color: var(--fb-ink-dim); font-size: 1.2rem;">⋯</div>
         </div>
-        <div class="fb-primary">6 out of 10 guests who spent $214 at your restaurant last Saturday had a perfectly fine time and will never come back.
+        <div class="fb-primary">Six out of ten guests who ate at your restaurant this month won't come back. Even the ones who loved it. People just forget. That's what people do.
 
-Not because the food was bad. Not because service was slow. They just... forgot. That's what people do.
+What if something noticed when a guest hadn't been back in 45 days and sent them a warm, human-sounding note from your GM? No discount needed. You don't lift a finger.
 
-This is a claw. Also me. I help restaurants stop losing those guests without doing anything extra. Free 30-minute diagnostic — if it's not worth your time, I send you $100.
+That's one agent. There are many.
 
-No, really.</div>
-        <img class="fb-image" src="https://assets.cdn.filesafe.space/5Ycss9q6zHpD6qfCOk4F/media/69da3a728f666c5ba921d4b8.png" alt="Kyle at a bar with a lobster claw and Corona" loading="lazy" />
+Let's find the three biggest leaks in your restaurant. 30 minutes, free. If the call wasn't worth your time, I send you $100.</div>
+        <img class="fb-image" src="https://assets.cdn.filesafe.space/5Ycss9q6zHpD6qfCOk4F/media/69da3a7225e9b3aab75f7fa3.png" alt="Kyle on a couch with his black cat and a lobster claw" loading="lazy" style="object-position: center 55%;" />
         <div class="fb-cta-block">
           <div class="fb-cta-text">
             <div class="fb-cta-domain">GUESTGETTER.CO</div>
-            <div class="fb-cta-headline">What does this claw have to do with your restaurant?</div>
-            <div class="fb-cta-desc">Free 30-min diagnostic. Finds the 3 biggest leaks. $100 if I waste your time.</div>
+            <div class="fb-cta-headline">Six out of ten won't come back.</div>
+            <div class="fb-cta-desc">Free 30-min diagnostic. Three leaks, three levers. $100 if I waste your time.</div>
           </div>
           <button class="fb-cta-btn">Learn more</button>
         </div>
@@ -403,13 +443,64 @@ No, really.</div>
           <div class="fb-action">↗ Share</div>
         </div>
       </div>
-      <div class="angle-note"><strong>Why this one:</strong> Top-of-funnel. Pure pattern interrupt. The claw + Corona is the strongest visual; the copy immediately earns the weirdness with a real stat and a real offer.</div>
+      <div class="angle-note"><strong>Why this one:</strong> The 60% stat is the landing page's hero line. Ad echoes it so LP feels like a continuation, not a bait-and-switch. Cat photo keeps it warm — cold audience recognizes you as a person before a pitch.</div>
     </div>
 
-    <!-- ═══ AD 2 ═══ -->
+    <!-- ═══ AD 1B ═══ -->
     <div class="ad-cell">
       <div class="ad-label">
-        <span><span class="num">02</span> · Good Ideas Die on the Vine</span>
+        <span><span class="num">1B</span> · The Number Your P&L Is Missing</span>
+        <span class="tag">Cold · Warm</span>
+      </div>
+      <div class="fb-ad">
+        <div class="fb-head">
+          <div class="fb-avatar">G</div>
+          <div class="fb-meta">
+            <div class="fb-page-name">Guest Getter</div>
+            <div class="fb-sub-meta">· Paid partnership</div>
+          </div>
+          <div style="color: var(--fb-ink-dim); font-size: 1.2rem;">⋯</div>
+        </div>
+        <div class="fb-primary">You know your food cost to the decimal. Labour to the hour. Rent, lease, insurance, all of it.
+
+Ask what it costs to put one new guest in a seat, and it's guesswork.
+
+There's a number. Every restaurant has one. Finding it usually takes 30 minutes and shows you three places you're quietly leaking money.
+
+Free. If the call wasn't worth your time, I send you $100 on the way out.</div>
+        <img class="fb-image" src="https://assets.cdn.filesafe.space/5Ycss9q6zHpD6qfCOk4F/media/69da3a728f666c5ba921d4b8.png" alt="Kyle at a bar holding a lobster claw and drinking a Corona" loading="lazy" style="object-position: center 65%;" />
+        <div class="fb-cta-block">
+          <div class="fb-cta-text">
+            <div class="fb-cta-domain">GUESTGETTER.CO</div>
+            <div class="fb-cta-headline">The number your P&L is missing.</div>
+            <div class="fb-cta-desc">30-min diagnostic maps your cost per guest and your three biggest leaks. Free.</div>
+          </div>
+          <button class="fb-cta-btn">Learn more</button>
+        </div>
+        <div class="fb-actions">
+          <div class="fb-action">👍 Like</div>
+          <div class="fb-action">💬 Comment</div>
+          <div class="fb-action">↗ Share</div>
+        </div>
+      </div>
+      <div class="angle-note"><strong>Why this one:</strong> Numerate operators love this angle. They track everything except cost-per-guest. Bar + Corona photo pairs with the "guy at the bar explaining things" tone of the copy.</div>
+    </div>
+
+  </div>
+
+  <!-- ═══════ ANGLE 2 — THE VINE ═══════ -->
+  <section class="section-head">
+    <div class="angle-label">Angle 2 · The Vine</div>
+    <h2>"I recognize myself in this."</h2>
+    <p>Emotional, reflective. Leads with what they felt on Sunday. Uses your strongest Notion line verbatim. Softer pattern interrupt — for owners who've already scrolled past a dozen "grow your restaurant" ads today.</p>
+  </section>
+
+  <div class="ads">
+
+    <!-- ═══ AD 2A ═══ -->
+    <div class="ad-cell">
+      <div class="ad-label">
+        <span><span class="num">2A</span> · Die on the Vine</span>
         <span class="tag">Cold · Warm</span>
       </div>
       <div class="fb-ad">
@@ -423,19 +514,19 @@ No, really.</div>
         </div>
         <div class="fb-primary">How many good ideas has your restaurant had this year that went absolutely nowhere?
 
-The loyalty program you were going to set up. The follow-up text to first-time guests. The thank-you note to your regulars. The pricing analysis you keep meaning to do.
-
-Then Tuesday happens. A no-show. A line cook calls in sick. The freezer makes a noise. Someone leaves a 2-star review because the music was too loud.
+The loyalty program you were going to set up. The follow-up text to first-time guests. The thank-you note to your regulars. Then a line cook calls in sick, the freezer makes a noise, someone leaves a two-star review because the music was too loud, and the important stuff hits the floor.
 
 The good ideas die on the vine.
 
-I build AI agents for restaurants that keep those ideas alive while you deal with Tuesday. Free diagnostic — I'll show you the three that would move the most money.</div>
-        <img class="fb-image" src="https://assets.cdn.filesafe.space/5Ycss9q6zHpD6qfCOk4F/media/69da3a72b30bc52371e2b446.png" alt="Kyle on a balcony at golden hour with a lobster claw" loading="lazy" style="object-position: 60% center;" />
+Takes 30 minutes to map the three that would move the most money, and show you how to keep them alive without you doing anything.
+
+Free. $100 if I waste your time.</div>
+        <img class="fb-image" src="https://assets.cdn.filesafe.space/5Ycss9q6zHpD6qfCOk4F/media/69da3a72b30bc52371e2b446.png" alt="Kyle on a balcony at golden hour holding a lobster claw" loading="lazy" style="object-position: 60% center;" />
         <div class="fb-cta-block">
           <div class="fb-cta-text">
             <div class="fb-cta-domain">GUESTGETTER.CO</div>
-            <div class="fb-cta-headline">The ideas you never got around to? Yeah.</div>
-            <div class="fb-cta-desc">AI agents that follow up, flag cost drift, thank regulars — while you deal with the walk-in.</div>
+            <div class="fb-cta-headline">The good ideas die on the vine.</div>
+            <div class="fb-cta-desc">Free 30-min diagnostic finds the three ideas worth keeping alive — and shows you what would.</div>
           </div>
           <button class="fb-cta-btn">Learn more</button>
         </div>
@@ -445,55 +536,13 @@ I build AI agents for restaurants that keep those ideas alive while you deal wit
           <div class="fb-action">↗ Share</div>
         </div>
       </div>
-      <div class="angle-note"><strong>Why this one:</strong> The most relatable sentence a restaurant owner will read all week. No claw joke in the copy — the photo does that work. The text is a warm gut-punch.</div>
+      <div class="angle-note"><strong>Why this one:</strong> Your strongest Notion line, verbatim. Hardest thing about running a restaurant is not the food or the staff — it's the ideas that never got built because Tuesday happened. Every operator feels this. Balcony photo for the reflective beat.</div>
     </div>
 
-    <!-- ═══ AD 3 ═══ -->
+    <!-- ═══ AD 2B ═══ -->
     <div class="ad-cell">
       <div class="ad-label">
-        <span><span class="num">03</span> · Six Out of Ten</span>
-        <span class="tag">Cold · Warm · Retarget</span>
-      </div>
-      <div class="fb-ad">
-        <div class="fb-head">
-          <div class="fb-avatar">G</div>
-          <div class="fb-meta">
-            <div class="fb-page-name">Guest Getter</div>
-            <div class="fb-sub-meta">· Paid partnership</div>
-          </div>
-          <div style="color: var(--fb-ink-dim); font-size: 1.2rem;">⋯</div>
-        </div>
-        <div class="fb-primary">Six out of ten first-time guests never come back. Even if they had a great time. Even if you did everything right.
-
-People just forget. That's what people do.
-
-What if something noticed when a guest hadn't been back in 45 days, and sent them a personal, human-sounding note — from your GM, not a robot? What if your biggest spenders got a thank-you every week, without you doing anything?
-
-That's a thing now. I build them. Restaurants call them Claws. (My cat calls them "why are you holding that thing again.")
-
-Free 30-minute diagnostic at the link.</div>
-        <img class="fb-image" src="https://assets.cdn.filesafe.space/5Ycss9q6zHpD6qfCOk4F/media/69da3a7225e9b3aab75f7fa3.png" alt="Kyle with his black cat and a lobster claw" loading="lazy" style="object-position: center 55%;" />
-        <div class="fb-cta-block">
-          <div class="fb-cta-text">
-            <div class="fb-cta-domain">GUESTGETTER.CO</div>
-            <div class="fb-cta-headline">Six out of ten will not come back.</div>
-            <div class="fb-cta-desc">Unless something notices and invites them. 30-min diagnostic — free, no pitch.</div>
-          </div>
-          <button class="fb-cta-btn">Learn more</button>
-        </div>
-        <div class="fb-actions">
-          <div class="fb-action">👍 Like</div>
-          <div class="fb-action">💬 Comment</div>
-          <div class="fb-action">↗ Share</div>
-        </div>
-      </div>
-      <div class="angle-note"><strong>Why this one:</strong> The 60% stat is a legitimate industry number and it's devastating. Pairing it with a cat photo makes the delivery feel like a friend, not a consultant.</div>
-    </div>
-
-    <!-- ═══ AD 4 ═══ -->
-    <div class="ad-cell">
-      <div class="ad-label">
-        <span><span class="num">04</span> · Not Ideal for Spreadsheets</span>
+        <span><span class="num">2B</span> · Your Tools Don't Talk</span>
         <span class="tag">Cold · Warm</span>
       </div>
       <div class="fb-ad">
@@ -505,21 +554,19 @@ Free 30-minute diagnostic at the link.</div>
           </div>
           <div style="color: var(--fb-ink-dim); font-size: 1.2rem;">⋯</div>
         </div>
-        <div class="fb-primary">Your ad data is in one tool. Reservations in another. POS somewhere else. Google Analytics in a tab you haven't opened since February. Reviews scattered across four platforms. Email marketing run out of an inbox folder.
+        <div class="fb-primary">Your ad data is in one tool. Reservations in another. POS somewhere else. Analytics in a tab you haven't opened since February. Reviews scattered across four platforms.
 
 Nothing talks to anything. And you've got a walk-in to unload.
 
-I built something called The Brain — it connects all of it and lets you just ask your business a question. "How many guests came back a second time last month?" — actual answer. No logging into six dashboards.
+30 minutes to map where your data is bleeding you and what it would take to fix it.
 
-Then agents (we call them Claws) do things with that data while you're running a restaurant.
-
-Free diagnostic shows you where the data gaps are bleeding you. 30 minutes.</div>
+Free. If the call wasn't worth your time, I send you $100.</div>
         <img class="fb-image" src="https://assets.cdn.filesafe.space/5Ycss9q6zHpD6qfCOk4F/media/69da3a6c8f666c5ba921d3ee.png" alt="Kyle trying to use a laptop with two lobster claws" loading="lazy" style="object-position: center 25%;" />
         <div class="fb-cta-block">
           <div class="fb-cta-text">
             <div class="fb-cta-domain">GUESTGETTER.CO</div>
             <div class="fb-cta-headline">Your tools don't talk. Your time pays for it.</div>
-            <div class="fb-cta-desc">The Brain + Claws connect your stack and run on autopilot. Free diagnostic.</div>
+            <div class="fb-cta-desc">Free 30-min diagnostic. The three leaks your disconnected stack is creating.</div>
           </div>
           <button class="fb-cta-btn">Learn more</button>
         </div>
@@ -529,55 +576,24 @@ Free diagnostic shows you where the data gaps are bleeding you. 30 minutes.</div
           <div class="fb-action">↗ Share</div>
         </div>
       </div>
-      <div class="angle-note"><strong>Why this one:</strong> For the detail-obsessed operator who <em>feels</em> the chaos. No "engineered growth" language — just the mess they actually live in.</div>
+      <div class="angle-note"><strong>Why this one:</strong> Detail-obsessed operators feel the chaos of their disconnected stack every single day. Laptop+claws photo is the perfect visual joke about trying to get it all working.</div>
     </div>
 
-    <!-- ═══ AD 5 ═══ -->
+  </div>
+
+  <!-- ═══════ ANGLE 3 — THE OPERATOR ═══════ -->
+  <section class="section-head">
+    <div class="angle-label">Angle 3 · The Operator</div>
+    <h2>"He's not full of it. Here are the numbers."</h2>
+    <p>Credibility, for skeptics and retargeting. Real named clients with real numbers. The claw becomes a voice signal — not a subject. Best for people who've already seen a funnier ad and want proof.</p>
+  </section>
+
+  <div class="ads">
+
+    <!-- ═══ AD 3A ═══ -->
     <div class="ad-cell">
       <div class="ad-label">
-        <span><span class="num">05</span> · I Just Needed Some Tylenol</span>
-        <span class="tag">Warm · Retarget</span>
-      </div>
-      <div class="fb-ad">
-        <div class="fb-head">
-          <div class="fb-avatar">G</div>
-          <div class="fb-meta">
-            <div class="fb-page-name">Guest Getter</div>
-            <div class="fb-sub-meta">· Paid partnership</div>
-          </div>
-          <div style="color: var(--fb-ink-dim); font-size: 1.2rem;">⋯</div>
-        </div>
-        <div class="fb-primary">I brought a lobster claw to Shoppers. I just needed some Tylenol.
-
-Eight years of running growth at restaurants will do that.
-
-Here's what I've figured out: the problem at most restaurants isn't the food, the staff, or the marketing. It's that nobody built a system for the stuff that happens outside the four walls — the follow-up to new guests, the thank-you to the regulars, the win-back of the ones who drifted. That's where the money is. Nobody's doing it because running a restaurant already takes 55 hours a week.
-
-So I build it. AI agents that handle it while you're dealing with a freezer alarm at 11pm.
-
-Free 30-minute diagnostic finds the three highest-leverage ones for your restaurant. If it wastes your time I'll send you $100. I've never had to.</div>
-        <img class="fb-image" src="https://assets.cdn.filesafe.space/5Ycss9q6zHpD6qfCOk4F/media/69da3a6ca4e6aa34cbbd8632.png" alt="Kyle outside a Shoppers Drug Mart holding a lobster claw" loading="lazy" />
-        <div class="fb-cta-block">
-          <div class="fb-cta-text">
-            <div class="fb-cta-domain">GUESTGETTER.CO</div>
-            <div class="fb-cta-headline">I promise this ad is going somewhere.</div>
-            <div class="fb-cta-desc">AI agents for restaurants — from someone who's spent 8 years in the weeds.</div>
-          </div>
-          <button class="fb-cta-btn">Learn more</button>
-        </div>
-        <div class="fb-actions">
-          <div class="fb-action">👍 Like</div>
-          <div class="fb-action">💬 Comment</div>
-          <div class="fb-action">↗ Share</div>
-        </div>
-      </div>
-      <div class="angle-note"><strong>Why this one:</strong> Full voice commitment. The Shoppers photo is the most "no one would pay to make this" image in the set — which is exactly why it'll earn a stop. Works for engagers who've seen us before.</div>
-    </div>
-
-    <!-- ═══ AD 6 ═══ -->
-    <div class="ad-cell">
-      <div class="ad-label">
-        <span><span class="num">06</span> · Giving Birth to My First Claw Hurt</span>
+        <span><span class="num">3A</span> · Eight Years. Real Numbers.</span>
         <span class="tag">Cold · Warm · Retarget</span>
       </div>
       <div class="fb-ad">
@@ -589,21 +605,19 @@ Free 30-minute diagnostic finds the three highest-leverage ones for your restaur
           </div>
           <div style="color: var(--fb-ink-dim); font-size: 1.2rem;">⋯</div>
         </div>
-        <div class="fb-primary">Giving birth to my first claw hurt.
+        <div class="fb-primary">People stare at the grocery store. A grown man holding two lobster claws is not normal.
 
-It doesn't have to for you.
+Eight years doing restaurant growth gets you to a strange place. Also a useful one.
 
-Here's the thing I keep seeing: restaurant owners who DIY their growth system end up in a version of this photo eventually. Working 60-hour weeks to maintain a restaurant that could be compounding instead of coasting. Nobody planned for that. It just happens when there's no system.
+The restaurants I work with: Restaurant Lucie acquires guests for $10.99 on $170 average checks. HEAL Wellness — 30 cents per guest across four locations. Part & Parcel — 680 lunch guests at $2.62 each.
 
-I build the system. Specifically: a data layer (the Brain) that unifies your stack, and AI agents (the Claws) that run win-backs, thank-yous, review replies, pricing alerts, and guest follow-up automatically.
-
-30-minute diagnostic. Free. If it's not worth your time I'll send you $100 — unconditional.</div>
-        <img class="fb-image" src="https://assets.cdn.filesafe.space/5Ycss9q6zHpD6qfCOk4F/media/69da3a72019dc508d337146c.png" alt="Kyle in a hospital bed with family all holding lobster claws" loading="lazy" />
+Your version of those numbers exists. The diagnostic finds it in 30 minutes. Free. $100 if I waste your time.</div>
+        <img class="fb-image" src="https://assets.cdn.filesafe.space/5Ycss9q6zHpD6qfCOk4F/media/69da3a6ca4e6aa34cbbd8632.png" alt="Kyle outside a grocery store holding a lobster claw" loading="lazy" />
         <div class="fb-cta-block">
           <div class="fb-cta-text">
             <div class="fb-cta-domain">GUESTGETTER.CO</div>
-            <div class="fb-cta-headline">Don't build this yourself.</div>
-            <div class="fb-cta-desc">AI agents that win back guests, flag cost drift, thank regulars — without you lifting a finger.</div>
+            <div class="fb-cta-headline">Eight years. Real numbers. Free diagnostic.</div>
+            <div class="fb-cta-desc">Lucie $10.99/guest. HEAL $0.30/guest. Part & Parcel $2.62 lunch. Yours is next.</div>
           </div>
           <button class="fb-cta-btn">Learn more</button>
         </div>
@@ -613,55 +627,13 @@ I build the system. Specifically: a data layer (the Brain) that unifies your sta
           <div class="fb-action">↗ Share</div>
         </div>
       </div>
-      <div class="angle-note"><strong>Why this one:</strong> Dark humor + offer. The hospital photo is so absurd it reads as "this guy is definitely not a typical agency." The $100 guarantee lands hardest at the bottom.</div>
+      <div class="angle-note"><strong>Why this one:</strong> Proof-forward. Grocery store photo is absurd enough to earn the scroll stop, copy pivots immediately into named clients with named numbers. No claims, just math. This is the ad that closes skeptics.</div>
     </div>
 
-    <!-- ═══ AD 7 ═══ -->
+    <!-- ═══ AD 3B ═══ -->
     <div class="ad-cell">
       <div class="ad-label">
-        <span><span class="num">07</span> · Anthropic Partner</span>
-        <span class="tag">Cold · Retarget</span>
-      </div>
-      <div class="fb-ad">
-        <div class="fb-head">
-          <div class="fb-avatar">G</div>
-          <div class="fb-meta">
-            <div class="fb-page-name">Guest Getter</div>
-            <div class="fb-sub-meta">· Paid partnership</div>
-          </div>
-          <div style="color: var(--fb-ink-dim); font-size: 1.2rem;">⋯</div>
-        </div>
-        <div class="fb-primary">I'm an Anthropic partner for restaurants. Which sounds fake. It's real.
-
-Anthropic makes Claude, which is one of the two AI models everybody's using right now. I'm one of a small number of people they've partnered with to bring this stuff into specific industries — mine is restaurants. I've been in restaurant growth for 8 years. This is what I do all day.
-
-What it means for you: the AI agents I build aren't some ChatGPT wrapper from a Twitter guy. They're deeply integrated, restaurant-specific, and they already work for real operators. Restaurant Lucie acquires guests for $10.99. HEAL Wellness: $0.30 per guest across 4 locations, 19.7x return.
-
-30-minute free diagnostic at the link. I'll show you the three biggest gaps and what a Claw would do about them. No pitch.
-
-(The claw is symbolic. Also I just have a lot of them now.)</div>
-        <img class="fb-image" src="https://assets.cdn.filesafe.space/5Ycss9q6zHpD6qfCOk4F/media/69da3a81d7871cddf742a4dc.png" alt="Kyle and Anna on a green couch, Anna holding the claw" loading="lazy" />
-        <div class="fb-cta-block">
-          <div class="fb-cta-text">
-            <div class="fb-cta-domain">GUESTGETTER.CO</div>
-            <div class="fb-cta-headline">The Anthropic partner for restaurants. Yes really.</div>
-            <div class="fb-cta-desc">Claude-powered AI agents, restaurant-specific. Real clients. Real numbers.</div>
-          </div>
-          <button class="fb-cta-btn">Learn more</button>
-        </div>
-        <div class="fb-actions">
-          <div class="fb-action">👍 Like</div>
-          <div class="fb-action">💬 Comment</div>
-          <div class="fb-action">↗ Share</div>
-        </div>
-      </div>
-      <div class="angle-note"><strong>Why this one:</strong> Credibility. Real client numbers <em>inside the ad</em> (not hidden on the page) raises the floor on who books. This is the ad to run when you want better-qualified calls, not more calls.</div>
-    </div>
-
-    <!-- ═══ AD 8 ═══ -->
-    <div class="ad-cell">
-      <div class="ad-label">
-        <span><span class="num">08</span> · Gabe at Chef On Call</span>
+        <span><span class="num">3B</span> · Leaks I Didn't Know I Had</span>
         <span class="tag">Warm · Retarget</span>
       </div>
       <div class="fb-ad">
@@ -673,21 +645,19 @@ What it means for you: the AI agents I build aren't some ChatGPT wrapper from a 
           </div>
           <div style="color: var(--fb-ink-dim); font-size: 1.2rem;">⋯</div>
         </div>
-        <div class="fb-primary">This is Gabe. He runs Chef On Call in Victoria.
+        <div class="fb-primary">Gabe runs Chef On Call in Victoria. He's a client. He's also the one who convinced me the lobster claw photos were a good idea, which the jury's still out on.
 
-He's a Guest Getter client. He's also the one who convinced me the lobster-claw photos were a good idea for a website. Jury's still out on that.
+Here's what Gabe told me, word for word:
 
-Here's what Gabe told me last month, word for word:
+"Kyle showed me leaks I didn't know I had. The diagnostic alone was worth it, and I didn't pay a cent for it."
 
-"Kyle showed me leaks I didn't know I had. The diagnostic alone was worth it — and I didn't pay a cent for it."
-
-That's the offer. 30-minute diagnostic. Free. I find the three biggest money drains in your restaurant and the three biggest growth levers. If it's not worth your time, I send you $100. Book at the link.</div>
-        <img class="fb-image" src="https://assets.cdn.filesafe.space/5Ycss9q6zHpD6qfCOk4F/media/69da3a728f666c5ba921d4b8.png" alt="Kyle at a bar with a lobster claw and Corona" loading="lazy" style="object-position: center 65%;" />
+That's the offer. 30 minutes, free. Three leaks. Three levers. $100 if I waste your time.</div>
+        <img class="fb-image" src="https://assets.cdn.filesafe.space/5Ycss9q6zHpD6qfCOk4F/media/69da3a81d7871cddf742a4dc.png" alt="Kyle and Anna on a green vintage couch, Anna holding the claw" loading="lazy" />
         <div class="fb-cta-block">
           <div class="fb-cta-text">
             <div class="fb-cta-domain">GUESTGETTER.CO</div>
-            <div class="fb-cta-headline">"Kyle showed me leaks I didn't know I had."</div>
-            <div class="fb-cta-desc">Real Chef On Call client. Free 30-min diagnostic. $100 if it's not worth your time.</div>
+            <div class="fb-cta-headline">"Leaks I didn't know I had."</div>
+            <div class="fb-cta-desc">Real Chef On Call client. Free 30-min diagnostic. $100 if it wasn't worth your time.</div>
           </div>
           <button class="fb-cta-btn">Learn more</button>
         </div>
@@ -697,99 +667,96 @@ That's the offer. 30-minute diagnostic. Free. I find the three biggest money dra
           <div class="fb-action">↗ Share</div>
         </div>
       </div>
-      <div class="angle-note"><strong>Why this one:</strong> Social proof from a real named restaurant, delivered in voice. Works best in retargeting — people who've seen the funnier ads and want to know "but does this actually work?"</div>
+      <div class="angle-note"><strong>Why this one:</strong> Named restaurant owner testimonial delivered in your voice. Best retargeting ad in the set — warms audiences have seen you, they need proof. Anna + couch photo is disarming, humanizing.</div>
     </div>
 
   </div>
 
-  <!-- ═══════ TARGETING ═══════ -->
+  <!-- ═══════ LP EDITS ═══════ -->
   <section class="section-head">
-    <h2>Targeting · Budget · Flight</h2>
-    <p>Three ad sets. CBO enabled. Meta decides where each dollar goes based on which ad-set-audience combination converts.</p>
+    <div class="angle-label">Landing Page</div>
+    <h2>Two edits to `/the-claw-v2` before launch</h2>
+    <p>The v2 page is properly structured for cold paid traffic — hero + CTA above fold, 60% stat echoing the ads, Gabe testimonial, $100 guarantee, sticky mobile CTA. Two surgical changes needed.</p>
   </section>
 
   <div class="box">
-    <h3>Ad Set Structure</h3>
+
+    <div class="lp-edit">
+      <div class="label">DELETE</div>
+      <p><strong>Trust bar "Anthropic Partner" badge</strong></p>
+      <p class="loc">app/the-claw-v2/the-claw-v2-landing.tsx · lines 72–75</p>
+      <p style="margin-top: 0.5rem; font-size: 0.85rem;">Remove the third trust item entirely. Leave "8 years in restaurant growth" and "3 countries (CA · US · UK)" — both earn their place. The Anthropic badge introduces a tech partner cold traffic doesn't care about, and it blows the "I'm not a tech guy" positioning.</p>
+    </div>
+
+    <div class="lp-edit">
+      <div class="label">REWRITE</div>
+      <p><strong>"I'm Kyle" paragraph</strong></p>
+      <p class="loc">app/the-claw-v2/the-claw-v2-landing.tsx · lines 246–250</p>
+      <p style="margin-top: 0.5rem; font-size: 0.85rem;"><strong>From:</strong> "I run Guest Getter. 8 years in the restaurant growth world. I'm working with Anthropic — the company behind Claude — as a partner to bring AI agents to restaurants."</p>
+      <p style="margin-top: 0.4rem; font-size: 0.85rem;"><strong>To:</strong> "I run Guest Getter. Eight years in the restaurant growth world. I build AI agents for restaurants — specifically for whatever's eating your time or quietly leaking money. Not generic tech. Custom work, restaurant-specific, built for your operation."</p>
+    </div>
+
+    <h3 style="margin-top: 1.6rem;">Optional (not blocking launch)</h3>
+    <ul>
+      <li><strong>Shorten the Brain + Claws section</strong> — cold traffic doesn't need the product explainer. They need the offer. Could A/B test collapsing to a single sentence: "I build AI agents that run your restaurant's follow-up, win-backs, and review replies while you sleep."</li>
+      <li><strong>Add one concrete proof number to the Gabe section</strong> — "Gabe's been a client since [month]. Since then we've [specific outcome]." Makes the testimonial more real.</li>
+    </ul>
+  </div>
+
+  <!-- ═══════ STRUCTURE ═══════ -->
+  <section class="section-head">
+    <div class="angle-label">Structure</div>
+    <h2>Targeting · Budget · Flight</h2>
+  </section>
+
+  <div class="box">
+    <h3>Ad Sets (CBO enabled)</h3>
     <table>
       <thead>
         <tr><th>Ad Set</th><th>Audience</th><th>Budget Share</th><th>Ads</th></tr>
       </thead>
       <tbody>
-        <tr><td><strong>Cold — RO Broad</strong></td><td class="dim">Restaurant Owner · Mgmt · Food Service · Restaurateur · CA+US · Age 28–60</td><td>70% · ~$35/day</td><td>Ads 1, 2, 3, 4, 6, 7</td></tr>
-        <tr><td><strong>Warm — Engagers</strong></td><td class="dim">FB/IG engagers 90d + Page profile visitors 180d · Age 28–60 · CA+US</td><td>20% · ~$10/day</td><td>Ads 1, 2, 3, 4, 5, 6, 8</td></tr>
-        <tr><td><strong>Retarget</strong> <em>(launches Week 2)</em></td><td class="dim">/the-claw visitors + video viewers 25%+ · <em>exclude converters</em></td><td>10% · ~$5/day</td><td>Ads 1, 3, 5, 6, 7, 8</td></tr>
+        <tr><td><strong>Cold — RO Broad</strong></td><td class="dim">Restaurant Owner · Food Service · Restaurateur · CA+US · 28–60</td><td>70% · ~$35/day</td><td>1A, 1B, 2A, 2B, 3A</td></tr>
+        <tr><td><strong>Warm — Engagers</strong></td><td class="dim">FB/IG engagers 90d + Page visitors 180d</td><td>20% · ~$10/day</td><td>1A, 1B, 2A, 2B, 3A, 3B</td></tr>
+        <tr><td><strong>Retarget</strong> <em>(Week 2+)</em></td><td class="dim">/the-claw-v2 visitors + video viewers 25%+ · <em>exclude converters</em></td><td>10% · ~$5/day</td><td>1A, 3A, 3B</td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="box">
-    <h3>Phased Budget</h3>
+    <h3>Phased Budget (28 days)</h3>
     <table>
       <thead><tr><th>Phase</th><th>Days</th><th>Spend</th><th>Goal</th></tr></thead>
       <tbody>
-        <tr><td>Discovery</td><td>1–5</td><td>$250</td><td>Feed Andromeda. Don't touch.</td></tr>
-        <tr><td>Optimization</td><td>6–14</td><td>$450</td><td>Kill CTR &lt;0.8% or CPL &gt;$150. Launch Warm.</td></tr>
+        <tr><td>Discovery</td><td>1–5</td><td>$250</td><td>Feed Andromeda. All 6 ads on Cold. Don't touch.</td></tr>
+        <tr><td>Optimization</td><td>6–14</td><td>$450</td><td>Kill CTR &lt;0.8% or CPL &gt;$100. Launch Warm ad set.</td></tr>
         <tr><td>Scale + Retarget</td><td>15–28</td><td>$700</td><td>Winners only. Launch Retarget. Refresh fatigue.</td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="box">
-    <h3>Decision Thresholds</h3>
+    <h3>Success Thresholds</h3>
     <table>
       <tbody>
         <tr><td>CPL &lt; $50</td><td>SCALE that ad +20% daily</td></tr>
-        <tr><td>CPL $50–100</td><td>Healthy. Continue.</td></tr>
-        <tr><td>CPL $100–150</td><td>Optimize. Check LP + booking widget.</td></tr>
-        <tr><td>CPL &gt; $150 after $150 spend</td><td>PAUSE</td></tr>
-        <tr><td>CTR &lt; 0.8% after 1,000 impressions</td><td>PAUSE</td></tr>
+        <tr><td>CPL $50–$100</td><td>Healthy. Continue.</td></tr>
+        <tr><td>CPL &gt; $100 after $100 spend</td><td>Pause variation</td></tr>
+        <tr><td>CTR &lt; 0.8% after 1,000 impressions</td><td>Pause variation</td></tr>
+        <tr><td>Bookings &gt; 5/week</td><td>On track for $100K North Star</td></tr>
       </tbody>
     </table>
-    <p style="margin-top: 0.8rem;"><em>Economics sanity check: $1,500/mo avg client value means even $200 CPA pays back in month 1. The game is qualified calls, not cheap clicks.</em></p>
-  </div>
-
-  <!-- ═══════ LP NOTES ═══════ -->
-  <section class="section-head">
-    <h2>Landing Page · What to Change</h2>
-    <p>Kyle's instinct: "too much of me." The reality: the page is already the strongest asset in the campaign. Here's what to leave alone, and the one change worth making before launch.</p>
-  </section>
-
-  <div class="box">
-    <h3>✅ Leave Alone</h3>
-    <ul>
-      <li>All 6 claw photos — this <strong>is</strong> the pattern interrupt</li>
-      <li>The $100 Amazon guarantee — the single strongest offer element</li>
-      <li>The "Brain + Claws" explanation — clear and short</li>
-      <li>The Anthropic mention — buried, understated, perfect</li>
-    </ul>
-
-    <h3 style="margin-top: 1.6rem;">🔧 One Change Worth Making</h3>
-    <p><strong>Add a proof strip above the "I'm Kyle" section.</strong> One horizontal row of real client metrics: <em>Lucie $10.99/guest · $170 avg check · Part & Parcel $2.62 lunch guest · HEAL $0.30/guest · 19.7x ROAS · Piping Kettle $4 per $1</em>. Text-only. Minimal. Same caption energy as the claw photos. Closes the credibility gap for cold traffic without breaking the voice.</p>
-
-    <h3 style="margin-top: 1.6rem;">🤷 Kyle's Call</h3>
-    <ul>
-      <li>Shoppers Drug Mart photo — the weirdest. Removing it is fine. Leaving it is a voice signal.</li>
-      <li>Fiancée photo — personal and lovely but not strictly on-message. Same call.</li>
-    </ul>
-
-    <h3 style="margin-top: 1.6rem;">❌ Don't Add</h3>
-    <ul>
-      <li>Video testimonials (don't exist yet; would feel inserted)</li>
-      <li>More Kyle narrative (Kyle was right — at the edge of "too much me")</li>
-      <li>Generic agency badges / "as seen in"</li>
-      <li>FAQs (unnecessary; the guarantee answers the biggest objection)</li>
-    </ul>
   </div>
 
   <!-- ═══════ GO ═══════ -->
   <div class="go-box">
-    <h2>Say the word and it deploys.</h2>
-    <p>Campaign, 3 ad sets, 19 ads — all PAUSED in the Guest Getter ad account. Review in Ads Manager, then hit ACTIVE.</p>
-    <div class="go-cmd">/ads-deploy guest-getter data/campaigns/guest-getter-paid-acquisition/campaign-brief-claw-v2-2026-04-18.md</div>
+    <h2>Ready when you are.</h2>
+    <p>Kill the Anthropic badge + rewrite the "I'm Kyle" paragraph on <code>/the-claw-v2</code>. Then:</p>
+    <div class="go-cmd">/ads-deploy guest-getter data/campaigns/guest-getter-paid-acquisition/campaign-brief-claw-v3-2026-04-18.md</div>
   </div>
 
   <footer>
-    Guest Getter · The Claw · Meta Ads Preview · Generated 2026-04-18
+    Guest Getter · The Claw · Meta Ads Preview v3 · Generated 2026-04-18
   </footer>
 
 </div>
