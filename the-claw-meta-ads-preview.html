@@ -387,7 +387,7 @@
       <div><strong>Age</strong><span>28–60</span></div>
       <div><strong>Ad Sets</strong><span>Cold · Warm · Retarget</span></div>
       <div><strong>Ads</strong><span>6 (3 angles × 2)</span></div>
-      <div><strong>Destination</strong><span>guestgetter.co/the-claw-v2</span></div>
+      <div><strong>Destination</strong><span>guestgetter.co/the-claw-v3</span></div>
       <div><strong>Status at Deploy</strong><span>PAUSED</span></div>
     </div>
 
@@ -672,34 +672,44 @@ That's the offer. 30 minutes, free. Three leaks. Three levers. $100 if I waste y
 
   </div>
 
-  <!-- ═══════ LP EDITS ═══════ -->
+  <!-- ═══════ LP: V3 SHIPPED ═══════ -->
   <section class="section-head">
     <div class="angle-label">Landing Page</div>
-    <h2>Two edits to `/the-claw-v2` before launch</h2>
-    <p>The v2 page is properly structured for cold paid traffic — hero + CTA above fold, 60% stat echoing the ads, Gabe testimonial, $100 guarantee, sticky mobile CTA. Two surgical changes needed.</p>
+    <h2>`/the-claw-v3` — shipped as a parallel route</h2>
+    <p>Rather than edit v2 in place, v3 is a fresh route that clones v2 and applies the two launch-critical edits. v1 and v2 remain untouched for reference, voice testing, or fallback.</p>
   </section>
 
   <div class="box">
 
+    <h3>The three routes</h3>
+    <table>
+      <thead><tr><th>Route</th><th>Purpose</th><th>Audience</th></tr></thead>
+      <tbody>
+        <tr><td><code>/the-claw</code></td><td class="dim">Brand / voice page. 7 claw photos, elaborate narrative. "Me. A claw. A Corona." hero.</td><td class="dim">Warm / organic</td></tr>
+        <tr><td><code>/the-claw-v2</code></td><td class="dim">Direct-response page. Tight hero, 60% stat, CTA above fold.</td><td class="dim">Reference / fallback</td></tr>
+        <tr><td><strong><code>/the-claw-v3</code></strong></td><td><strong>Same as v2. Anthropic mentions removed. "I build AI agents for restaurants" rewrite in place.</strong></td><td><strong>Meta cold paid — this campaign</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top: 1.6rem;">What changed in v3 vs v2</h3>
     <div class="lp-edit">
-      <div class="label">DELETE</div>
+      <div class="label">REMOVED</div>
       <p><strong>Trust bar "Anthropic Partner" badge</strong></p>
-      <p class="loc">app/the-claw-v2/the-claw-v2-landing.tsx · lines 72–75</p>
-      <p style="margin-top: 0.5rem; font-size: 0.85rem;">Remove the third trust item entirely. Leave "8 years in restaurant growth" and "3 countries (CA · US · UK)" — both earn their place. The Anthropic badge introduces a tech partner cold traffic doesn't care about, and it blows the "I'm not a tech guy" positioning.</p>
+      <p class="loc">Third trust-item + divider deleted</p>
+      <p style="margin-top: 0.5rem; font-size: 0.85rem;">Trust bar now shows "8 years in restaurant growth · 3 countries (CA · US · UK)" — both earn their place. The Anthropic badge introduced a tech partner cold traffic doesn't care about and blew the "I'm not a tech guy" positioning.</p>
     </div>
 
     <div class="lp-edit">
-      <div class="label">REWRITE</div>
+      <div class="label">REWROTE</div>
       <p><strong>"I'm Kyle" paragraph</strong></p>
-      <p class="loc">app/the-claw-v2/the-claw-v2-landing.tsx · lines 246–250</p>
-      <p style="margin-top: 0.5rem; font-size: 0.85rem;"><strong>From:</strong> "I run Guest Getter. 8 years in the restaurant growth world. I'm working with Anthropic — the company behind Claude — as a partner to bring AI agents to restaurants."</p>
-      <p style="margin-top: 0.4rem; font-size: 0.85rem;"><strong>To:</strong> "I run Guest Getter. Eight years in the restaurant growth world. I build AI agents for restaurants — specifically for whatever's eating your time or quietly leaking money. Not generic tech. Custom work, restaurant-specific, built for your operation."</p>
+      <p class="loc">No more Anthropic / Claude mentions anywhere on the page</p>
+      <p style="margin-top: 0.5rem; font-size: 0.85rem;"><strong>Now reads:</strong> "I run Guest Getter. Eight years in the restaurant growth world. I build AI agents for restaurants, specifically for whatever's eating your time or quietly leaking money. Not generic tech. Custom work, restaurant-specific, built for your operation."</p>
     </div>
 
-    <h3 style="margin-top: 1.6rem;">Optional (not blocking launch)</h3>
+    <h3 style="margin-top: 1.6rem;">Optional next iteration (v4, not blocking launch)</h3>
     <ul>
-      <li><strong>Shorten the Brain + Claws section</strong> — cold traffic doesn't need the product explainer. They need the offer. Could A/B test collapsing to a single sentence: "I build AI agents that run your restaurant's follow-up, win-backs, and review replies while you sleep."</li>
-      <li><strong>Add one concrete proof number to the Gabe section</strong> — "Gabe's been a client since [month]. Since then we've [specific outcome]." Makes the testimonial more real.</li>
+      <li><strong>Shorten the Brain + Claws section</strong> — cold traffic doesn't need the product explainer. They need the offer. A/B test collapsing to a single sentence: "I build AI agents that run your restaurant's follow-up, win-backs, and review replies while you sleep."</li>
+      <li><strong>Add a concrete outcome to the Gabe section</strong> — "Gabe's been a client since [month]. Since then [specific outcome]." Strengthens the testimonial.</li>
     </ul>
   </div>
 
@@ -718,7 +728,7 @@ That's the offer. 30 minutes, free. Three leaks. Three levers. $100 if I waste y
       <tbody>
         <tr><td><strong>Cold — RO Broad</strong></td><td class="dim">Restaurant Owner · Food Service · Restaurateur · CA+US · 28–60</td><td>70% · ~$35/day</td><td>1A, 1B, 2A, 2B, 3A</td></tr>
         <tr><td><strong>Warm — Engagers</strong></td><td class="dim">FB/IG engagers 90d + Page visitors 180d</td><td>20% · ~$10/day</td><td>1A, 1B, 2A, 2B, 3A, 3B</td></tr>
-        <tr><td><strong>Retarget</strong> <em>(Week 2+)</em></td><td class="dim">/the-claw-v2 visitors + video viewers 25%+ · <em>exclude converters</em></td><td>10% · ~$5/day</td><td>1A, 3A, 3B</td></tr>
+        <tr><td><strong>Retarget</strong> <em>(Week 2+)</em></td><td class="dim">/the-claw-v3 visitors + video viewers 25%+ · <em>exclude converters</em></td><td>10% · ~$5/day</td><td>1A, 3A, 3B</td></tr>
       </tbody>
     </table>
   </div>
@@ -751,7 +761,7 @@ That's the offer. 30 minutes, free. Three leaks. Three levers. $100 if I waste y
   <!-- ═══════ GO ═══════ -->
   <div class="go-box">
     <h2>Ready when you are.</h2>
-    <p>Kill the Anthropic badge + rewrite the "I'm Kyle" paragraph on <code>/the-claw-v2</code>. Then:</p>
+    <p>Kill the Anthropic badge + rewrite the "I'm Kyle" paragraph on <code>/the-claw-v3</code>. Then:</p>
     <div class="go-cmd">/ads-deploy guest-getter data/campaigns/guest-getter-paid-acquisition/campaign-brief-claw-v3-2026-04-18.md</div>
   </div>
 
