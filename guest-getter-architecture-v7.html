@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The data is everywhere — Guest Getter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0E1A1A;
+    --bg-card: #14262A;
+    --teal-light: #5DCAA5;
+    --gold-light: #E8B95E;
+    --gold: #C99A3F;
+    --cream: #F4EFE3;
+    --cream-mid: #D4CDB8;
+    --text-mid: #B5AC95;
+    --text-low: #7A7565;
+    --border: #2A4448;
+    --border-strong: #3A5A5E;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--cream); font-family: 'DM Sans', sans-serif; line-height: 1.6; }
+  body { max-width: 880px; margin: 0 auto; padding: 56px 32px 80px; }
+
+  .stamp { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-low); margin-bottom: 24px; }
+  h1 { font-family: 'DM Serif Display', serif; font-size: 52px; line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 28px; color: var(--cream); }
+  h2 { font-family: 'DM Serif Display', serif; font-size: 30px; line-height: 1.15; letter-spacing: -0.01em; margin: 0 0 14px; color: var(--cream); }
+  h3 { font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 500; margin: 0 0 8px; color: var(--cream); }
+  p { color: var(--cream-mid); margin-bottom: 14px; font-size: 16px; }
+  p.lead { font-size: 19px; line-height: 1.5; color: var(--cream); max-width: 680px; }
+  .small { color: var(--text-mid); font-size: 15px; }
+
+  .progress {
+    display: flex;
+    gap: 6px;
+    margin: 36px 0 40px;
+    align-items: center;
+  }
+  .progress-bar {
+    flex: 1;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    transition: background 0.3s ease;
+    cursor: pointer;
+  }
+  .progress-bar.active { background: var(--gold-light); }
+  .progress-bar.done { background: var(--teal-light); }
+  .progress-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--text-low);
+    white-space: nowrap;
+    margin-left: 12px;
+  }
+
+  .step { display: none; animation: fadeIn 0.35s ease; }
+  .step.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .step-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .nav button {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .nav button:hover:not(:disabled) {
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+  .nav button:disabled { opacity: 0.3; cursor: not-allowed; }
+  .nav .next {
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+  .nav .next:hover:not(:disabled) { background: rgba(232, 185, 94, 0.1); }
+  .nav-counter {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-low);
+    letter-spacing: 0.06em;
+  }
+
+  .arch-frame {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 20px;
+    margin: 24px 0 16px;
+  }
+
+  .month {
+    display: grid;
+    grid-template-columns: 56px 1fr 1fr 1fr;
+    gap: 12px;
+    padding: 14px 0;
+    border-top: 1px solid var(--border);
+  }
+  .month:last-child { border-bottom: 1px solid var(--border); }
+  .m-tag { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--teal-light); padding-top: 4px; }
+  .m-cell { padding: 4px 6px; }
+  .m-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-low); margin-bottom: 4px; }
+  .m-name { color: var(--cream); font-weight: 500; font-size: 14px; margin-bottom: 4px; }
+  .m-detail { color: var(--text-mid); font-size: 13px; line-height: 1.45; }
+  .m-win { color: var(--cream); font-style: italic; font-size: 13px; line-height: 1.45; padding-left: 10px; border-left: 2px solid var(--gold); }
+
+  .loop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  .loop {
+    padding: 20px 22px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .loop.theirs { background: rgba(15, 110, 86, 0.12); border-color: rgba(29, 158, 117, 0.4); }
+  .loop.ours { background: rgba(127, 119, 221, 0.10); border-color: rgba(127, 119, 221, 0.4); }
+  .loop.relationship { background: rgba(216, 90, 48, 0.10); border-color: rgba(216, 90, 48, 0.4); grid-column: 1 / -1; }
+  .loop-title { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--cream); margin-bottom: 4px; }
+  .loop-sub { color: var(--text-mid); font-size: 13px; margin-bottom: 12px; }
+  .loop ul { list-style: none; padding: 0; }
+  .loop li { color: var(--cream-mid); font-size: 14px; padding: 5px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+  .loop li:first-child { border-top: none; }
+
+  .principles-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 16px; }
+  .principle {
+    padding: 18px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .principle h3 { margin-bottom: 6px; font-size: 17px; }
+  .principle p { font-size: 14px; color: var(--text-mid); margin: 0; line-height: 1.5; }
+
+  .shift-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 18px;
+    padding: 14px 0;
+    border-top: 1px solid var(--border);
+    align-items: baseline;
+  }
+  .shift-row:last-child { border-bottom: 1px solid var(--border); }
+  .shift-key { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--gold-light); text-transform: uppercase; letter-spacing: 0.08em; }
+  .shift-val { color: var(--cream); font-size: 15px; line-height: 1.5; }
+  .shift-val span.muted { color: var(--text-mid); }
+
+  .footnote {
+    color: var(--text-low);
+    font-size: 12px;
+    margin-top: 56px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 720px) {
+    body { padding: 40px 20px 60px; }
+    h1 { font-size: 34px; }
+    h2 { font-size: 24px; }
+    .progress-label { display: none; }
+    .month { grid-template-columns: 44px 1fr; }
+    .m-cell:nth-child(3), .m-cell:nth-child(4) { grid-column: 2; padding-left: 0; padding-top: 8px; }
+    .loop-grid, .principles-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stamp">Internal · April 2026</div>
+<h1>The data is everywhere.<br>The answers are nowhere.</h1>
+<p class="lead">There's a reason Tuesday was slow. You probably already have a guess.</p>
+<p class="lead">The data to confirm it lives in four tools. Going to look would take an hour. So you go with the guess.</p>
+
+<div class="progress">
+  <div class="progress-bar active" data-step="1"></div>
+  <div class="progress-bar" data-step="2"></div>
+  <div class="progress-bar" data-step="3"></div>
+  <div class="progress-bar" data-step="4"></div>
+  <div class="progress-bar" data-step="5"></div>
+  <span class="progress-label" id="progressLabel">1 · The picture</span>
+</div>
+
+<div class="step active" data-step="1">
+  <div class="step-tag">Step one</div>
+  <h2>The picture.</h2>
+  <p class="small">One Brain per restaurant. Inputs flow in. Agents read. The owner asks plain questions and gets real answers.</p>
+
+  <div class="arch-frame">
+    <svg width="100%" viewBox="0 0 700 700" role="img">
+      <title>The Guest Getter architecture as a living system</title>
+      <desc>Inputs flow into the Brain. The Brain holds live data and institutional knowledge. Agents read from it. The owner asks plain questions. Each layer has room to grow.</desc>
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+        <style>
+          .lbl { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #7A7565; letter-spacing: 0.08em; }
+          .klbl { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #5DCAA5; letter-spacing: 0.08em; }
+          .src { font-family: 'DM Sans', sans-serif; font-size: 14px; fill: #F4EFE3; font-weight: 500; }
+          .ssub { font-family: 'DM Sans', sans-serif; font-size: 12px; fill: #B5AC95; }
+          .bh { font-family: 'DM Serif Display', serif; font-size: 22px; fill: #F4EFE3; }
+          .bsub { font-family: 'DM Sans', sans-serif; font-size: 13px; fill: #5DCAA5; }
+          .bp { font-family: 'DM Sans', sans-serif; font-size: 13px; fill: #F4EFE3; font-weight: 500; }
+          .bps { font-family: 'DM Sans', sans-serif; font-size: 11px; fill: #B5AC95; }
+          .ag { font-family: 'DM Sans', sans-serif; font-size: 12px; fill: #F4EFE3; font-weight: 500; }
+          .oh { font-family: 'DM Serif Display', serif; font-size: 18px; fill: #F4EFE3; }
+          .osub { font-family: 'DM Sans', sans-serif; font-size: 13px; fill: #B5AC95; }
+          .small-foot { font-family: 'DM Sans', sans-serif; font-size: 11px; fill: #7A7565; }
+          .plus { font-family: 'DM Sans', sans-serif; font-size: 18px; fill: #7A7565; font-weight: 500; }
+          .plus-mid { font-family: 'DM Sans', sans-serif; font-size: 14px; fill: #7A7565; }
+          .sblue { fill: rgba(55, 138, 221, 0.13); stroke: rgba(55, 138, 221, 0.5); }
+          .bbox { fill: rgba(15, 110, 86, 0.18); stroke: rgba(29, 158, 117, 0.55); }
+          .bpiece { fill: rgba(29, 158, 117, 0.14); stroke: rgba(29, 158, 117, 0.4); }
+          .bknow { fill: rgba(29, 158, 117, 0.08); stroke: rgba(29, 158, 117, 0.3); }
+          .abox { fill: rgba(201, 154, 63, 0.15); stroke: rgba(232, 185, 94, 0.5); }
+          .obox { fill: rgba(216, 90, 48, 0.13); stroke: rgba(216, 90, 48, 0.55); }
+          .conn { stroke: rgba(93, 202, 165, 0.5); stroke-width: 0.75; fill: none; }
+          .conn-warm { stroke: rgba(186, 117, 23, 0.6); stroke-width: 0.75; fill: none; }
+          .grow-box { fill: none; stroke: #7A7565; stroke-dasharray: 3 3; stroke-width: 0.75; }
+          .grow-box-teal { fill: none; stroke: rgba(93, 202, 165, 0.5); stroke-dasharray: 3 3; stroke-width: 0.5; }
+          .knowledge-divider { stroke: #5DCAA5; stroke-dasharray: 2 4; stroke-width: 0.5; opacity: 0.5; }
+        </style>
+      </defs>
+
+      <text class="lbl" x="40" y="24">INPUTS</text>
+
+      <rect x="40" y="40" width="138" height="56" rx="10" stroke-width="0.75" class="sblue"/>
+      <text class="src" x="109" y="60" text-anchor="middle">Guest data</text>
+      <text class="ssub" x="109" y="80" text-anchor="middle">POS, orders, bookings</text>
+
+      <rect x="188" y="40" width="138" height="56" rx="10" stroke-width="0.75" class="sblue"/>
+      <text class="src" x="257" y="60" text-anchor="middle">Performance</text>
+      <text class="ssub" x="257" y="80" text-anchor="middle">ads, analytics, reviews</text>
+
+      <rect x="336" y="40" width="138" height="56" rx="10" stroke-width="0.75" class="sblue"/>
+      <text class="src" x="405" y="60" text-anchor="middle">Conversations</text>
+      <text class="ssub" x="405" y="80" text-anchor="middle">calls, emails, notes</text>
+
+      <rect x="484" y="40" width="138" height="56" rx="10" stroke-width="0.75" class="sblue"/>
+      <text class="src" x="553" y="60" text-anchor="middle">Financials</text>
+      <text class="ssub" x="553" y="80" text-anchor="middle">P&amp;L, COGS, payroll</text>
+
+      <rect x="632" y="40" width="28" height="56" rx="10" class="grow-box"/>
+      <text class="plus" x="646" y="74" text-anchor="middle">+</text>
+
+      <text class="small-foot" x="40" y="118">Auto-piped where the API allows. Assisted where it doesn't. We work with the tools clients already have — HighLevel, Toast, OpenTable — and plug them into the Brain.</text>
+
+      <line x1="109" y1="138" x2="146" y2="178" class="conn" marker-end="url(#arr)"/>
+      <line x1="257" y1="138" x2="288" y2="178" class="conn" marker-end="url(#arr)"/>
+      <line x1="405" y1="138" x2="430" y2="178" class="conn" marker-end="url(#arr)"/>
+      <line x1="553" y1="138" x2="572" y2="178" class="conn" marker-end="url(#arr)"/>
+
+      <text class="lbl" x="40" y="166">THE BRAIN</text>
+
+      <rect x="60" y="180" width="600" height="232" rx="20" stroke-width="0.75" class="bbox"/>
+
+      <text class="bh" x="80" y="208">The Brain</text>
+      <text class="bsub" x="80" y="226">One place that knows the whole business</text>
+
+      <rect x="80" y="244" width="132" height="46" rx="8" stroke-width="0.5" class="bpiece"/>
+      <text class="bp" x="146" y="266" text-anchor="middle">Guests</text>
+      <text class="bps" x="146" y="282" text-anchor="middle">visits, orders, spend</text>
+
+      <rect x="222" y="244" width="132" height="46" rx="8" stroke-width="0.5" class="bpiece"/>
+      <text class="bp" x="288" y="266" text-anchor="middle">Performance</text>
+      <text class="bps" x="288" y="282" text-anchor="middle">spend, traffic, results</text>
+
+      <rect x="364" y="244" width="132" height="46" rx="8" stroke-width="0.5" class="bpiece"/>
+      <text class="bp" x="430" y="266" text-anchor="middle">Conversations</text>
+      <text class="bps" x="430" y="282" text-anchor="middle">calls, emails, notes</text>
+
+      <rect x="506" y="244" width="132" height="46" rx="8" stroke-width="0.5" class="bpiece"/>
+      <text class="bp" x="572" y="266" text-anchor="middle">Financials</text>
+      <text class="bps" x="572" y="282" text-anchor="middle">P&amp;L, COGS, payroll</text>
+
+      <line x1="80" y1="312" x2="640" y2="312" class="knowledge-divider"/>
+
+      <text class="klbl" x="80" y="332">KNOWLEDGE — searchable by every agent</text>
+
+      <rect x="80" y="346" width="135" height="40" rx="8" stroke-width="0.5" class="bknow"/>
+      <text class="bps" x="148" y="370" text-anchor="middle" style="font-size: 13px; fill: #F4EFE3;">Menus + pricing</text>
+
+      <rect x="226" y="346" width="135" height="40" rx="8" stroke-width="0.5" class="bknow"/>
+      <text class="bps" x="294" y="370" text-anchor="middle" style="font-size: 13px; fill: #F4EFE3;">SOPs + training</text>
+
+      <rect x="372" y="346" width="135" height="40" rx="8" stroke-width="0.5" class="bknow"/>
+      <text class="bps" x="440" y="370" text-anchor="middle" style="font-size: 13px; fill: #F4EFE3;">Brand + voice</text>
+
+      <rect x="518" y="346" width="120" height="40" rx="8" class="grow-box-teal"/>
+      <text class="plus-mid" x="578" y="370" text-anchor="middle">+ more</text>
+
+      <line x1="160" y1="412" x2="115" y2="478" class="conn-warm" marker-end="url(#arr)"/>
+      <line x1="270" y1="412" x2="240" y2="478" class="conn-warm" marker-end="url(#arr)"/>
+      <line x1="360" y1="412" x2="360" y2="478" class="conn-warm" marker-end="url(#arr)"/>
+      <line x1="450" y1="412" x2="475" y2="478" class="conn-warm" marker-end="url(#arr)"/>
+      <line x1="560" y1="412" x2="595" y2="478" class="conn-warm" marker-end="url(#arr)"/>
+
+      <text class="lbl" x="40" y="464">AGENTS</text>
+
+      <rect x="60" y="480" width="110" height="42" rx="8" stroke-width="0.75" class="abox"/>
+      <text class="ag" x="115" y="506" text-anchor="middle">Website</text>
+
+      <rect x="185" y="480" width="110" height="42" rx="8" stroke-width="0.75" class="abox"/>
+      <text class="ag" x="240" y="506" text-anchor="middle">Acquisition</text>
+
+      <rect x="310" y="480" width="110" height="42" rx="8" stroke-width="0.75" class="abox"/>
+      <text class="ag" x="365" y="506" text-anchor="middle">Social</text>
+
+      <rect x="435" y="480" width="110" height="42" rx="8" stroke-width="0.75" class="abox"/>
+      <text class="ag" x="490" y="506" text-anchor="middle">Retention</text>
+
+      <rect x="560" y="480" width="110" height="42" rx="8" stroke-width="0.75" class="abox"/>
+      <text class="ag" x="615" y="506" text-anchor="middle">Reporting</text>
+
+      <line x1="365" y1="528" x2="365" y2="562" class="conn" marker-end="url(#arr)"/>
+
+      <text class="lbl" x="40" y="580">THE OWNER</text>
+
+      <rect x="60" y="594" width="615" height="60" rx="10" stroke-width="0.75" class="obox"/>
+      <text class="oh" x="80" y="618">The owner</text>
+      <text class="osub" x="80" y="638">Asks plain questions. iMessage, Slack, Claude, ChatGPT — pick a tool.</text>
+
+      <text class="small-foot" x="40" y="690">Transferable any time the client wants.</text>
+    </svg>
+  </div>
+</div>
+
+<div class="step" data-step="2">
+  <div class="step-tag">Step two</div>
+  <h2>How it rolls out.</h2>
+  <p class="small">Six months. Each one adds an input, builds an agent, delivers something the owner can feel.</p>
+
+  <div style="margin-top: 28px;">
+    <div class="month">
+      <div class="m-tag">M1</div>
+      <div class="m-cell"><div class="m-label">Build</div><div class="m-name">Foundations</div><div class="m-detail">Website rebuilt. Brain ready. Site analytics and Search Console wired in.</div></div>
+      <div class="m-cell"><div class="m-label">Agent</div><div class="m-name">Website</div><div class="m-detail">Owner can chat with their site. Edit copy, add a page, ask what's getting traffic.</div></div>
+      <div class="m-cell"><div class="m-label">Win</div><div class="m-win">"I edited my menu page from my phone in 30 seconds."</div></div>
+    </div>
+
+    <div class="month">
+      <div class="m-tag">M2</div>
+      <div class="m-cell"><div class="m-label">Build</div><div class="m-name">Paid acquisition</div><div class="m-detail">Meta and Google Ads under their billing. Spend, conversions, audiences in the Brain.</div></div>
+      <div class="m-cell"><div class="m-label">Agent</div><div class="m-name">Acquisition</div><div class="m-detail">Watches spend daily. Flags creative fatigue. Suggests budget shifts.</div></div>
+      <div class="m-cell"><div class="m-label">Win</div><div class="m-win">"Asked which ad was losing money on Saturday. Got an answer in 10 seconds."</div></div>
+    </div>
+
+    <div class="month">
+      <div class="m-tag">M3</div>
+      <div class="m-cell"><div class="m-label">Build</div><div class="m-name">Reputation</div><div class="m-detail">Google Business Profile connected. Reviews from Google, Yelp, OpenTable flowing in.</div></div>
+      <div class="m-cell"><div class="m-label">Agent</div><div class="m-name">Reporting</div><div class="m-detail">Weekly digest. Drafts review replies. Surfaces feedback themes.</div></div>
+      <div class="m-cell"><div class="m-label">Win</div><div class="m-win">"Got my Monday digest with 12 review replies already drafted. Approved nine."</div></div>
+    </div>
+
+    <div class="month">
+      <div class="m-tag">M4</div>
+      <div class="m-cell"><div class="m-label">Build</div><div class="m-name">Guests + retention</div><div class="m-detail">POS or ordering data flowing in. Guest history, visit patterns, ticket sizes. P&amp;L pulled from their bookkeeper so we can calculate real CAC and lifetime profit.</div></div>
+      <div class="m-cell"><div class="m-label">Agent</div><div class="m-name">Retention</div><div class="m-detail">Builds segments. Drafts winbacks for slipping regulars. Flags VIPs at risk.</div></div>
+      <div class="m-cell"><div class="m-label">Win</div><div class="m-win">"14 of our slipping regulars came back from one campaign. Average ticket $67."</div></div>
+    </div>
+
+    <div class="month">
+      <div class="m-tag">M5</div>
+      <div class="m-cell"><div class="m-label">Build</div><div class="m-name">Organic reach</div><div class="m-detail">Instagram, TikTok, and DMs connected. Posts and replies indexed in the Brain.</div></div>
+      <div class="m-cell"><div class="m-label">Agent</div><div class="m-name">Social</div><div class="m-detail">Drafts posts based on what's working. Replies to DMs. Flags creator partnerships worth chasing.</div></div>
+      <div class="m-cell"><div class="m-label">Win</div><div class="m-win">"Three weeks of content drafted in 20 minutes. Sounds like me, not like an agency."</div></div>
+    </div>
+
+    <div class="month">
+      <div class="m-tag">M6</div>
+      <div class="m-cell"><div class="m-label">Build</div><div class="m-name">Custom</div><div class="m-detail">Whatever this restaurant specifically needs. Catering, events, supplier reorders.</div></div>
+      <div class="m-cell"><div class="m-label">Agent</div><div class="m-name">Bespoke</div><div class="m-detail">Built for this client's actual workflow. Reads everything in their Brain.</div></div>
+      <div class="m-cell"><div class="m-label">Win</div><div class="m-win">Whatever was bugging the owner most six months ago. An agent handles it now.</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="step" data-step="3">
+  <div class="step-tag">Step three</div>
+  <h2>How this compounds.</h2>
+  <p class="small">Three loops. All compounding.</p>
+
+  <div class="loop-grid">
+    <div class="loop theirs">
+      <div class="loop-title">The restaurant wins</div>
+      <div class="loop-sub">Each month their Brain holds more of their business</div>
+      <ul>
+        <li>More guest history → smarter winbacks</li>
+        <li>More ad data → tighter media buying</li>
+        <li>More reviews + calls → real voice of guest</li>
+        <li>More agents → more answers, less guesswork</li>
+      </ul>
+    </div>
+
+    <div class="loop ours">
+      <div class="loop-title">We win</div>
+      <div class="loop-sub">Each month our playbook gets sharper across every client</div>
+      <ul>
+        <li>One template, every client onboards faster</li>
+        <li>Skills written once, agents run them everywhere</li>
+        <li>What works at one client improves all the others</li>
+        <li>Margins climb without cutting team or quality</li>
+      </ul>
+    </div>
+
+    <div class="loop relationship">
+      <div class="loop-title">The relationship deepens</div>
+      <div class="loop-sub">Both sides earn more value the longer it runs</div>
+    </div>
+  </div>
+
+  <h3 style="margin-top: 36px; font-size: 17px;">Why this is hard for anyone else to copy</h3>
+  <div class="principles-grid" style="margin-top: 12px;">
+    <div class="principle">
+      <h3>Year-over-year data</h3>
+      <p>A new vendor walking in starts from zero. Our retention agent already knows three years of guest patterns.</p>
+    </div>
+    <div class="principle">
+      <h3>Cross-client know-how</h3>
+      <p>What worked for a smash burger chain in Montreal improves what we do for a BBQ spot in Toronto. Solo agencies can't.</p>
+    </div>
+    <div class="principle">
+      <h3>Industry benchmarks</h3>
+      <p>Anonymized, aggregated patterns across every restaurant we run. What "normal" retention looks like for a smash burger chain. What CPGA looks like in BBQ. No vendor or consultant has this.</p>
+    </div>
+    <div class="principle">
+      <h3>Frictionless switching</h3>
+      <p>If they want out, we transfer it. No threats. No drama. The easier you make it to leave, the fewer people leave.</p>
+    </div>
+  </div>
+</div>
+
+<div class="step" data-step="4">
+  <div class="step-tag">Step four</div>
+  <h2>What makes this work for us.</h2>
+
+  <div class="principles-grid" style="margin-top: 24px;">
+    <div class="principle">
+      <h3>Templates carry the load.</h3>
+      <p>Every new client gets the same starting point. A template for the website. A standard schema for the Brain. A library of agent prompts. Client #4 takes a fraction of the time client #1 took.</p>
+    </div>
+    <div class="principle">
+      <h3>We host it. They can take it.</h3>
+      <p>Everything runs under our roof so we can move fast and share what works across every client. If someone wants out, we transfer the Brain. The easier you make it to leave, the fewer people leave.</p>
+    </div>
+    <div class="principle">
+      <h3>The Brain stays invisible.</h3>
+      <p>What gets sold is regulars who come back, slow weeks that have answers, decisions that stop being guesses. The Brain is what makes those wins possible. The wins are what we talk about.</p>
+    </div>
+    <div class="principle">
+      <h3>Each month delivers a felt win.</h3>
+      <p>If a month goes by where the owner can't point at one thing that's clearly better, the engagement is broken. The rollout is designed so every month produces a moment they'd describe to a friend.</p>
+    </div>
+  </div>
+</div>
+
+<div class="step" data-step="5">
+  <div class="step-tag">Step five</div>
+  <h2>What changes for us.</h2>
+  <p class="small">For Zyrene, Gabe, Rob, and anyone joining next.</p>
+
+  <div style="margin-top: 24px;">
+    <div class="shift-row">
+      <div class="shift-key">Stays</div>
+      <div class="shift-val">The Six Stages, the Four Critical Numbers, "Strategic Steve," the empathy-first tone, the math-defensible work, the weekly scorecards, the holy content bible.</div>
+    </div>
+
+    <div class="shift-row">
+      <div class="shift-key">Sharper</div>
+      <div class="shift-val">Every engagement starts with a Brain audit, not an ad audit. Every monthly conversation pulls from one place. Every recommendation comes with the question: <span class="muted">what's the next agent or input that would make this answer obvious?</span></div>
+    </div>
+
+    <div class="shift-row">
+      <div class="shift-key">Harder</div>
+      <div class="shift-val">Onboarding takes more setup in month one. POS ingestion is gnarly for some clients. Templates take real work to build before they pay off.</div>
+    </div>
+
+    <div class="shift-row">
+      <div class="shift-key">Gone</div>
+      <div class="shift-val">Hour-for-hour delivery against a flat retainer. Reports that can't show their math. Tools that lock the client in.</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <button id="prevBtn" disabled>← Back</button>
+  <span class="nav-counter" id="counter">1 / 5</span>
+  <button id="nextBtn" class="next">Next →</button>
+</div>
+
+<div class="footnote">guest getter · internal · what we're building</div>
+
+<script>
+  const total = 5;
+  let current = 1;
+  const labels = [null, '1 · The picture', '2 · The rollout', '3 · How it compounds', '4 · What makes it work', '5 · What changes for us'];
+
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const counter = document.getElementById('counter');
+  const progressLabel = document.getElementById('progressLabel');
+
+  function show(n) {
+    document.querySelectorAll('.step').forEach(el => {
+      el.classList.toggle('active', parseInt(el.dataset.step) === n);
+    });
+    document.querySelectorAll('.progress-bar').forEach(bar => {
+      const s = parseInt(bar.dataset.step);
+      bar.classList.remove('active', 'done');
+      if (s < n) bar.classList.add('done');
+      else if (s === n) bar.classList.add('active');
+    });
+    counter.textContent = n + ' / ' + total;
+    progressLabel.textContent = labels[n];
+    prevBtn.disabled = n === 1;
+    nextBtn.disabled = n === total;
+    nextBtn.textContent = n === total ? 'Done' : 'Next →';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  prevBtn.addEventListener('click', () => { if (current > 1) { current--; show(current); } });
+  nextBtn.addEventListener('click', () => { if (current < total) { current++; show(current); } });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' && current < total) { current++; show(current); }
+    if (e.key === 'ArrowLeft' && current > 1) { current--; show(current); }
+  });
+
+  document.querySelectorAll('.progress-bar').forEach(bar => {
+    bar.addEventListener('click', () => {
+      current = parseInt(bar.dataset.step);
+      show(current);
+    });
+  });
+</script>
+
+</body>
+</html>
