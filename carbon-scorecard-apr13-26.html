@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Carbon Bar — Period Scorecard, Apr 13–26, 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #f5f5f4;
+    color: #18181b;
+    line-height: 1.5;
+    padding: 32px 16px;
+  }
+  .container { max-width: 760px; margin: 0 auto; }
+  .header {
+    border-bottom: 2px solid #18181b;
+    padding-bottom: 16px;
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #71717a;
+    margin-bottom: 6px;
+  }
+  .header h1 {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .header .period {
+    font-size: 14px;
+    color: #71717a;
+    margin-top: 4px;
+  }
+  .card {
+    background: white;
+    border-radius: 8px;
+    padding: 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .card-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #71717a;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .headline-stat {
+    background: #18181b;
+    color: white;
+    padding: 24px 28px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .headline-stat .label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.7;
+    margin-bottom: 4px;
+  }
+  .headline-stat .value {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .headline-stat .roas {
+    font-size: 14px;
+    background: #fbbf24;
+    color: #18181b;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 12px;
+  }
+  .stat {
+    background: #fafaf9;
+    border: 1px solid #e7e5e4;
+    border-radius: 6px;
+    padding: 16px;
+  }
+  .stat .stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #71717a;
+    margin-bottom: 6px;
+  }
+  .stat .stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .stat .stat-delta {
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  .up { color: #16a34a; font-weight: 600; }
+  .neutral { color: #71717a; }
+  .channels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .channel {
+    border: 1px solid #e7e5e4;
+    border-radius: 6px;
+    padding: 16px;
+    background: #fafaf9;
+  }
+  .channel .ch-name {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dot.google { background: #4285f4; }
+  .dot.meta { background: #1877f2; }
+  .channel .ch-stat { font-size: 13px; color: #3f3f46; line-height: 1.6; }
+  .channel .ch-stat strong { color: #18181b; font-weight: 600; }
+  .flag {
+    background: #fef3c7;
+    border-left: 3px solid #f59e0b;
+    padding: 14px 16px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+  .flag strong { display: block; margin-bottom: 4px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: #78350f; }
+
+  /* Methodology */
+  .method {
+    background: white;
+    border-radius: 8px;
+    padding: 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .method-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 20px;
+    padding: 16px 0;
+    border-top: 1px solid #f4f4f5;
+    align-items: start;
+  }
+  .method-row:first-of-type { border-top: none; padding-top: 4px; }
+  .method-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #18181b;
+  }
+  .method-label .src {
+    font-size: 11px;
+    color: #71717a;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+  }
+  .method-text { font-size: 13px; color: #3f3f46; line-height: 1.65; }
+  .method-text code {
+    background: #fef2f2;
+    color: #dc2626;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-family: ui-monospace, SFMono-Regular, monospace;
+  }
+  .legend {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #f4f4f5;
+    font-size: 12px;
+    color: #71717a;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+  }
+  .legend-dot.confirmed { background: #16a34a; }
+  .legend-dot.estimated { background: #a8a29e; }
+
+  .footer {
+    text-align: center;
+    font-size: 12px;
+    color: #a1a1aa;
+    margin-top: 32px;
+  }
+  @media (max-width: 600px) {
+    .channels { grid-template-columns: 1fr; }
+    .method-row { grid-template-columns: 1fr; gap: 6px; }
+    .headline-stat .value { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="brand">The Carbon Bar</div>
+    <h1>Period Scorecard</h1>
+    <div class="period">Apr 13 – Apr 26, 2026</div>
+  </div>
+
+  <div class="headline-stat">
+    <div>
+      <div class="label">Estimated revenue from ads</div>
+      <div class="value">$16,720</div>
+    </div>
+    <div class="roas">5× return on $3,579 spend</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">The numbers <span style="font-weight: 400; text-transform: none; letter-spacing: 0; color: #a1a1aa; font-size: 11px; margin-left: 8px;">Reservations from ad platforms · party size from OpenTable</span></div>
+    <div class="grid">
+      <div class="stat">
+        <div class="stat-label">Reservations</div>
+        <div class="stat-value">82</div>
+        <div class="stat-delta up">↑ 58% vs last period</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Covers (est.)</div>
+        <div class="stat-value">241</div>
+        <div class="stat-delta neutral">2.94 avg party size</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Cost per cover</div>
+        <div class="stat-value">$14.85</div>
+        <div class="stat-delta neutral">vs ~$68 avg spend</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Avg spend / reservation</div>
+        <div class="stat-value">$201</div>
+        <div class="stat-delta neutral">~$68/cover</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Organic clicks</div>
+        <div class="stat-value">1,976</div>
+        <div class="stat-delta up">↑ 7%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Meta dining leads</div>
+        <div class="stat-value">374</div>
+        <div class="stat-delta neutral">@ $2.96 CPL</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Channel breakdown</div>
+    <div class="channels">
+      <div class="channel">
+        <div class="ch-name"><span class="dot google"></span>Google Ads</div>
+        <div class="ch-stat">
+          <strong>71 reservations</strong> @ $24.88 each<br>
+          82% more bookings, 27% lower cost vs prior period
+        </div>
+      </div>
+      <div class="channel">
+        <div class="ch-name"><span class="dot meta"></span>Meta</div>
+        <div class="ch-stat">
+          <strong>374 leads captured</strong><br>
+          363 still in warm window — SMS/email follow-up next
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Cost per reservation — trend</div>
+    <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+      <div class="stat">
+        <div class="stat-label">Prior period</div>
+        <div class="stat-value">~$18</div>
+        <div class="stat-delta neutral">at lower spend level</div>
+      </div>
+      <div class="stat" style="background: #18181b; border-color: #18181b;">
+        <div class="stat-label" style="color: #a8a29e;">This period</div>
+        <div class="stat-value" style="color: white;">$24.88</div>
+        <div class="stat-delta" style="color: #fbbf24;">at scaled spend, 82% more bookings</div>
+      </div>
+    </div>
+    <div class="flag" style="background: #ecfdf5; border-left-color: #10b981;">
+      <strong style="color: #064e3b;">Recommendation</strong>
+      Cost per reservation is up modestly while reservation volume is up substantially. With avg guest spend at $201, the math still works to scale further. Proposing a budget conversation in ~2 weeks once the next period closes.
+    </div>
+  </div>
+
+  <div class="method">
+    <div class="card-title">How revenue is measured</div>
+
+    <div class="method-row">
+      <div class="method-label">
+        Google Ads
+        <div class="src">Google + OpenTable</div>
+      </div>
+      <div class="method-text">
+        Google reports the count of reservations from ad clicks but not which specific ones. We estimate revenue as <code>reservations × avg guest spend</code>. For bookings flagged as "Reserve with Google" in OpenTable, we use the actual bill on file.
+      </div>
+    </div>
+
+    <div class="method-row">
+      <div class="method-label">
+        Meta — Leads
+        <div class="src">Meta + OpenTable</div>
+      </div>
+      <div class="method-text">
+        When someone submits a Meta lead form, we save their email/phone. We then check OpenTable history — if that same person reserved after submitting, we count it as a converted lead. Real bill where available, average spend where not.
+      </div>
+    </div>
+
+    <div class="method-row">
+      <div class="method-label">
+        Meta — OT Pixel
+        <div class="src">OpenTable booking page</div>
+      </div>
+      <div class="method-text">
+        A tracking tag fires on the OpenTable booking page when someone arrives directly from a Meta ad and completes a booking. Real bill where available, average spend where not.
+      </div>
+    </div>
+
+    <div class="method-row">
+      <div class="method-label">
+        Covers
+        <div class="src">OpenTable</div>
+      </div>
+      <div class="method-text">
+        Reservation count from ad platforms × avg party size from OpenTable (2.94 for Carbon, 2026 YTD across 4,318 completed reservations).
+      </div>
+    </div>
+
+    <div class="method-row">
+      <div class="method-label">
+        Est. Total Revenue
+        <div class="src">Combined</div>
+      </div>
+      <div class="method-text">
+        All three sources combined: real POS bills where we have them + estimated spend for the rest. Best approximation of total ad-driven value — directionally accurate, not exact.
+      </div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot confirmed"></span>Confirmed = actual POS bill traced to ad</div>
+      <div class="legend-item"><span class="legend-dot estimated"></span>Estimated = reservation count × avg spend</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Source: Meta Ads Manager, Google Ads, GSC, OpenTable. Period: Apr 13–26, 2026.
+  </div>
+
+</div>
+</body>
+</html>
