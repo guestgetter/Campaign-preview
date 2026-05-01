@@ -136,7 +136,7 @@
   .cover-bg {
     position: absolute;
     inset: 0;
-    background-image: url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80');
+    background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80');
     background-size: cover;
     background-position: center;
     z-index: 0;
@@ -145,7 +145,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(18, 18, 31, 0.82) 0%, rgba(26, 26, 46, 0.88) 50%, rgba(18, 18, 31, 0.92) 100%);
+    background: linear-gradient(180deg, rgba(18, 18, 31, 0.92) 0%, rgba(26, 26, 46, 0.94) 50%, rgba(18, 18, 31, 0.96) 100%);
   }
   .cover::before {
     content: '';
@@ -220,12 +220,21 @@
     bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
+    width: calc(100% - 80px);
+    max-width: 900px;
+    text-align: center;
     font-size: 1rem;
     font-weight: 500;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--text-light-muted);
     z-index: 2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  @media (max-width: 720px) {
+    .cover-presenter { letter-spacing: 0.1em; font-size: 1rem; white-space: normal; }
   }
   .cover-scroll {
     position: absolute;
