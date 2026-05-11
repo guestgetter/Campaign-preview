@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guest Getter | Growth Partnership Capabilities</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0d0b;
+    --bg-elev: #15140f;
+    --bg-card: #1a1814;
+    --ink: #f4efe6;
+    --ink-dim: #b8b0a1;
+    --ink-mute: #6e6859;
+    --rule: #2a2620;
+    --accent: #e6b85c;
+    --accent-deep: #c79634;
+    --accent-soft: rgba(230, 184, 92, 0.12);
+    --crimson: #c3563b;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--ink); font-family: var(--sans);
+    font-weight: 400; line-height: 1.6; -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility; overflow-x: hidden;
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+  @media (max-width: 768px) { .container { padding: 0 24px; } }
+
+  h1, h2, h3, h4 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.02em; line-height: 1.05; }
+  h1 { font-size: clamp(3.5rem, 9vw, 7.5rem); font-variation-settings: "opsz" 144, "SOFT" 30; }
+  h2 { font-size: clamp(2.5rem, 5.5vw, 4.5rem); }
+  h3 { font-size: clamp(1.4rem, 2.2vw, 1.8rem); font-weight: 500; letter-spacing: -0.01em; }
+  h4 { font-size: 1.15rem; font-weight: 500; font-family: var(--sans); letter-spacing: -0.005em; }
+
+  .eyebrow {
+    font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.22em; color: var(--accent); font-weight: 500;
+  }
+  .lead {
+    font-family: var(--serif); font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+    line-height: 1.55; color: var(--ink-dim); font-weight: 300;
+  }
+  em, i { font-style: italic; color: var(--accent); font-family: var(--serif); }
+  strong, b { color: var(--ink); font-weight: 600; }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between;
+    padding: 64px 0 56px; position: relative; border-bottom: 1px solid var(--rule);
+  }
+  .hero::after {
+    content: ''; position: absolute; top: 20%; right: -10%; width: 600px; height: 600px;
+    background: radial-gradient(circle, var(--accent-soft) 0%, transparent 60%);
+    pointer-events: none; z-index: 0;
+  }
+  .hero-top { display: flex; justify-content: space-between; align-items: flex-start; position: relative; z-index: 1; }
+  .hero-top .mark, .hero-top .date {
+    font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.15em;
+    color: var(--ink-mute); text-transform: uppercase;
+  }
+  .hero-main { position: relative; z-index: 1; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; padding: 80px 0; }
+  .hero-eyebrow { margin-bottom: 32px; }
+  .hero-title { margin-bottom: 28px; max-width: 1000px; }
+  .hero-title span { display: block; font-style: italic; color: var(--accent); font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1; }
+  .hero-sub {
+    font-family: var(--serif); font-weight: 300; font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+    color: var(--ink-dim); max-width: 700px; line-height: 1.4; font-style: italic;
+  }
+  .hero-bottom { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
+  .scroll-cue {
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--ink-mute); display: flex; align-items: center; gap: 12px;
+  }
+  .scroll-cue::after { content: ''; width: 40px; height: 1px; background: var(--ink-mute); display: inline-block; }
+  .hero-meta { text-align: right; }
+  .hero-meta .label { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--ink-mute); margin-bottom: 6px; }
+  .hero-meta .who { font-family: var(--serif); font-size: 1.4rem; color: var(--ink); font-style: italic; }
+
+  section { padding: 140px 0; position: relative; border-bottom: 1px solid var(--rule); }
+  .section-eyebrow { margin-bottom: 64px; display: flex; align-items: center; gap: 16px; }
+  .section-eyebrow::before { content: ''; width: 48px; height: 1px; background: var(--accent); }
+  .section-heading { max-width: 900px; margin-bottom: 80px; }
+  .section-heading h2 { margin-bottom: 32px; }
+
+  /* Story */
+  .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); margin-top: 80px; border: 1px solid var(--rule); }
+  .principle { background: var(--bg); padding: 48px 36px; transition: background 0.4s ease; }
+  .principle:hover { background: var(--bg-elev); }
+  .principle-num { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); letter-spacing: 0.15em; margin-bottom: 28px; }
+  .principle h3 { margin-bottom: 16px; color: var(--ink); }
+  .principle p { color: var(--ink-dim); font-size: 0.95rem; margin-bottom: 24px; }
+  .principle-tag { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.2em; padding-top: 20px; border-top: 1px dashed var(--rule); }
+  @media (max-width: 900px) { .principles { grid-template-columns: 1fr; } }
+
+  .thesis-block { background: var(--bg-elev); border-left: 3px solid var(--accent); padding: 48px 56px; margin: 80px 0; }
+  .thesis-block .eyebrow { margin-bottom: 20px; }
+  .thesis-block p { font-family: var(--serif); font-size: clamp(1.3rem, 2vw, 1.6rem); line-height: 1.5; font-style: italic; font-weight: 300; color: var(--ink); }
+
+  .problems { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 64px; }
+  .problem { background: var(--bg); padding: 40px 36px; }
+  .problem h4 { color: var(--ink); margin-bottom: 14px; display: flex; align-items: baseline; gap: 12px; }
+  .problem h4::before { content: '◦'; color: var(--crimson); font-size: 1.4rem; }
+  .problem p { color: var(--ink-dim); font-size: 0.95rem; }
+  @media (max-width: 768px) { .problems { grid-template-columns: 1fr; } }
+
+  /* Phases */
+  .phase { margin-bottom: 120px; }
+  .phase:last-child { margin-bottom: 0; }
+  .phase-header { display: grid; grid-template-columns: 120px 1fr; gap: 48px; align-items: end; margin-bottom: 64px; padding-bottom: 32px; border-bottom: 1px solid var(--rule); }
+  .phase-num { font-family: var(--serif); font-size: clamp(5rem, 10vw, 8rem); color: var(--accent); font-weight: 200; line-height: 0.9; letter-spacing: -0.04em; }
+  .phase-info .eyebrow { margin-bottom: 12px; display: block; }
+  .phase-info h2 { margin-bottom: 12px; }
+  .phase-info .phase-subtitle { font-family: var(--mono); font-size: 0.85rem; color: var(--ink-mute); letter-spacing: 0.05em; }
+  .deliverables { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  @media (max-width: 768px) { .deliverables { grid-template-columns: 1fr; } .phase-header { grid-template-columns: 1fr; gap: 16px; } }
+  .deliverable { background: var(--bg-elev); padding: 32px 32px 28px; border: 1px solid var(--rule); transition: border-color 0.3s ease, transform 0.3s ease; }
+  .deliverable:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .deliverable h3 { font-size: 1.25rem; margin-bottom: 12px; color: var(--ink); font-family: var(--sans); font-weight: 600; letter-spacing: -0.01em; }
+  .deliverable .desc { color: var(--ink-dim); font-size: 0.95rem; margin-bottom: 20px; }
+  .deliverable ul { list-style: none; }
+  .deliverable ul li { color: var(--ink-dim); font-size: 0.88rem; padding: 6px 0 6px 22px; position: relative; line-height: 1.5; }
+  .deliverable ul li::before { content: ''; position: absolute; left: 0; top: 14px; width: 12px; height: 1px; background: var(--accent); }
+
+  /* Outcomes */
+  .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 64px 0; }
+  @media (max-width: 900px) { .outcomes-grid { grid-template-columns: 1fr; } }
+  .outcome-card { background: linear-gradient(180deg, var(--bg-elev) 0%, var(--bg-card) 100%); padding: 40px 32px; border-top: 2px solid var(--accent); }
+  .outcome-icon { font-family: var(--serif); font-size: 2.6rem; color: var(--accent); font-weight: 300; line-height: 1; margin-bottom: 18px; letter-spacing: -0.03em; }
+  .outcome-card h4 { color: var(--ink); margin-bottom: 14px; font-size: 1.05rem; }
+  .outcome-card p { color: var(--ink-dim); font-size: 0.92rem; }
+
+  /* Team */
+  .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 56px; margin-bottom: 80px; }
+  @media (max-width: 768px) { .team-grid { grid-template-columns: 1fr; } }
+  .team-member h3 { margin-bottom: 8px; color: var(--ink); }
+  .team-member .role { font-family: var(--mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); margin-bottom: 24px; }
+  .team-member p { color: var(--ink-dim); font-size: 0.98rem; line-height: 1.7; }
+  .team-behind { background: var(--bg-elev); border-left: 3px solid var(--accent); padding: 40px 48px; margin-top: 24px; }
+  .team-behind h3 { margin-bottom: 16px; }
+  .team-behind p { color: var(--ink-dim); font-size: 1rem; line-height: 1.7; }
+  .alignment-quote { font-family: var(--serif); font-size: clamp(1.4rem, 2.5vw, 2rem); line-height: 1.4; color: var(--ink); font-style: italic; font-weight: 300; max-width: 900px; margin-top: 80px; padding-top: 56px; border-top: 1px solid var(--rule); }
+
+  /* Closing */
+  .closing { padding: 180px 0 140px; border-bottom: none; }
+  .closing h2 { max-width: 900px; margin-bottom: 56px; }
+  .closing-body { max-width: 760px; }
+  .closing-body p { color: var(--ink-dim); font-size: 1.1rem; line-height: 1.7; margin-bottom: 24px; }
+  .closing-body p.emphasis { color: var(--ink); font-family: var(--serif); font-size: 1.4rem; font-style: italic; font-weight: 300; line-height: 1.5; margin-top: 48px; }
+  .signoff { margin-top: 96px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; }
+  .signoff .names { font-family: var(--serif); font-style: italic; font-size: 1.3rem; color: var(--ink); }
+  .signoff .brand { font-family: var(--mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--accent); }
+  .signoff .tag { font-family: var(--mono); font-size: 0.8rem; color: var(--ink-mute); letter-spacing: 0.15em; }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="mark">Guest Getter // Capabilities</div>
+      <div class="date">Growth Partnership Overview</div>
+    </div>
+
+    <div class="hero-main">
+      <div class="hero-eyebrow eyebrow">Growth Infrastructure for Foodservice</div>
+      <h1 class="hero-title">
+        We build the digital
+        <span>moat.</span>
+      </h1>
+      <p class="hero-sub">A look at how Guest Getter partners with foodservice businesses to turn relationships into infrastructure — and infrastructure into a compounding advantage.</p>
+    </div>
+
+    <div class="hero-bottom">
+      <div class="scroll-cue">Scroll</div>
+      <div class="hero-meta">
+        <div class="label">Next Step</div>
+        <div class="who">A roadmapping call.</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- WHO WE ARE -->
+<section>
+  <div class="container">
+    <div class="section-eyebrow eyebrow">Who We Are</div>
+
+    <div class="section-heading">
+      <h2>We're not a marketing agency. <em>We build growth infrastructure.</em></h2>
+      <p class="lead">Guest Getter partners with foodservice businesses — operators, distributors, equipment dealers, and multi-location brands — to design and build the digital systems that turn one-time customers into long-term accounts. Web, portals, AI, content, CRM, and paid acquisition, executed by one team that sits on the same side of the table as you do.</p>
+    </div>
+
+    <div class="principles">
+      <div class="principle">
+        <div class="principle-num">01</div>
+        <h3>Strategy First</h3>
+        <p>Every engagement starts with a clear thesis — what we're building, why it matters, and what success looks like in twelve months. Tactics come after the picture is sharp, not before.</p>
+        <div class="principle-tag">Roadmap Driven</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">02</div>
+        <h3>Build, Don't Just Advise</h3>
+        <p>We ship working software. Portals, AI assistants, integrated workflows, and full website builds — all delivered by our in-house team, not subcontracted out to people you'll never meet.</p>
+        <div class="principle-tag">Execution Focused</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">03</div>
+        <h3>Outcomes Over Hours</h3>
+        <p>We tie our work to measurable business outcomes — revenue, retention, acquisition cost, and operational efficiency. Not deliverable counts and not billable time.</p>
+        <div class="principle-tag">Aligned Incentives</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THESIS -->
+<section>
+  <div class="container">
+    <div class="section-eyebrow eyebrow">The Thesis</div>
+    <div class="section-heading">
+      <h2>The market is massive. <em>The competition is analog.</em></h2>
+      <p class="lead">Most foodservice businesses are still running on stitched-together tools, manual processes, and word-of-mouth growth. The ones that win the next decade will be the ones that digitize the relationship — and they'll do it before their competitors realize the window was open.</p>
+    </div>
+
+    <div class="thesis-block">
+      <div class="eyebrow">Our Position</div>
+      <p>Become the <em>digitally-enabled operator</em> in your category — own the relationship, not the commodity. Every portal deployed, every AI interaction, every integrated workflow becomes a moat competitors cannot replicate.</p>
+    </div>
+
+    <div class="problems">
+      <div class="problem">
+        <h4>Disconnected Digital Properties</h4>
+        <p>Marketing site, ordering portal, loyalty program, and CRM all living in different systems. Customers experience three or four brands when there should be one continuous relationship.</p>
+      </div>
+      <div class="problem">
+        <h4>Manual Order &amp; Account Processing</h4>
+        <p>Orders flowing through phone, email, and spreadsheets. Account-team time absorbed by data entry instead of relationship work — and the bigger the account, the more this costs.</p>
+      </div>
+      <div class="problem">
+        <h4>No Digital Lead Engine</h4>
+        <p>Inbound growth dependent on word-of-mouth and outbound calling. Almost zero organic discovery for the searches that should be owned. Paid acquisition feels unmeasurable, so it doesn't happen.</p>
+      </div>
+      <div class="problem">
+        <h4>Knowledge Trapped in People</h4>
+        <p>Product expertise, ordering history, troubleshooting know-how — all of it locked in the heads of senior staff. When they're busy or unavailable, the customer waits. AI changes that economics permanently.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 1 -->
+<section>
+  <div class="container">
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-num">01</div>
+        <div class="phase-info">
+          <span class="eyebrow">Phase One</span>
+          <h2>Foundation</h2>
+          <div class="phase-subtitle">Strategy, Messaging &amp; Infrastructure</div>
+        </div>
+      </div>
+
+      <div class="deliverables">
+        <div class="deliverable">
+          <h3>StoryBrand Messaging &amp; Website Rebuild</h3>
+          <p class="desc">Rebuild the website with a clear, conversion-focused narrative. Distinct entry paths for each customer type, so the right person finds the right next step in seconds.</p>
+          <ul>
+            <li>Brand messaging framework</li>
+            <li>Conversion-optimized site architecture</li>
+            <li>Multiple entry paths for different buyer types</li>
+          </ul>
+        </div>
+
+        <div class="deliverable">
+          <h3>Technical SEO Audit &amp; Fixes</h3>
+          <p class="desc">Comprehensive audit to fix crawl issues, site speed, schema markup, and indexation. Build the foundation for organic growth across every relevant search.</p>
+          <ul>
+            <li>Core Web Vitals optimization</li>
+            <li>Structured data for product catalog</li>
+            <li>Category and search architecture overhaul</li>
+          </ul>
+        </div>
+
+        <div class="deliverable">
+          <h3>Systems &amp; Integration Planning</h3>
+          <p class="desc">Map the data architecture between every system that touches the customer — ERP, ordering platform, loyalty, CRM, email. Define how data should flow, not just where it lives today.</p>
+          <ul>
+            <li>API endpoint mapping</li>
+            <li>Data flow diagrams across all systems</li>
+            <li>Sync architecture and webhook design</li>
+          </ul>
+        </div>
+
+        <div class="deliverable">
+          <h3>Brand &amp; Positioning Strategy</h3>
+          <p class="desc">Sharpen the brand position so the highest-margin offering becomes the most visible one. Curate, simplify, and reframe what's already there so it stops competing with itself.</p>
+          <ul>
+            <li>Positioning and category definition</li>
+            <li>Visual identity refresh where needed</li>
+            <li>Buyer-segment messaging framework</li>
+          </ul>
+        </div>
+
+        <div class="deliverable">
+          <h3>Content Strategy</h3>
+          <p class="desc">Build the editorial engine that fuels SEO and sales enablement across every revenue line. Content that earns search traffic and closes deals at the same time.</p>
+          <ul>
+            <li>Category-level buying guides</li>
+            <li>Portfolio and case study digitization</li>
+            <li>Editorial calendar mapped to sales cycle</li>
+          </ul>
+        </div>
+
+        <div class="deliverable">
+          <h3>AI Data Foundation</h3>
+          <p class="desc">Ingest product catalogs, specs, ordering history, and institutional knowledge into our Brain infrastructure — the same architecture that powers every AI assistant we've deployed.</p>
+          <ul>
+            <li>Product specs and documentation indexed</li>
+            <li>Historical order patterns mapped</li>
+            <li>Internal knowledge base built</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 2 -->
+<section>
+  <div class="container">
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-num">02</div>
+        <div class="phase-info">
+          <span class="eyebrow">Phase Two</span>
+          <h2>Build &amp; Launch</h2>
+          <div class="phase-subtitle">Portals, AI &amp; Customer Experience</div>
+        </div>
+      </div>
+
+      <div class="deliverables">
+        <div class="deliverable">
+          <h3>Customer Portal Pilot</h3>
+          <p class="desc">Launch a logged-in experience that eliminates manual order processing and becomes the blueprint for every account. We've built working portals for similar businesses — we can show you one on the call.</p>
+          <ul>
+            <li>Account-specific pricing, hidden from public</li>
+            <li>Live inventory and one-click reordering</li>
+            <li>Order history per location or account</li>
+            <li>ERP ↔ storefront sync via API</li>
+          </ul>
+        </div>
+
+        <div class="deliverable">
+          <h3>AI Assistant MVP</h3>
+          <p class="desc">Deploy an AI-powered assistant that lets customers and internal staff query product info, specs, and history in plain language. Architecture we've already built — not a concept on a whiteboard.</p>
+          <ul>
+            <li>Natural language product queries</li>
+            <li>Internal knowledge access via chat</li>
+            <li>Cross-reference and substitution lookup</li>
+            <li>Embedded in portal + public site</li>
+          </ul>
+        </div>
+
+        <div class="deliverable">
+          <h3>E-Commerce Relaunch</h3>
+          <p class="desc">Replace the legacy catalog experience with a curated, margin-protected storefront. The right product, for the right buyer, at the right price — without exposing the wrong rate to the wrong person.</p>
+          <ul>
+            <li>Curated catalog of core, high-turn SKUs</li>
+            <li>Buyer-segmented pricing logic</li>
+            <li>Fulfillment commitment surfaced clearly</li>
+            <li>Subscription / auto-reorder for consumables</li>
+          </ul>
+        </div>
+
+        <div class="deliverable">
+          <h3>SEO Content Engine</h3>
+          <p class="desc">Scale the content program to dominate high-intent searches in the category and build authority that compounds month over month.</p>
+          <ul>
+            <li>Buying guides at the category level</li>
+            <li>Head-to-head product comparisons</li>
+            <li>ROI calculators and decision tools</li>
+          </ul>
+        </div>
+
+        <div class="deliverable">
+          <h3>CRM &amp; Lifecycle Marketing</h3>
+          <p class="desc">Implement CRM infrastructure to capture, score, and nurture every inbound lead plus existing-account expansion opportunities.</p>
+          <ul>
+            <li>Lead routing by territory to regional reps</li>
+            <li>Automated nurture sequences by segment</li>
+            <li>Key-account pipeline tracking</li>
+            <li>Lifecycle campaigns tied to behavior</li>
+          </ul>
+        </div>
+
+        <div class="deliverable">
+          <h3>Loyalty &amp; Retention System</h3>
+          <p class="desc">If a loyalty program exists, we surface it natively in the customer experience. If one doesn't, we design a structured rewards engine that drives repeat behavior across product lines.</p>
+          <ul>
+            <li>Rewards architecture and tier design</li>
+            <li>Integrated into checkout and email flow</li>
+            <li>Earn / redeem visible at every touchpoint</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 3 -->
+<section>
+  <div class="container">
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-num">03</div>
+        <div class="phase-info">
+          <span class="eyebrow">Phase Three</span>
+          <h2>Scale &amp; Optimize</h2>
+          <div class="phase-subtitle">Expansion, Ads &amp; Intelligence</div>
+        </div>
+      </div>
+
+      <div class="deliverables">
+        <div class="deliverable">
+          <h3>Account Portal Rollout</h3>
+          <p class="desc">Take the proven pilot and deploy it to every major account. Each portal creates switching costs that lock in the relationship long-term — the kind of moat competitors cannot replicate quickly.</p>
+          <ul>
+            <li>Account-branded portal experiences</li>
+            <li>Multi-location ordering workflows</li>
+            <li>Approval routing for institutional buyers</li>
+            <li>Self-serve account provisioning</li>
+          </ul>
+        </div>
+
+        <div class="deliverable">
+          <h3>Advanced Predictive AI</h3>
+          <p class="desc">Evolve the AI assistant from reactive queries to proactive intelligence. Predict reorders. Flag missed categories. Surface cross-sell opportunities based on usage patterns.</p>
+          <ul>
+            <li>Predictive reorder alerts</li>
+            <li>Usage-based recommendations</li>
+            <li>Cross-category suggestion engine</li>
+            <li>Renewal and expiration tracking</li>
+          </ul>
+        </div>
+
+        <div class="deliverable">
+          <h3>Paid Advertising Launch</h3>
+          <p class="desc">Layer paid acquisition on top of the organic foundation. Targeted, high-intent campaigns with measurable ROI — not vanity-metric brand spend.</p>
+          <ul>
+            <li>Google Ads for high-intent searches</li>
+            <li>Retargeting campaigns for site visitors</li>
+            <li>LinkedIn for decision-maker outreach</li>
+            <li>Performance Max for e-commerce</li>
+          </ul>
+        </div>
+
+        <div class="deliverable">
+          <h3>Visual Proof Library</h3>
+          <p class="desc">Build the visual library that closes the biggest deals. Professional case studies, before / afters, video testimonials, and behind-the-scenes content that proves the story.</p>
+          <ul>
+            <li>Professional photography and video</li>
+            <li>Interactive digital lookbooks</li>
+            <li>Customer testimonials at scale</li>
+            <li>Trade-show collateral package</li>
+          </ul>
+        </div>
+
+        <div class="deliverable">
+          <h3>Trade Show &amp; Activation Support</h3>
+          <p class="desc">Equip the team with digital tools that amplify in-person presence at industry events and partner shows.</p>
+          <ul>
+            <li>Interactive booth displays</li>
+            <li>Lead capture integrated with CRM</li>
+            <li>Live AI demo station</li>
+            <li>Post-event nurture automation</li>
+          </ul>
+        </div>
+
+        <div class="deliverable">
+          <h3>Reporting Dashboard</h3>
+          <p class="desc">Full-stack visibility into every metric that matters. Real-time data, not spreadsheets. The whole picture in one view, owned by you.</p>
+          <ul>
+            <li>Customer acquisition cost by channel</li>
+            <li>Lifetime value by segment</li>
+            <li>Portal adoption per account</li>
+            <li>Revenue per channel and per system</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section>
+  <div class="container">
+    <div class="section-eyebrow eyebrow">What This Unlocks</div>
+    <div class="section-heading">
+      <h2>The compounding outcomes.</h2>
+      <p class="lead">Every engagement is different, but the categories of impact are consistent. Here's what twelve months of building this infrastructure tends to produce for the businesses we partner with.</p>
+    </div>
+
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <div class="outcome-icon">◐</div>
+        <h4>Operational Leverage</h4>
+        <p>Account teams freed from manual data entry and reorder processing. Time redirected to relationship work, account expansion, and high-value selling.</p>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-icon">◑</div>
+        <h4>Conversion Lift</h4>
+        <p>Better positioning, faster pages, and segmented pricing logic turn the digital channel from a cost centre into a measurable revenue driver.</p>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-icon">◒</div>
+        <h4>Account Lock-In</h4>
+        <p>Every portal deployed creates switching costs. Once a customer is running their workflow through your system, leaving means rebuilding it elsewhere — and they won't.</p>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-icon">◓</div>
+        <h4>Self-Service at Scale</h4>
+        <p>AI-powered answers and self-serve reordering reduce support volume significantly — faster response times, fewer interrupted senior staff, higher customer satisfaction.</p>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-icon">◔</div>
+        <h4>Net-New Pipeline</h4>
+        <p>SEO, content, and paid acquisition build a steady inbound engine — so the business stops being fully dependent on word-of-mouth and outbound calling for growth.</p>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-icon">◕</div>
+        <h4>Compounding Advantage</h4>
+        <p>Every system we deploy works with every other system we deploy. The portal feeds the AI. The AI feeds the CRM. The CRM feeds the content. The whole becomes worth more than the parts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section>
+  <div class="container">
+    <div class="section-eyebrow eyebrow">Who You're Working With</div>
+    <div class="section-heading">
+      <h2>You don't get handed off <em>to a junior account manager.</em></h2>
+      <p class="lead">The senior team is in the room from the first call through the last deliverable. Behind us, a full bench of developers, designers, and strategists who actually build the work.</p>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-member">
+        <h3>Strategy &amp; Technical Architecture</h3>
+        <div class="role">Senior Partner</div>
+        <p>Lives in the restaurant and foodservice world — bar trainings, trade shows, real time spent understanding how operators think about technology, ordering, and growth. Built the Brain infrastructure that powers every AI assistant Guest Getter has deployed. Leads the StoryBrand messaging process, growth roadmapping, and makes sure every piece of the strategy connects back to real business outcomes.</p>
+      </div>
+
+      <div class="team-member">
+        <h3>Business Development &amp; Client Success</h3>
+        <div class="role">Senior Partner</div>
+        <p>The relationship side of every engagement. Deep network across foodservice, distribution, and equipment. The person making sure the work moves the needle, not just checks boxes. When something needs to be adjusted, picks up the phone — no ticket queue, no escalation tree.</p>
+      </div>
+    </div>
+
+    <div class="team-behind">
+      <h3>The team behind us</h3>
+      <p>Behind the senior team is a full bench of developers, designers, and content strategists who execute the roadmap. Not a freelancer network. Not a one-person shop. A team built specifically to handle this kind of engagement — portal development, AI infrastructure, ERP integrations, SEO, content, and ongoing marketing execution. When we commit to a timeline, we have the people to deliver it.</p>
+    </div>
+
+    <p class="alignment-quote">We sit on the same side of the table. We succeed when <em>you succeed.</em> That's why we tie our work to measurable outcomes — not billable hours.</p>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <div class="container">
+    <h2>The next step is a <em>roadmapping call.</em></h2>
+    <div class="closing-body">
+      <p>This document is the shape of what a partnership with Guest Getter looks like. The specifics — the priorities, the sequencing, the integration points, the numbers — get built around your business in the roadmapping session.</p>
+      <p>That call is a working session, not a sales pitch. We walk your operation, identify the highest-leverage moves, and leave you with a sequenced twelve-month plan whether we end up working together or not.</p>
+      <p class="emphasis">The infrastructure is buildable today. The AI tooling is real, not theoretical. The portals already exist for businesses like yours. The only thing left is the conversation.</p>
+    </div>
+
+    <div class="signoff">
+      <div class="names">Guest Getter</div>
+      <div class="brand">Growth Infrastructure for Foodservice</div>
+      <div class="tag">Book the call.</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const targets = document.querySelectorAll('section .container > *, .deliverable, .principle, .outcome-card, .problem');
+  targets.forEach(el => el.classList.add('reveal'));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+  targets.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
