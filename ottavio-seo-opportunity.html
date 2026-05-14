@@ -1,0 +1,1888 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ottavio — SEO opportunity from the Square catalog</title>
+<style>
+  :root {
+    --ink: #1a1410;
+    --paper: #faf7f1;
+    --cream: #ede4d3;
+    --burgundy: #6b1d1d;
+    --gold: #a07a3a;
+    --olive: #5c6b3d;
+    --muted: #7a6f5e;
+    --line: #d8ccb3;
+    --warn: #b03e15;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', system-ui, sans-serif; background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; line-height: 1.55; font-size: 15px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  .label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* Header */
+  header { padding: 56px 0 40px; border-bottom: 1px solid var(--line); }
+  header h1 { font-size: 34px; line-height: 1.2; margin: 0 0 14px; font-weight: 700; max-width: 760px; }
+  header p { font-size: 16px; max-width: 720px; color: #463629; margin: 0; }
+
+  /* Stats grid */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .stat { padding: 22px 20px; border-right: 1px solid var(--line); }
+  .stat:last-child { border-right: none; }
+  .stat .l { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; font-weight: 600; }
+  .stat .v { font-size: 32px; line-height: 1; font-weight: 700; margin-bottom: 6px; }
+  .stat .c { font-size: 12px; color: var(--muted); line-height: 1.45; }
+
+  /* Sections */
+  section { padding: 48px 0; border-bottom: 1px solid var(--line); }
+  section.tight { padding: 36px 0; }
+  h2 { font-size: 24px; margin: 0 0 8px; line-height: 1.25; font-weight: 700; }
+  section .intro { font-size: 15px; max-width: 760px; color: #463629; margin: 8px 0 24px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th { text-align: left; padding: 10px 12px; border-bottom: 2px solid var(--ink); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
+  th.num, td.num { text-align: right; }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: middle; font-variant-numeric: tabular-nums; }
+  tr:hover td { background: rgba(160, 122, 58, 0.06); }
+  .rank { font-weight: 700; color: var(--gold); width: 28px; }
+  .badge { display: inline-block; padding: 2px 7px; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; font-weight: 700; margin-right: 4px; }
+  .b-geo { background: rgba(92, 107, 61, 0.15); color: var(--olive); }
+  .b-com { background: rgba(107, 29, 29, 0.12); color: var(--burgundy); }
+  .b-rec { background: rgba(160, 122, 58, 0.15); color: var(--gold); }
+  .b-sku { background: var(--ink); color: var(--paper); }
+  .b-vic { background: var(--burgundy); color: var(--paper); }
+  td.cpc { color: var(--muted); font-size: 12px; }
+
+  /* Cards */
+  .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 4px; }
+  .card { background: var(--paper); padding: 22px; }
+  .card h3 { margin: 0 0 12px; font-size: 18px; font-weight: 700; }
+  .card .cs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-bottom: 12px; }
+  .card .cs .v { font-size: 22px; line-height: 1; font-weight: 700; }
+  .card .cs .l { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 5px; }
+  .card .top { font-size: 13px; color: #463629; line-height: 1.55; }
+  .card .top strong { color: var(--ink); }
+
+  /* Items */
+  .items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .item { padding: 16px; background: var(--cream); border-left: 3px solid var(--gold); }
+  .item .name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .item .vic { font-size: 22px; font-weight: 700; color: var(--burgundy); }
+  .item .ca { font-size: 12px; color: var(--muted); }
+  .item .note { margin-top: 8px; font-size: 12px; color: var(--olive); line-height: 1.45; }
+
+  /* Issues */
+  .issues { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .issue { padding: 16px; background: rgba(176, 62, 21, 0.06); border-left: 3px solid var(--warn); }
+  .issue .name { font-size: 16px; font-weight: 700; color: var(--warn); margin-bottom: 4px; }
+  .issue .desc { font-size: 13px; color: #463629; line-height: 1.5; }
+  .issue .nums { margin-top: 8px; font-size: 11px; color: var(--muted); }
+
+  /* Branded */
+  .branded { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .b-item { padding: 16px; border: 1px solid var(--line); background: var(--paper); }
+  .b-item .q { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .b-item .v { font-size: 22px; font-weight: 700; }
+  .b-item .c { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* AEO */
+  .aeo { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
+  .aeo-item { padding: 10px 14px; border-left: 3px solid var(--gold); background: rgba(237, 228, 211, 0.5); }
+  .aeo-item .q { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+  .aeo-item .v { font-size: 11px; color: var(--muted); }
+
+  /* Mockup */
+  .mockup { background: white; border: 1px solid var(--line); margin-top: 12px; }
+  .mockup .browser { background: var(--cream); padding: 6px 14px; font-size: 11px; color: var(--muted); border-bottom: 1px solid var(--line); }
+  .mockup .browser .url { background: white; padding: 3px 10px; border-radius: 10px; }
+  .mockup .body { padding: 24px; display: grid; grid-template-columns: 240px 1fr; gap: 28px; }
+  .mockup .img { background: linear-gradient(135deg, #e8d4a8, #c4a575); height: 260px; border-radius: 3px; display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; text-align: center; padding: 12px; }
+  .mockup h4 { font-size: 22px; margin: 0 0 4px; font-weight: 700; }
+  .mockup .breadcrumb { font-size: 10px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+  .mockup .price { font-size: 16px; color: var(--burgundy); font-weight: 700; margin: 10px 0; }
+  .mockup .desc { font-size: 13px; color: #463629; line-height: 1.55; margin-bottom: 10px; }
+  .mockup .desc strong { color: var(--ink); }
+  .mockup .schema { margin-top: 14px; background: var(--ink); color: var(--paper); padding: 12px; font-family: 'Menlo', monospace; font-size: 10.5px; line-height: 1.5; overflow-x: auto; }
+  .mockup .targets { margin-top: 10px; padding: 10px; background: rgba(160, 122, 58, 0.1); border-left: 3px solid var(--gold); font-size: 11px; }
+
+  /* Roadmap */
+  .roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 2px solid var(--ink); margin-top: 8px; }
+  .phase { padding: 22px 18px; border-right: 1px solid var(--line); }
+  .phase:last-child { border-right: none; }
+  .phase .when { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); font-weight: 700; margin-bottom: 4px; text-transform: uppercase; }
+  .phase h4 { font-size: 18px; margin: 0 0 10px; font-weight: 700; }
+  .phase ul { margin: 0; padding-left: 18px; font-size: 13px; color: #463629; line-height: 1.6; }
+
+  /* Capture */
+  .capture { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 16px 0 8px; }
+  .cap { padding: 18px; border: 1px solid var(--line); background: var(--paper); }
+  .cap .l { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; font-weight: 600; }
+  .cap .v { font-size: 22px; font-weight: 700; line-height: 1; }
+  .cap .d { font-size: 11px; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+
+  /* Method */
+  .method { background: var(--ink); color: var(--paper); padding: 36px 0; }
+  .method h2 { color: var(--paper); }
+  .method .row { display: grid; grid-template-columns: 180px 1fr; gap: 24px; padding: 12px 0; border-bottom: 1px solid rgba(247, 242, 234, 0.15); }
+  .method .row:last-child { border-bottom: none; }
+  .method .row .k { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); font-weight: 600; padding-top: 3px; }
+  .method .row .v { color: rgba(247, 242, 234, 0.85); font-size: 13px; line-height: 1.55; }
+
+  @media (max-width: 800px) {
+    .stats, .cards, .aeo, .branded, .roadmap, .capture, .items, .issues, .mockup .body { grid-template-columns: 1fr; }
+    .stat, .phase { border-right: none; border-bottom: 1px solid var(--line); }
+    header h1 { font-size: 26px; }
+    h2 { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="label" style="margin-bottom:14px">Ottavio · Oak Bay · SEO opportunity</div>
+    <h1>Ottavio's Square catalog has 1,263 items. Most of them don't have a page on the website. There's a clear opportunity to build them.</h1>
+    <p>This report pulls live monthly Google search volume from DataForSEO for 1,037 keywords seeded by Ottavio's product catalog. 405 of those keywords show measurable Victoria, BC volume — totaling 52,800 monthly searches that a properly built product or category page could compete for.</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="l">Items in Square</div>
+      <div class="v num">1,263</div>
+      <div class="c">657 of them are deli, bakery, or pantry products that could each have a page.</div>
+    </div>
+    <div class="stat">
+      <div class="l">Monthly searches in Canada</div>
+      <div class="v num">2,953,920</div>
+      <div class="c">Across the 473 keywords from Ottavio's catalog that have any measurable volume.</div>
+    </div>
+    <div class="stat">
+      <div class="l">Monthly searches in Victoria, BC</div>
+      <div class="v num">52,800</div>
+      <div class="c">405 keywords have measurable Victoria volume. This is the local pool.</div>
+    </div>
+    <div class="stat">
+      <div class="l">Low-difficulty keywords</div>
+      <div class="v num">54</div>
+      <div class="c">Of 66 keywords scored, this many sit at difficulty under 20. Detail in the difficulty section.</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>How the traffic estimate works</h2>
+    <p class="intro">The 52,800 monthly Victoria searches split into four buckets. Each bucket has a different realistic capture rate based on how much competition exists. Numbers below are conservative.</p>
+
+    <div class="capture">
+      <div class="cap">
+        <div class="l">Branded searches</div>
+        <div class="v num">672–896</div>
+        <div class="d">60–80% of 1,120 Vic/mo. People searching "ottavio victoria" should land here.</div>
+      </div>
+      <div class="cap">
+        <div class="l">Local search ("italian deli victoria")</div>
+        <div class="v num">2,199–4,398</div>
+        <div class="d">15–30% of 14,660 Vic/mo. Geo-modified queries. Light competition.</div>
+      </div>
+      <div class="cap">
+        <div class="l">Victoria product searches</div>
+        <div class="v num">1,379–3,448</div>
+        <div class="d">10–25% of 13,790 Vic/mo from the top 50 product terms.</div>
+      </div>
+      <div class="cap">
+        <div class="l">Canada-wide product searches</div>
+        <div class="v num">3,245–16,226</div>
+        <div class="d">0.3–1.5% of 1,081,710 Canada/mo. Smaller share, larger pool.</div>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-top:8px">High end is 24,968 monthly visits. At a 1.0–1.5% conversion rate and $45 average order, that's roughly $13,483/month in online revenue. Walk-ins from local-pack and "italian deli victoria"-style searches are additional and not modeled here.</p>
+  </section>
+
+  <section>
+    <h2>Specific products with notable Victoria demand</h2>
+    <p class="intro">These are exact product names with measurable monthly Victoria searches. The "ratio" column compares Victoria volume to Canada volume. Most products sit between 0.5% and 2% (Victoria is ~1% of Canada by population). Anything in that range is a normal product search — no spelling confusion or local-business overlap. These are clean candidates for dedicated product pages.</p>
+
+    <div class="items">
+      
+        <div class="item" style="background:rgba(92, 107, 61, 0.10);border-left-color:var(--olive);">
+          <div class="name">lumaca</div>
+          <div class="vic num">1,300 <span style="font-size:11px;color:var(--muted);font-weight:400">searches/mo in Victoria</span></div>
+          <div class="ca">3,600 searches/mo in Canada · Vic is 36.1% of Canada</div>
+          <div class="note"><strong>Note:</strong> Lumache restaurant (1001 Douglas) shares this name. Most of the volume goes to them. Ottavio's page would capture the smaller share from people who specifically want the bread or are looking up what "lumaca" means.</div>
+        </div>
+        
+        <div class="item" >
+          <div class="name">cornichons</div>
+          <div class="vic num">170 <span style="font-size:11px;color:var(--muted);font-weight:400">searches/mo in Victoria</span></div>
+          <div class="ca">14,800 searches/mo in Canada · Vic is 1.1% of Canada</div>
+          
+        </div>
+        
+        <div class="item" >
+          <div class="name">mozzarella</div>
+          <div class="vic num">110 <span style="font-size:11px;color:var(--muted);font-weight:400">searches/mo in Victoria</span></div>
+          <div class="ca">14,800 searches/mo in Canada · Vic is 0.7% of Canada</div>
+          
+        </div>
+        
+        <div class="item" >
+          <div class="name">cambozola</div>
+          <div class="vic num">70 <span style="font-size:11px;color:var(--muted);font-weight:400">searches/mo in Victoria</span></div>
+          <div class="ca">1,600 searches/mo in Canada · Vic is 4.4% of Canada</div>
+          
+        </div>
+        
+        <div class="item" >
+          <div class="name">prima donna</div>
+          <div class="vic num">40 <span style="font-size:11px;color:var(--muted);font-weight:400">searches/mo in Victoria</span></div>
+          <div class="ca">6,600 searches/mo in Canada · Vic is 0.6% of Canada</div>
+          
+        </div>
+        
+        <div class="item" >
+          <div class="name">grey owl</div>
+          <div class="vic num">40 <span style="font-size:11px;color:var(--muted);font-weight:400">searches/mo in Victoria</span></div>
+          <div class="ca">2,900 searches/mo in Canada · Vic is 1.4% of Canada</div>
+          
+        </div>
+        
+        <div class="item" >
+          <div class="name">pamplona</div>
+          <div class="vic num">40 <span style="font-size:11px;color:var(--muted);font-weight:400">searches/mo in Victoria</span></div>
+          <div class="ca">2,900 searches/mo in Canada · Vic is 1.4% of Canada</div>
+          
+        </div>
+        
+        <div class="item" >
+          <div class="name">prosciutto cotto</div>
+          <div class="vic num">30 <span style="font-size:11px;color:var(--muted);font-weight:400">searches/mo in Victoria</span></div>
+          <div class="ca">4,400 searches/mo in Canada · Vic is 0.7% of Canada</div>
+          
+        </div>
+        
+        <div class="item" >
+          <div class="name">delice de bourgogne</div>
+          <div class="vic num">30 <span style="font-size:11px;color:var(--muted);font-weight:400">searches/mo in Victoria</span></div>
+          <div class="ca">880 searches/mo in Canada · Vic is 3.4% of Canada</div>
+          
+        </div>
+        
+        <div class="item" >
+          <div class="name">eggnog latte</div>
+          <div class="vic num">20 <span style="font-size:11px;color:var(--muted);font-weight:400">searches/mo in Victoria</span></div>
+          <div class="ca">1,300 searches/mo in Canada · Vic is 1.5% of Canada</div>
+          
+        </div>
+        
+        <div class="item" >
+          <div class="name">red leicester</div>
+          <div class="vic num">20 <span style="font-size:11px;color:var(--muted);font-weight:400">searches/mo in Victoria</span></div>
+          <div class="ca">1,300 searches/mo in Canada · Vic is 1.5% of Canada</div>
+          
+        </div>
+        
+        <div class="item" >
+          <div class="name">saint agur</div>
+          <div class="vic num">20 <span style="font-size:11px;color:var(--muted);font-weight:400">searches/mo in Victoria</span></div>
+          <div class="ca">720 searches/mo in Canada · Vic is 2.8% of Canada</div>
+          
+        </div>
+        
+    </div>
+  </section>
+
+  <section>
+    <h2>How hard would it be to rank?</h2>
+    <p class="intro">DataForSEO provides a difficulty score from 0 to 100 for each keyword based on Google's current top-10 results — how strong the existing pages are, their domain authority, backlinks, content depth. Lower number means easier to rank. For context: most enterprise B2B SaaS keywords sit at 60–80; most local food terms in this dataset are under 20.</p>
+
+    <div class="capture" style="grid-template-columns:repeat(5,1fr)">
+      <div class="cap" style="border-left:4px solid #2d7a3d">
+        <div class="l">Very easy (0–9)</div>
+        <div class="v num">38</div>
+        <div class="d">of 66 keywords scored. A new, well-built page typically ranks in 2–8 weeks.</div>
+      </div>
+      <div class="cap" style="border-left:4px solid #5c8f3d">
+        <div class="l">Easy (10–19)</div>
+        <div class="v num">16</div>
+        <div class="d">Ranks reachable in 2–4 months with consistent on-page work.</div>
+      </div>
+      <div class="cap" style="border-left:4px solid #a07a3a">
+        <div class="l">Moderate (20–39)</div>
+        <div class="v num">11</div>
+        <div class="d">Possible in 4–8 months. Needs strong content + a few backlinks.</div>
+      </div>
+      <div class="cap" style="border-left:4px solid #b03e15">
+        <div class="l">Hard (40–59)</div>
+        <div class="v num">1</div>
+        <div class="d">Requires sustained content + link investment over 8–12 months.</div>
+      </div>
+      <div class="cap">
+        <div class="l">Very hard (60+)</div>
+        <div class="v num">0</div>
+        <div class="d">National brand-level competition. Usually not worth chasing for a local business.</div>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-top:8px"><strong>Takeaway:</strong> 82% of the priority keywords scored at difficulty 19 or lower. The competitive landscape for Italian deli, bakery, and named-product searches is much less crowded than typical commercial SEO.</p>
+  </section>
+
+  <section>
+    <h2>Highest-priority targets</h2>
+    <p class="intro">Keywords with at least 100 monthly Victoria searches and a difficulty score of 25 or lower. These are the clearest near-term opportunities — the demand exists, the competition is light, and a well-built page can rank within a few months.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Search term</th>
+          <th class="num">Vic/mo</th>
+          <th class="num">CA/mo</th>
+          <th class="num">Difficulty</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+          <tr>
+            <td class="rank num">1</td>
+            <td><strong>bakery near me</strong></td>
+            <td class="num"><span class="badge b-vic">8,100</span></td>
+            <td class="num">450,000</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">4</span> <span style="color:var(--muted);font-size:11px">Very easy</span></td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">2</td>
+            <td><strong>bakery</strong></td>
+            <td class="num"><span class="badge b-vic">4,400</span></td>
+            <td class="num">246,000</td>
+            <td class="num"><span style="color:#5c8f3d;font-weight:700">10</span> <span style="color:var(--muted);font-size:11px">Easy</span></td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">3</td>
+            <td><strong>lumaca</strong></td>
+            <td class="num"><span class="badge b-vic">1,300</span></td>
+            <td class="num">3,600</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">4</span> <span style="color:var(--muted);font-size:11px">Very easy</span></td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">4</td>
+            <td><strong>bakery victoria</strong></td>
+            <td class="num"><span class="badge b-vic">1,300</span></td>
+            <td class="num">1,900</td>
+            <td class="num"><span style="color:#5c8f3d;font-weight:700">17</span> <span style="color:var(--muted);font-size:11px">Easy</span></td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">5</td>
+            <td><strong>charcuterie board</strong></td>
+            <td class="num"><span class="badge b-vic">590</span></td>
+            <td class="num">49,500</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">5</span> <span style="color:var(--muted);font-size:11px">Very easy</span></td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">6</td>
+            <td><strong>ottavio</strong></td>
+            <td class="num"><span class="badge b-vic">480</span></td>
+            <td class="num">14,800</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">2</span> <span style="color:var(--muted);font-size:11px">Very easy</span></td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">7</td>
+            <td><strong>catering victoria bc</strong></td>
+            <td class="num"><span class="badge b-vic">480</span></td>
+            <td class="num">720</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">4</span> <span style="color:var(--muted);font-size:11px">Very easy</span></td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">8</td>
+            <td><strong>catering victoria</strong></td>
+            <td class="num"><span class="badge b-vic">480</span></td>
+            <td class="num">720</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">5</span> <span style="color:var(--muted);font-size:11px">Very easy</span></td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">9</td>
+            <td><strong>focaccia</strong></td>
+            <td class="num"><span class="badge b-vic">390</span></td>
+            <td class="num">49,500</td>
+            <td class="num"><span style="color:#5c8f3d;font-weight:700">16</span> <span style="color:var(--muted);font-size:11px">Easy</span></td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">10</td>
+            <td><strong>guanciale</strong></td>
+            <td class="num"><span class="badge b-vic">320</span></td>
+            <td class="num">22,200</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">1</span> <span style="color:var(--muted);font-size:11px">Very easy</span></td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">11</td>
+            <td><strong>prosciutto</strong></td>
+            <td class="num"><span class="badge b-vic">320</span></td>
+            <td class="num">33,100</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">4</span> <span style="color:var(--muted);font-size:11px">Very easy</span></td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">12</td>
+            <td><strong>bakery victoria bc</strong></td>
+            <td class="num"><span class="badge b-vic">320</span></td>
+            <td class="num">720</td>
+            <td class="num"><span style="color:#5c8f3d;font-weight:700">15</span> <span style="color:var(--muted);font-size:11px">Easy</span></td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">13</td>
+            <td><strong>pancetta</strong></td>
+            <td class="num"><span class="badge b-vic">260</span></td>
+            <td class="num">27,100</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">4</span> <span style="color:var(--muted);font-size:11px">Very easy</span></td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">14</td>
+            <td><strong>charcuterie</strong></td>
+            <td class="num"><span class="badge b-vic">260</span></td>
+            <td class="num">22,200</td>
+            <td class="num"><span style="color:#a07a3a;font-weight:700">20</span> <span style="color:var(--muted);font-size:11px">Moderate</span></td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">15</td>
+            <td><strong>mascarpone</strong></td>
+            <td class="num"><span class="badge b-vic">260</span></td>
+            <td class="num">33,100</td>
+            <td class="num"><span style="color:#a07a3a;font-weight:700">21</span> <span style="color:var(--muted);font-size:11px">Moderate</span></td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">16</td>
+            <td><strong>raclette</strong></td>
+            <td class="num"><span class="badge b-vic">260</span></td>
+            <td class="num">33,100</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">6</span> <span style="color:var(--muted);font-size:11px">Very easy</span></td>
+          </tr>
+        
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>What a single keyword can actually be worth</h2>
+    <p class="intro">It's easy to look at "590 searches a month" and shrug. So here's what the math looks like for three real keywords from the dataset above, using deliberately conservative assumptions. The point isn't precision — it's that even modest capture on one or two keywords pays for the build, and there are dozens like these.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px;">
+
+      <!-- Example 1: catering -->
+      <div style="padding:20px;border:1px solid var(--line);background:var(--paper);">
+        <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Example · catering</div>
+        <div style="font-size:18px;font-weight:700;margin-bottom:10px;">"charcuterie board victoria" + variants</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:14px;">Combined ~200 Vic/mo across "charcuterie board victoria", "charcuterie victoria", "best charcuterie victoria", "charcuterie catering". Difficulty 5–20.</div>
+        <table style="font-size:13px;width:100%;">
+          <tr><td>Monthly searches</td><td class="num" style="text-align:right">200</td></tr>
+          <tr><td>Capture at rank #1–3</td><td class="num" style="text-align:right">25%</td></tr>
+          <tr><td>= clicks/month</td><td class="num" style="text-align:right;font-weight:700">50</td></tr>
+          <tr><td>Click → catering inquiry</td><td class="num" style="text-align:right">10%</td></tr>
+          <tr><td>= inquiries/month</td><td class="num" style="text-align:right;font-weight:700">5</td></tr>
+          <tr><td>Inquiry close rate</td><td class="num" style="text-align:right">60%</td></tr>
+          <tr><td>= booked boards/month</td><td class="num" style="text-align:right;font-weight:700">3</td></tr>
+          <tr><td>Avg catering order</td><td class="num" style="text-align:right">$240</td></tr>
+          <tr><td style="border-top:2px solid var(--ink);padding-top:6px;"><strong>Annual revenue</strong></td><td class="num" style="border-top:2px solid var(--ink);padding-top:6px;text-align:right;font-weight:700;color:var(--burgundy);font-size:16px;">~$8,600</td></tr>
+        </table>
+        <div style="margin-top:10px;font-size:11px;color:var(--muted);line-height:1.5;">From a single landing page targeting a 4-keyword family with a 60-minute build.</div>
+      </div>
+
+      <!-- Example 2: local discovery -->
+      <div style="padding:20px;border:1px solid var(--line);background:var(--paper);">
+        <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Example · local discovery</div>
+        <div style="font-size:18px;font-weight:700;margin-bottom:10px;">"italian deli victoria" + variants</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:14px;">Combined ~1,500 Vic/mo across "italian deli victoria", "italian deli victoria bc", "italian deli near me", "italian deli oak bay", "italian market victoria". Difficulty 9–13.</div>
+        <table style="font-size:13px;width:100%;">
+          <tr><td>Monthly searches</td><td class="num" style="text-align:right">1,500</td></tr>
+          <tr><td>Capture at rank #1–3</td><td class="num" style="text-align:right">15%</td></tr>
+          <tr><td>= clicks/month</td><td class="num" style="text-align:right;font-weight:700">225</td></tr>
+          <tr><td>Click → store visit (within 30 days)</td><td class="num" style="text-align:right">25%</td></tr>
+          <tr><td>= walk-ins/month</td><td class="num" style="text-align:right;font-weight:700">56</td></tr>
+          <tr><td>Avg new-customer basket</td><td class="num" style="text-align:right">$35</td></tr>
+          <tr><td style="border-top:2px solid var(--ink);padding-top:6px;"><strong>Annual revenue (year 1 only)</strong></td><td class="num" style="border-top:2px solid var(--ink);padding-top:6px;text-align:right;font-weight:700;color:var(--burgundy);font-size:16px;">~$24,000</td></tr>
+        </table>
+        <div style="margin-top:10px;font-size:11px;color:var(--muted);line-height:1.5;">Lifetime value of those new customers is multiples higher — this counts only the first visit.</div>
+      </div>
+
+      <!-- Example 3: product page -->
+      <div style="padding:20px;border:1px solid var(--line);background:var(--paper);">
+        <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;">Example · product page</div>
+        <div style="font-size:18px;font-weight:700;margin-bottom:10px;">"burrata" (Victoria)</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:14px;">390 Vic/mo direct, plus tail like "buffalo mozzarella" (90), "fresh mozzarella" (50). Difficulty 26.</div>
+        <table style="font-size:13px;width:100%;">
+          <tr><td>Monthly searches</td><td class="num" style="text-align:right">390</td></tr>
+          <tr><td>Capture at rank #3–5</td><td class="num" style="text-align:right">10%</td></tr>
+          <tr><td>= clicks/month</td><td class="num" style="text-align:right;font-weight:700">39</td></tr>
+          <tr><td>Click → order or walk-in</td><td class="num" style="text-align:right">15%</td></tr>
+          <tr><td>= orders/month</td><td class="num" style="text-align:right;font-weight:700">6</td></tr>
+          <tr><td>Avg basket (burrata + 2 items)</td><td class="num" style="text-align:right">$45</td></tr>
+          <tr><td style="border-top:2px solid var(--ink);padding-top:6px;"><strong>Annual revenue</strong></td><td class="num" style="border-top:2px solid var(--ink);padding-top:6px;text-align:right;font-weight:700;color:var(--burgundy);font-size:16px;">~$3,200</td></tr>
+        </table>
+        <div style="margin-top:10px;font-size:11px;color:var(--muted);line-height:1.5;">One product page. There are 30+ similar candidates in the data — most easier to rank for than burrata.</div>
+      </div>
+    </div>
+
+  </section>
+
+  <section>
+    <h2>How it stacks across the full build</h2>
+    <p class="intro">Each row below is a single page or page-cluster, using the same conservative math as the three examples above. Sorted by modeled annual revenue. The cumulative column on the right shows the running total as pages get built — that's the compounding. The longer the build runs, the higher the stack.</p>
+
+    
+        <div style="background:var(--paper);border:1px solid var(--line);">
+          <div style="display:grid;grid-template-columns:280px 1fr 130px 150px;gap:0;padding:10px 16px;border-bottom:2px solid var(--ink);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;color:var(--ink);">
+            <div>Page</div>
+            <div>Modeled annual revenue</div>
+            <div style="text-align:right">This page · per year</div>
+            <div style="text-align:right">Cumulative · per year</div>
+          </div>
+          
+              <div style="border-bottom:1px solid var(--line);">
+                <div style="display:grid;grid-template-columns:280px 1fr 130px 150px;gap:0;padding:14px 16px;align-items:center;">
+                  <div>
+                    <div style="font-size:14px;font-weight:700;color:var(--ink);">Italian deli landing page</div>
+                    <div style="font-size:11px;color:var(--muted);margin-top:2px;">&quot;italian deli victoria&quot; + 4 variants · 1,500 Vic/mo · diff 9–13</div>
+                  </div>
+                  <div style="padding-right:16px;position:relative;">
+                    <div style="background:var(--burgundy);height:18px;width:61.53846153846154%;border-radius:1px;opacity:0.85;"></div>
+                    <div style="font-size:10px;color:var(--muted);margin-top:4px;font-family:Menlo,monospace;">1,500 × 15% capture × 25% walk-in rate × $35 basket × 12 mo</div>
+                  </div>
+                  <div class="num" style="text-align:right;font-weight:700;font-size:15px;">$24,000<span style="font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+                  <div class="num" style="text-align:right;color:var(--burgundy);font-weight:700;font-size:14px;">$24,000<span style="font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+                </div>
+                <div style="height:3px;background:rgba(107,29,29,0.08);">
+                  <div style="height:100%;background:var(--burgundy);width:23.976023976023978%;opacity:0.5;"></div>
+                </div>
+              </div>
+            
+              <div style="border-bottom:1px solid var(--line);">
+                <div style="display:grid;grid-template-columns:280px 1fr 130px 150px;gap:0;padding:14px 16px;align-items:center;">
+                  <div>
+                    <div style="font-size:14px;font-weight:700;color:var(--ink);">Bakery page</div>
+                    <div style="font-size:11px;color:var(--muted);margin-top:2px;">&quot;bakery victoria&quot; + &quot;bakery near me&quot; + 2 variants · 9,800 Vic/mo · diff 4–17</div>
+                  </div>
+                  <div style="padding-right:16px;position:relative;">
+                    <div style="background:var(--burgundy);height:18px;width:35.8974358974359%;border-radius:1px;opacity:0.85;"></div>
+                    <div style="font-size:10px;color:var(--muted);margin-top:4px;font-family:Menlo,monospace;">9,800 × 4% capture × 15% walk-in × $20 basket × 12 mo (commodity intent)</div>
+                  </div>
+                  <div class="num" style="text-align:right;font-weight:700;font-size:15px;">$14,000<span style="font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+                  <div class="num" style="text-align:right;color:var(--burgundy);font-weight:700;font-size:14px;">$38,000<span style="font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+                </div>
+                <div style="height:3px;background:rgba(107,29,29,0.08);">
+                  <div style="height:100%;background:var(--burgundy);width:37.96203796203797%;opacity:0.5;"></div>
+                </div>
+              </div>
+            
+              <div style="border-bottom:1px solid var(--line);">
+                <div style="display:grid;grid-template-columns:280px 1fr 130px 150px;gap:0;padding:14px 16px;align-items:center;">
+                  <div>
+                    <div style="font-size:14px;font-weight:700;color:var(--ink);">Catering / charcuterie page</div>
+                    <div style="font-size:11px;color:var(--muted);margin-top:2px;">&quot;charcuterie board victoria&quot; + 3 variants · 200 Vic/mo · diff 5–20</div>
+                  </div>
+                  <div style="padding-right:16px;position:relative;">
+                    <div style="background:var(--burgundy);height:18px;width:22.05128205128205%;border-radius:1px;opacity:0.85;"></div>
+                    <div style="font-size:10px;color:var(--muted);margin-top:4px;font-family:Menlo,monospace;">200 × 25% × 10% inquiry × 60% close × $240 board × 12 mo</div>
+                  </div>
+                  <div class="num" style="text-align:right;font-weight:700;font-size:15px;">$8,600<span style="font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+                  <div class="num" style="text-align:right;color:var(--burgundy);font-weight:700;font-size:14px;">$46,600<span style="font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+                </div>
+                <div style="height:3px;background:rgba(107,29,29,0.08);">
+                  <div style="height:100%;background:var(--burgundy);width:46.553446553446555%;opacity:0.5;"></div>
+                </div>
+              </div>
+            
+              <div style="border-bottom:1px solid var(--line);">
+                <div style="display:grid;grid-template-columns:280px 1fr 130px 150px;gap:0;padding:14px 16px;align-items:center;">
+                  <div>
+                    <div style="font-size:14px;font-weight:700;color:var(--ink);">Burrata product page</div>
+                    <div style="font-size:11px;color:var(--muted);margin-top:2px;">&quot;burrata&quot; + 2 tail terms · 480 Vic/mo · diff 26</div>
+                  </div>
+                  <div style="padding-right:16px;position:relative;">
+                    <div style="background:var(--burgundy);height:18px;width:8.205128205128204%;border-radius:1px;opacity:0.85;"></div>
+                    <div style="font-size:10px;color:var(--muted);margin-top:4px;font-family:Menlo,monospace;">480 × 10% × 15% buy × $45 basket × 12 mo</div>
+                  </div>
+                  <div class="num" style="text-align:right;font-weight:700;font-size:15px;">$3,200<span style="font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+                  <div class="num" style="text-align:right;color:var(--burgundy);font-weight:700;font-size:14px;">$49,800<span style="font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+                </div>
+                <div style="height:3px;background:rgba(107,29,29,0.08);">
+                  <div style="height:100%;background:var(--burgundy);width:49.75024975024975%;opacity:0.5;"></div>
+                </div>
+              </div>
+            
+              <div style="border-bottom:1px solid var(--line);">
+                <div style="display:grid;grid-template-columns:280px 1fr 130px 150px;gap:0;padding:14px 16px;align-items:center;">
+                  <div>
+                    <div style="font-size:14px;font-weight:700;color:var(--ink);">Olive oil category page</div>
+                    <div style="font-size:11px;color:var(--muted);margin-top:2px;">&quot;olive oil victoria&quot; + variants · 280 Vic/mo · diff 0–31</div>
+                  </div>
+                  <div style="padding-right:16px;position:relative;">
+                    <div style="background:var(--burgundy);height:18px;width:6.923076923076923%;border-radius:1px;opacity:0.85;"></div>
+                    <div style="font-size:10px;color:var(--muted);margin-top:4px;font-family:Menlo,monospace;">280 × 18% × 18% × $25 × 12</div>
+                  </div>
+                  <div class="num" style="text-align:right;font-weight:700;font-size:15px;">$2,700<span style="font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+                  <div class="num" style="text-align:right;color:var(--burgundy);font-weight:700;font-size:14px;">$52,500<span style="font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+                </div>
+                <div style="height:3px;background:rgba(107,29,29,0.08);">
+                  <div style="height:100%;background:var(--burgundy);width:52.44755244755245%;opacity:0.5;"></div>
+                </div>
+              </div>
+            
+              <div style="border-bottom:1px solid var(--line);">
+                <div style="display:grid;grid-template-columns:280px 1fr 130px 150px;gap:0;padding:14px 16px;align-items:center;">
+                  <div>
+                    <div style="font-size:14px;font-weight:700;color:var(--ink);">Prosciutto product page</div>
+                    <div style="font-size:11px;color:var(--muted);margin-top:2px;">&quot;prosciutto&quot; + tail · 320 Vic/mo · diff 4</div>
+                  </div>
+                  <div style="padding-right:16px;position:relative;">
+                    <div style="background:var(--burgundy);height:18px;width:6.153846153846154%;border-radius:1px;opacity:0.85;"></div>
+                    <div style="font-size:10px;color:var(--muted);margin-top:4px;font-family:Menlo,monospace;">320 × 18% × 12% × $35 × 12</div>
+                  </div>
+                  <div class="num" style="text-align:right;font-weight:700;font-size:15px;">$2,400<span style="font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+                  <div class="num" style="text-align:right;color:var(--burgundy);font-weight:700;font-size:14px;">$54,900<span style="font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+                </div>
+                <div style="height:3px;background:rgba(107,29,29,0.08);">
+                  <div style="height:100%;background:var(--burgundy);width:54.845154845154845%;opacity:0.5;"></div>
+                </div>
+              </div>
+            
+              <div style="border-bottom:1px solid var(--line);">
+                <div style="display:grid;grid-template-columns:280px 1fr 130px 150px;gap:0;padding:14px 16px;align-items:center;">
+                  <div>
+                    <div style="font-size:14px;font-weight:700;color:var(--ink);">Cheese shop pillar</div>
+                    <div style="font-size:11px;color:var(--muted);margin-top:2px;">&quot;cheese shop victoria&quot; + 2 variants · 190 Vic/mo · diff 10–15</div>
+                  </div>
+                  <div style="padding-right:16px;position:relative;">
+                    <div style="background:var(--burgundy);height:18px;width:5.384615384615385%;border-radius:1px;opacity:0.85;"></div>
+                    <div style="font-size:10px;color:var(--muted);margin-top:4px;font-family:Menlo,monospace;">190 × 18% × 18% × $35 × 12</div>
+                  </div>
+                  <div class="num" style="text-align:right;font-weight:700;font-size:15px;">$2,100<span style="font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+                  <div class="num" style="text-align:right;color:var(--burgundy);font-weight:700;font-size:14px;">$57,000<span style="font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+                </div>
+                <div style="height:3px;background:rgba(107,29,29,0.08);">
+                  <div style="height:100%;background:var(--burgundy);width:56.943056943056945%;opacity:0.5;"></div>
+                </div>
+              </div>
+            
+              <div style="border-bottom:1px solid var(--line);">
+                <div style="display:grid;grid-template-columns:280px 1fr 130px 150px;gap:0;padding:14px 16px;align-items:center;">
+                  <div>
+                    <div style="font-size:14px;font-weight:700;color:var(--ink);">Mortadella product page</div>
+                    <div style="font-size:11px;color:var(--muted);margin-top:2px;">&quot;mortadella&quot; + tail · 210 Vic/mo · diff 0</div>
+                  </div>
+                  <div style="padding-right:16px;position:relative;">
+                    <div style="background:var(--burgundy);height:18px;width:4.615384615384616%;border-radius:1px;opacity:0.85;"></div>
+                    <div style="font-size:10px;color:var(--muted);margin-top:4px;font-family:Menlo,monospace;">210 × 22% × 12% × $30 × 12</div>
+                  </div>
+                  <div class="num" style="text-align:right;font-weight:700;font-size:15px;">$1,800<span style="font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+                  <div class="num" style="text-align:right;color:var(--burgundy);font-weight:700;font-size:14px;">$58,800<span style="font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+                </div>
+                <div style="height:3px;background:rgba(107,29,29,0.08);">
+                  <div style="height:100%;background:var(--burgundy);width:58.74125874125874%;opacity:0.5;"></div>
+                </div>
+              </div>
+            
+              <div style="border-bottom:1px solid var(--line);">
+                <div style="display:grid;grid-template-columns:280px 1fr 130px 150px;gap:0;padding:14px 16px;align-items:center;">
+                  <div>
+                    <div style="font-size:14px;font-weight:700;color:var(--ink);">Hot capicola product page</div>
+                    <div style="font-size:11px;color:var(--muted);margin-top:2px;">&quot;capicola&quot; + &quot;hot capicola&quot; · 150 Vic/mo · diff 0–6</div>
+                  </div>
+                  <div style="padding-right:16px;position:relative;">
+                    <div style="background:var(--burgundy);height:18px;width:3.076923076923077%;border-radius:1px;opacity:0.85;"></div>
+                    <div style="font-size:10px;color:var(--muted);margin-top:4px;font-family:Menlo,monospace;">150 × 22% × 12% × $30 × 12</div>
+                  </div>
+                  <div class="num" style="text-align:right;font-weight:700;font-size:15px;">$1,200<span style="font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+                  <div class="num" style="text-align:right;color:var(--burgundy);font-weight:700;font-size:14px;">$60,000<span style="font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+                </div>
+                <div style="height:3px;background:rgba(107,29,29,0.08);">
+                  <div style="height:100%;background:var(--burgundy);width:59.94005994005994%;opacity:0.5;"></div>
+                </div>
+              </div>
+            
+              <div style="border-bottom:1px solid var(--line);">
+                <div style="display:grid;grid-template-columns:280px 1fr 130px 150px;gap:0;padding:14px 16px;align-items:center;">
+                  <div>
+                    <div style="font-size:14px;font-weight:700;color:var(--ink);">Focaccia + bread product pages</div>
+                    <div style="font-size:11px;color:var(--muted);margin-top:2px;">&quot;focaccia&quot; + variants · 530 Vic/mo · diff 16–35</div>
+                  </div>
+                  <div style="padding-right:16px;position:relative;">
+                    <div style="background:var(--burgundy);height:18px;width:2.8205128205128207%;border-radius:1px;opacity:0.85;"></div>
+                    <div style="font-size:10px;color:var(--muted);margin-top:4px;font-family:Menlo,monospace;">530 × 8% × 10% × $22 × 12</div>
+                  </div>
+                  <div class="num" style="text-align:right;font-weight:700;font-size:15px;">$1,100<span style="font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+                  <div class="num" style="text-align:right;color:var(--burgundy);font-weight:700;font-size:14px;">$61,100<span style="font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+                </div>
+                <div style="height:3px;background:rgba(107,29,29,0.08);">
+                  <div style="height:100%;background:var(--burgundy);width:61.038961038961034%;opacity:0.5;"></div>
+                </div>
+              </div>
+            
+              <div style="border-bottom:1px solid var(--line);">
+                <div style="display:grid;grid-template-columns:280px 1fr 130px 150px;gap:0;padding:14px 16px;align-items:center;background:rgba(160,122,58,0.06);">
+                  <div>
+                    <div style="font-size:14px;font-weight:700;color:var(--ink);">~30 long-tail product pages</div>
+                    <div style="font-size:11px;color:var(--muted);margin-top:2px;">mascarpone, raclette, halloumi, guanciale, pancetta, chorizo, pecorino, provolone, ricotta, gorgonzola, grana padano, taleggio, fontina, brie, gouda, etc. · 50–260 Vic/mo each</div>
+                  </div>
+                  <div style="padding-right:16px;position:relative;">
+                    <div style="background:var(--gold);height:18px;width:100%;border-radius:1px;opacity:0.7;"></div>
+                    <div style="font-size:10px;color:var(--muted);margin-top:4px;font-family:Menlo,monospace;">30 pages × ~$1,300/year average (very-easy difficulty, low-friction product pages)</div>
+                  </div>
+                  <div class="num" style="text-align:right;font-weight:700;font-size:15px;">$39,000<span style="font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+                  <div class="num" style="text-align:right;color:var(--burgundy);font-weight:700;font-size:14px;">$100,100<span style="font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+                </div>
+                <div style="height:3px;background:rgba(107,29,29,0.08);">
+                  <div style="height:100%;background:var(--burgundy);width:100%;opacity:0.5;"></div>
+                </div>
+              </div>
+            
+          <div style="display:grid;grid-template-columns:280px 1fr 130px 150px;gap:0;padding:16px;background:var(--ink);color:var(--paper);">
+            <div style="font-size:14px;font-weight:700;">Total modeled run-rate</div>
+            <div style="font-size:11px;color:rgba(247,242,234,0.7);align-self:center;">Conservative assumptions, year-one new-customer baskets only — repeat customers and lifetime value not included.</div>
+            <div class="num" style="text-align:right;font-weight:700;font-size:18px;">$100,100<span style="font-size:10px;color:rgba(247,242,234,0.6);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+            <div class="num" style="text-align:right;font-weight:700;font-size:18px;color:var(--gold);">$100,100<span style="font-size:10px;color:rgba(247,242,234,0.6);font-weight:400;display:block;margin-top:1px;">per year</span></div>
+          </div>
+        </div>
+      
+
+    <p style="font-size:13px;color:var(--muted);margin-top:14px;line-height:1.55;">The thin red bar under each row visualizes how much of the eventual total has been built by that point. The dark bars are individual page revenue; the gold bar is the long-tail cluster of smaller product pages. Every number above uses the same conservative formula: searches × capture × conversion × basket × 12 months. Plug different assumptions in and the chart re-shapes.</p>
+  </section>
+
+  <section>
+    <h2>Top 35 search terms to target with pages</h2>
+    <p class="intro">Ranked by Victoria volume, then Canada volume, then how many Ottavio items back the term (more items = better fit for a category page rather than a single product page). "Difficulty" is the 0–100 score from DataForSEO — lower is easier to rank.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Search term</th>
+          <th class="num">Vic/mo</th>
+          <th class="num">CA/mo</th>
+          <th class="num">Difficulty</th>
+          <th class="num">Items</th>
+          <th>Tags</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+          <tr>
+            <td class="rank num">1</td>
+            <td><strong>bakery near me</strong></td>
+            <td class="num"><span class="badge b-vic">8,100</span></td>
+            <td class="num">450,000</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">4</span></td>
+            <td class="num"><span style="color:var(--muted)">—</span></td>
+            <td>
+              
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">2</td>
+            <td><strong>bakery</strong></td>
+            <td class="num"><span class="badge b-vic">4,400</span></td>
+            <td class="num">246,000</td>
+            <td class="num"><span style="color:#5c8f3d;font-weight:700">10</span></td>
+            <td class="num"><span style="color:var(--muted)">—</span></td>
+            <td>
+              <span class="badge b-geo">Local</span>
+              <span class="badge b-com">Buy intent</span>
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">3</td>
+            <td><strong>lumaca</strong></td>
+            <td class="num"><span class="badge b-vic">1,300</span></td>
+            <td class="num">3,600</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">4</span></td>
+            <td class="num"><span class="badge b-sku">1</span></td>
+            <td>
+              
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">4</td>
+            <td><strong>bakery victoria</strong></td>
+            <td class="num"><span class="badge b-vic">1,300</span></td>
+            <td class="num">1,900</td>
+            <td class="num"><span style="color:#5c8f3d;font-weight:700">17</span></td>
+            <td class="num"><span style="color:var(--muted)">—</span></td>
+            <td>
+              
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">5</td>
+            <td><strong>charcuterie board</strong></td>
+            <td class="num"><span class="badge b-vic">590</span></td>
+            <td class="num">49,500</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">5</span></td>
+            <td class="num"><span style="color:var(--muted)">—</span></td>
+            <td>
+              <span class="badge b-geo">Local</span>
+              <span class="badge b-com">Buy intent</span>
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">6</td>
+            <td><strong>burrata</strong></td>
+            <td class="num"><span class="badge b-vic">390</span></td>
+            <td class="num">49,500</td>
+            <td class="num"><span style="color:#a07a3a;font-weight:700">26</span></td>
+            <td class="num"><span class="badge b-sku">1</span></td>
+            <td>
+              <span class="badge b-geo">Local</span>
+              <span class="badge b-com">Buy intent</span>
+              <span class="badge b-rec">Info / question</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">7</td>
+            <td><strong>ottavio</strong></td>
+            <td class="num"><span class="badge b-vic">480</span></td>
+            <td class="num">14,800</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">2</span></td>
+            <td class="num"><span class="badge b-sku">6</span></td>
+            <td>
+              
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">8</td>
+            <td><strong>italian deli victoria bc</strong></td>
+            <td class="num"><span class="badge b-vic">590</span></td>
+            <td class="num">720</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">9</span></td>
+            <td class="num"><span style="color:var(--muted)">—</span></td>
+            <td>
+              
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">9</td>
+            <td><strong>italian deli victoria</strong></td>
+            <td class="num"><span class="badge b-vic">590</span></td>
+            <td class="num">720</td>
+            <td class="num"><span style="color:#5c8f3d;font-weight:700">10</span></td>
+            <td class="num"><span style="color:var(--muted)">—</span></td>
+            <td>
+              
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">10</td>
+            <td><strong>focaccia</strong></td>
+            <td class="num"><span class="badge b-vic">390</span></td>
+            <td class="num">49,500</td>
+            <td class="num"><span style="color:#5c8f3d;font-weight:700">16</span></td>
+            <td class="num"><span class="badge b-sku">3</span></td>
+            <td>
+              
+              
+              <span class="badge b-rec">Info / question</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">11</td>
+            <td><strong>guanciale</strong></td>
+            <td class="num"><span class="badge b-vic">320</span></td>
+            <td class="num">22,200</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">1</span></td>
+            <td class="num"><span class="badge b-sku">1</span></td>
+            <td>
+              <span class="badge b-geo">Local</span>
+              <span class="badge b-com">Buy intent</span>
+              <span class="badge b-rec">Info / question</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">12</td>
+            <td><strong>catering victoria bc</strong></td>
+            <td class="num"><span class="badge b-vic">480</span></td>
+            <td class="num">720</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">4</span></td>
+            <td class="num"><span style="color:var(--muted)">—</span></td>
+            <td>
+              
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">13</td>
+            <td><strong>catering victoria</strong></td>
+            <td class="num"><span class="badge b-vic">480</span></td>
+            <td class="num">720</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">5</span></td>
+            <td class="num"><span style="color:var(--muted)">—</span></td>
+            <td>
+              
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">14</td>
+            <td><strong>pancetta</strong></td>
+            <td class="num"><span class="badge b-vic">260</span></td>
+            <td class="num">27,100</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">4</span></td>
+            <td class="num"><span class="badge b-sku">1</span></td>
+            <td>
+              <span class="badge b-geo">Local</span>
+              <span class="badge b-com">Buy intent</span>
+              <span class="badge b-rec">Info / question</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">15</td>
+            <td><strong>prosciutto</strong></td>
+            <td class="num"><span class="badge b-vic">320</span></td>
+            <td class="num">33,100</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">4</span></td>
+            <td class="num"><span class="badge b-sku">6</span></td>
+            <td>
+              
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">16</td>
+            <td><strong>charcuterie</strong></td>
+            <td class="num"><span class="badge b-vic">260</span></td>
+            <td class="num">22,200</td>
+            <td class="num"><span style="color:#a07a3a;font-weight:700">20</span></td>
+            <td class="num"><span style="color:var(--muted)">—</span></td>
+            <td>
+              <span class="badge b-geo">Local</span>
+              <span class="badge b-com">Buy intent</span>
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">17</td>
+            <td><strong>mascarpone</strong></td>
+            <td class="num"><span class="badge b-vic">260</span></td>
+            <td class="num">33,100</td>
+            <td class="num"><span style="color:#a07a3a;font-weight:700">21</span></td>
+            <td class="num"><span class="badge b-sku">2</span></td>
+            <td>
+              
+              
+              <span class="badge b-rec">Info / question</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">18</td>
+            <td><strong>raclette</strong></td>
+            <td class="num"><span class="badge b-vic">260</span></td>
+            <td class="num">33,100</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">6</span></td>
+            <td class="num"><span class="badge b-sku">1</span></td>
+            <td>
+              
+              
+              <span class="badge b-rec">Info / question</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">19</td>
+            <td><strong>sourdough bread</strong></td>
+            <td class="num"><span class="badge b-vic">170</span></td>
+            <td class="num">27,100</td>
+            <td class="num"><span style="color:#b03e15;font-weight:700">44</span></td>
+            <td class="num"><span style="color:var(--muted)">—</span></td>
+            <td>
+              <span class="badge b-geo">Local</span>
+              <span class="badge b-com">Buy intent</span>
+              <span class="badge b-rec">Info / question</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">20</td>
+            <td><strong>halloumi</strong></td>
+            <td class="num"><span class="badge b-vic">260</span></td>
+            <td class="num">27,100</td>
+            <td class="num"><span style="color:#a07a3a;font-weight:700">21</span></td>
+            <td class="num"><span style="color:var(--muted)">—</span></td>
+            <td>
+              
+              
+              <span class="badge b-rec">Info / question</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">21</td>
+            <td><strong>grana padano</strong></td>
+            <td class="num"><span class="badge b-vic">260</span></td>
+            <td class="num">22,200</td>
+            <td class="num"><span style="color:#5c8f3d;font-weight:700">11</span></td>
+            <td class="num"><span class="badge b-sku">1</span></td>
+            <td>
+              
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">22</td>
+            <td><strong>chorizo</strong></td>
+            <td class="num"><span class="badge b-vic">210</span></td>
+            <td class="num">22,200</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">5</span></td>
+            <td class="num"><span class="badge b-sku">3</span></td>
+            <td>
+              
+              
+              <span class="badge b-rec">Info / question</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">23</td>
+            <td><strong>bakery victoria bc</strong></td>
+            <td class="num"><span class="badge b-vic">320</span></td>
+            <td class="num">720</td>
+            <td class="num"><span style="color:#5c8f3d;font-weight:700">15</span></td>
+            <td class="num"><span style="color:var(--muted)">—</span></td>
+            <td>
+              
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">24</td>
+            <td><strong>cornichons</strong></td>
+            <td class="num"><span class="badge b-vic">170</span></td>
+            <td class="num">14,800</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">2</span></td>
+            <td class="num"><span class="badge b-sku">1</span></td>
+            <td>
+              <span class="badge b-geo">Local</span>
+              <span class="badge b-com">Buy intent</span>
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">25</td>
+            <td><strong>mortadella</strong></td>
+            <td class="num"><span class="badge b-vic">210</span></td>
+            <td class="num">22,200</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">0</span></td>
+            <td class="num"><span class="badge b-sku">1</span></td>
+            <td>
+              
+              
+              <span class="badge b-rec">Info / question</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">26</td>
+            <td><strong>olive oil</strong></td>
+            <td class="num"><span class="badge b-vic">170</span></td>
+            <td class="num">18,100</td>
+            <td class="num"><span style="color:#a07a3a;font-weight:700">31</span></td>
+            <td class="num"><span class="badge b-sku">22</span></td>
+            <td>
+              
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">27</td>
+            <td><strong>pesto</strong></td>
+            <td class="num"><span class="badge b-vic">170</span></td>
+            <td class="num">22,200</td>
+            <td class="num"><span style="color:#a07a3a;font-weight:700">36</span></td>
+            <td class="num"><span class="badge b-sku">9</span></td>
+            <td>
+              
+              
+              <span class="badge b-rec">Info / question</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">28</td>
+            <td><strong>gorgonzola</strong></td>
+            <td class="num"><span class="badge b-vic">170</span></td>
+            <td class="num">14,800</td>
+            <td class="num"><span style="color:#5c8f3d;font-weight:700">12</span></td>
+            <td class="num"><span class="badge b-sku">3</span></td>
+            <td>
+              
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">29</td>
+            <td><strong>focaccia bread</strong></td>
+            <td class="num"><span class="badge b-vic">140</span></td>
+            <td class="num">8,100</td>
+            <td class="num"><span style="color:#a07a3a;font-weight:700">35</span></td>
+            <td class="num"><span style="color:var(--muted)">—</span></td>
+            <td>
+              <span class="badge b-geo">Local</span>
+              <span class="badge b-com">Buy intent</span>
+              <span class="badge b-rec">Info / question</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">30</td>
+            <td><strong>ottavio oak bay</strong></td>
+            <td class="num"><span class="badge b-vic">210</span></td>
+            <td class="num">320</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">0</span></td>
+            <td class="num"><span style="color:var(--muted)">—</span></td>
+            <td>
+              <span class="badge b-geo">Local</span>
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">31</td>
+            <td><strong>pecorino</strong></td>
+            <td class="num"><span class="badge b-vic">140</span></td>
+            <td class="num">18,100</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">9</span></td>
+            <td class="num"><span class="badge b-sku">6</span></td>
+            <td>
+              
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">32</td>
+            <td><strong>baguette</strong></td>
+            <td class="num"><span class="badge b-vic">140</span></td>
+            <td class="num">18,100</td>
+            <td class="num"><span style="color:#5c8f3d;font-weight:700">11</span></td>
+            <td class="num"><span class="badge b-sku">3</span></td>
+            <td>
+              
+              
+              <span class="badge b-rec">Info / question</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">33</td>
+            <td><strong>catering</strong></td>
+            <td class="num"><span class="badge b-vic">110</span></td>
+            <td class="num">14,800</td>
+            <td class="num"><span style="color:#5c8f3d;font-weight:700">14</span></td>
+            <td class="num"><span style="color:var(--muted)">—</span></td>
+            <td>
+              <span class="badge b-geo">Local</span>
+              <span class="badge b-com">Buy intent</span>
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">34</td>
+            <td><strong>mozzarella</strong></td>
+            <td class="num"><span class="badge b-vic">110</span></td>
+            <td class="num">14,800</td>
+            <td class="num"><span style="color:#a07a3a;font-weight:700">35</span></td>
+            <td class="num"><span class="badge b-sku">1</span></td>
+            <td>
+              <span class="badge b-geo">Local</span>
+              <span class="badge b-com">Buy intent</span>
+              <span class="badge b-rec">Info / question</span>
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">35</td>
+            <td><strong>stracciatella</strong></td>
+            <td class="num"><span class="badge b-vic">140</span></td>
+            <td class="num">22,200</td>
+            <td class="num"><span style="color:#2d7a3d;font-weight:700">6</span></td>
+            <td class="num"><span style="color:var(--muted)">—</span></td>
+            <td>
+              
+              
+              <span class="badge b-rec">Info / question</span>
+            </td>
+          </tr>
+        
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:var(--muted);margin-top:14px"><strong>Tag legend.</strong> "Local" = Google autocomplete shows people add Victoria/Oak Bay/near me. "Buy intent" = autocomplete shows "buy", "near me", "order". "Info / question" = autocomplete shows "what is", "recipe", "how to use".</p>
+  </section>
+
+  
+  <section>
+    <h2>Current top results in Victoria for key searches</h2>
+    <p class="intro">For a sample of the top targets, this shows the top 3 organic results currently ranking in Victoria, BC — pulled live from Google. "Local pack" means Google is also showing the 3-pack map results above the organic list, which a Google Business Profile can win independently of organic ranking.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;">
+      
+        <div style="padding:16px;border:1px solid var(--line);background:var(--paper);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+            <div style="font-size:15px;font-weight:700">bakery near me</div>
+            <div style="font-size:11px;color:var(--muted)">8,100 Vic/mo · diff <span style="color:#2d7a3d;font-weight:700">4</span></div>
+          </div>
+          
+          <div style="font-size:12px;color:#463629;margin-bottom:8px;">
+            <span style="display:inline-block;padding:2px 6px;background:rgba(160,122,58,0.15);color:var(--gold);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;font-weight:700;margin-right:6px">Local pack shown</span>
+            
+          </div>
+          
+          <ol style="margin:0;padding-left:18px;font-size:12px;color:#463629;line-height:1.5">
+            <li><strong style="font-weight:600">www.tripadvisor.ca</strong><br><span style="color:var(--muted);font-size:11px">The 10 Best Bakeries in Victoria</span></li><li><strong style="font-weight:600">www.crustbakery.ca</strong><br><span style="color:var(--muted);font-size:11px">Crust Bakery: Victoria&#39;s Favourite Bakery - Victoria</span></li><li><strong style="font-weight:600">thedutchbakery.com</strong><br><span style="color:var(--muted);font-size:11px">The Dutch Bakery &amp; Diner - Victoria BC</span></li>
+          </ol>
+        </div>
+      
+        <div style="padding:16px;border:1px solid var(--line);background:var(--paper);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+            <div style="font-size:15px;font-weight:700">bakery victoria</div>
+            <div style="font-size:11px;color:var(--muted)">1,300 Vic/mo · diff <span style="color:#5c8f3d;font-weight:700">17</span></div>
+          </div>
+          
+          <div style="font-size:12px;color:#463629;margin-bottom:8px;">
+            <span style="display:inline-block;padding:2px 6px;background:rgba(160,122,58,0.15);color:var(--gold);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;font-weight:700;margin-right:6px">Local pack shown</span>
+            
+          </div>
+          
+          <ol style="margin:0;padding-left:18px;font-size:12px;color:#463629;line-height:1.5">
+            <li><strong style="font-weight:600">www.tripadvisor.ca</strong><br><span style="color:var(--muted);font-size:11px">The 10 Best Bakeries in Victoria</span></li><li><strong style="font-weight:600">www.crustbakery.ca</strong><br><span style="color:var(--muted);font-size:11px">Crust Bakery: Victoria&#39;s Favourite Bakery</span></li><li><strong style="font-weight:600">thedutchbakery.com</strong><br><span style="color:var(--muted);font-size:11px">The Dutch Bakery &amp; Diner - Victoria BC</span></li>
+          </ol>
+        </div>
+      
+        <div style="padding:16px;border:1px solid var(--line);background:var(--paper);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+            <div style="font-size:15px;font-weight:700">italian deli victoria</div>
+            <div style="font-size:11px;color:var(--muted)">590 Vic/mo · diff <span style="color:#5c8f3d;font-weight:700">10</span></div>
+          </div>
+          
+          <div style="font-size:12px;color:#463629;margin-bottom:8px;">
+            <span style="display:inline-block;padding:2px 6px;background:rgba(160,122,58,0.15);color:var(--gold);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;font-weight:700;margin-right:6px">Local pack shown</span>
+            
+          </div>
+          
+          <ol style="margin:0;padding-left:18px;font-size:12px;color:#463629;line-height:1.5">
+            <li><strong style="font-weight:600">italianfoodimports.ca</strong><br><span style="color:var(--muted);font-size:11px">Italian Food Imports in Victoria, BC - Deli, Grocery and Cafe</span></li><li><strong style="font-weight:600">www.gigisitalianfoods.com</strong><br><span style="color:var(--muted);font-size:11px">Gigi&#39;s Italian &amp; Specialty Foods: Home</span></li><li><strong style="font-weight:600">www.ottaviovictoria.com</strong><br><span style="color:var(--muted);font-size:11px">Italian Bakery &amp; Deli in Victoria BC | Ottavio Italian Bakery ...</span></li>
+          </ol>
+        </div>
+      
+        <div style="padding:16px;border:1px solid var(--line);background:var(--paper);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+            <div style="font-size:15px;font-weight:700">italian deli victoria bc</div>
+            <div style="font-size:11px;color:var(--muted)">590 Vic/mo · diff <span style="color:#2d7a3d;font-weight:700">9</span></div>
+          </div>
+          
+          <ol style="margin:0;padding-left:18px;font-size:12px;color:#463629;line-height:1.5">
+            <li><strong style="font-weight:600">italianfoodimports.ca</strong><br><span style="color:var(--muted);font-size:11px">Italian Food Imports in Victoria, BC - Deli, Grocery and Cafe</span></li><li><strong style="font-weight:600">www.ottaviovictoria.com</strong><br><span style="color:var(--muted);font-size:11px">Italian Bakery &amp; Deli in Victoria BC | Ottavio Italian Bakery ...</span></li><li><strong style="font-weight:600">www.gigisitalianfoods.com</strong><br><span style="color:var(--muted);font-size:11px">Gigi&#39;s Italian &amp; Specialty Foods: Home</span></li>
+          </ol>
+        </div>
+      
+        <div style="padding:16px;border:1px solid var(--line);background:var(--paper);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+            <div style="font-size:15px;font-weight:700">catering victoria</div>
+            <div style="font-size:11px;color:var(--muted)">480 Vic/mo · diff <span style="color:#2d7a3d;font-weight:700">5</span></div>
+          </div>
+          
+          <div style="font-size:12px;color:#463629;margin-bottom:8px;">
+            <span style="display:inline-block;padding:2px 6px;background:rgba(160,122,58,0.15);color:var(--gold);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;font-weight:700;margin-right:6px">Local pack shown</span>
+            
+          </div>
+          
+          <ol style="margin:0;padding-left:18px;font-size:12px;color:#463629;line-height:1.5">
+            <li><strong style="font-weight:600">www.foodforthoughtcatering.net</strong><br><span style="color:var(--muted);font-size:11px">Catering Company | Food For Thought Catering | Victoria</span></li><li><strong style="font-weight:600">littlepiggycatering.com</strong><br><span style="color:var(--muted);font-size:11px">Catering Victoria BC | Little Piggy Catering – Weddings ...</span></li><li><strong style="font-weight:600">trufflescatering.net</strong><br><span style="color:var(--muted);font-size:11px">Truffles Catering: Victoria&#39;s Best Catering | Weddings, Events ...</span></li>
+          </ol>
+        </div>
+      
+        <div style="padding:16px;border:1px solid var(--line);background:var(--paper);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+            <div style="font-size:15px;font-weight:700">catering victoria bc</div>
+            <div style="font-size:11px;color:var(--muted)">480 Vic/mo · diff <span style="color:#2d7a3d;font-weight:700">4</span></div>
+          </div>
+          
+          <div style="font-size:12px;color:#463629;margin-bottom:8px;">
+            <span style="display:inline-block;padding:2px 6px;background:rgba(160,122,58,0.15);color:var(--gold);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;font-weight:700;margin-right:6px">Local pack shown</span>
+            
+          </div>
+          
+          <ol style="margin:0;padding-left:18px;font-size:12px;color:#463629;line-height:1.5">
+            <li><strong style="font-weight:600">littlepiggycatering.com</strong><br><span style="color:var(--muted);font-size:11px">Catering Victoria BC | Little Piggy Catering – Weddings ...</span></li><li><strong style="font-weight:600">www.foodforthoughtcatering.net</strong><br><span style="color:var(--muted);font-size:11px">Catering Company | Food For Thought Catering | Victoria</span></li><li><strong style="font-weight:600">www.cherylsgourmetpantry.com</strong><br><span style="color:var(--muted);font-size:11px">Cheryl&#39;s Gourmet Pantry - (1) 250-595-3212 - Cheryl&#39;s ...</span></li>
+          </ol>
+        </div>
+      
+        <div style="padding:16px;border:1px solid var(--line);background:var(--paper);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+            <div style="font-size:15px;font-weight:700">burrata</div>
+            <div style="font-size:11px;color:var(--muted)">390 Vic/mo · diff <span style="color:#a07a3a;font-weight:700">26</span></div>
+          </div>
+          
+          <ol style="margin:0;padding-left:18px;font-size:12px;color:#463629;line-height:1.5">
+            <li><strong style="font-weight:600">en.wikipedia.org</strong><br><span style="color:var(--muted);font-size:11px">Burrata</span></li><li><strong style="font-weight:600">whatsgabycooking.com</strong><br><span style="color:var(--muted);font-size:11px">30 Delicious Burrata Recipes</span></li><li><strong style="font-weight:600">www.cheese.com</strong><br><span style="color:var(--muted);font-size:11px">What Is Burrata and What Does Burrata Cheese Taste Like?</span></li>
+          </ol>
+        </div>
+      
+        <div style="padding:16px;border:1px solid var(--line);background:var(--paper);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+            <div style="font-size:15px;font-weight:700">focaccia</div>
+            <div style="font-size:11px;color:var(--muted)">390 Vic/mo · diff <span style="color:#5c8f3d;font-weight:700">16</span></div>
+          </div>
+          
+          <ol style="margin:0;padding-left:18px;font-size:12px;color:#463629;line-height:1.5">
+            <li><strong style="font-weight:600">alexandracooks.com</strong><br><span style="color:var(--muted);font-size:11px">The Best, Easiest Focaccia Bread Recipe</span></li><li><strong style="font-weight:600">www.loveandlemons.com</strong><br><span style="color:var(--muted);font-size:11px">Focaccia Bread Recipe</span></li><li><strong style="font-weight:600">www.bonappetit.com</strong><br><span style="color:var(--muted);font-size:11px">Easy No-Knead Focaccia Bread Recipe</span></li>
+          </ol>
+        </div>
+      
+        <div style="padding:16px;border:1px solid var(--line);background:var(--paper);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+            <div style="font-size:15px;font-weight:700">italian deli</div>
+            <div style="font-size:11px;color:var(--muted)">320 Vic/mo · diff <span style="color:var(--muted);font-weight:700">—</span></div>
+          </div>
+          
+          <div style="font-size:12px;color:#463629;margin-bottom:8px;">
+            <span style="display:inline-block;padding:2px 6px;background:rgba(160,122,58,0.15);color:var(--gold);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;font-weight:700;margin-right:6px">Local pack shown</span>
+            
+          </div>
+          
+          <ol style="margin:0;padding-left:18px;font-size:12px;color:#463629;line-height:1.5">
+            <li><strong style="font-weight:600">italianfoodimports.ca</strong><br><span style="color:var(--muted);font-size:11px">Italian Food Imports in Victoria, BC - Deli, Grocery and Cafe</span></li><li><strong style="font-weight:600">www.ottaviovictoria.com</strong><br><span style="color:var(--muted);font-size:11px">Italian Bakery &amp; Deli in Victoria BC | Ottavio Italian Bakery ...</span></li><li><strong style="font-weight:600">www.reddit.com</strong><br><span style="color:var(--muted);font-size:11px">Best Italian sub in Victoria? : r/VictoriaBC</span></li>
+          </ol>
+        </div>
+      
+        <div style="padding:16px;border:1px solid var(--line);background:var(--paper);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+            <div style="font-size:15px;font-weight:700">bakery victoria bc</div>
+            <div style="font-size:11px;color:var(--muted)">320 Vic/mo · diff <span style="color:#5c8f3d;font-weight:700">15</span></div>
+          </div>
+          
+          <div style="font-size:12px;color:#463629;margin-bottom:8px;">
+            <span style="display:inline-block;padding:2px 6px;background:rgba(160,122,58,0.15);color:var(--gold);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;font-weight:700;margin-right:6px">Local pack shown</span>
+            
+          </div>
+          
+          <ol style="margin:0;padding-left:18px;font-size:12px;color:#463629;line-height:1.5">
+            <li><strong style="font-weight:600">www.tripadvisor.ca</strong><br><span style="color:var(--muted);font-size:11px">The 10 Best Bakeries in Victoria</span></li><li><strong style="font-weight:600">www.crustbakery.ca</strong><br><span style="color:var(--muted);font-size:11px">Crust Bakery: Victoria&#39;s Favourite Bakery</span></li><li><strong style="font-weight:600">www.reddit.com</strong><br><span style="color:var(--muted);font-size:11px">Best local bakery and why? : r/VictoriaBC</span></li>
+          </ol>
+        </div>
+      
+        <div style="padding:16px;border:1px solid var(--line);background:var(--paper);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+            <div style="font-size:15px;font-weight:700">prosciutto</div>
+            <div style="font-size:11px;color:var(--muted)">320 Vic/mo · diff <span style="color:#2d7a3d;font-weight:700">4</span></div>
+          </div>
+          
+          <div style="font-size:12px;color:#463629;margin-bottom:8px;">
+            <span style="display:inline-block;padding:2px 6px;background:rgba(160,122,58,0.15);color:var(--gold);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;font-weight:700;margin-right:6px">Local pack shown</span>
+            
+          </div>
+          
+          <ol style="margin:0;padding-left:18px;font-size:12px;color:#463629;line-height:1.5">
+            <li><strong style="font-weight:600">en.wikipedia.org</strong><br><span style="color:var(--muted);font-size:11px">Prosciutto</span></li><li><strong style="font-weight:600">parmacrown.com</strong><br><span style="color:var(--muted);font-size:11px">What is Prosciutto? - History of Prosciutto | Parmacrown.com</span></li><li><strong style="font-weight:600">www.eataly.com</strong><br><span style="color:var(--muted);font-size:11px">What is Prosciutto? Everything You Need to Know</span></li>
+          </ol>
+        </div>
+      
+        <div style="padding:16px;border:1px solid var(--line);background:var(--paper);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+            <div style="font-size:15px;font-weight:700">ottavio oak bay</div>
+            <div style="font-size:11px;color:var(--muted)">210 Vic/mo · diff <span style="color:#2d7a3d;font-weight:700">0</span></div>
+          </div>
+          
+          <ol style="margin:0;padding-left:18px;font-size:12px;color:#463629;line-height:1.5">
+            <li><strong style="font-weight:600">www.ottaviovictoria.com</strong><br><span style="color:var(--muted);font-size:11px">Italian Bakery &amp; Deli in Victoria BC | Ottavio Italian Bakery ...</span></li><li><strong style="font-weight:600">www.instagram.com</strong><br><span style="color:var(--muted);font-size:11px">Ottavio Italian Bakery &amp; Deli (@ottavio.victoria)</span></li><li><strong style="font-weight:600">www.tripadvisor.ca</strong><br><span style="color:var(--muted);font-size:11px">Ottavio Italian Bakery &amp; Delicatessen Cafe</span></li>
+          </ol>
+        </div>
+      
+    </div>
+  </section>
+  
+
+  <section>
+    <h2>Searches that include "Victoria," "Oak Bay," or "near me"</h2>
+    <p class="intro">These are searches with a location word already in them. They're the easiest to win because almost no one is competing for them. CPCs are near zero. Ranking #1 here is mostly a matter of having the page exist and being a real local business with reviews.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Search term</th>
+          <th class="num">Vic/mo</th>
+          <th class="num">CA/mo</th>
+          <th class="num">CPC</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+          <tr>
+            <td class="rank num">1</td>
+            <td><strong>bakery near me</strong></td>
+            <td class="num"><span class="badge b-vic">8,100</span></td>
+            <td class="num">450,000</td>
+            <td class="cpc num">$0.28</td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">2</td>
+            <td><strong>bakery victoria</strong></td>
+            <td class="num"><span class="badge b-vic">1,300</span></td>
+            <td class="num">1,900</td>
+            <td class="cpc num">$0.24</td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">3</td>
+            <td><strong>italian deli victoria bc</strong></td>
+            <td class="num"><span class="badge b-vic">590</span></td>
+            <td class="num">720</td>
+            <td class="cpc num">$0.21</td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">4</td>
+            <td><strong>italian deli victoria</strong></td>
+            <td class="num"><span class="badge b-vic">590</span></td>
+            <td class="num">720</td>
+            <td class="cpc num">$0.21</td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">5</td>
+            <td><strong>catering victoria bc</strong></td>
+            <td class="num"><span class="badge b-vic">480</span></td>
+            <td class="num">720</td>
+            <td class="cpc num">$0.83</td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">6</td>
+            <td><strong>catering victoria</strong></td>
+            <td class="num"><span class="badge b-vic">480</span></td>
+            <td class="num">720</td>
+            <td class="cpc num">$0.83</td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">7</td>
+            <td><strong>bakery victoria bc</strong></td>
+            <td class="num"><span class="badge b-vic">320</span></td>
+            <td class="num">720</td>
+            <td class="cpc num">$0.10</td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">8</td>
+            <td><strong>ottavio oak bay</strong></td>
+            <td class="num"><span class="badge b-vic">210</span></td>
+            <td class="num">320</td>
+            <td class="cpc num">$0.00</td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">9</td>
+            <td><strong>ottavio victoria</strong></td>
+            <td class="num"><span class="badge b-vic">170</span></td>
+            <td class="num">260</td>
+            <td class="cpc num">$0.00</td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">10</td>
+            <td><strong>ottavio italian bakery victoria</strong></td>
+            <td class="num"><span class="badge b-vic">170</span></td>
+            <td class="num">260</td>
+            <td class="cpc num">$0.00</td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">11</td>
+            <td><strong>italian deli near me</strong></td>
+            <td class="num"><span class="badge b-vic">140</span></td>
+            <td class="num">2,400</td>
+            <td class="cpc num">$0.24</td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">12</td>
+            <td><strong>olive oil victoria bc</strong></td>
+            <td class="num"><span class="badge b-vic">140</span></td>
+            <td class="num">210</td>
+            <td class="cpc num">$0.52</td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">13</td>
+            <td><strong>olive oil victoria</strong></td>
+            <td class="num"><span class="badge b-vic">140</span></td>
+            <td class="num">210</td>
+            <td class="cpc num">$0.52</td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">14</td>
+            <td><strong>charcuterie board victoria</strong></td>
+            <td class="num"><span class="badge b-vic">90</span></td>
+            <td class="num">140</td>
+            <td class="cpc num">$1.21</td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">15</td>
+            <td><strong>charcuterie victoria</strong></td>
+            <td class="num"><span class="badge b-vic">90</span></td>
+            <td class="num">110</td>
+            <td class="cpc num">$1.06</td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">16</td>
+            <td><strong>italian grocer near me</strong></td>
+            <td class="num"><span class="badge b-vic">70</span></td>
+            <td class="num">5,400</td>
+            <td class="cpc num">$0.18</td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">17</td>
+            <td><strong>cheese shop near me</strong></td>
+            <td class="num"><span class="badge b-vic">70</span></td>
+            <td class="num">4,400</td>
+            <td class="cpc num">$0.17</td>
+          </tr>
+        
+          <tr>
+            <td class="rank num">18</td>
+            <td><strong>cheese shop victoria</strong></td>
+            <td class="num"><span class="badge b-vic">70</span></td>
+            <td class="num">140</td>
+            <td class="cpc num">$0.24</td>
+          </tr>
+        
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Searches that already include "Ottavio"</h2>
+    <p class="intro">1,120 monthly Victoria searches already include the Ottavio name. These should land on a page that answers what the searcher actually wants — hours, menu, directions, a specific product. CPC above $0.50 on a branded term often means a competitor is bidding on the brand; worth checking.</p>
+
+    <div class="branded">
+      
+        <div class="b-item">
+          <div class="q">ottavio</div>
+          <div class="v num">480<span style="font-size:11px;color:var(--muted);font-weight:400"> / mo Vic · 14,800 / mo CA</span></div>
+          <div class="c">CPC $1.09 <span style="color:var(--warn)">— possibly being bid on by a competitor</span></div>
+        </div>
+      
+        <div class="b-item">
+          <div class="q">ottavio oak bay</div>
+          <div class="v num">210<span style="font-size:11px;color:var(--muted);font-weight:400"> / mo Vic · 320 / mo CA</span></div>
+          <div class="c">CPC $0.00</div>
+        </div>
+      
+        <div class="b-item">
+          <div class="q">ottavio victoria</div>
+          <div class="v num">170<span style="font-size:11px;color:var(--muted);font-weight:400"> / mo Vic · 260 / mo CA</span></div>
+          <div class="c">CPC $0.00</div>
+        </div>
+      
+        <div class="b-item">
+          <div class="q">ottavio italian bakery victoria</div>
+          <div class="v num">170<span style="font-size:11px;color:var(--muted);font-weight:400"> / mo Vic · 260 / mo CA</span></div>
+          <div class="c">CPC $0.00</div>
+        </div>
+      
+        <div class="b-item">
+          <div class="q">ottavio italian bakery</div>
+          <div class="v num">70<span style="font-size:11px;color:var(--muted);font-weight:400"> / mo Vic · 110 / mo CA</span></div>
+          <div class="c">CPC $0.00</div>
+        </div>
+      
+        <div class="b-item">
+          <div class="q">ottavio near me</div>
+          <div class="v num">10<span style="font-size:11px;color:var(--muted);font-weight:400"> / mo Vic · 480 / mo CA</span></div>
+          <div class="c">CPC $0.10</div>
+        </div>
+      
+    </div>
+  </section>
+
+  <section>
+    <h2>Search terms that point at someone else in Victoria</h2>
+    <p class="intro">A few keyword candidates from Ottavio's catalog have unusually high Victoria volume relative to Canada — far above the normal 1–2% population share. That pattern usually means a local business in Victoria shares the name with the product. Worth flagging so SEO effort doesn't go into ranking against an established competitor.</p>
+
+    <div class="issues">
+      
+          <div class="issue">
+            <div class="name">"fol epi"</div>
+            <div class="desc">Fol Épi Bakery on Hillside. Established artisan bakery; the name is theirs in Victoria search.</div>
+            <div class="nums">4,400 Vic/mo · 5,400 CA/mo · Vic = 81.5% of Canada (typical product sits at 1–2%)</div>
+          </div>
+        
+          <div class="issue">
+            <div class="name">"italian deli"</div>
+            <div class="desc">Victoria locals search 'italian deli' (without a city qualifier) at about 5× the per-capita rate. Not a brand collision — it just confirms there's strong category demand for an Italian deli in this market.</div>
+            <div class="nums">320 Vic/mo · 2,900 CA/mo · Vic = 11.0% of Canada (typical product sits at 1–2%)</div>
+          </div>
+        
+          <div class="issue">
+            <div class="name">"wildwood"</div>
+            <div class="desc">Likely Wildwood Bakery / restaurant brand in BC. The Wildwood cheese (Beecher's) is a real product but the Victoria volume mostly goes to the restaurant.</div>
+            <div class="nums">170 Vic/mo · 12,100 CA/mo · Vic = 1.4% of Canada (typical product sits at 1–2%)</div>
+          </div>
+        
+    </div>
+  </section>
+
+  <section>
+    <h2>Inventory and demand by category</h2>
+    <p class="intro">How many items Ottavio has in each category, and how much Victoria search volume exists for the head terms in that category. "Vic head demand" is the total monthly volume in Victoria across the main product names; "CA head demand" is the same for Canada. Sum doesn't equal the dashboard total because some terms appear in multiple categories.</p>
+
+    <div class="cards">
+      
+          <div class="card">
+            <h3>Cheese</h3>
+            <div class="cs">
+              <div><div class="v num">190</div><div class="l">items in Square</div></div>
+              <div><div class="v num">8,270</div><div class="l">Vic searches/mo</div></div>
+              <div><div class="v num">374,140</div><div class="l">Canada searches/mo</div></div>
+            </div>
+            <div class="top"><strong>Top demand:</strong> fol epi <span style="color:var(--muted)">(4,400 Vic / 5,400 CA)</span> · burrata <span style="color:var(--muted)">(390 Vic / 49,500 CA)</span> · grana padano <span style="color:var(--muted)">(260 Vic / 22,200 CA)</span> · mascarpone <span style="color:var(--muted)">(260 Vic / 33,100 CA)</span></div>
+          </div>
+        
+          <div class="card">
+            <h3>Cured meat</h3>
+            <div class="cs">
+              <div><div class="v num">59</div><div class="l">items in Square</div></div>
+              <div><div class="v num">2,740</div><div class="l">Vic searches/mo</div></div>
+              <div><div class="v num">260,120</div><div class="l">Canada searches/mo</div></div>
+            </div>
+            <div class="top"><strong>Top demand:</strong> prosciutto <span style="color:var(--muted)">(320 Vic / 33,100 CA)</span> · guanciale <span style="color:var(--muted)">(320 Vic / 22,200 CA)</span> · pancetta <span style="color:var(--muted)">(260 Vic / 27,100 CA)</span> · charcuterie <span style="color:var(--muted)">(260 Vic / 22,200 CA)</span></div>
+          </div>
+        
+          <div class="card">
+            <h3>Bread and bakery</h3>
+            <div class="cs">
+              <div><div class="v num">37</div><div class="l">items in Square</div></div>
+              <div><div class="v num">15,450</div><div class="l">Vic searches/mo</div></div>
+              <div><div class="v num">368,730</div><div class="l">Canada searches/mo</div></div>
+            </div>
+            <div class="top"><strong>Top demand:</strong> bakery <span style="color:var(--muted)">(4,400 Vic / 246,000 CA)</span> · focaccia <span style="color:var(--muted)">(390 Vic / 49,500 CA)</span> · sourdough bread <span style="color:var(--muted)">(170 Vic / 27,100 CA)</span> · focaccia bread <span style="color:var(--muted)">(140 Vic / 8,100 CA)</span></div>
+          </div>
+        
+          <div class="card">
+            <h3>Pantry, pasta, oils</h3>
+            <div class="cs">
+              <div><div class="v num">280</div><div class="l">items in Square</div></div>
+              <div><div class="v num">2,990</div><div class="l">Vic searches/mo</div></div>
+              <div><div class="v num">124,590</div><div class="l">Canada searches/mo</div></div>
+            </div>
+            <div class="top"><strong>Top demand:</strong> lumaca <span style="color:var(--muted)">(1,300 Vic / 3,600 CA)</span> · olive oil <span style="color:var(--muted)">(170 Vic / 18,100 CA)</span> · pesto <span style="color:var(--muted)">(170 Vic / 22,200 CA)</span> · cornichons <span style="color:var(--muted)">(170 Vic / 14,800 CA)</span></div>
+          </div>
+        
+          <div class="card">
+            <h3>Charcuterie and catering</h3>
+            <div class="cs">
+              <div><div class="v num">29</div><div class="l">items in Square</div></div>
+              <div><div class="v num">3,770</div><div class="l">Vic searches/mo</div></div>
+              <div><div class="v num">79,120</div><div class="l">Canada searches/mo</div></div>
+            </div>
+            <div class="top"><strong>Top demand:</strong> charcuterie board <span style="color:var(--muted)">(590 Vic / 49,500 CA)</span> · italian deli <span style="color:var(--muted)">(320 Vic / 2,900 CA)</span> · catering <span style="color:var(--muted)">(110 Vic / 14,800 CA)</span> · cheese board <span style="color:var(--muted)">(30 Vic / 2,900 CA)</span></div>
+          </div>
+        
+          <div class="card">
+            <h3>Ottavio branded search</h3>
+            <div class="cs">
+              <div><div class="v num">—</div><div class="l">items in Square</div></div>
+              <div><div class="v num">1,500</div><div class="l">Vic searches/mo</div></div>
+              <div><div class="v num">15,490</div><div class="l">Canada searches/mo</div></div>
+            </div>
+            <div class="top"><strong>Top demand:</strong> ottavio <span style="color:var(--muted)">(480 Vic / 14,800 CA)</span> · ottavio oak bay <span style="color:var(--muted)">(210 Vic / 320 CA)</span> · ottavio victoria <span style="color:var(--muted)">(170 Vic / 260 CA)</span> · ottavio italian bakery <span style="color:var(--muted)">(70 Vic / 110 CA)</span></div>
+          </div>
+        
+    </div>
+  </section>
+
+  
+  <section>
+    <h2>Question-style searches Victoria locals are typing</h2>
+    <p class="intro">When a Google search is phrased as a question, Google often shows an AI Overview at the top pulling from whichever page answers the question clearly. None of these queries have any meaningful competition — a single FAQ-style paragraph on the right page wins the answer slot.</p>
+    <div class="aeo">
+      
+        <div class="aeo-item">
+          <div class="q">best charcuterie victoria</div>
+          <div class="v">10 Vic/mo · 10 CA/mo</div>
+        </div>
+      
+        <div class="aeo-item">
+          <div class="q">italian deli oak bay</div>
+          <div class="v">10 Vic/mo · 20 CA/mo</div>
+        </div>
+      
+    </div>
+  </section>
+  
+
+  <section>
+    <h2>What a product page should contain</h2>
+    <p class="intro">The page below is a rough sketch — what a single Ottavio product page should include to rank for the relevant searches, convert visitors, and feed Google's product result rich snippets. Photography of the actual product matters more than design polish.</p>
+    <div class="mockup">
+      <div class="browser"><span class="url">ottavio.ca/shop/cheese/burrata-pugliese</span></div>
+      <div class="body">
+        <div class="img">Hero photo: the burrata, torn open, over a focaccia. Real product, not stock.</div>
+        <div>
+          <div class="breadcrumb">Cheese → Fresh cheese → Burrata Pugliese</div>
+          <h4>Burrata Pugliese</h4>
+          <div style="color:var(--muted);font-size:13px;">Murgella · Puglia, Italy · 200g</div>
+          <div class="price">$20.00</div>
+          <div class="desc"><strong>What it is.</strong> A ball of mozzarella stretched around a center of stracciatella (cream and shredded curd). When torn open it spills. Murgella is one of the producers still making it the traditional way in Puglia. Ottavio carries 200g balls, packed Tuesday in Italy, on our counter Friday morning.</div>
+          <div class="desc"><strong>How to use it.</strong> Tear it over warm focaccia. Drape across tomatoes with basil and a pour of olive oil. Eat at room temperature within 48 hours of opening.</div>
+          <div class="targets"><strong>Search terms this page targets:</strong> "burrata" (390 Vic/mo, 49,500 CA/mo) · "buffalo mozzarella" (90 Vic/mo) · "fresh mozzarella near me" · "italian cheese victoria" · "where to buy burrata victoria"</div>
+          <div class="schema">{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Burrata Pugliese — Murgella, 200g",
+  "brand": { "@type": "Brand", "name": "Murgella" },
+  "image": ".../burrata-torn-over-focaccia.jpg",
+  "description": "Fresh Puglian burrata, 200g...",
+  "offers": { "@type": "Offer", "price": "20.00",
+              "priceCurrency": "CAD",
+              "availability": "https://schema.org/InStock" }
+}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Suggested build order</h2>
+    <p class="intro">A reasonable sequence if Ottavio wants to take this on. Each phase compounds on the one before. Most of the value sits in phase 1 — winning local searches that almost no one is competing for.</p>
+
+    <div class="roadmap">
+      <div class="phase">
+        <div class="when">Phase 1 · Weeks 1–4</div>
+        <h4>Local pages and homepage</h4>
+        <ul>
+          <li>Rebuild homepage and About page to rank for "ottavio victoria" and "ottavio oak bay" (380 Vic/mo combined)</li>
+          <li>Dedicated /italian-deli-victoria landing page (1,180 Vic/mo across that family)</li>
+          <li>/catering landing page ("catering victoria", "charcuterie catering" — 960 Vic/mo)</li>
+          <li>Bakery section page targeting "bakery victoria" and "bakery near me" (10,400 Vic/mo — the largest single bucket in the data)</li>
+          <li>Google Business Profile: hours, attributes, weekly posts, photos for every product</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="when">Phase 2 · Weeks 5–8</div>
+        <h4>30 main product pages</h4>
+        <ul>
+          <li>Template at /shop/[category]/[slug], live Square price feed</li>
+          <li>500–800 words per product covering: what it is, where it's from, how to use it, who in Ottavio's case carries it</li>
+          <li>Product schema markup with price and availability</li>
+          <li>FAQ schema with 3–5 answered questions per product</li>
+          <li>3 photos per product: counter, cut close-up, plated pairing</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="when">Phase 3 · Weeks 9–12</div>
+        <h4>Long tail and automation</h4>
+        <ul>
+          <li>Auto-generate lighter pages for every Square item above $5</li>
+          <li>Editorial pass on the next 50 named products</li>
+          <li>Monthly "what's in the case this week" page driven by Square updates</li>
+          <li>Recipe pages linked back to ingredient product pages</li>
+          <li>Skip the keywords flagged in "search terms that point at someone else" — don't waste SEO effort there</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="method">
+    <div class="wrap">
+      <h2>How the numbers were sourced</h2>
+      <div class="row">
+        <div class="k">Catalog</div>
+        <div class="v">Pulled directly from Ottavio's Square Catalog API in production. 1,263 items across 69 Square categories. Of those, 657 are deli, bakery, or pantry items suitable for product pages.</div>
+      </div>
+      <div class="row">
+        <div class="k">Search volume</div>
+        <div class="v">DataForSEO's Google Ads Search Volume API, live data. Two locations: Canada (location_code 2124) and Victoria, BC (location_name "Victoria,British Columbia,Canada"). 1037 keywords queried per location. Volume numbers are from Google's own Keyword Planner.</div>
+      </div>
+      <div class="row">
+        <div class="k">Difficulty + competitors</div>
+        <div class="v">DataForSEO Labs keyword difficulty endpoint (0–100 score) for 66 priority keywords, plus live Google SERP scrapes for 29 of those keywords from Victoria, BC. The SERP data captures the actual top 10 organic results, presence of Google's local pack (map results) and AI Overview, plus Ottavio's current ottaviovictoria.com position where it ranks in the top 10.</div>
+      </div>
+      <div class="row">
+        <div class="k">Filter for shared names</div>
+        <div class="v">Any term where Victoria volume is more than 5% of Canada volume — and which doesn't already contain a location word like "victoria" or "oak bay" — gets flagged. Population share puts Victoria at about 1% of Canada, so 5%+ usually means another local business shares the name. This caught Fol Épi (82% of CA volume is in Victoria) and Lumache restaurant (36%).</div>
+      </div>
+      <div class="row">
+        <div class="k">Traffic estimate</div>
+        <div class="v">Conservative capture rates by intent strength. Branded searches: 60–80% (Ottavio should own its own name). Local searches: 15–30% (low competition). Victoria product searches: 10–25%. Canada product searches: 0.3–1.5%. These are tier ceilings assuming the pages are built properly and indexed by Google.</div>
+      </div>
+      <div class="row">
+        <div class="k">Refresh cadence</div>
+        <div class="v">The script that produced this report can be re-run on demand. Running it monthly would catch seasonal patterns — charcuterie demand spikes in November/December, gelato in May/August.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+</body>
+</html>
