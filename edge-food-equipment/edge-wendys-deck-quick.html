@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Edge × Wendy's · 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,500;1,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#ff7200;
+    --orange-2:#ff8a2c;
+    --yellow:#fbc700;
+    --wendy-red:#e2231a;
+    --ink:#0a0a0a;
+    --ink-2:#111;
+    --ink-3:#171717;
+    --card:#1a1a1a;
+    --card-2:#1f1f1f;
+    --line:#262626;
+    --line-soft:#1d1d1d;
+    --line-bright:#333;
+    --paper:#f7f4ec;
+    --paper-2:#cfcabc;
+    --muted:#8b8b8b;
+    --display:'Playfair Display',Georgia,serif;
+    --sans:'Inter',system-ui,-apple-system,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-snap-type:y mandatory;scroll-behavior:smooth;background:var(--ink)}
+  body{margin:0;padding:0;background:var(--ink);color:var(--paper);font-family:var(--sans);font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  img,svg{max-width:100%;display:block}
+  ::selection{background:var(--orange);color:var(--ink)}
+
+  /* ---------- SLIDE BASE ---------- */
+  .slide{
+    min-height:100vh;
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
+    padding:90px 80px 80px;
+    display:flex;
+    flex-direction:column;
+    position:relative;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .slide-inner{max-width:1280px;width:100%;margin:0 auto;flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
+  .slide.dark2{background:var(--ink-2)}
+  .slide.dark3{background:#080808}
+  @media (max-width:900px){
+    .slide{padding:70px 28px 60px;min-height:auto}
+    html{scroll-snap-type:none}
+  }
+
+  /* ---------- SLIDE METADATA / CHROME ---------- */
+  .chrome-top{position:absolute;top:30px;left:80px;right:80px;display:flex;align-items:center;justify-content:space-between;z-index:2;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.16em}
+  @media (max-width:900px){.chrome-top{left:28px;right:28px;top:22px}}
+  .chrome-top .l{display:flex;align-items:center;gap:14px}
+  .chrome-top .edge-mini{height:18px;width:auto;opacity:.85}
+  .chrome-top .sep{width:1px;height:14px;background:var(--line-bright)}
+  .chrome-top .nbr{color:var(--orange);font-weight:600}
+  .chrome-bottom{position:absolute;bottom:28px;left:80px;right:80px;display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.12em}
+  @media (max-width:900px){.chrome-bottom{left:28px;right:28px;bottom:22px}}
+
+  /* ---------- DOT NAV ---------- */
+  .nav{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:60;display:flex;flex-direction:column;gap:11px}
+  .nav a{display:block;width:8px;height:8px;border-radius:50%;background:#3a3a3a;transition:all .2s;border:none}
+  .nav a:hover{background:var(--paper-2)}
+  .nav a.active{background:var(--orange);transform:scale(1.5)}
+  @media (max-width:900px){.nav{display:none}}
+
+  /* ---------- TYPE ---------- */
+  h1,h2,h3,h4{font-family:var(--display);font-weight:700;color:var(--paper);letter-spacing:-.02em;line-height:1;margin:0}
+  h1{font-size:clamp(56px,8vw,128px);letter-spacing:-.035em;line-height:.98}
+  h2{font-size:clamp(46px,5.6vw,84px);line-height:1.02;letter-spacing:-.025em}
+  h3{font-size:24px;font-weight:600;font-family:var(--sans);letter-spacing:-.01em;line-height:1.2;color:var(--paper)}
+  .eyebrow{font-family:var(--mono);font-size:11px;color:var(--orange);letter-spacing:.28em;text-transform:uppercase;font-weight:500;margin-bottom:30px;display:inline-flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:24px;height:1px;background:var(--orange)}
+  .deck{font-size:clamp(20px,1.7vw,24px);line-height:1.45;color:var(--paper-2);max-width:38em;margin-top:32px;font-weight:300}
+  .deck em{color:var(--paper);font-family:var(--display);font-style:italic;font-weight:500}
+  .o{color:var(--orange);font-style:italic;font-weight:700}
+  .y{color:var(--yellow)}
+  .ital{font-family:var(--display);font-style:italic}
+  .mark{background:linear-gradient(transparent 70%,rgba(255,114,0,.18) 70%);padding:0 4px}
+
+  /* ---------- HERO ---------- */
+  .hero{background:radial-gradient(1200px 800px at 90% -10%,rgba(255,114,0,.10),transparent 55%),radial-gradient(800px 500px at -10% 110%,rgba(226,35,26,.06),transparent 60%),var(--ink)}
+  .lockup{display:flex;align-items:center;gap:48px;flex-wrap:wrap}
+  .lockup img.w-logo{height:170px;width:auto;filter:drop-shadow(0 8px 24px rgba(226,35,26,.15))}
+  .lockup .x{font-family:var(--display);font-style:italic;color:var(--muted);font-size:46px;font-weight:500}
+  .lockup svg.e-logo{height:88px;width:auto}
+  @media (max-width:900px){
+    .lockup{gap:24px}
+    .lockup img.w-logo{height:110px}
+    .lockup .x{font-size:32px}
+    .lockup svg.e-logo{height:58px}
+  }
+  .hero h1{margin-top:60px}
+  .hero h1 .acc{color:var(--orange);font-style:italic;font-weight:700}
+
+  /* ---------- REALITY ---------- */
+  .reality-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:80px;align-items:center;margin-top:48px}
+  @media (max-width:1000px){.reality-grid{grid-template-columns:1fr;gap:48px}}
+  .reality-quote{padding:24px 28px;background:var(--ink);border-left:3px solid var(--orange);border-radius:0 4px 4px 0;margin-top:24px}
+  .reality-quote .q{font-family:var(--display);font-style:italic;font-size:19px;line-height:1.4;color:var(--paper);margin:0;max-width:32em;font-weight:500}
+  .reality-quote .src{margin-top:14px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;font-family:var(--mono)}
+  .stats4{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .stat{padding:28px 26px;background:var(--card);border:1px solid var(--line-soft);border-radius:6px;transition:transform .2s,border-color .2s}
+  .stat:hover{transform:translateY(-2px);border-color:var(--line-bright)}
+  .stat .n{font-family:var(--display);font-size:46px;font-weight:700;color:var(--orange);line-height:1;letter-spacing:-.025em}
+  .stat .l{margin-top:6px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--yellow);font-weight:700;font-family:var(--mono)}
+  .stat .d{margin-top:12px;font-size:13.5px;color:var(--paper-2);line-height:1.45}
+
+  /* ---------- THESIS ---------- */
+  .thesis-slide{background:var(--ink-2)}
+  .thesis-slide .slide-inner{justify-content:center}
+  .thesis-headline{font-size:clamp(40px,5.4vw,80px);line-height:1.05;max-width:18ch;letter-spacing:-.025em}
+  .thesis-headline .o{color:var(--orange);font-style:italic;font-weight:700}
+  .thesis-foot{margin-top:54px;font-family:var(--display);font-style:italic;font-size:clamp(20px,1.8vw,26px);line-height:1.45;color:var(--paper);max-width:32em;font-weight:500}
+  .thesis-foot em{color:var(--orange);font-style:italic}
+
+  /* ---------- INSIGHTS (4-up) ---------- */
+  .ins-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:48px}
+  @media (max-width:800px){.ins-grid{grid-template-columns:1fr}}
+  .ins{background:var(--ink-2);padding:32px 30px;transition:background .2s}
+  .ins:hover{background:var(--card)}
+  .ins .ix{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.18em;margin-bottom:14px;display:flex;align-items:center;gap:10px;text-transform:uppercase}
+  .ins .ix .tg{color:var(--orange);font-weight:600}
+  .ins h3{font-family:var(--display);font-size:22px;font-weight:700;color:var(--paper);margin-bottom:10px;line-height:1.15;letter-spacing:-.01em}
+  .ins p{font-size:14.5px;color:var(--paper-2);margin:0;line-height:1.5;max-width:34em}
+
+  /* ---------- PORTAL ---------- */
+  .portal-slide{background:var(--ink-2)}
+  .portal-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;margin-top:34px}
+  @media (max-width:1000px){.portal-hero{grid-template-columns:1fr;gap:40px}}
+  .portal-title{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .portal-title h2{font-size:clamp(40px,4.8vw,70px)}
+  .portal-title .w-inline{height:78px;width:auto;transform:translateY(-2px)}
+  @media (max-width:700px){.portal-title .w-inline{height:50px}}
+  .mock{background:#fbf7ee;border-radius:10px;overflow:hidden;box-shadow:0 24px 70px -16px rgba(0,0,0,.6),0 0 0 1px var(--line-bright)}
+  .mock-bar{background:#fff;padding:10px 14px;border-bottom:1px solid #e8dec4;display:flex;align-items:center;gap:7px}
+  .mock-dot{width:11px;height:11px;border-radius:999px;background:#d4cfc2}
+  .mock-dot.r{background:#e2231a}.mock-dot.y{background:#dab452}.mock-dot.g{background:#7aa860}
+  .mock-url{margin-left:12px;font-family:var(--mono);font-size:10px;color:#7a7461;background:#f4ecd9;padding:5px 10px;border-radius:4px;border:1px solid #e6dcc1}
+  .mock-body{padding:18px 22px 22px;color:#141414;font-family:var(--sans)}
+  .mock-head{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ebe1c5;padding-bottom:12px;margin-bottom:14px;gap:10px}
+  .mock-head .l-wm{display:flex;align-items:center;gap:10px}
+  .mock-head .l-wm img{height:34px;width:auto}
+  .mock-head .l-wm .lbl{font-family:var(--sans);font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#222}
+  .mock-head .who{font-size:11px;color:#6b6552;font-family:var(--mono)}
+  .mock-greet{font-family:var(--display);font-size:20px;color:#141414;margin-bottom:2px;font-weight:700;letter-spacing:-.01em}
+  .mock-sub{font-size:12px;color:#6b6552;margin-bottom:14px}
+  .mock-row{display:grid;grid-template-columns:1.3fr 1fr;gap:10px;margin-bottom:12px}
+  .mock-card{background:#fff;border:1px solid #ecdfc1;border-radius:6px;padding:12px}
+  .mock-card .ttl{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#a37d2b;font-weight:700;margin-bottom:6px}
+  .mock-card .big{font-family:var(--display);font-weight:700;font-size:21px;color:#141414;line-height:1.05}
+  .mock-card .dlt{font-size:10px;color:#6b6552;margin-top:4px}
+  .mock-card .dlt b{color:#7aa860;font-weight:700}
+  .mock-card.tg{padding:12px 14px}
+  .ml{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f1e8d0;font-size:12px;color:#141414}
+  .ml:last-child{border-bottom:none}
+  .ml .qty{font-family:var(--display);font-weight:600;color:#a37d2b}
+  .ck{width:13px;height:13px;border:1.5px solid #a37d2b;border-radius:2px;background:#fff;display:inline-block;margin-right:6px;vertical-align:middle;position:relative;flex-shrink:0}
+  .ck.on{background:#a37d2b}
+  .ck.on::after{content:"";position:absolute;left:3px;top:0;width:3px;height:7px;border:solid #fff;border-width:0 1.5px 1.5px 0;transform:rotate(45deg)}
+  .mock-cta{margin-top:12px;display:flex;justify-content:flex-end}
+  .mock-cta .btn{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--wendy-red);padding:8px 14px;border-radius:3px}
+
+  .portal-side{display:flex;flex-direction:column;gap:16px}
+  .layer{display:grid;grid-template-columns:54px 1fr;gap:18px;padding:22px 22px;background:var(--card);border:1px solid var(--line-soft);border-radius:6px;transition:border-color .2s}
+  .layer:hover{border-color:var(--line-bright)}
+  .layer .nm{font-family:var(--display);font-size:30px;color:var(--orange);font-weight:700;line-height:1;font-style:italic;letter-spacing:-.02em}
+  .layer h3{font-family:var(--display);font-size:17px;margin-bottom:4px;font-weight:700;color:var(--paper)}
+  .layer p{font-size:13.5px;color:var(--paper-2);margin:0;line-height:1.45}
+
+  /* ---------- AI ---------- */
+  .ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px}
+  @media (max-width:800px){.ai-grid{grid-template-columns:1fr}}
+  .ai{background:var(--card);border:1px solid var(--line-soft);border-radius:6px;padding:32px 30px}
+  .ai .who{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);font-weight:700;margin-bottom:18px}
+  .ai .who::before{content:"";width:6px;height:6px;background:var(--orange);border-radius:50%}
+  .chat{font-family:var(--display);font-style:italic;font-size:20px;line-height:1.4;color:var(--paper);margin-bottom:18px;padding-left:16px;border-left:2px solid var(--orange);font-weight:500;max-width:30em}
+  .rep{font-size:14px;color:var(--paper-2);line-height:1.55;padding-left:16px;border-left:2px solid var(--line-bright);max-width:36em}
+  .rep b{color:var(--orange);font-weight:700;font-family:var(--mono);font-size:11px;letter-spacing:.06em}
+  .kbd{font-family:var(--mono);font-size:12px;color:var(--orange-2);background:rgba(255,114,0,.12);padding:1px 7px;border-radius:3px}
+  .ai-note{margin-top:28px;font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.04em;max-width:64ch;line-height:1.5}
+  .ai-note b{color:var(--paper-2)}
+
+  /* ---------- MATH ---------- */
+  .math-slide{background:var(--ink-2)}
+  .math-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:42px}
+  @media (max-width:900px){.math-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.math-grid{grid-template-columns:1fr}}
+  .met{padding:30px 26px;background:var(--card);transition:background .2s}
+  .met:hover{background:var(--card-2)}
+  .met .top{font-family:var(--display);font-size:54px;font-weight:700;color:var(--orange);line-height:1;letter-spacing:-.03em}
+  .met .lbl{margin-top:10px;font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--yellow);font-weight:700}
+  .met .d{margin-top:12px;font-size:13px;color:var(--paper-2);line-height:1.5}
+  .math-note{margin-top:24px;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.04em;line-height:1.6;max-width:90ch}
+
+  /* ---------- PILOT ---------- */
+  .pilot{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+  @media (max-width:900px){.pilot{grid-template-columns:1fr}}
+  .phase{padding:30px 28px;background:var(--card);border:1px solid var(--line-soft);border-radius:6px;position:relative;overflow:hidden}
+  .phase::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--orange)}
+  .phase:nth-child(2)::before{background:var(--yellow)}
+  .phase:nth-child(3)::before{background:var(--wendy-red)}
+  .phase .pn{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.16em;margin-bottom:10px;text-transform:uppercase;font-weight:600}
+  .phase h3{font-family:var(--display);font-size:24px;margin-bottom:4px;font-weight:700;color:var(--paper)}
+  .phase .wk{font-size:13px;color:var(--orange);font-family:var(--display);font-style:italic;margin-bottom:16px}
+  .phase ul{margin:0;padding-left:16px;color:var(--paper-2);font-size:13.5px;line-height:1.5}
+  .phase ul li{margin-bottom:6px}
+  .phase ul li::marker{color:var(--orange)}
+
+  /* ---------- WHY ---------- */
+  .why-slide{background:var(--ink-2)}
+  .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:42px}
+  @media (max-width:780px){.why-grid{grid-template-columns:1fr}}
+  .why{padding:30px 28px;background:var(--card);border:1px solid var(--line-soft);border-radius:6px;transition:border-color .2s}
+  .why:hover{border-color:var(--line-bright)}
+  .why .bdg{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);font-weight:800;background:var(--orange);padding:5px 9px;border-radius:3px;margin-bottom:14px}
+  .why h3{font-family:var(--display);font-size:21px;margin-bottom:10px;font-weight:700;color:var(--paper);letter-spacing:-.01em;line-height:1.2}
+  .why p{font-size:14px;color:var(--paper-2);margin:0;line-height:1.5}
+
+  /* ---------- CLOSE ---------- */
+  .close-slide{background:radial-gradient(900px 600px at 50% 0%,rgba(255,114,0,.10),transparent 60%),var(--ink)}
+  .close-slide .slide-inner{justify-content:center}
+  .close-h{font-size:clamp(50px,7vw,108px);line-height:1.02;letter-spacing:-.03em;max-width:14em}
+  .close-h .o{color:var(--orange);font-style:italic;font-weight:700}
+  .close-body{margin-top:38px;font-size:clamp(18px,1.6vw,22px);line-height:1.55;color:var(--paper-2);max-width:36em;font-weight:300}
+  .close-body em{color:var(--paper);font-family:var(--display);font-style:italic}
+  .close-roadmap{margin-top:30px;display:flex;gap:22px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--paper-2)}
+  .close-roadmap b{color:var(--orange);font-weight:700;margin-right:6px}
+  .close-sig{margin-top:60px;display:flex;align-items:center;gap:18px}
+  .close-sig .ln{flex:0 0 50px;height:1px;background:var(--orange)}
+  .close-sig .nm{font-family:var(--display);color:var(--paper);font-weight:700;font-size:17px}
+  .close-sig .ro{margin-left:10px;color:var(--muted);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;font-family:var(--mono)}
+
+  /* keyboard hint */
+  .kb-hint{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:60;font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.18em;background:rgba(10,10,10,.7);padding:8px 14px;border-radius:999px;border:1px solid var(--line);text-transform:uppercase;opacity:.7;transition:opacity .3s}
+  .kb-hint kbd{background:var(--card);color:var(--paper);padding:1px 6px;border-radius:3px;font-family:var(--mono);font-size:10px;border:1px solid var(--line-bright)}
+  body.scrolled .kb-hint{opacity:0;pointer-events:none}
+  @media (max-width:900px){.kb-hint{display:none}}
+
+  /* print */
+  @media print{
+    html{scroll-snap-type:none}
+    body{background:#fff;color:#000}
+    .slide{page-break-after:always;min-height:auto;padding:40px;border:none}
+    .nav,.kb-hint,.chrome-top,.chrome-bottom{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- Edge logo symbol -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="edge" viewBox="0 0 965.5 350">
+      <style>.eo{fill:#ff7200}.ey{fill:#fbc700}.ew{fill:#ffffff}</style>
+      <path class="eo" d="M45.4,283.5v-6.4H0v62.9h6.9v-28.9h32.9v-6.3H6.9v-21.4H45.4z"/>
+      <path class="eo" d="M126.3,295.6c-1.6-3.9-3.9-7.4-6.9-10.4c-3-3-6.6-5.3-10.6-6.8c-4.3-1.6-8.9-2.5-13.5-2.4 c-4.6-0.1-9.2,0.8-13.5,2.4c-8,3-14.3,9.3-17.5,17.2c-3.2,8.4-3.2,17.7,0,26.1c1.6,3.9,3.9,7.4,6.9,10.3c3,3,6.6,5.3,10.6,6.8 c4.3,1.7,8.9,2.5,13.5,2.5c4.6,0.1,9.2-0.8,13.5-2.5c4-1.5,7.6-3.9,10.6-6.8c3-2.9,5.4-6.4,6.9-10.3 C129.6,313.3,129.6,304,126.3,295.6z M120,319.2c-2.5,6.4-7.5,11.4-13.9,13.8c-6.9,2.6-14.6,2.6-21.5,0c-3.2-1.2-6-3.1-8.4-5.5 c-2.4-2.4-4.2-5.2-5.4-8.4c-2.6-6.8-2.6-14.3,0-21.1c1.2-3.1,3.1-6,5.4-8.4c2.4-2.4,5.3-4.3,8.4-5.5c6.9-2.6,14.6-2.6,21.5,0 c3.2,1.3,6,3.1,8.4,5.5c2.4,2.4,4.2,5.2,5.4,8.4C122.5,304.9,122.5,312.4,120,319.2L120,319.2z"/>
+      <path class="eo" d="M211.4,295.6c-1.6-3.9-3.9-7.4-6.9-10.4c-3.1-3-6.7-5.3-10.6-6.8c-8.7-3.2-18.3-3.2-27,0 c-8,3.1-14.3,9.3-17.5,17.2c-3.2,8.4-3.2,17.7,0,26.1c1.6,3.9,4,7.4,7,10.3c3,3,6.6,5.3,10.6,6.8c8.7,3.3,18.3,3.3,27,0 c4-1.5,7.6-3.9,10.6-6.8c3-2.9,5.4-6.4,6.9-10.3C214.7,313.3,214.7,304,211.4,295.6L211.4,295.6z M205,319.2 c-2.5,6.4-7.5,11.4-13.9,13.8c-6.9,2.6-14.6,2.6-21.6,0c-3.1-1.2-6-3.1-8.4-5.5c-2.4-2.4-4.2-5.2-5.5-8.4c-2.5-6.8-2.5-14.3,0-21.1 c1.2-3.1,3.1-6,5.5-8.4c2.4-2.4,5.2-4.3,8.4-5.5c7-2.6,14.6-2.6,21.6,0c3.1,1.3,6,3.1,8.4,5.5c2.4,2.4,4.2,5.2,5.4,8.4 C207.6,304.9,207.6,312.4,205,319.2L205,319.2z"/>
+      <path class="eo" d="M288.8,295.8c-1.4-3.8-3.5-7.2-6.4-10c-3-2.9-6.5-5.1-10.4-6.4c-4.6-1.6-9.5-2.3-14.4-2.3h-22.6v62.9h22.5 c4.9,0.1,9.8-0.7,14.4-2.3c3.9-1.4,7.5-3.5,10.4-6.4c2.8-2.8,5-6.2,6.4-9.9C291.7,313.2,291.7,304.2,288.8,295.8L288.8,295.8z  M282.4,318.9c-2.1,6.2-7,11-13.2,13.1c-3.8,1.2-7.7,1.8-11.6,1.8H242v-50.2h15.6c4-0.1,7.9,0.5,11.6,1.8c6.2,2,11.1,6.8,13.2,13 C284.6,305,284.6,312.2,282.4,318.9L282.4,318.9z"/>
+      <path class="eo" d="M395.6,283.5v-6.4h-46.2v62.9h46.2v-6.4h-39.3v-22.4H390V305h-33.7v-21.5H395.6z"/>
+      <path class="eo" d="M469.5,334.5c3.8-2.9,6.9-6.7,9-11.1c2.2-4.6,3.3-9.7,3.2-14.8c0-4.5-0.8-8.9-2.5-13.1 c-1.6-3.9-3.9-7.4-6.9-10.4c-3.1-3-6.7-5.3-10.6-6.8c-8.7-3.2-18.3-3.2-27,0c-3.9,1.5-7.5,3.9-10.6,6.8c-3,3-5.4,6.5-6.9,10.4 c-3.3,8.4-3.3,17.7,0,26.1c1.6,3.9,3.9,7.4,6.9,10.3c3,3,6.6,5.3,10.6,6.8c4.3,1.7,8.9,2.5,13.5,2.5c5.6,0.1,11.2-1.1,16.2-3.6 L474,350h8L469.5,334.5z M465.4,329.3l-9.1-11.5h-8.1l11.9,14.6v0.2c-7.2,3.1-15.3,3.2-22.6,0.4c-3.1-1.2-6-3.1-8.4-5.5 c-2.4-2.4-4.2-5.2-5.4-8.4c-2.6-6.8-2.6-14.3,0-21.1c1.2-3.1,3.1-6,5.4-8.4c2.4-2.4,5.3-4.3,8.4-5.5c7-2.6,14.6-2.6,21.5,0 c3.1,1.3,6,3.1,8.4,5.5c2.4,2.4,4.2,5.2,5.4,8.4c1.3,3.4,1.9,6.9,1.9,10.5c0.1,4.1-0.8,8.1-2.5,11.8 C470.7,323.9,468.3,326.9,465.4,329.3z"/>
+      <path class="eo" d="M547.3,277.2v38.2c0,6-1.6,10.8-4.9,14.3s-8.1,5.3-14.5,5.3s-11.2-1.7-14.5-5.2s-4.9-8.3-4.9-14.4v-38.2h-7 v38.2c0,3.7,0.5,7.3,1.8,10.8c1.1,3.1,2.8,5.9,5.1,8.2c2.4,2.3,5.2,4.1,8.3,5.2c3.6,1.3,7.5,1.9,11.3,1.8c3.8,0.1,7.6-0.5,11.1-1.8 c3.1-1.1,5.8-2.9,8.2-5.2c2.2-2.3,4-5.1,5-8.2c1.2-3.5,1.8-7.1,1.8-10.8v-38.2H547.3z"/>
+      <path class="eo" d="M577.2,277.2v62.9h6.9v-62.9H577.2z"/>
+      <path class="eo" d="M656.6,289.2c-0.8-2.4-2.2-4.6-4-6.4c-1.9-1.9-4.3-3.3-6.8-4.2c-3.2-1.1-6.5-1.6-9.8-1.5h-27.2v62.9h6.9v-22.8 H636c3.3,0.1,6.7-0.5,9.8-1.5c2.5-0.9,4.9-2.4,6.8-4.2c1.8-1.8,3.2-3.9,4-6.3C658.4,300,658.4,294.4,656.6,289.2L656.6,289.2z  M650.2,302.6c-0.5,1.6-1.4,3.1-2.6,4.4c-1.3,1.3-2.9,2.3-4.6,2.9c-2.2,0.7-4.5,1.1-6.9,1h-20.4v-27.4h20.4c2.3,0,4.7,0.3,6.9,1.1 c1.7,0.6,3.3,1.6,4.6,2.9c1.2,1.2,2.1,2.7,2.5,4.3c0.5,1.7,0.8,3.6,0.8,5.4C651,299,650.7,300.9,650.2,302.6z"/>
+      <path class="eo" d="M754.2,288.6c-1-2.6-2.5-5-4.5-7c-1.9-1.9-4.2-3.3-6.7-4.2c-2.7-0.9-5.5-1.4-8.3-1.4c-4-0.1-8,0.9-11.4,3 c-3.2,2.1-5.7,5.1-7.1,8.7H716c-1.4-3.6-3.9-6.6-7.1-8.7c-3.4-2-7.3-3-11.3-3c-2.9,0-5.7,0.4-8.4,1.4c-2.5,0.9-4.8,2.3-6.6,4.2 c-1.9,2-3.4,4.4-4.4,7c-1.1,3.1-1.7,6.4-1.6,9.8v41.8h6.9v-41.8c0-2.4,0.3-4.7,1.1-7c0.7-1.9,1.7-3.6,3.1-5c1.3-1.3,2.9-2.3,4.6-3 c1.9-0.7,3.8-1,5.8-1c3.9-0.1,7.7,1.4,10.5,4.1c2.8,2.8,4.1,6.7,4.1,11.9v41.8h6.9v-41.8c0-5.2,1.4-9.2,4.2-11.9 c2.8-2.8,6.6-4.3,10.5-4.1c3.9-0.1,7.7,1.3,10.5,4c2.8,2.7,4.2,6.7,4.2,12V340h6.9v-41.7C756,295,755.4,291.7,754.2,288.6z"/>
+      <path class="eo" d="M825,283.5v-6.4h-46.1v62.9H825v-6.4h-39.2v-22.4h33.7V305h-33.7v-21.5H825z"/>
+      <path class="eo" d="M897.1,291.1c-1.1-3.1-2.8-5.8-5.1-8.1c-2.4-2.3-5.2-4.1-8.3-5.2c-3.6-1.3-7.4-1.9-11.3-1.8 c-3.9-0.1-7.7,0.5-11.3,1.8c-3.1,1.1-5.9,2.9-8.3,5.2c-2.3,2.3-4,5.1-5.1,8.2c-1.2,3.4-1.8,7.1-1.7,10.7v38.2h6.9v-38.2 c0-6.1,1.7-10.9,5-14.4s8.1-5.2,14.6-5.2s11.2,1.7,14.5,5.2s4.9,8.3,4.9,14.4v38.2h7v-38.2C898.9,298.2,898.3,294.6,897.1,291.1z"/>
+      <path class="eo" d="M915.9,277.2v6.4h21.4v56.6h6.9v-56.6h21.4v-6.4H915.9z"/>
+      <path class="eo" d="M346.3,36.9c-3.9,0.6-7.6,2.5-10.4,5.3c-2.9,2.9-5.3,6.3-7,10c-1.7,3.7-2.8,7.6-3.5,11.7 c-0.4,2.1-0.5,4.3-0.5,6.5c0,2.2,0.2,4.3,0.5,6.5c1.5,8.2,4.6,15.9,9.2,22.8c4.3,6.7,9.1,12.3,13.3,17.5s7.9,10,10.5,15 c2.7,5,4.5,10.5,5.3,16.2c0.8,6.1,0.5,12.4-0.9,18.4c-0.7,3.3-1.6,6.6-2.7,9.9c-1.1,3.4-2.4,6.8-3.6,10.3c3.2-2,6.1-4.3,8.8-6.9 c1.4-1.3,2.7-2.7,3.9-4.1c0.6-0.7,1.2-1.5,1.8-2.3s1.2-1.5,1.7-2.4c4.6-6.8,7.5-14.6,8.5-22.7c0.8-8.5-0.4-17.1-3.6-25 c-3.1-8-7.9-14.7-12.6-20.5s-9.5-10.7-13.4-15.6c-3.8-4.5-7-9.6-9.5-15c-0.6-1.3-1-2.6-1.5-4c-0.4-1.3-0.7-2.7-1-4.1 c-0.5-3.1-0.7-6.2-0.6-9.3C339.8,48.8,341.1,42.4,346.3,36.9z"/>
+      <path class="ey" d="M300.2,108.4c-0.1,0.4-1.4,1-1.7,1.3c-1.5,1.2-2.9,2.6-4.2,4c-4.3,4.7-7.6,10.2-9.7,16.3 c-5.8,17-2.3,39.4,11.7,51.5c11.2,9.6,27.3,11.7,40.8,5.8c12-5.1,19.9-17,19.8-30.1c0-31-39.6-43-38.5-83.2c0,0-21.4,18.1,1,52.1 c13,19.7,10.5,29.9,4.4,32.6C310.8,164.5,291.3,135.4,300.2,108.4z"/>
+      <polygon class="ew" points="0,228.5 164.4,228.5 164.4,205.9 24.7,205.9 24.7,126.1 144.6,126.1 144.6,103.4 24.7,103.4 24.7,27 164.4,27 164.4,4.4 0,4.4 "/>
+      <path class="ew" d="M415.1,35.3c-10.1-9.8-22.5-17.4-37.2-22.8c-14.7-5.4-31.8-8.1-51.2-8.1h-89.6v224h89.6c19.4,0,36.5-2.7,51.2-8 c14.7-5.3,27.1-12.9,37.2-22.8c10.1-9.9,17.9-22,22.8-35.3c5.1-13.7,7.7-29,7.7-45.9c0-16.7-2.6-31.9-7.7-45.7 C433,57.4,425.2,45.2,415.1,35.3z M415.1,153.1c-3.7,10.6-9.6,20.3-17.5,28.3c-7.8,7.8-17.6,13.9-29.5,18.1s-25.7,6.3-41.5,6.3 h-66.3L260.7,27h66c15.8,0,29.6,2.1,41.5,6.3c11.9,4.2,21.7,10.3,29.5,18.1c7.8,8,13.8,17.7,17.5,28.3c4,11.8,6,24.2,5.8,36.6 C421.1,128.9,419.1,141.3,415.1,153.1z"/>
+      <path class="ew" d="M594.6,138.4h106.9v0.7c-2.1,10.5-6,20.5-11.5,29.6c-5.2,8.7-12,16.3-20,22.4c-8.3,6.3-17.6,11.1-27.6,14.2 c-10.9,3.4-22.3,5.1-33.8,5c-13.1,0.1-26.1-2.2-38.4-7c-11.2-4.4-21.4-11.1-30-19.6c-8.4-8.5-15-18.6-19.3-29.8 c-4.7-12-7-24.7-6.9-37.5c-0.1-12.8,2.2-25.5,6.9-37.5c4.3-11.2,10.9-21.3,19.3-29.8c8.6-8.5,18.8-15.1,30-19.5 c12.2-4.8,25.2-7.1,38.4-7c20.1,0,37.5,4.7,52.2,14.2c14.4,9.2,25.9,22.3,33,37.9H721c-3.8-11.1-9.4-21.5-16.6-30.7 c-7.1-9.1-15.6-17.1-25.2-23.6c-9.9-6.7-20.9-11.8-32.4-15.1c-12.4-3.6-25.3-5.4-38.2-5.3C591,0,575,2.9,560.5,8.7 c-14,5.5-26.9,13.8-37.7,24.3c-10.7,10.5-19.1,23.1-24.6,37c-5.9,14.8-8.9,30.5-8.8,46.4c-0.2,16,2.8,31.8,8.8,46.6 c5.6,13.8,14,26.4,24.6,36.8c10.8,10.5,23.6,18.8,37.7,24.3c14.5,5.8,30.5,8.7,48.1,8.7c15.6,0.1,31.1-2.5,45.7-7.9 c13.5-4.9,25.9-12.3,36.6-21.9c10.4-9.4,18.9-20.7,25-33.4c6.4-13.3,10.3-27.6,11.5-42.3v-11.6H594.6V138.4z"/>
+      <polygon class="ew" points="965.5,27 965.5,4.4 801.1,4.4 801.1,228.5 965.5,228.5 965.5,205.9 825.8,205.9 825.8,126.1 945.7,126.1 945.7,103.4 825.8,103.4 825.8,27 "/>
+    </symbol>
+  </defs>
+</svg>
+
+<nav class="nav">
+  <a href="#s1" data-i="0"></a><a href="#s2" data-i="1"></a><a href="#s3" data-i="2"></a><a href="#s4" data-i="3"></a><a href="#s5" data-i="4"></a><a href="#s6" data-i="5"></a><a href="#s7" data-i="6"></a><a href="#s8" data-i="7"></a><a href="#s9" data-i="8"></a><a href="#s10" data-i="9"></a>
+</nav>
+
+<!-- =========== 1 · HERO =========== -->
+<section class="slide hero" id="s1">
+  <div class="chrome-top">
+    <div class="l"><svg class="edge-mini" viewBox="0 0 965.5 350" aria-hidden="true"><use href="#edge"/></svg><span class="sep"></span><span>× Wendy's · 2026</span></div>
+    <div class="r"><span class="nbr">01</span> / 10</div>
+  </div>
+  <div class="slide-inner">
+    <div class="lockup">
+      <img class="w-logo" src="wendys-logo.png" alt="Wendy's"/>
+      <span class="x">×</span>
+      <svg class="e-logo" viewBox="0 0 965.5 350" aria-hidden="true"><use href="#edge"/></svg>
+    </div>
+    <h1>
+      Project Fresh<br>
+      <span class="acc">starts in the prep&nbsp;line.</span>
+    </h1>
+    <p class="deck">A 2026 smallwares program designed not as a procurement contract — but as the <em>operations layer</em> that makes Project Fresh execution easier at every Canadian Wendy's location.</p>
+  </div>
+  <div class="chrome-bottom">
+    <span>Prepared for The Wendy's Company · June 24, 2026</span>
+    <span>JP Cesario · Edge Food Equipment</span>
+  </div>
+</section>
+
+<!-- =========== 2 · REALITY =========== -->
+<section class="slide" id="s2">
+  <div class="chrome-top">
+    <div class="l"><svg class="edge-mini" viewBox="0 0 965.5 350" aria-hidden="true"><use href="#edge"/></svg><span class="sep"></span><span>The Reality</span></div>
+    <div class="r"><span class="nbr">02</span> / 10</div>
+  </div>
+  <div class="slide-inner">
+    <div class="eyebrow">01 · The Reality</div>
+    <h2>The most strategic moment Wendy's has had in years.</h2>
+    <div class="reality-grid">
+      <div>
+        <p class="deck">Project Fresh just launched. <em>Operational excellence</em> and <em>system optimization</em> sit at the center of 2026 spend. The supplier decisions made this year don't just stock kitchens — they decide whether the plan holds at the store level.</p>
+        <div class="reality-quote">
+          <p class="q">"Digital and equipment efficiency, simplified processes, labor and technology."</p>
+          <div class="src">— Project Fresh launch, The Wendy's Company</div>
+        </div>
+      </div>
+      <div class="stats4">
+        <div class="stat"><div class="n">4</div><div class="l">Pillars · 2026</div><div class="d">Operational excellence at the center.</div></div>
+        <div class="stat"><div class="n">$15–20M</div><div class="l">Franchisee economics</div><div class="d">Largest unit-level investment in years.</div></div>
+        <div class="stat"><div class="n">5–6%</div><div class="l">Locations closing</div><div class="d">Every remaining store runs leaner.</div></div>
+        <div class="stat"><div class="n">−$20M+</div><div class="l">Build-to-Suit cut</div><div class="d">New stores open with less capital.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="chrome-bottom"><span>Project Fresh · 2026</span><span>Edge × Wendy's</span></div>
+</section>
+
+<!-- =========== 3 · THESIS =========== -->
+<section class="slide thesis-slide" id="s3">
+  <div class="chrome-top">
+    <div class="l"><svg class="edge-mini" viewBox="0 0 965.5 350" aria-hidden="true"><use href="#edge"/></svg><span class="sep"></span><span>The Thesis</span></div>
+    <div class="r"><span class="nbr">03</span> / 10</div>
+  </div>
+  <div class="slide-inner">
+    <div class="eyebrow">02 · The Thesis</div>
+    <h2 class="thesis-headline">Smallwares is the <span class="o">layer</span> where consistency, labor, and franchisee economics either <span class="mark">compound or collapse.</span></h2>
+    <p class="thesis-foot">We're not bidding to be a smallwares vendor. <em>We're bidding to be your operations layer.</em></p>
+  </div>
+  <div class="chrome-bottom"><span>The thesis</span><span>Edge × Wendy's</span></div>
+</section>
+
+<!-- =========== 4 · INSIGHTS =========== -->
+<section class="slide" id="s4">
+  <div class="chrome-top">
+    <div class="l"><svg class="edge-mini" viewBox="0 0 965.5 350" aria-hidden="true"><use href="#edge"/></svg><span class="sep"></span><span>What's Broken</span></div>
+    <div class="r"><span class="nbr">04</span> / 10</div>
+  </div>
+  <div class="slide-inner">
+    <div class="eyebrow">03 · What's quietly broken</div>
+    <h2>Four leaks across ~380 stores.</h2>
+    <div class="ins-grid">
+      <div class="ins">
+        <div class="ix"><span>01</span><span class="tg">· Procurement chaos</span></div>
+        <h3>380 GMs ordering 380 ways.</h3>
+        <p>Email, phone, PDF. Brand standards drift by region. Cooperative pricing is right; execution leaks at the franchise.</p>
+      </div>
+      <div class="ins">
+        <div class="ix"><span>02</span><span class="tg">· Working capital</span></div>
+        <h3>Lead times that shouldn't exist.</h3>
+        <p>A skimmer takes nine days. The GM panic-orders extras. Multiplied across hundreds of locations, it's dead capital on shelves.</p>
+      </div>
+      <div class="ins">
+        <div class="ix"><span>03</span><span class="tg">· Data dark zone</span></div>
+        <h3>QSCC can't tune what it can't see.</h3>
+        <p>Order patterns by location, region, daypart — trapped in spreadsheets. The cooperative is flying blind on adoption.</p>
+      </div>
+      <div class="ins">
+        <div class="ix"><span>04</span><span class="tg">· Speed to open</span></div>
+        <h3>Smallwares is the slowest link.</h3>
+        <p>Build-to-Suit is contracting. Every day off a new opening is a measurable win. Today, smallwares is the trailing edge.</p>
+      </div>
+    </div>
+  </div>
+  <div class="chrome-bottom"><span>The leaks</span><span>Edge × Wendy's</span></div>
+</section>
+
+<!-- =========== 5 · PORTAL =========== -->
+<section class="slide portal-slide" id="s5">
+  <div class="chrome-top">
+    <div class="l"><svg class="edge-mini" viewBox="0 0 965.5 350" aria-hidden="true"><use href="#edge"/></svg><span class="sep"></span><span>The Approach</span></div>
+    <div class="r"><span class="nbr">05</span> / 10</div>
+  </div>
+  <div class="slide-inner">
+    <div class="eyebrow">04 · The Approach</div>
+    <div class="portal-title">
+      <h2>The</h2>
+      <img src="wendys-wordmark.png" class="w-inline" alt="Wendy's"/>
+      <h2>Operations Portal.</h2>
+    </div>
+    <p class="deck">A private, branded procurement experience — built on the same infrastructure already live for Dave's Hot Chicken.</p>
+    <div class="portal-hero">
+      <div class="mock" aria-hidden="true">
+        <div class="mock-bar">
+          <span class="mock-dot r"></span><span class="mock-dot y"></span><span class="mock-dot g"></span>
+          <span class="mock-url">wendys.edgefoodequipment.com / portal</span>
+        </div>
+        <div class="mock-body">
+          <div class="mock-head">
+            <div class="l-wm"><img src="wendys-wordmark.png" alt="Wendy's"/><span class="lbl">Operations Portal</span></div>
+            <span class="who">#4218 · Mississauga</span>
+          </div>
+          <div class="mock-greet">Good afternoon, Carla.</div>
+          <div class="mock-sub">Breakfast restock opens tomorrow. Reorder in two clicks.</div>
+          <div class="mock-row">
+            <div class="mock-card">
+              <div class="ttl">This week's order</div>
+              <div class="big">$2,184.50</div>
+              <div class="dlt">QSCC pricing · <b>saves $362</b></div>
+            </div>
+            <div class="mock-card">
+              <div class="ttl">Avg lead time</div>
+              <div class="big">2.3 days</div>
+              <div class="dlt">Down from 9.1</div>
+            </div>
+          </div>
+          <div class="mock-card tg">
+            <div class="ttl" style="margin-bottom:6px">Breakfast kit · reorder</div>
+            <div class="ml"><span><span class="ck on"></span> Square biscuit cutters, 3"</span><span class="qty">×6</span></div>
+            <div class="ml"><span><span class="ck on"></span> Frosty spindle paddles</span><span class="qty">×12</span></div>
+            <div class="ml"><span><span class="ck on"></span> Half-pan grease cups</span><span class="qty">×24</span></div>
+            <div class="ml"><span><span class="ck"></span> Egg ring, 4" (FreshAI)</span><span class="qty">×8</span></div>
+          </div>
+          <div class="mock-cta"><span class="btn">Approve order</span></div>
+        </div>
+      </div>
+      <div class="portal-side">
+        <div class="layer"><div class="nm">I</div><div><h3>Store-level reordering</h3><p>Built for a shift change, not a procurement training day. Two-click reorders, mobile-first.</p></div></div>
+        <div class="layer"><div class="nm">II</div><div><h3>Brand-standard enforcement</h3><p>Approved-SKU library. Off-spec procurement becomes structurally impossible.</p></div></div>
+        <div class="layer"><div class="nm">III</div><div><h3>QSCC intelligence</h3><p>Live consumption data by location, region, daypart. The cooperative finally sees the system.</p></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="chrome-bottom"><span>The portal</span><span>Edge × Wendy's</span></div>
+</section>
+
+<!-- =========== 6 · AI =========== -->
+<section class="slide" id="s6">
+  <div class="chrome-top">
+    <div class="l"><svg class="edge-mini" viewBox="0 0 965.5 350" aria-hidden="true"><use href="#edge"/></svg><span class="sep"></span><span>Built-in AI</span></div>
+    <div class="r"><span class="nbr">06</span> / 10</div>
+  </div>
+  <div class="slide-inner">
+    <div class="eyebrow">05 · Built-in AI</div>
+    <h2>Ask Edge. Built. Live. Deployed.</h2>
+    <p class="deck">Not a promise. Production infrastructure across multiple chain accounts. Wendy's plugs in in weeks.</p>
+    <div class="ai-grid">
+      <div class="ai">
+        <div class="who">For the franchisee</div>
+        <div class="chat">"My fry baskets aren't lasting through lunch. What should I order?"</div>
+        <div class="rep"><b>Ask Edge ↗</b><br>Heavy-duty mesh — same spec your region uses. <span class="kbd">SKU WND-FB-44H</span>. Added 2 to your next order. 2 days from Woodstock.</div>
+      </div>
+      <div class="ai">
+        <div class="who">For QSCC</div>
+        <div class="chat">"Show me every Ontario location that's ordered the new sandwich liners."</div>
+        <div class="rep"><b>Ask Edge ↗</b><br>84 of 142 adopted. 12 still on legacy SKU — flagged for review. Want a board-ready chart?</div>
+      </div>
+    </div>
+    <div class="ai-note"><b>Note.</b> Knowledge ingestion, retrieval, audit logging, role-based access — already built by our partners at Guest Getter. Wendy's benefits from infrastructure that already exists.</div>
+  </div>
+  <div class="chrome-bottom"><span>Ask Edge</span><span>Edge × Wendy's</span></div>
+</section>
+
+<!-- =========== 7 · MATH =========== -->
+<section class="slide math-slide" id="s7">
+  <div class="chrome-top">
+    <div class="l"><svg class="edge-mini" viewBox="0 0 965.5 350" aria-hidden="true"><use href="#edge"/></svg><span class="sep"></span><span>The Math</span></div>
+    <div class="r"><span class="nbr">07</span> / 10</div>
+  </div>
+  <div class="slide-inner">
+    <div class="eyebrow">06 · The Math</div>
+    <h2>Conservative, store-level math.</h2>
+    <p class="deck">Two effects only: <em>labor recovered</em> and <em>lead times compressed.</em> No brand-lift fantasies.</p>
+    <div class="math-grid">
+      <div class="met"><div class="top">2–4 hrs</div><div class="lbl">Per store / week</div><div class="d">GM time recovered from manual smallwares procurement.</div></div>
+      <div class="met"><div class="top">~$2M</div><div class="lbl">Annual labor recovery</div><div class="d">~380 stores × 3 hrs × 50 wks × blended labor cost.</div></div>
+      <div class="met"><div class="top">9 → 2 days</div><div class="lbl">Lead time</div><div class="d">Compression on high-velocity SKUs via Woodstock DC.</div></div>
+      <div class="met"><div class="top">100%</div><div class="lbl">Brand-standard</div><div class="d">Off-spec procurement becomes structurally impossible.</div></div>
+      <div class="met"><div class="top">30%+</div><div class="lbl">Faster new-store opening</div><div class="d">Smallwares removed as trailing-edge bottleneck.</div></div>
+      <div class="met"><div class="top">$0</div><div class="lbl">Net cost to Wendy's</div><div class="d">Portal + AI bundled into the contract. Not a software fee.</div></div>
+    </div>
+    <div class="math-note"><b>Assumes:</b> ~$35 CAD blended GM/AGM hourly cost · ~380 Canadian locations · 50 op weeks · 70% portal adoption Y1. Excludes QSCC data upside, KES integration, remodel cycle alignment.</div>
+  </div>
+  <div class="chrome-bottom"><span>The math</span><span>Edge × Wendy's</span></div>
+</section>
+
+<!-- =========== 8 · PILOT =========== -->
+<section class="slide" id="s8">
+  <div class="chrome-top">
+    <div class="l"><svg class="edge-mini" viewBox="0 0 965.5 350" aria-hidden="true"><use href="#edge"/></svg><span class="sep"></span><span>The Pilot</span></div>
+    <div class="r"><span class="nbr">08</span> / 10</div>
+  </div>
+  <div class="slide-inner">
+    <div class="eyebrow">07 · The Pilot</div>
+    <h2>90 days. 10 stores. Real data.</h2>
+    <p class="deck">No risk to the 2026 program. A signed national rollout proposal — or a clean exit.</p>
+    <div class="pilot">
+      <div class="phase">
+        <div class="pn">Phase I · Weeks 1–4</div>
+        <h3>Foundation</h3>
+        <div class="wk">Build the infrastructure</div>
+        <ul>
+          <li>QSCC SKU mapping</li>
+          <li>10-store pilot selection</li>
+          <li>Portal branding + provisioning</li>
+          <li>Ask Edge catalog ingestion</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="pn">Phase II · Weeks 5–8</div>
+        <h3>Pilot live</h3>
+        <div class="wk">Ten stores ordering through portal</div>
+        <ul>
+          <li>10 stores fully live</li>
+          <li>Weekly ops review</li>
+          <li>Labor + lead-time measurement</li>
+          <li>Franchisee feedback sprints</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="pn">Phase III · Weeks 9–12</div>
+        <h3>The decision</h3>
+        <div class="wk">Data on the table, not promises</div>
+        <ul>
+          <li>Raw store-level results</li>
+          <li>National rollout proposal</li>
+          <li>Y2 roadmap: KES alignment</li>
+          <li>Predictive reorder scoping</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="chrome-bottom"><span>The pilot</span><span>Edge × Wendy's</span></div>
+</section>
+
+<!-- =========== 9 · WHY EDGE =========== -->
+<section class="slide why-slide" id="s9">
+  <div class="chrome-top">
+    <div class="l"><svg class="edge-mini" viewBox="0 0 965.5 350" aria-hidden="true"><use href="#edge"/></svg><span class="sep"></span><span>Why Edge</span></div>
+    <div class="r"><span class="nbr">09</span> / 10</div>
+  </div>
+  <div class="slide-inner">
+    <div class="eyebrow">08 · Why Edge</div>
+    <h2>Three generations of QSR supply.<br>One digitally-enabled dealer.</h2>
+    <div class="why-grid">
+      <div class="why">
+        <span class="bdg">Heritage</span>
+        <h3>37+ years inside Canada's biggest QSR programs.</h3>
+        <p>The Cesario family has been inside cooperatives like QSCC since the 1970s. We know how franchisees think because we ship to hundreds each week.</p>
+      </div>
+      <div class="why">
+        <span class="bdg">Infrastructure</span>
+        <h3>The only dealer with this stack already live.</h3>
+        <p>Dave's Hot Chicken is on the portal today. Ask Edge is in production. Wendy's becomes the second major chain on proven infrastructure — not the first on a slide.</p>
+      </div>
+      <div class="why">
+        <span class="bdg">Distribution</span>
+        <h3>Four facilities. 110,000+ sq ft. Closer to your stores.</h3>
+        <p>Toronto HQ · Woodstock DC (60,000 sq ft) · London cash-and-carry · Moncton sales. Inventory closer than any national competitor.</p>
+      </div>
+      <div class="why">
+        <span class="bdg">Skin in the game</span>
+        <h3>We measure ourselves on adoption — not POs.</h3>
+        <p>We iterate the portal on Wendy's feedback. We report on GM adoption, lead-time compression, brand-standard adherence — the metrics that move Project Fresh.</p>
+      </div>
+    </div>
+  </div>
+  <div class="chrome-bottom"><span>Why Edge</span><span>Edge × Wendy's</span></div>
+</section>
+
+<!-- =========== 10 · CLOSE =========== -->
+<section class="slide close-slide" id="s10">
+  <div class="chrome-top">
+    <div class="l"><svg class="edge-mini" viewBox="0 0 965.5 350" aria-hidden="true"><use href="#edge"/></svg><span class="sep"></span><span>The Close</span></div>
+    <div class="r"><span class="nbr">10</span> / 10</div>
+  </div>
+  <div class="slide-inner">
+    <div class="eyebrow">09 · The Close</div>
+    <h2 class="close-h">Smallwares is the audition.<br><span class="o">The relationship is the prize.</span></h2>
+    <div class="close-roadmap">
+      <span><b>Year 1.</b> Smallwares + portal + Ask Edge.</span>
+      <span><b>Year 2.</b> KES + Image Activation remodels.</span>
+      <span><b>Year 3.</b> Predictive equipment intelligence.</span>
+    </div>
+    <p class="close-body">That's a conversation we earn by winning 2026. The infrastructure is already built. <em>We'd be honored to walk you through it on June 24.</em></p>
+    <div class="close-sig">
+      <span class="ln"></span>
+      <span><span class="nm">John Paul Cesario</span><span class="ro">President · Edge Food Equipment</span></span>
+    </div>
+  </div>
+  <div class="chrome-bottom"><span>110 Arrow Rd, North York · jpcesario@edgefoodequipment.com</span><span>June 2026</span></div>
+</section>
+
+<div class="kb-hint">Use <kbd>←</kbd> <kbd>→</kbd> or scroll to navigate · <kbd>P</kbd> to print</div>
+
+<script>
+  // Dot nav active-state via IntersectionObserver
+  const dots = [...document.querySelectorAll('.nav a')];
+  const slides = [...document.querySelectorAll('section.slide')];
+  const ob = new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){
+      const idx = slides.indexOf(e.target);
+      dots.forEach((d,i)=>d.classList.toggle('active', i===idx));
+    }});
+  },{threshold:.5});
+  slides.forEach(s=>ob.observe(s));
+
+  // Keyboard navigation
+  let cur=0;
+  function goto(i){ cur=Math.max(0,Math.min(slides.length-1,i)); slides[cur].scrollIntoView({behavior:'smooth'}); }
+  addEventListener('keydown',e=>{
+    if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();goto(cur+1)}
+    else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();goto(cur-1)}
+    else if(e.key==='Home'){goto(0)}
+    else if(e.key==='End'){goto(slides.length-1)}
+    else if(e.key==='p'||e.key==='P'){window.print()}
+  });
+  // Hide hint after first scroll
+  let hinted=false;
+  addEventListener('scroll',()=>{ if(!hinted){document.body.classList.add('scrolled');hinted=true} },{once:true});
+  // Track current slide on scroll
+  addEventListener('scroll',()=>{
+    const y=scrollY+innerHeight/2;
+    slides.forEach((s,i)=>{ if(y>=s.offsetTop && y<s.offsetTop+s.offsetHeight) cur=i; });
+  });
+</script>
+
+</body>
+</html>
