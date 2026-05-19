@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Restaurant Lucie · Buildout Status · May 12, 2026</title>
+<style>
+  :root {
+    --paper: #F2EFE7;
+    --paper-deep: #E8E4D9;
+    --navy: #1B2D42;
+    --gold: #B8916A;
+    --green: #4A6B4A;
+    --ink: #1F1F1F;
+    --ink-soft: #4A4A4A;
+    --muted: #6F6657;
+    --rule: rgba(27, 45, 66, 0.10);
+    --card: #FAF8F2;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); font-family: "Helvetica Neue", Arial, sans-serif; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+
+  header { padding: 64px 64px 32px; border-bottom: 1px solid var(--rule); }
+  .mark { font-size: 11px; color: var(--muted); letter-spacing: 0.22em; font-weight: 600; text-transform: uppercase; }
+  h1 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 400; font-size: 48px; margin: 14px 0 6px; color: var(--navy); letter-spacing: -0.01em; line-height: 1.08; }
+  .sub { font-size: 15px; color: var(--ink-soft); margin: 0; }
+
+  .progress-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 28px 64px 0;
+  }
+  .progress-card { background: var(--card); padding: 22px 24px; border-left: 3px solid var(--gold); }
+  .progress-card.green { border-left-color: var(--green); }
+  .progress-card .big { font-family: "Cormorant Garamond", Georgia, serif; font-size: 56px; line-height: 1; color: var(--navy); margin: 0; }
+  .progress-card .label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin: 8px 0 4px; }
+  .progress-card .note { font-size: 13px; color: var(--ink-soft); margin: 0; }
+
+  .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px 64px 64px; }
+  .col h2 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 400; font-size: 32px; color: var(--navy); margin: 0 0 4px; letter-spacing: -0.005em; }
+  .col .colsub { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+
+  .group { margin-bottom: 26px; }
+  .group-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+
+  .item { display: flex; gap: 12px; align-items: baseline; padding: 9px 0; border-bottom: 1px dashed var(--rule); font-size: 14px; line-height: 1.5; }
+  .item:last-child { border-bottom: none; }
+  .item .icon { flex-shrink: 0; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; line-height: 1; position: relative; top: 2px; }
+  .icon.done { background: var(--green); color: var(--paper); }
+  .icon.next { background: transparent; border: 1.5px solid var(--gold); color: transparent; }
+  .icon.live { background: var(--gold); color: var(--paper); }
+  .item .text { flex: 1; }
+  .item .text strong { color: var(--navy); font-weight: 600; }
+  .item .text small { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .item.done .text { color: var(--ink); }
+  .item.next .text { color: var(--ink); }
+  .item.live .text strong { color: var(--gold); }
+
+  footer { padding: 32px 64px 48px; background: var(--navy); color: var(--paper); }
+  footer p { font-size: 14px; color: rgba(242,239,231,0.80); max-width: 720px; line-height: 1.6; margin: 0; }
+  footer .signoff { margin-top: 16px; font-size: 10px; letter-spacing: 0.22em; color: rgba(184,145,106,0.85); text-transform: uppercase; }
+
+  @media (max-width: 900px) {
+    header, .progress-row, .columns, footer { padding-left: 24px; padding-right: 24px; }
+    .progress-row, .columns { grid-template-columns: 1fr; }
+    h1 { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="mark">Restaurant Lucie · Buildout Status · May 12, 2026</div>
+  <h1>Where we are. Where we're going.</h1>
+  <p class="sub">Going live the week of May 13. Below is what's already shipped, what's queued, and what stays live as is.</p>
+</header>
+
+<div class="progress-row">
+  <div class="progress-card green">
+    <p class="big">12</p>
+    <p class="label">Items shipped</p>
+    <p class="note">Strategy, creative, audit, and the client deck.</p>
+  </div>
+  <div class="progress-card">
+    <p class="big">9</p>
+    <p class="label">Items next</p>
+    <p class="note">Execution sequence across Google + Meta.</p>
+  </div>
+</div>
+
+<div class="columns">
+
+  <div class="col">
+    <h2>Shipped</h2>
+    <div class="colsub">Completed and ready for execution</div>
+
+    <div class="group">
+      <div class="group-label">Strategy + Audit</div>
+      <div class="item done">
+        <span class="icon done">✓</span>
+        <div class="text"><strong>Live account audit.</strong> Conversion tracking, campaign structure, keyword quality, and spend efficiency. Findings documented.</div>
+      </div>
+      <div class="item done">
+        <span class="icon done">✓</span>
+        <div class="text"><strong>Conversion-tracking diagnosis.</strong> Identified the 13-primary-conversion issue distorting Smart Bidding. Fix path documented as a single-session UI pass.</div>
+      </div>
+      <div class="item done">
+        <span class="icon done">✓</span>
+        <div class="text"><strong>Landing-page routing map.</strong> Each query intent matched to the right page (/menu, /reserve, /private-dining, /le-chef, root).</div>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-label">Creative + Copy</div>
+      <div class="item done">
+        <span class="icon done">✓</span>
+        <div class="text"><strong>Google Ads creative deck.</strong> 18 distinct Search SERP angles across 5 campaigns, plus PMAX asset pool, plus Demand Gen concepts.</div>
+      </div>
+      <div class="item done">
+        <span class="icon done">✓</span>
+        <div class="text"><strong>Meta creative series.</strong> 3 of 4 ad units finished — Chef Angeloni, Pithivier de Bison, Vol-au-vent. Feed + story for each.</div>
+      </div>
+      <div class="item done">
+        <span class="icon done">✓</span>
+        <div class="text"><strong>Meta ad copy.</strong> Primary text, headline, link description, and CTA written for each ad unit. Each headline distinct.</div>
+      </div>
+      <div class="item done">
+        <span class="icon done">✓</span>
+        <div class="text"><strong>Photo asset library.</strong> 8 hero photos staged at three aspect ratios for PMAX, Demand Gen, and reuse.</div>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-label">Client Deliverable</div>
+      <div class="item done">
+        <span class="icon done">✓</span>
+        <div class="text"><strong>Self-contained client deck.</strong> Single-file HTML with realistic Google SERP mockups, Meta feed previews, PMAX assets, and the full creative direction.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h2>Next</h2>
+    <div class="colsub">Execution sequence with API + UI work</div>
+
+    <div class="group">
+      <div class="group-label">Google · Foundations</div>
+      <div class="item next">
+        <span class="icon next">·</span>
+        <div class="text"><strong>Conversion-tracking cleanup.</strong> Demote 9 secondary actions, lift the OpenTable Reservation value, tighten call view-through windows.<small>~15 min UI pass. Highest-leverage change.</small></div>
+      </div>
+      <div class="item next">
+        <span class="icon next">·</span>
+        <div class="text"><strong>Kill the wasted spend.</strong> Pause five QS-1 tourist-intent keywords and two dead Lunch ad groups. Add campaign-level negatives.</div>
+      </div>
+      <div class="item next">
+        <span class="icon next">·</span>
+        <div class="text"><strong>7–14 day signal stabilization.</strong> Let Smart Bidding re-learn on clean conversion data before structural work.</div>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-label">Google · Campaign Build</div>
+      <div class="item next">
+        <span class="icon next">·</span>
+        <div class="text"><strong>Build 5 new Search campaigns.</strong> Chef Angeloni Launch, Cuisine &amp; Menu, Reserve Intent, Occasion &amp; Private Events, Brand. RSAs paused for review.</div>
+      </div>
+      <div class="item next">
+        <span class="icon next">·</span>
+        <div class="text"><strong>Refresh PMAX Prospecting + Remarketing.</strong> Swap creative pool for the Angeloni era, lift the prospecting budget, cap remarketing.</div>
+      </div>
+      <div class="item next">
+        <span class="icon next">·</span>
+        <div class="text"><strong>Launch Demand Gen · Angeloni Era.</strong> Pause the existing Arnaud creative, three new ad-group concepts across YouTube In-Feed, Discover, and Gmail.</div>
+      </div>
+      <div class="item next">
+        <span class="icon next">·</span>
+        <div class="text"><strong>Account-level extensions.</strong> Sitelinks, callouts, structured snippets, location, and call extension. Shared across all Search campaigns.</div>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-label">Meta · Finalize</div>
+      <div class="item next">
+        <span class="icon next">·</span>
+        <div class="text"><strong>Final Meta creative.</strong> Exterior shot of the three partners with the Michelin 2025 plate, as the announcement unit.</div>
+      </div>
+      <div class="item next">
+        <span class="icon next">·</span>
+        <div class="text"><strong>Build the Meta campaign.</strong> Cold prospecting, warm retargeting, and an occasion / private-event ad set. Upload as paused drafts. Launch May 13.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>Reporting cadence and dashboard access stay unchanged. Conversion optimization runs against OpenTable reservation completions and private event inquiries, both already firing from the site listener. No client-side action required.</p>
+  <div class="signoff">Guest Getter · Restaurant Lucie · May 12, 2026</div>
+</footer>
+
+</body>
+</html>
